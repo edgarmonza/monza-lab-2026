@@ -421,7 +421,7 @@ const WorkShowcase = () => {
 
                   {/* Gradient overlay */}
                   <div className="absolute inset-0" style={{ background: isModena
-                    ? "linear-gradient(to top, rgba(245,240,235,0.97) 0%, rgba(245,240,235,0.65) 40%, rgba(245,240,235,0.15) 100%)"
+                    ? "linear-gradient(to top, rgba(245,240,235,0.99) 0%, rgba(245,240,235,0.92) 35%, rgba(245,240,235,0.70) 60%, rgba(245,240,235,0.30) 100%)"
                     : "linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.15) 100%)"
                   }} />
 
@@ -458,7 +458,7 @@ const WorkShowcase = () => {
                               {project.name}
                             </h3>
 
-                            <p className={`font-clash text-[13px] md:text-sm mb-4 max-w-lg leading-relaxed ${isModena ? 'text-[#0B0B10]/50' : 'text-[#FFFCF7]/35'}`}>
+                            <p className={`font-clash text-[13px] md:text-sm mb-4 max-w-lg leading-relaxed ${isModena ? 'text-[#0B0B10]/65' : 'text-[#FFFCF7]/35'}`}>
                               {cs.story}
                             </p>
 
@@ -485,9 +485,9 @@ const WorkShowcase = () => {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="font-clash text-[10px] tracking-[0.2em] uppercase transition-colors duration-300"
-                                  style={{ color: "rgba(255,252,247,0.30)" }}
-                                  onMouseEnter={e => { e.currentTarget.style.color = "rgba(255,252,247,0.70)"; }}
-                                  onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,252,247,0.30)"; }}
+                                  style={{ color: isModena ? "rgba(11,11,16,0.40)" : "rgba(255,252,247,0.30)" }}
+                                  onMouseEnter={e => { e.currentTarget.style.color = isModena ? "rgba(11,11,16,0.80)" : "rgba(255,252,247,0.70)"; }}
+                                  onMouseLeave={e => { e.currentTarget.style.color = isModena ? "rgba(11,11,16,0.40)" : "rgba(255,252,247,0.30)"; }}
                                   onClick={e => e.stopPropagation()}
                                 >
                                   Visitar sitio →
@@ -503,14 +503,14 @@ const WorkShowcase = () => {
                                 key={pillar.label}
                                 className="rounded-lg p-4"
                                 style={{
-                                  background: isModena ? "rgba(11,11,16,0.04)" : "rgba(255,252,247,0.03)",
+                                  background: isModena ? "rgba(11,11,16,0.06)" : "rgba(255,252,247,0.03)",
                                   border: `1px solid ${project.visual.accent}15`,
                                 }}
                               >
                                 <p className="font-clash text-[10px] tracking-[0.2em] uppercase mb-1.5" style={{ color: `${project.visual.accent}70` }}>
                                   {pillar.label}
                                 </p>
-                                <p className={`font-clash text-[11px] leading-snug ${isModena ? 'text-[#0B0B10]/45' : 'text-[#FFFCF7]/35'}`}>
+                                <p className={`font-clash text-[11px] leading-snug ${isModena ? 'text-[#0B0B10]/60' : 'text-[#FFFCF7]/35'}`}>
                                   {pillar.detail}
                                 </p>
                               </div>
@@ -532,7 +532,7 @@ const WorkShowcase = () => {
                       >
                         {project.name}
                       </h3>
-                      <p className={`font-clash text-sm md:text-base max-w-xl leading-relaxed ${isModena ? 'text-[#0B0B10]/50' : 'text-[#FFFCF7]/40'}`}>
+                      <p className={`font-clash text-sm md:text-base max-w-xl leading-relaxed ${isModena ? 'text-[#0B0B10]/65' : 'text-[#FFFCF7]/40'}`}>
                         {project.desc}
                       </p>
                       {project.url && (

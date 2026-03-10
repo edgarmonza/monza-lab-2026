@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import FooterMinimal from "@/components/FooterMinimal";
 import PremiumBackground from "@/components/layout/PremiumBackground";
+import { useTheme } from "@/theme/ThemeContext";
 import edgarEditorial from "@/assets/edgar-editorial-pink.png";
 
 const SPEAKER_PHOTOS = [
@@ -16,6 +17,15 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const Speaker = () => {
   const [loaded, setLoaded] = useState(false);
+  const { theme } = useTheme();
+  const isModena = theme === "modena";
+
+  // Theme-aware colors
+  const textPrimary = isModena ? "#0B0B10" : "#FFFCF7";
+  const textMuted = (opacity: number) => isModena ? `rgba(11,11,16,${opacity})` : `rgba(255,252,247,${opacity})`;
+  const borderColor = (opacity: number) => isModena ? `rgba(11,11,16,${opacity})` : `rgba(255,255,255,${opacity})`;
+  const bgFade = isModena ? "#F5F0EB" : "#0B0B10";
+
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 80);
     return () => clearTimeout(t);
@@ -49,7 +59,7 @@ const Speaker = () => {
         />
 
         {/* Bottom fade */}
-        <div className="absolute inset-0 z-[2] pointer-events-none bg-gradient-to-t from-[#0B0B10]/95 via-[#0B0B10]/10 to-transparent" />
+        <div className="absolute inset-0 z-[2] pointer-events-none" style={{ background: `linear-gradient(to top, ${bgFade}f2, ${bgFade}1a, transparent)` }} />
 
         {/* Eyebrow — top left */}
         <motion.div
@@ -69,8 +79,8 @@ const Speaker = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.1, delay: 0.5, ease: EASE }}
-            className="font-clash text-[#FFFCF7] leading-[1.0] tracking-[-0.025em] mb-8"
-            style={{ fontSize: "clamp(3rem, 8vw, 7.5rem)" }}
+            className="font-clash leading-[1.0] tracking-[-0.025em] mb-8"
+            style={{ fontSize: "clamp(3rem, 8vw, 7.5rem)", color: textPrimary }}
           >
             No habla de IA.<br />
             <span className="text-[#F8B4D9]">La usa.</span>
@@ -90,7 +100,9 @@ const Speaker = () => {
             >
               Trae a Edgar a tu evento
             </a>
-            <a href="#quien" className="text-[10px] uppercase tracking-[0.3em] text-[#FFFCF7]/30 hover:text-[#FFFCF7]/60 transition-colors">
+            <a href="#quien" className="text-[10px] uppercase tracking-[0.3em] transition-colors" style={{ color: textMuted(0.30) }}
+              onMouseEnter={e => e.currentTarget.style.color = textMuted(0.60)}
+              onMouseLeave={e => e.currentTarget.style.color = textMuted(0.30)}>
               Leer más ↓
             </a>
           </motion.div>
@@ -105,7 +117,7 @@ const Speaker = () => {
       </section>
 
       {/* ── NÚMEROS — strip ── */}
-      <section className="py-14 md:py-16 border-b border-white/[0.05]">
+      <section className="py-14 md:py-16" style={{ borderBottom: `1px solid ${borderColor(0.05)}` }}>
         <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -123,7 +135,7 @@ const Speaker = () => {
                 className="text-center md:text-left"
               >
                 <p className="font-clash text-4xl md:text-5xl text-[#F8B4D9] mb-2 leading-none">{s.n}</p>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#FFFCF7]/30">{s.label}</p>
+                <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: textMuted(0.30) }}>{s.label}</p>
               </motion.div>
             ))}
           </div>
@@ -143,8 +155,8 @@ const Speaker = () => {
             >
               <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-10">El speaker</p>
               <h2
-                className="font-clash text-[#FFFCF7] leading-[1.08] tracking-[-0.02em] mb-10"
-                style={{ fontSize: "clamp(2rem, 4.5vw, 3.8rem)" }}
+                className="font-clash leading-[1.08] tracking-[-0.02em] mb-10"
+                style={{ fontSize: "clamp(2rem, 4.5vw, 3.8rem)", color: textPrimary }}
               >
                 No viene a hablar<br />
                 de lo que estudió.<br />
@@ -159,12 +171,12 @@ const Speaker = () => {
                 ))}
               </div>
 
-              <p className="text-[#FFFCF7]/45 text-lg leading-[1.85] max-w-[500px] mb-14">
+              <p className="text-lg leading-[1.85] max-w-[500px] mb-14" style={{ color: textMuted(0.45) }}>
                 Consultor de Big Four. Fundador de múltiples ventures en paralelo. Construye con IA desde el día uno — no como herramienta, sino como sistema operativo. No habla desde la teoría. Habla desde la obra que está corriendo hoy.
               </p>
 
               {/* Ventures list */}
-              <div className="space-y-0 border-t border-white/[0.06]">
+              <div className="space-y-0" style={{ borderTop: `1px solid ${borderColor(0.06)}` }}>
                 {[
                   { name: "Monza Lab",      href: null,                          desc: "AI-native creative studio · Colombia" },
                   { name: "Monza Haus",     href: null,                          desc: "Marketplace inteligente · En construcción" },
@@ -177,17 +189,19 @@ const Speaker = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
-                    className="flex items-center justify-between py-4 border-b border-white/[0.06] group"
+                    className="flex items-center justify-between py-4 group"
+                    style={{ borderBottom: `1px solid ${borderColor(0.06)}` }}
                   >
                     {v.href ? (
                       <a href={v.href} target="_blank" rel="noopener noreferrer"
-                        className="font-clash text-[#FFFCF7]/80 text-sm md:text-base group-hover:text-[#F8B4D9] transition-colors underline-offset-4 hover:underline">
+                        className="font-clash text-sm md:text-base group-hover:text-[#F8B4D9] transition-colors underline-offset-4 hover:underline"
+                        style={{ color: textMuted(0.80) }}>
                         {v.name}
                       </a>
                     ) : (
-                      <span className="font-clash text-[#FFFCF7]/80 text-sm md:text-base group-hover:text-[#FFFCF7] transition-colors">{v.name}</span>
+                      <span className="font-clash text-sm md:text-base transition-colors" style={{ color: textMuted(0.80) }}>{v.name}</span>
                     )}
-                    <span className="text-[10px] uppercase tracking-[0.18em] text-[#FFFCF7]/25 group-hover:text-[#F8B4D9]/50 transition-colors text-right">{v.desc}</span>
+                    <span className="text-[10px] uppercase tracking-[0.18em] group-hover:text-[#F8B4D9]/50 transition-colors text-right" style={{ color: textMuted(0.25) }}>{v.desc}</span>
                   </motion.div>
                 ))}
               </div>
@@ -199,7 +213,7 @@ const Speaker = () => {
               viewport={{ once: true }}
               transition={{ duration: 1.1, delay: 0.15, ease: EASE }}
               className="relative aspect-[3/4] rounded-xl overflow-hidden"
-              style={{ border: "1px solid rgba(255,255,255,0.06)" }}
+              style={{ border: `1px solid ${borderColor(0.06)}` }}
             >
               <img
                 src={edgarEditorial}
@@ -207,7 +221,7 @@ const Speaker = () => {
                 className="w-full h-full object-cover object-top"
                 style={{ filter: "saturate(0.85)" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b10]/50 to-transparent" />
+              <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${bgFade}80, transparent)` }} />
             </motion.div>
 
           </div>
@@ -215,15 +229,15 @@ const Speaker = () => {
       </section>
 
       {/* ── STATEMENT — full width ── */}
-      <section className="py-24 md:py-32 border-t border-b border-white/[0.05]">
+      <section className="py-24 md:py-32" style={{ borderTop: `1px solid ${borderColor(0.05)}`, borderBottom: `1px solid ${borderColor(0.05)}` }}>
         <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
           <motion.blockquote
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease: EASE }}
-            className="font-clash text-[#FFFCF7]/70 leading-[1.15] tracking-[-0.015em] max-w-4xl"
-            style={{ fontSize: "clamp(1.6rem, 3.8vw, 3.2rem)" }}
+            className="font-clash leading-[1.15] tracking-[-0.015em] max-w-4xl"
+            style={{ fontSize: "clamp(1.6rem, 3.8vw, 3.2rem)", color: textMuted(0.70) }}
           >
             "Cuando Edgar sube a un escenario, la sala{" "}
             <span className="text-[#F8B4D9]">deja de tenerle miedo a la IA</span>{" "}
@@ -278,11 +292,11 @@ const Speaker = () => {
           >
             <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-5">Macro-temáticas</p>
             <h2
-              className="font-clash text-[#FFFCF7] leading-[1.08] tracking-[-0.02em]"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
+              className="font-clash leading-[1.08] tracking-[-0.02em]"
+              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", color: textPrimary }}
             >
               Tres conversaciones<br />
-              <span className="text-[#FFFCF7]/35">que nadie más está teniendo.</span>
+              <span style={{ color: textMuted(0.35) }}>que nadie más está teniendo.</span>
             </h2>
           </motion.div>
 
@@ -316,23 +330,24 @@ const Speaker = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
-                className="group py-10 border-b border-white/[0.07] flex items-start gap-8 cursor-default transition-all duration-300 hover:border-white/[0.14]"
+                className="group py-10 flex items-start gap-8 cursor-default transition-all duration-300"
+                style={{ borderBottom: `1px solid ${borderColor(0.07)}` }}
               >
                 <span className="text-[10px] font-mono text-[#F8B4D9]/40 pt-2 flex-shrink-0 group-hover:text-[#F8B4D9]/70 transition-colors">{t.n}</span>
                 <div className="flex-1 flex flex-col gap-4">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
                     <h3
-                      className="font-clash text-[#FFFCF7]/85 leading-[1.2] tracking-[-0.01em] group-hover:text-[#FFFCF7] transition-colors"
-                      style={{ fontSize: "clamp(1.2rem, 2.4vw, 1.75rem)" }}
+                      className="font-clash leading-[1.2] tracking-[-0.01em] transition-colors"
+                      style={{ fontSize: "clamp(1.2rem, 2.4vw, 1.75rem)", color: textMuted(0.85) }}
                     >
                       {t.titulo}
                     </h3>
                     <div className="flex flex-col items-start md:items-end gap-1 flex-shrink-0">
-                      <span className="text-[9px] uppercase tracking-[0.2em] text-[#FFFCF7]/22 group-hover:text-[#F8B4D9]/50 transition-colors md:text-right">{t.para}</span>
+                      <span className="text-[9px] uppercase tracking-[0.2em] group-hover:text-[#F8B4D9]/50 transition-colors md:text-right" style={{ color: textMuted(0.22) }}>{t.para}</span>
                       <span className="text-[9px] uppercase tracking-[0.15em] text-[#F8B4D9]/30">{t.tag}</span>
                     </div>
                   </div>
-                  <p className="text-[#FFFCF7]/30 text-sm leading-[1.75] max-w-[620px] group-hover:text-[#FFFCF7]/45 transition-colors duration-500">
+                  <p className="text-sm leading-[1.75] max-w-[620px] transition-colors duration-500" style={{ color: textMuted(0.30) }}>
                     {t.sub}
                   </p>
                 </div>
@@ -340,7 +355,7 @@ const Speaker = () => {
             ))}
           </div>
 
-          <p className="text-[#FFFCF7]/20 text-xs tracking-[0.15em] mt-10">
+          <p className="text-xs tracking-[0.15em] mt-10" style={{ color: textMuted(0.20) }}>
             Keynote 45–60 min · Workshop 90 min · Panel · El formato y el idioma se definen contigo.
           </p>
         </div>
@@ -360,8 +375,8 @@ const Speaker = () => {
             transition={{ duration: 1, ease: EASE }}
           >
             <h2
-              className="font-clash text-[#FFFCF7] leading-[1.0] tracking-[-0.025em] mb-12"
-              style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
+              className="font-clash leading-[1.0] tracking-[-0.025em] mb-12"
+              style={{ fontSize: "clamp(3rem, 8vw, 7rem)", color: textPrimary }}
             >
               ¿Quieres traer<br />
               <span className="text-[#F8B4D9]">a Monza?</span>
@@ -374,7 +389,7 @@ const Speaker = () => {
             >
               Hablemos por WhatsApp
             </a>
-            <p className="text-[#FFFCF7]/18 text-xs mt-8 tracking-[0.15em]">
+            <p className="text-xs mt-8 tracking-[0.15em]" style={{ color: textMuted(0.18) }}>
               edgar@monzalab.com
             </p>
           </motion.div>
