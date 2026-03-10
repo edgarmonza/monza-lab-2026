@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sips -g pixelWidth -g pixelHeight \"/Users/bavaraianecons/Desktop/monza ORGANIZADO/Pagina Web Monza/Pagina 2026/src/assets/edgar-helmet-hero.png\" \"/Users/bavaraianecons/Desktop/monza ORGANIZADO/Pagina Web Monza/Pagina 2026/src/assets/edgar-quantum-board.png\")",
+      "Bash(ffprobe -v quiet -print_format json -show_format -show_streams ~/Downloads/\"monza-reader-16x9 \\(6\\).mp4\")",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); s=d[''streams''][0]; f=d[''format'']; print\\(f''Duration: {float\\(f[\"\"duration\"\"]\\):.1f}s''\\); print\\(f''Resolution: {s[\"\"width\"\"]}x{s[\"\"height\"\"]}''\\); print\\(f''FPS: {s.get\\(\"\"r_frame_rate\"\",\"\"?\"\"\\)}''\\); print\\(f''Size: {int\\(f[\"\"size\"\"]\\)/1024/1024:.1f}MB''\\)\")",
+      "Bash(/opt/homebrew/bin/ffmpeg -i ~/Downloads/\"Recording 8_3_2026, 20_09_33.webm\" -c:v libx264 -crf 23 -preset fast -an -movflags +faststart ~/Downloads/bavarian-econs-reel.mp4)",
+      "Bash(npx vite dev --port 5173)"
+    ]
+  }
+}

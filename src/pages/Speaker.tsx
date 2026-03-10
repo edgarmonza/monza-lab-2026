@@ -1,0 +1,391 @@
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
+import FooterMinimal from "@/components/FooterMinimal";
+import PremiumBackground from "@/components/layout/PremiumBackground";
+import edgarEditorial from "@/assets/edgar-editorial-pink.png";
+
+const SPEAKER_PHOTOS = [
+  { src: "/images/Speaker/8565b51b-2338-4737-958b-042761b06ceb.jpg", aspect: "landscape", label: "KPMG · Bogotá" },
+  { src: "/images/Speaker/15474a8a-40f8-4533-b39d-20a91fb73992.jpg", aspect: "portrait",  label: "Keynote · En escenario" },
+  { src: "/images/Speaker/772cff2c-09c9-454b-8870-aae7ff4dab43.jpg", aspect: "landscape", label: "Sala llena · IA en vivo" },
+  { src: "/images/Speaker/816b944b-0546-4c9b-aef5-6554e532cf52.jpg", aspect: "portrait",  label: "Panel · Director Innovación" },
+  { src: "/images/Speaker/448c3893-58da-466f-8e0c-5022330ff37c.jpg", aspect: "landscape", label: "University Demo Day" },
+];
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+const Speaker = () => {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 80);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <PremiumBackground>
+      <Navbar />
+
+      {/* ── HERO — full height editorial ── */}
+      <section className="relative h-[100svh] w-full overflow-hidden">
+
+        {/* Photo with Ken Burns */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url(${SPEAKER_PHOTOS[0].src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center 30%",
+            filter: "brightness(0.38) saturate(0.80)",
+            animation: "kenburns-hero 20s ease-in-out infinite alternate",
+          }}
+        />
+
+        {/* Grain */}
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none mix-blend-overlay"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            opacity: 0.055,
+          }}
+        />
+
+        {/* Bottom fade */}
+        <div className="absolute inset-0 z-[2] pointer-events-none bg-gradient-to-t from-[#0B0B10]/95 via-[#0B0B10]/10 to-transparent" />
+
+        {/* Eyebrow — top left */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={loaded ? { opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="absolute top-28 left-6 sm:left-8 lg:left-12 z-10"
+        >
+          <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40">
+            Edgar Navarro · Speaker
+          </p>
+        </motion.div>
+
+        {/* Main headline — bottom left */}
+        <div className="absolute bottom-16 md:bottom-20 left-6 sm:left-8 lg:left-12 z-10 max-w-[900px]">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={loaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.1, delay: 0.5, ease: EASE }}
+            className="font-clash text-[#FFFCF7] leading-[1.0] tracking-[-0.025em] mb-8"
+            style={{ fontSize: "clamp(3rem, 8vw, 7.5rem)" }}
+          >
+            No habla de IA.<br />
+            <span className="text-[#F8B4D9]">La usa.</span>
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={loaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.85, ease: EASE }}
+            className="flex items-center gap-8"
+          >
+            <a
+              href="https://wa.me/573208496241?text=Hola%20Edgar%2C%20me%20interesa%20tenerte%20como%20speaker%20en%20mi%20evento."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full px-8 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase bg-[#F8B4D9] text-[#0b0b10] hover:bg-[#f4cbde] shadow-[0_6px_24px_-6px_rgba(248,180,217,0.4)] hover:shadow-[0_10px_36px_-6px_rgba(248,180,217,0.55)] hover:-translate-y-[1px] transition-all duration-300"
+            >
+              Trae a Edgar a tu evento
+            </a>
+            <a href="#quien" className="text-[10px] uppercase tracking-[0.3em] text-[#FFFCF7]/30 hover:text-[#FFFCF7]/60 transition-colors">
+              Leer más ↓
+            </a>
+          </motion.div>
+        </div>
+
+        <style>{`
+          @keyframes kenburns-hero {
+            from { transform: scale(1.0); }
+            to   { transform: scale(1.07) translateY(-6px); }
+          }
+        `}</style>
+      </section>
+
+      {/* ── NÚMEROS — strip ── */}
+      <section className="py-14 md:py-16 border-b border-white/[0.05]">
+        <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { n: "15+", label: "años construyendo" },
+              { n: "6", label: "años en KPMG" },
+              { n: "1.200+", label: "en escenario" },
+              { n: "2", label: "empresas fundadas" },
+            ].map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.07, ease: EASE }}
+                className="text-center md:text-left"
+              >
+                <p className="font-clash text-4xl md:text-5xl text-[#F8B4D9] mb-2 leading-none">{s.n}</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#FFFCF7]/30">{s.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── QUIÉN ES — editorial split ── */}
+      <section id="quien" className="py-32 md:py-44 relative">
+        <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
+          <div className="grid lg:grid-cols-[1fr_400px] gap-20 lg:gap-28 items-center">
+
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: EASE }}
+            >
+              <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-10">El speaker</p>
+              <h2
+                className="font-clash text-[#FFFCF7] leading-[1.08] tracking-[-0.02em] mb-10"
+                style={{ fontSize: "clamp(2rem, 4.5vw, 3.8rem)" }}
+              >
+                No viene a hablar<br />
+                de lo que estudió.<br />
+                <span className="text-[#F8B4D9]">Viene a mostrar<br />lo que hace.</span>
+              </h2>
+              {/* Credencial pills */}
+              <div className="flex flex-wrap gap-2 mb-10">
+                {["Big Four backup", "Startup velocity", "Global aesthetics"].map((tag) => (
+                  <span key={tag} className="text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border border-[#F8B4D9]/20 text-[#F8B4D9]/50">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <p className="text-[#FFFCF7]/45 text-lg leading-[1.85] max-w-[500px] mb-14">
+                Consultor de Big Four. Fundador de múltiples ventures en paralelo. Construye con IA desde el día uno — no como herramienta, sino como sistema operativo. No habla desde la teoría. Habla desde la obra que está corriendo hoy.
+              </p>
+
+              {/* Ventures list */}
+              <div className="space-y-0 border-t border-white/[0.06]">
+                {[
+                  { name: "Monza Lab",      href: null,                          desc: "AI-native creative studio · Colombia" },
+                  { name: "Monza Haus",     href: null,                          desc: "Marketplace inteligente · En construcción" },
+                  { name: "Bavarian Econs", href: "https://www.bavarianecons.com/", desc: "Electrificación de BMW clásicos" },
+                  { name: "Guardian Speed", href: null,                          desc: "Racing · con Carlos Navarro" },
+                ].map((v, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -12 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
+                    className="flex items-center justify-between py-4 border-b border-white/[0.06] group"
+                  >
+                    {v.href ? (
+                      <a href={v.href} target="_blank" rel="noopener noreferrer"
+                        className="font-clash text-[#FFFCF7]/80 text-sm md:text-base group-hover:text-[#F8B4D9] transition-colors underline-offset-4 hover:underline">
+                        {v.name}
+                      </a>
+                    ) : (
+                      <span className="font-clash text-[#FFFCF7]/80 text-sm md:text-base group-hover:text-[#FFFCF7] transition-colors">{v.name}</span>
+                    )}
+                    <span className="text-[10px] uppercase tracking-[0.18em] text-[#FFFCF7]/25 group-hover:text-[#F8B4D9]/50 transition-colors text-right">{v.desc}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, delay: 0.15, ease: EASE }}
+              className="relative aspect-[3/4] rounded-xl overflow-hidden"
+              style={{ border: "1px solid rgba(255,255,255,0.06)" }}
+            >
+              <img
+                src={edgarEditorial}
+                alt="Edgar Navarro"
+                className="w-full h-full object-cover object-top"
+                style={{ filter: "saturate(0.85)" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b10]/50 to-transparent" />
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── STATEMENT — full width ── */}
+      <section className="py-24 md:py-32 border-t border-b border-white/[0.05]">
+        <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
+          <motion.blockquote
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: EASE }}
+            className="font-clash text-[#FFFCF7]/70 leading-[1.15] tracking-[-0.015em] max-w-4xl"
+            style={{ fontSize: "clamp(1.6rem, 3.8vw, 3.2rem)" }}
+          >
+            "Cuando Edgar sube a un escenario, la sala{" "}
+            <span className="text-[#F8B4D9]">deja de tenerle miedo a la IA</span>{" "}
+            y empieza a usarla."
+          </motion.blockquote>
+        </div>
+      </section>
+
+      {/* ── GALERÍA — film strip ── */}
+      <section className="py-0 overflow-hidden">
+        <div
+          className="flex gap-3 overflow-x-auto scrollbar-none"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {SPEAKER_PHOTOS.map((p, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.97 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: i * 0.08, ease: EASE }}
+              className="relative flex-shrink-0 overflow-hidden group"
+              style={{
+                width: p.aspect === "portrait" ? "280px" : "440px",
+                height: "360px",
+              }}
+            >
+              <img
+                src={p.src}
+                alt={p.label}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                style={{ filter: "brightness(0.80) saturate(0.85)" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <span className="absolute bottom-4 left-4 text-[9px] uppercase tracking-[0.3em] text-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                {p.label}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── TEMAS — minimal list ── */}
+      <section className="py-32 md:py-44 relative">
+        <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="mb-20"
+          >
+            <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-5">Macro-temáticas</p>
+            <h2
+              className="font-clash text-[#FFFCF7] leading-[1.08] tracking-[-0.02em]"
+              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)" }}
+            >
+              Tres conversaciones<br />
+              <span className="text-[#FFFCF7]/35">que nadie más está teniendo.</span>
+            </h2>
+          </motion.div>
+
+          <div className="space-y-0">
+            {[
+              {
+                n: "01",
+                titulo: "La empresa que se compila, no se administra.",
+                sub: "Qué significa construir un negocio donde la IA es el sistema operativo desde el día uno — no una herramienta, no un departamento. El modelo AI-native en la práctica: cómo contratar menos, mover más rápido y producir a escala de equipo grande con equipo pequeño.",
+                para: "CEOs · Founders · Directorios",
+                tag: "Keynote 45–60 min",
+              },
+              {
+                n: "02",
+                titulo: "Velocidad de carrera, precisión de artesano.",
+                sub: "La paradoja del constructor moderno: mover a velocidad de F1 sin perder la calidad que construye marca. Desde las pistas con Carlos Navarro hasta escalar ventures en paralelo — cómo la mentalidad del racing aplica a los negocios que quieren ganar a largo plazo.",
+                para: "Entrepreneurs · Equipos de alto rendimiento",
+                tag: "Keynote · Workshop 90 min",
+              },
+              {
+                n: "03",
+                titulo: "Global aesthetics: el diseño como foso defensivo.",
+                sub: "Las empresas que van a dominar la próxima década no van a ganar por precio ni por tecnología — van a ganar porque hacen sentir algo. Cómo construir marcas con estética global desde Latinoamérica, usando IA como amplificador del gusto, no como reemplazo de la visión.",
+                para: "CMOs · Brand leaders · Founders de marca",
+                tag: "Keynote 45 min",
+              },
+            ].map((t, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
+                className="group py-10 border-b border-white/[0.07] flex items-start gap-8 cursor-default transition-all duration-300 hover:border-white/[0.14]"
+              >
+                <span className="text-[10px] font-mono text-[#F8B4D9]/40 pt-2 flex-shrink-0 group-hover:text-[#F8B4D9]/70 transition-colors">{t.n}</span>
+                <div className="flex-1 flex flex-col gap-4">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+                    <h3
+                      className="font-clash text-[#FFFCF7]/85 leading-[1.2] tracking-[-0.01em] group-hover:text-[#FFFCF7] transition-colors"
+                      style={{ fontSize: "clamp(1.2rem, 2.4vw, 1.75rem)" }}
+                    >
+                      {t.titulo}
+                    </h3>
+                    <div className="flex flex-col items-start md:items-end gap-1 flex-shrink-0">
+                      <span className="text-[9px] uppercase tracking-[0.2em] text-[#FFFCF7]/22 group-hover:text-[#F8B4D9]/50 transition-colors md:text-right">{t.para}</span>
+                      <span className="text-[9px] uppercase tracking-[0.15em] text-[#F8B4D9]/30">{t.tag}</span>
+                    </div>
+                  </div>
+                  <p className="text-[#FFFCF7]/30 text-sm leading-[1.75] max-w-[620px] group-hover:text-[#FFFCF7]/45 transition-colors duration-500">
+                    {t.sub}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <p className="text-[#FFFCF7]/20 text-xs tracking-[0.15em] mt-10">
+            Keynote 45–60 min · Workshop 90 min · Panel · El formato y el idioma se definen contigo.
+          </p>
+        </div>
+      </section>
+
+      {/* ── CTA FINAL ── */}
+      <section className="py-32 md:py-44 relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse 90% 80% at 50% 100%, rgba(248,180,217,0.09) 0%, transparent 65%)" }}
+        />
+        <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: EASE }}
+          >
+            <h2
+              className="font-clash text-[#FFFCF7] leading-[1.0] tracking-[-0.025em] mb-12"
+              style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
+            >
+              ¿Quieres traer<br />
+              <span className="text-[#F8B4D9]">a Monza?</span>
+            </h2>
+            <a
+              href="https://wa.me/573208496241?text=Hola%20Edgar%2C%20me%20interesa%20tenerte%20como%20speaker%20en%20mi%20evento."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-10 py-4 rounded-full text-sm font-semibold uppercase tracking-[0.2em] bg-[#F8B4D9] text-[#0b0b10] hover:bg-[#f4cbde] shadow-[0_6px_28px_-6px_rgba(248,180,217,0.4)] hover:shadow-[0_14px_44px_-8px_rgba(248,180,217,0.55)] hover:-translate-y-[2px] transition-all duration-300"
+            >
+              Hablemos por WhatsApp
+            </a>
+            <p className="text-[#FFFCF7]/18 text-xs mt-8 tracking-[0.15em]">
+              edgar@monzalab.com
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      <FooterMinimal />
+    </PremiumBackground>
+  );
+};
+
+export default Speaker;
