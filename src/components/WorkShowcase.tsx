@@ -108,7 +108,7 @@ const PROJECTS = [
       press: [],
     },
     gridClass: "md:col-span-2 md:row-span-1",
-    aspect: "aspect-[21/9]",
+    aspect: "aspect-[4/5] md:aspect-[21/9]",
     visual: {
       gradient: "radial-gradient(ellipse at 10% 50%, #C4A35A15 0%, transparent 40%), radial-gradient(ellipse at 90% 50%, #C4A35A10 0%, transparent 40%), linear-gradient(90deg, #14100F 0%, #0D0D14 50%, #14100F 100%)",
       letter: "GS",
@@ -117,6 +117,41 @@ const PROJECTS = [
       accent: "#C4A35A",
       decorLine: true,
       number: "04",
+    },
+  },
+  {
+    id: "monzahaus",
+    name: "Monza Haus",
+    tag: "0→1 × PRODUCT",
+    desc: "El Bloomberg de los carros. Base de datos, frontend, UI y modelo de negocio. En construcción.",
+    image: null as string | null,
+    video: "/videos/monza-haus-reel.mp4",
+    color: "#F8B4D9",
+    url: null,
+    caseStudy: {
+      role: "Founder & Product Lead",
+      location: "Global",
+      year: "2026–present",
+      headline: "El Bloomberg de los carros.",
+      story: "Base de datos en tiempo real, configuración de frontend y UI desde cero, y diseño del modelo de negocio. Monza Haus centraliza toda la inteligencia del mercado automotriz en una sola plataforma.",
+      pillars: [
+        { label: "Database", detail: "Arquitectura de datos en tiempo real" },
+        { label: "Frontend", detail: "UI/UX desde cero" },
+        { label: "Product", detail: "Modelo de negocio y go-to-market" },
+        { label: "AI", detail: "Inteligencia de mercado automotriz" },
+      ],
+      press: [],
+    },
+    gridClass: "md:col-span-1 md:row-span-1",
+    aspect: "aspect-[4/5]",
+    visual: {
+      gradient: "radial-gradient(circle at 30% 40%, #F8B4D918 0%, transparent 50%), radial-gradient(circle at 70% 70%, #F8B4D90C 0%, transparent 40%), linear-gradient(160deg, #110F16 0%, #0D0D14 100%)",
+      letter: "MH",
+      letterSize: "clamp(60px, 12vw, 140px)",
+      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+      accent: "#F8B4D9",
+      decorLine: false,
+      number: "05",
     },
   },
 ];
@@ -155,7 +190,7 @@ const WorkShowcase = () => {
           </motion.div>
 
           {/* Editorial asymmetric grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-3 auto-rows-[280px] md:auto-rows-[260px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-3 auto-rows-auto md:auto-rows-[260px]">
             {PROJECTS.map((project, i) => {
               const isHovered = hovered === project.id;
               return (
@@ -343,7 +378,7 @@ const WorkShowcase = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="fixed inset-0 z-[100] flex items-center justify-center"
+                className="fixed inset-0 z-[45] flex items-center justify-center pt-20"
                 style={{
                   background: "rgba(8, 8, 12, 0.98)",
                 }}
@@ -515,7 +550,18 @@ const WorkShowcase = () => {
                   )}
                 </motion.div>
 
-                {/* Close */}
+                {/* Back button — top left */}
+                <button
+                  onClick={() => setExpanded(null)}
+                  className="absolute top-6 left-6 md:top-10 md:left-10 flex items-center gap-2 px-4 py-2 rounded-full border border-[#FFFCF7]/10 text-[#FFFCF7]/40 hover:text-[#FFFCF7]/80 hover:border-[#FFFCF7]/30 transition-all duration-300"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M11 7H3M3 7l3.5-3.5M3 7l3.5 3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="font-clash text-[10px] tracking-[0.2em] uppercase">Volver</span>
+                </button>
+
+                {/* Close — top right */}
                 <button
                   onClick={() => setExpanded(null)}
                   className="absolute top-6 right-6 md:top-10 md:right-10 w-10 h-10 flex items-center justify-center rounded-full border border-[#FFFCF7]/10 text-[#FFFCF7]/40 hover:text-[#FFFCF7]/80 hover:border-[#FFFCF7]/30 transition-all duration-300"
