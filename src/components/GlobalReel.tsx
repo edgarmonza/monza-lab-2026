@@ -68,9 +68,9 @@ const GlobalReel = () => {
     <section
       ref={sectionRef}
       className="relative w-full overflow-hidden border-t border-white/[0.04]"
-      style={{ height: "160vh" }}
+      style={{ height: "120vh" }}
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      <div className="sticky top-0 h-[70vh] flex flex-col justify-center overflow-hidden">
 
         {/* Glow */}
         <div
@@ -107,7 +107,7 @@ const GlobalReel = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
-          className="text-center text-[13px] mb-14 relative z-10"
+          className="text-center text-[13px] mb-8 relative z-10"
           style={{ color: "rgba(var(--text-rgb), 0.25)" }}
         >
           Tres continentes. Proyectos que corren hoy.
