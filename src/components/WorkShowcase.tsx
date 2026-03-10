@@ -382,7 +382,7 @@ const WorkShowcase = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="fixed inset-0 z-[45] flex items-center justify-center pt-20"
+                className="fixed inset-0 z-[60] flex items-center justify-center pt-20"
                 style={{
                   background: isModena ? "rgba(245, 240, 235, 0.98)" : "rgba(8, 8, 12, 0.98)",
                 }}
@@ -557,21 +557,21 @@ const WorkShowcase = () => {
                   )}
                 </motion.div>
 
-                {/* Back button — top left */}
+                {/* Back button — top left, visible on mobile */}
                 <button
                   onClick={() => setExpanded(null)}
-                  className={`absolute top-6 left-6 md:top-10 md:left-10 flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 ${isModena ? 'border-[#0B0B10]/10 text-[#0B0B10]/40 hover:text-[#0B0B10]/80 hover:border-[#0B0B10]/30' : 'border-[#FFFCF7]/10 text-[#FFFCF7]/40 hover:text-[#FFFCF7]/80 hover:border-[#FFFCF7]/30'}`}
+                  className={`absolute top-4 left-4 md:top-8 md:left-8 flex items-center gap-2 px-4 py-2.5 rounded-full backdrop-blur-md transition-all duration-300 ${isModena ? 'bg-[#F5F0EB]/80 text-[#0B0B10]/70 hover:text-[#0B0B10] border border-[#0B0B10]/10' : 'bg-[#0B0B10]/60 text-[#FFFCF7]/70 hover:text-[#FFFCF7] border border-[#FFFCF7]/15'}`}
                 >
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M11 7H3M3 7l3.5-3.5M3 7l3.5 3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
+                    <path d="M11 7H3M3 7l3.5-3.5M3 7l3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <span className="font-clash text-[10px] tracking-[0.2em] uppercase">Volver</span>
+                  <span className="font-clash text-[11px] tracking-[0.15em] uppercase font-semibold">Volver</span>
                 </button>
 
-                {/* Close — top right */}
+                {/* Close — top right, visible on mobile */}
                 <button
                   onClick={() => setExpanded(null)}
-                  className={`absolute top-6 right-6 md:top-10 md:right-10 w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-300 ${isModena ? 'border-[#0B0B10]/10 text-[#0B0B10]/40 hover:text-[#0B0B10]/80 hover:border-[#0B0B10]/30' : 'border-[#FFFCF7]/10 text-[#FFFCF7]/40 hover:text-[#FFFCF7]/80 hover:border-[#FFFCF7]/30'}`}
+                  className={`absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 flex items-center justify-center rounded-full backdrop-blur-md transition-all duration-300 ${isModena ? 'bg-[#F5F0EB]/80 text-[#0B0B10]/70 hover:text-[#0B0B10] border border-[#0B0B10]/10' : 'bg-[#0B0B10]/60 text-[#FFFCF7]/70 hover:text-[#FFFCF7] border border-[#FFFCF7]/15'}`}
                 >
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path
