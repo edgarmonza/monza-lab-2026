@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
 import FooterMinimal from "@/components/FooterMinimal";
 import PremiumBackground from "@/components/layout/PremiumBackground";
 import edgarEditorial from "@/assets/edgar-editorial-pink.png";
@@ -24,7 +23,6 @@ const Speaker = () => {
 
   return (
     <PremiumBackground>
-      <Navbar />
 
       {/* ── HERO — full height editorial ── */}
       <section className="relative h-[100svh] w-full overflow-hidden">
