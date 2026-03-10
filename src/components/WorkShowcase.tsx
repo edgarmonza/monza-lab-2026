@@ -223,6 +223,7 @@ const WorkShowcase = () => {
                       loop
                       muted
                       playsInline
+                      preload="metadata"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
                       style={{ opacity: 0.75 }}
                     />
