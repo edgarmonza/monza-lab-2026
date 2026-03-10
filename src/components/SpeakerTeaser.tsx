@@ -62,7 +62,7 @@ const SpeakerTeaser = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
-          className="font-clash text-[#FFFCF7] leading-[1.0] tracking-[-0.02em] mb-10"
+          className={`font-clash leading-[1.0] tracking-[-0.02em] mb-10 ${theme === 'modena' ? 'text-[#F8B4D9]' : 'text-[#FFFCF7]'}`}
           style={{ fontSize: "clamp(3rem, 9vw, 8rem)" }}
         >
           En escenario.

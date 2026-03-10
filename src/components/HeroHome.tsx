@@ -61,7 +61,7 @@ const HeroHome = () => {
 
   /* Reset wordmark on theme toggle */
   useEffect(() => {
-    const initColor = isModena ? "rgba(11,11,16,0.85)" : "rgba(255,252,247,0.80)";
+    const initColor = isModena ? "rgba(248,180,217,0.90)" : "rgba(255,252,247,0.80)";
     if (mTextRef.current) {
       mTextRef.current.style.color = initColor;
       mTextRef.current.style.webkitTextStroke = "0px transparent";
@@ -160,10 +160,10 @@ const HeroHome = () => {
 
     /* ── Logo cross-fade ── */
     const modena = themeRef.current === "modena";
-    const fillColor   = modena ? `rgba(11,11,16,${(0.85*(1-o)).toFixed(3)})` : `rgba(255,252,247,${(0.80*(1-o)).toFixed(3)})`;
+    const fillColor   = modena ? `rgba(248,180,217,${(0.90*(1-o)).toFixed(3)})` : `rgba(255,252,247,${(0.80*(1-o)).toFixed(3)})`;
     const strokeAlpha = (o * 0.75).toFixed(3);
     const strokeColor = modena
-      ? `rgba(11,11,16,${strokeAlpha})`
+      ? `rgba(248,180,217,${strokeAlpha})`
       : `rgba(255,252,247,${strokeAlpha})`;
     [mTextRef.current, nzaTextRef.current].forEach(el => {
       if (!el) return;
@@ -352,7 +352,7 @@ const HeroHome = () => {
             animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.8 }}
             className="text-[15vw] md:text-[10vw] lg:text-[8vw] font-bold leading-none select-none"
-            style={{ letterSpacing: "-0.02em", color: isModena ? "rgba(11,11,16,0.85)" : "rgba(255,252,247,0.80)" }}
+            style={{ letterSpacing: "-0.02em", color: isModena ? "rgba(248,180,217,0.90)" : "rgba(255,252,247,0.80)" }}
           >M</motion.span>
 
           <motion.div
@@ -363,7 +363,7 @@ const HeroHome = () => {
             style={{ width: "0.73em", height: "0.73em", marginLeft: "0.02em", marginRight: "0.01em", alignSelf: "center" }}
           >
             <div ref={helmetSolidRef} className="absolute inset-0">
-              <HelmetIcon variant="solid" shellColor={isModena ? "#0B0B10" : "#F8B4D9"} visorColor={isModena ? "#F8B4D9" : "#1a1a2a"} className="w-full h-full" />
+              <HelmetIcon variant="solid" shellColor="#F8B4D9" visorColor={isModena ? "#F5F0EB" : "#1a1a2a"} className="w-full h-full" />
             </div>
             <div ref={helmetGhostRef} className="absolute inset-0" style={{ opacity: 0 }}>
               <HelmetIcon
@@ -381,7 +381,7 @@ const HeroHome = () => {
             animate={isLoaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 1.2 }}
             className="text-[15vw] md:text-[10vw] lg:text-[8vw] font-bold leading-none select-none"
-            style={{ letterSpacing: "-0.02em", color: isModena ? "rgba(11,11,16,0.85)" : "rgba(255,252,247,0.80)" }}
+            style={{ letterSpacing: "-0.02em", color: isModena ? "rgba(248,180,217,0.90)" : "rgba(255,252,247,0.80)" }}
           >NZA</motion.span>
         </motion.div>
 
