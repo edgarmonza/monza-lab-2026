@@ -179,9 +179,9 @@ const Speaker = () => {
               <div className="space-y-0" style={{ borderTop: `1px solid ${borderColor(0.06)}` }}>
                 {[
                   { name: "Monza Lab",      href: null,                          desc: "AI-native creative studio · Colombia" },
-                  { name: "Monza Haus",     href: null,                          desc: "Marketplace inteligente · En construcción" },
+                  { name: "Monza Haus",     href: null,                          desc: "Plataforma · US/UK/EU/Japan" },
                   { name: "Bavarian Econs", href: "https://www.bavarianecons.com/", desc: "Electrificación de BMW clásicos" },
-                  { name: "Guardian Speed", href: null,                          desc: "Racing · con Carlos Navarro" },
+                  { name: "Guardian Speed", href: "https://www.guardianofspeed.de", desc: "Logistics · München" },
                 ].map((v, i) => (
                   <motion.div
                     key={i}
