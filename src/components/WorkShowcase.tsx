@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/theme/ThemeContext";
 
 const PROJECTS = [
   {
@@ -161,6 +162,8 @@ const WorkShowcase = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
   const [expanded, setExpanded] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
+  const { theme } = useTheme();
+  const isModena = theme === "modena";
 
   return (
     <>
@@ -380,7 +383,7 @@ const WorkShowcase = () => {
                 transition={{ duration: 0.3 }}
                 className="fixed inset-0 z-[45] flex items-center justify-center pt-20"
                 style={{
-                  background: "rgba(8, 8, 12, 0.98)",
+                  background: isModena ? "rgba(245, 240, 235, 0.98)" : "rgba(8, 8, 12, 0.98)",
                 }}
                 onClick={() => setExpanded(null)}
               >
@@ -417,7 +420,10 @@ const WorkShowcase = () => {
                   )}
 
                   {/* Gradient overlay */}
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.15) 100%)" }} />
+                  <div className="absolute inset-0" style={{ background: isModena
+                    ? "linear-gradient(to top, rgba(245,240,235,0.97) 0%, rgba(245,240,235,0.65) 40%, rgba(245,240,235,0.15) 100%)"
+                    : "linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.15) 100%)"
+                  }} />
 
                   {/* Number */}
                   <div className="absolute top-8 left-8 md:top-10 md:left-10">
@@ -446,13 +452,13 @@ const WorkShowcase = () => {
                             </div>
 
                             <h3
-                              className="font-clash text-3xl md:text-5xl lg:text-6xl font-bold text-[#FFFCF7]/90 mb-3"
+                              className={`font-clash text-3xl md:text-5xl lg:text-6xl font-bold mb-3 ${isModena ? 'text-[#0B0B10]/90' : 'text-[#FFFCF7]/90'}`}
                               style={{ letterSpacing: "-0.02em", lineHeight: 1.0 }}
                             >
                               {project.name}
                             </h3>
 
-                            <p className="font-clash text-[13px] md:text-sm text-[#FFFCF7]/35 mb-4 max-w-lg leading-relaxed">
+                            <p className={`font-clash text-[13px] md:text-sm mb-4 max-w-lg leading-relaxed ${isModena ? 'text-[#0B0B10]/50' : 'text-[#FFFCF7]/35'}`}>
                               {cs.story}
                             </p>
 
@@ -497,14 +503,14 @@ const WorkShowcase = () => {
                                 key={pillar.label}
                                 className="rounded-lg p-4"
                                 style={{
-                                  background: "rgba(255,252,247,0.03)",
+                                  background: isModena ? "rgba(11,11,16,0.04)" : "rgba(255,252,247,0.03)",
                                   border: `1px solid ${project.visual.accent}15`,
                                 }}
                               >
                                 <p className="font-clash text-[10px] tracking-[0.2em] uppercase mb-1.5" style={{ color: `${project.visual.accent}70` }}>
                                   {pillar.label}
                                 </p>
-                                <p className="font-clash text-[11px] text-[#FFFCF7]/35 leading-snug">
+                                <p className={`font-clash text-[11px] leading-snug ${isModena ? 'text-[#0B0B10]/45' : 'text-[#FFFCF7]/35'}`}>
                                   {pillar.detail}
                                 </p>
                               </div>
@@ -521,12 +527,12 @@ const WorkShowcase = () => {
                         {project.tag}
                       </p>
                       <h3
-                        className="font-clash text-4xl md:text-6xl lg:text-7xl font-bold text-[#FFFCF7]/90 mb-4"
+                        className={`font-clash text-4xl md:text-6xl lg:text-7xl font-bold mb-4 ${isModena ? 'text-[#0B0B10]/90' : 'text-[#FFFCF7]/90'}`}
                         style={{ letterSpacing: "-0.02em" }}
                       >
                         {project.name}
                       </h3>
-                      <p className="font-clash text-sm md:text-base text-[#FFFCF7]/40 max-w-xl leading-relaxed">
+                      <p className={`font-clash text-sm md:text-base max-w-xl leading-relaxed ${isModena ? 'text-[#0B0B10]/50' : 'text-[#FFFCF7]/40'}`}>
                         {project.desc}
                       </p>
                       {project.url && (
@@ -553,7 +559,7 @@ const WorkShowcase = () => {
                 {/* Back button — top left */}
                 <button
                   onClick={() => setExpanded(null)}
-                  className="absolute top-6 left-6 md:top-10 md:left-10 flex items-center gap-2 px-4 py-2 rounded-full border border-[#FFFCF7]/10 text-[#FFFCF7]/40 hover:text-[#FFFCF7]/80 hover:border-[#FFFCF7]/30 transition-all duration-300"
+                  className={`absolute top-6 left-6 md:top-10 md:left-10 flex items-center gap-2 px-4 py-2 rounded-full border transition-all duration-300 ${isModena ? 'border-[#0B0B10]/10 text-[#0B0B10]/40 hover:text-[#0B0B10]/80 hover:border-[#0B0B10]/30' : 'border-[#FFFCF7]/10 text-[#FFFCF7]/40 hover:text-[#FFFCF7]/80 hover:border-[#FFFCF7]/30'}`}
                 >
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M11 7H3M3 7l3.5-3.5M3 7l3.5 3.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -564,7 +570,7 @@ const WorkShowcase = () => {
                 {/* Close — top right */}
                 <button
                   onClick={() => setExpanded(null)}
-                  className="absolute top-6 right-6 md:top-10 md:right-10 w-10 h-10 flex items-center justify-center rounded-full border border-[#FFFCF7]/10 text-[#FFFCF7]/40 hover:text-[#FFFCF7]/80 hover:border-[#FFFCF7]/30 transition-all duration-300"
+                  className={`absolute top-6 right-6 md:top-10 md:right-10 w-10 h-10 flex items-center justify-center rounded-full border transition-all duration-300 ${isModena ? 'border-[#0B0B10]/10 text-[#0B0B10]/40 hover:text-[#0B0B10]/80 hover:border-[#0B0B10]/30' : 'border-[#FFFCF7]/10 text-[#FFFCF7]/40 hover:text-[#FFFCF7]/80 hover:border-[#FFFCF7]/30'}`}
                 >
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path

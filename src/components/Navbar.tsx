@@ -148,19 +148,19 @@ const Navbar = () => {
                 rel="noopener noreferrer"
                 className="font-clash text-[11px] tracking-[0.2em] uppercase px-5 py-2 rounded-full transition-all duration-300 hover:-translate-y-[1px]"
                 style={{
-                  background: "rgba(248, 180, 217, 0.08)",
-                  border: "1px solid rgba(248, 180, 217, 0.18)",
-                  color: "rgba(248, 180, 217, 0.75)",
+                  background: isModena ? "rgba(11, 11, 16, 0.08)" : "rgba(248, 180, 217, 0.08)",
+                  border: isModena ? "1px solid rgba(11, 11, 16, 0.20)" : "1px solid rgba(248, 180, 217, 0.18)",
+                  color: isModena ? "rgba(11, 11, 16, 0.75)" : "rgba(248, 180, 217, 0.75)",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(248, 180, 217, 0.14)";
-                  e.currentTarget.style.borderColor = "rgba(248, 180, 217, 0.35)";
-                  e.currentTarget.style.color = "#F8B4D9";
+                  e.currentTarget.style.background = isModena ? "rgba(11, 11, 16, 0.12)" : "rgba(248, 180, 217, 0.14)";
+                  e.currentTarget.style.borderColor = isModena ? "rgba(11, 11, 16, 0.35)" : "rgba(248, 180, 217, 0.35)";
+                  e.currentTarget.style.color = isModena ? "#0B0B10" : "#F8B4D9";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "rgba(248, 180, 217, 0.08)";
-                  e.currentTarget.style.borderColor = "rgba(248, 180, 217, 0.18)";
-                  e.currentTarget.style.color = "rgba(248, 180, 217, 0.75)";
+                  e.currentTarget.style.background = isModena ? "rgba(11, 11, 16, 0.08)" : "rgba(248, 180, 217, 0.08)";
+                  e.currentTarget.style.borderColor = isModena ? "rgba(11, 11, 16, 0.20)" : "rgba(248, 180, 217, 0.18)";
+                  e.currentTarget.style.color = isModena ? "rgba(11, 11, 16, 0.75)" : "rgba(248, 180, 217, 0.75)";
                 }}
               >
                 {cta}
