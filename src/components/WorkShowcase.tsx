@@ -185,7 +185,7 @@ const WorkShowcase = () => {
               className="font-clash text-[8vw] md:text-[5vw] lg:text-[3.5vw] font-bold leading-[1.05]"
               style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.80)" }}
             >
-              Lo que construimos.
+              Lo que construyo.
             </h2>
           </motion.div>
 
