@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import HelmetIcon from "./HelmetIcon";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { useTheme } from "@/theme/ThemeContext";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-type Lang = "es" | "en" | "de";
+type Lang = "es" | "en";
 
-const LANGS: Lang[] = ["es", "en", "de"];
+const LANGS: Lang[] = ["es", "en"];
 
 const NAV_LINKS: Record<Lang, { label: string; href: string }[]> = {
   es: [
@@ -20,26 +21,20 @@ const NAV_LINKS: Record<Lang, { label: string; href: string }[]> = {
     { label: "Work", href: "#work" },
     { label: "About", href: "#about" },
     { label: "Approach", href: "#metodo" },
-    { label: "Speaker", href: "/speaker" },
-  ],
-  de: [
-    { label: "Work", href: "#work" },
-    { label: "About", href: "#about" },
-    { label: "Approach", href: "#metodo" },
-    { label: "Speaker", href: "/speaker" },
+    { label: "Speaker", href: "/en/speaker" },
   ],
 };
 
 const CTA_LABEL: Record<Lang, string> = {
   es: "Construyamos",
   en: "Let's build",
-  de: "Let's build",
 };
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [lang, setLang] = useState<Lang>("es");
+  const { language, setLanguage } = useLanguage();
+  const lang = language as Lang;
   const { theme } = useTheme();
   const isModena = theme === 'modena';
 
@@ -129,7 +124,7 @@ const Navbar = () => {
                 {LANGS.map((l) => (
                   <button
                     key={l}
-                    onClick={() => setLang(l)}
+                    onClick={() => setLanguage(l)}
                     className="font-clash text-[10px] tracking-[0.15em] uppercase px-2 py-1 rounded-md transition-all duration-300"
                     style={{
                       color: lang === l ? langActive : textMuted,
@@ -244,7 +239,7 @@ const Navbar = () => {
                 {LANGS.map((l) => (
                   <button
                     key={l}
-                    onClick={() => setLang(l)}
+                    onClick={() => setLanguage(l)}
                     className="font-clash text-xs tracking-[0.15em] uppercase px-3 py-1.5 rounded-lg transition-all duration-300 border"
                     style={{
                       color: lang === l ? '#F8B4D9' : textMuted,

@@ -5,7 +5,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const VIDEOS = [
   {
-    src: "/videos/reel/IMG_0080.mov",
+    src: "/videos/reel/IMG_0080.mp4",
     rotate: "4deg",
     border: "rgba(248,180,217,0.85)",
     coords: "48°11'N · 11°34'E",
@@ -13,7 +13,7 @@ const VIDEOS = [
     country: "DE",
   },
   {
-    src: "/videos/reel/IMG_3593.MOV",
+    src: "/videos/reel/IMG_3593.mp4",
     rotate: "-3deg",
     border: "rgba(248,180,217,0.5)",
     coords: "45°49'N · 06°39'E",
@@ -21,7 +21,7 @@ const VIDEOS = [
     country: "FR",
   },
   {
-    src: "/videos/reel/IMG_3633.MOV",
+    src: "/videos/reel/IMG_3633.mp4",
     rotate: "5deg",
     border: "rgba(248,180,217,0.8)",
     coords: "45°49'N · 06°38'E",
@@ -29,7 +29,7 @@ const VIDEOS = [
     country: "FR",
   },
   {
-    src: "/videos/reel/IMG_3811.MOV",
+    src: "/videos/reel/IMG_3811.mp4",
     rotate: "-2deg",
     border: "rgba(248,180,217,0.6)",
     coords: "45°51'N · 06°39'E",
@@ -37,7 +37,7 @@ const VIDEOS = [
     country: "FR",
   },
   {
-    src: "/videos/reel/IMG_8331.MOV",
+    src: "/videos/reel/IMG_8331.mp4",
     rotate: "3.5deg",
     border: "rgba(248,180,217,0.9)",
     coords: "36°35'N · 121°57'W",
@@ -45,7 +45,7 @@ const VIDEOS = [
     country: "CA · USA",
   },
   {
-    src: "/videos/reel/IMG_8737.MOV",
+    src: "/videos/reel/IMG_8737.mp4",
     rotate: "-4deg",
     border: "rgba(248,180,217,0.5)",
     coords: "34°09'N · 118°58'W",
@@ -140,6 +140,7 @@ const GlobalReel = () => {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
                     style={{
                       width: "100%",
                       height: "100%",
