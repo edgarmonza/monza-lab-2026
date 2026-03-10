@@ -128,7 +128,7 @@ const FooterMinimal = () => {
           </a>
 
           <a
-            href="https://www.instagram.com/monzalab/"
+            href="https://www.instagram.com/monza.lab/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-clash text-[9px] tracking-[0.2em] uppercase transition-colors duration-300 hover:text-[#F8B4D9]"

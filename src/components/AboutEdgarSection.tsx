@@ -223,7 +223,7 @@ const AboutEdgarSection = () => {
                 LI
               </a>
               <a
-                href="https://www.instagram.com/monzalab/"
+                href="https://www.instagram.com/monza.lab/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-mono text-[8px] md:text-[9px] tracking-[0.1em] uppercase hover:text-[#F8B4D9]/50 transition-colors duration-300"
