@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -6,16 +6,23 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const VideoStatement = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const isMobile = useIsMobile();
 
-  useEffect(() => {
-    const v = videoRef.current;
-    if (v) {
-      v.play().catch(() => {});
-    }
-  }, [isMobile]);
+  /** Callback ref — fires every time the video element mounts (including after key change) */
+  const videoCallback = useCallback((node: HTMLVideoElement | null) => {
+    if (!node) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) node.play().catch(() => {});
+        else node.pause();
+      },
+      { threshold: 0.25 }
+    );
+    obs.observe(node);
+    // Also try immediate play
+    node.play().catch(() => {});
+  }, []);
 
   return (
     <section
@@ -33,12 +40,11 @@ const VideoStatement = () => {
         >
           {/* Video — reader demo: web (16:9) or mobile (4:5) */}
           <video
-            ref={videoRef}
+            ref={videoCallback}
             key={isMobile ? "mobile" : "desktop"}
             src={isMobile ? "/videos/monza-reader-mobile.mp4" : "/videos/monza-reader-demo.mp4"}
-            autoPlay
-            loop
             muted
+            loop
             playsInline
             preload="auto"
             className="absolute inset-0 w-full h-full object-cover"

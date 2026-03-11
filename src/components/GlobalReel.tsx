@@ -1,5 +1,24 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+
+/** Play video only when visible — prevents iOS autoplay limits */
+const LazyReelVideo = ({ src, style }: { src: string; style?: React.CSSProperties }) => {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) v.play().catch(() => {});
+        else v.pause();
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(v);
+    return () => obs.disconnect();
+  }, []);
+  return <video ref={ref} src={src} muted loop playsInline preload="metadata" style={style} />;
+};
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -134,13 +153,8 @@ const GlobalReel = () => {
                     position: "relative",
                   }}
                 >
-                  <video
+                  <LazyReelVideo
                     src={v.src}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="metadata"
                     style={{
                       width: "100%",
                       height: "100%",
