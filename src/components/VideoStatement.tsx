@@ -1,11 +1,13 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const VideoStatement = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isMobile = useIsMobile();
 
   return (
     <section
@@ -19,11 +21,11 @@ const VideoStatement = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: EASE }}
           className="relative rounded-2xl overflow-hidden"
-          style={{ aspectRatio: "16/9" }}
+          style={{ aspectRatio: isMobile ? "4/5" : "16/9" }}
         >
-          {/* Video */}
+          {/* Video — reader demo: web (16:9) or mobile (4:5) */}
           <video
-            src="/videos/monza-web-demo.mp4"
+            src={isMobile ? "/videos/monza-reader-mobile.mp4" : "/videos/monza-reader-demo.mp4"}
             autoPlay
             loop
             muted
