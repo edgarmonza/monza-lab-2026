@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/theme/ThemeContext";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const PROJECTS = [
   {
@@ -10,6 +11,7 @@ const PROJECTS = [
     desc: "Marca de lujo automotriz. Branding, web global y sistema de ventas. Featured in Forbes.",
     image: null as string | null,
     video: "/videos/bavarian-econs-reel.mp4",
+    mobileVideo: "/videos/bavarian-econs-mobile.mp4",
     color: "#C4A35A",
     url: "https://www.bavarianecons.com",
     caseStudy: {
@@ -50,6 +52,7 @@ const PROJECTS = [
     desc: "Plataforma de entretenimiento deportivo. Copa Creadores, branding y ecosistema digital.",
     image: null as string | null,
     video: "/videos/spectro-reel.mp4",
+    mobileVideo: "/videos/spectro-mobile.mp4",
     color: "#8B5CF6",
     url: null,
     gridClass: "md:col-span-1 md:row-span-1",
@@ -71,6 +74,7 @@ const PROJECTS = [
     desc: "Piloto del Dakar Rally. Web inmersiva, estructura de negocio, conferencias, pricing y go-to-market.",
     image: null as string | null,
     video: "/videos/pacho-alvarez-reel.mp4",
+    mobileVideo: "/videos/pacho-alvarez-mobile.mp4",
     color: "#F8B4D9",
     url: null,
     gridClass: "md:col-span-1 md:row-span-1",
@@ -92,6 +96,7 @@ const PROJECTS = [
     desc: "Transporte de lujo para autos de alta gama en Europa. Experiencia digital hiperpersonalizada, pitch de inversión y go-to-market.",
     image: null as string | null,
     video: "/videos/guardian-speed-reel.mp4",
+    mobileVideo: "/videos/guardian-speed-mobile.mp4",
     color: "#C4A35A",
     url: null,
     caseStudy: {
@@ -164,6 +169,7 @@ const WorkShowcase = () => {
   const [hovered, setHovered] = useState<string | null>(null);
   const { theme } = useTheme();
   const isModena = theme === "modena";
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -218,7 +224,7 @@ const WorkShowcase = () => {
                   />
                   {(project as { video?: string }).video && (
                     <video
-                      src={(project as { video?: string }).video}
+                      src={isMobile && (project as { mobileVideo?: string }).mobileVideo ? (project as { mobileVideo?: string }).mobileVideo! : (project as { video?: string }).video!}
                       autoPlay
                       loop
                       muted
@@ -401,7 +407,7 @@ const WorkShowcase = () => {
                     <>
                       <div className="absolute inset-0" style={{ background: project.visual.gradient }} />
                       <video
-                        src={(project as { video?: string }).video}
+                        src={isMobile && (project as { mobileVideo?: string }).mobileVideo ? (project as { mobileVideo?: string }).mobileVideo! : (project as { video?: string }).video!}
                         autoPlay loop muted playsInline
                         className="absolute inset-0 w-full h-full object-cover"
                         style={{ opacity: 0.35 }}
