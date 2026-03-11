@@ -267,7 +267,7 @@ const WorkShowcase = () => {
                     delay: 0.15 + i * 0.1,
                     ease: [0.16, 1, 0.3, 1],
                   }}
-                  className={`group relative rounded-xl overflow-hidden cursor-pointer ${project.gridClass}`}
+                  className={`group relative rounded-xl overflow-hidden cursor-pointer ${project.gridClass} ${(project as { aspect?: string }).aspect || ""}`}
                   onClick={() => setExpanded(project.id)}
                   onMouseEnter={() => setHovered(project.id)}
                   onMouseLeave={() => setHovered(null)}
