@@ -239,9 +239,9 @@ const Speaker = () => {
             className="font-clash leading-[1.15] tracking-[-0.015em] max-w-4xl"
             style={{ fontSize: "clamp(1.6rem, 3.8vw, 3.2rem)", color: textMuted(0.70) }}
           >
-            "Cuando Edgar sube a un escenario, la sala{" "}
-            <span className="text-[#F8B4D9]">deja de tenerle miedo a la IA</span>{" "}
-            y empieza a usarla."
+            "No da la misma charla dos veces.{" "}
+            <span className="text-[#F8B4D9]">Diseña cada conferencia como una experiencia</span>{" "}
+            — cruza mundos que nadie más conecta."
           </motion.blockquote>
         </div>
       </section>
@@ -290,38 +290,45 @@ const Speaker = () => {
             transition={{ duration: 0.7, ease: EASE }}
             className="mb-20"
           >
-            <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-5">Macro-temáticas</p>
+            <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-5">Cómo funciona</p>
             <h2
-              className="font-clash leading-[1.08] tracking-[-0.02em]"
+              className="font-clash leading-[1.08] tracking-[-0.02em] mb-6"
               style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", color: textPrimary }}
             >
-              Tres conversaciones<br />
-              <span style={{ color: textMuted(0.35) }}>que nadie más está teniendo.</span>
+              Cada escenario es diferente.<br />
+              <span style={{ color: textMuted(0.35) }}>Cada conferencia también.</span>
             </h2>
+            <p className="text-base leading-[1.8] max-w-[600px]" style={{ color: textMuted(0.35) }}>
+              No repito charlas. Diseño cada experiencia según tu público, tu industria y lo que necesitan llevarse. Cruzo mundos que normalmente no se tocan — y desde ahí construyo el ángulo.
+            </p>
           </motion.div>
 
-          <div className="space-y-0">
+          {/* Lentes / ángulos — grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
             {[
               {
-                n: "01",
-                titulo: "La empresa que se compila, no se administra.",
-                sub: "Qué significa construir un negocio donde la IA es el sistema operativo desde el día uno — no una herramienta, no un departamento. El modelo AI-native en la práctica: cómo contratar menos, mover más rápido y producir a escala de equipo grande con equipo pequeño.",
+                lente: "IA × Empresa",
+                titulo: "La empresa que se compila.",
+                sub: "Construir un negocio donde la IA no es un departamento — es el sistema operativo. Cómo mover más rápido, contratar menos y producir a escala de equipo grande con equipo pequeño.",
                 para: "CEOs · Founders · Directorios",
-                tag: "Keynote 45–60 min",
               },
               {
-                n: "02",
-                titulo: "Velocidad de carrera, precisión de artesano.",
-                sub: "La paradoja del constructor moderno: mover a velocidad de F1 sin perder la calidad que construye marca. Desde las pistas con Carlos Navarro hasta escalar ventures en paralelo — cómo la mentalidad del racing aplica a los negocios que quieren ganar a largo plazo.",
+                lente: "IA × Velocidad",
+                titulo: "Mentalidad de pista.",
+                sub: "La paradoja del constructor moderno: mover a velocidad de F1 sin perder la precisión que construye marca. Desde las carreras hasta escalar ventures en paralelo — la mentalidad del racing aplicada a los negocios.",
                 para: "Entrepreneurs · Equipos de alto rendimiento",
-                tag: "Keynote · Workshop 90 min",
               },
               {
-                n: "03",
-                titulo: "Global aesthetics: el diseño como foso defensivo.",
-                sub: "Las empresas que van a dominar la próxima década no van a ganar por precio ni por tecnología — van a ganar porque hacen sentir algo. Cómo construir marcas con estética global desde Latinoamérica, usando IA como amplificador del gusto, no como reemplazo de la visión.",
+                lente: "IA × Estética",
+                titulo: "El diseño como foso defensivo.",
+                sub: "Las empresas que van a dominar no van a ganar por precio ni por tecnología — van a ganar porque hacen sentir algo. Usar IA como amplificador del gusto, no como reemplazo de la visión.",
                 para: "CMOs · Brand leaders · Founders de marca",
-                tag: "Keynote 45 min",
+              },
+              {
+                lente: "IA × Construcción",
+                titulo: "De cero a marca global.",
+                sub: "Cómo llevar un proyecto de idea a producto real con estética global desde Latinoamérica. El proceso completo: validación, marca, tech, go-to-market — todo con IA integrada desde el primer día.",
+                para: "Founders · Product leaders · Innovación",
               },
             ].map((t, i) => (
               <motion.div
@@ -329,35 +336,44 @@ const Speaker = () => {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
-                className="group py-10 flex items-start gap-8 cursor-default transition-all duration-300"
-                style={{ borderBottom: `1px solid ${borderColor(0.07)}` }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: EASE }}
+                className="group rounded-xl p-7 md:p-8 cursor-default transition-all duration-500"
+                style={{
+                  background: isModena ? "rgba(11,11,16,0.03)" : "rgba(255,252,247,0.02)",
+                  border: `1px solid ${borderColor(0.06)}`,
+                }}
               >
-                <span className="text-[10px] font-mono text-[#F8B4D9]/40 pt-2 flex-shrink-0 group-hover:text-[#F8B4D9]/70 transition-colors">{t.n}</span>
-                <div className="flex-1 flex flex-col gap-4">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
-                    <h3
-                      className="font-clash leading-[1.2] tracking-[-0.01em] transition-colors"
-                      style={{ fontSize: "clamp(1.2rem, 2.4vw, 1.75rem)", color: textMuted(0.85) }}
-                    >
-                      {t.titulo}
-                    </h3>
-                    <div className="flex flex-col items-start md:items-end gap-1 flex-shrink-0">
-                      <span className="text-[9px] uppercase tracking-[0.2em] group-hover:text-[#F8B4D9]/50 transition-colors md:text-right" style={{ color: textMuted(0.22) }}>{t.para}</span>
-                      <span className="text-[9px] uppercase tracking-[0.15em] text-[#F8B4D9]/30">{t.tag}</span>
-                    </div>
-                  </div>
-                  <p className="text-sm leading-[1.75] max-w-[620px] transition-colors duration-500" style={{ color: textMuted(0.30) }}>
-                    {t.sub}
-                  </p>
-                </div>
+                <span className="text-[9px] uppercase tracking-[0.3em] text-[#F8B4D9]/50 group-hover:text-[#F8B4D9]/80 transition-colors">{t.lente}</span>
+                <h3
+                  className="font-clash leading-[1.15] tracking-[-0.01em] mt-4 mb-4 transition-colors"
+                  style={{ fontSize: "clamp(1.15rem, 2.2vw, 1.5rem)", color: textMuted(0.85) }}
+                >
+                  {t.titulo}
+                </h3>
+                <p className="text-sm leading-[1.75] mb-5" style={{ color: textMuted(0.30) }}>
+                  {t.sub}
+                </p>
+                <span className="text-[9px] uppercase tracking-[0.2em]" style={{ color: textMuted(0.20) }}>{t.para}</span>
               </motion.div>
             ))}
           </div>
 
-          <p className="text-xs tracking-[0.15em] mt-10" style={{ color: textMuted(0.20) }}>
-            Keynote 45–60 min · Workshop 90 min · Panel · El formato y el idioma se definen contigo.
-          </p>
+          {/* Nota de cierre */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="flex items-start gap-4 rounded-lg p-6"
+            style={{ background: isModena ? "rgba(248,180,217,0.06)" : "rgba(248,180,217,0.04)", border: `1px solid rgba(248,180,217,0.10)` }}
+          >
+            <span className="text-[#F8B4D9]/60 text-lg mt-0.5">✦</span>
+            <div>
+              <p className="text-sm leading-[1.75]" style={{ color: textMuted(0.50) }}>
+                Estos son los mundos que cruzo — no temas fijos. Cada conferencia se diseña desde cero para tu audiencia. El formato, el idioma y el ángulo se definen juntos.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
