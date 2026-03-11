@@ -3,38 +3,58 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/theme/ThemeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-/** Play video only when it scrolls into view (fixes mobile autoplay limits) */
+/**
+ * Truly lazy video for mobile compatibility.
+ * - Defers loading until element is near viewport (rootMargin 300px)
+ * - Uses key={src} so React remounts when src changes (isMobile switch)
+ * - Plays via IntersectionObserver + canplay event + autoPlay attribute
+ * - Pauses when scrolled away to free resources
+ */
 const LazyVideo = ({ src, className, style }: { src: string; className?: string; style?: React.CSSProperties }) => {
-  const ref = useRef<HTMLVideoElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [activeSrc, setActiveSrc] = useState<string | null>(null);
 
+  // Observe sentinel div; once near viewport, set the real src
   useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
+    const el = sentinelRef.current;
+    if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          v.play().catch(() => {});
-        } else {
-          v.pause();
-        }
-      },
-      { threshold: 0.25 }
+      ([entry]) => { if (entry.isIntersecting) { setActiveSrc(src); obs.disconnect(); } },
+      { threshold: 0, rootMargin: "300px" }
     );
-    obs.observe(v);
+    obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [src]);
+
+  // Callback ref on the <video> — handles play/pause via IO
+  const videoCallback = (node: HTMLVideoElement | null) => {
+    if (!node) return;
+    const tryPlay = () => { node.play().catch(() => {}); };
+    node.addEventListener("canplay", tryPlay, { once: true });
+    tryPlay();
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) tryPlay(); else node.pause(); },
+      { threshold: 0.15 }
+    );
+    obs.observe(node);
+  };
 
   return (
-    <video
-      ref={ref}
-      src={src}
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      className={className}
-      style={style}
-    />
+    <div ref={sentinelRef} className={className} style={style}>
+      {activeSrc && (
+        <video
+          ref={videoCallback}
+          key={activeSrc}
+          src={activeSrc}
+          muted
+          loop
+          playsInline
+          autoPlay
+          preload="auto"
+          className="w-full h-full object-cover"
+        />
+      )}
+    </div>
   );
 };
 
