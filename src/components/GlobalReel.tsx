@@ -67,7 +67,7 @@ const GlobalReel = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden border-t border-white/[0.04] h-[80vh] md:h-[120vh]"
+      className="relative w-full overflow-hidden mt-20 md:mt-32 pt-20 md:pt-28 border-t border-white/[0.04] h-[80vh] md:h-[120vh]"
     >
       <div className="sticky top-0 h-[60vh] md:h-[70vh] flex flex-col justify-center overflow-hidden">
 
