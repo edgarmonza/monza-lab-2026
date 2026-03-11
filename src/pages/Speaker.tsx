@@ -319,9 +319,9 @@ const Speaker = () => {
                 para: "Entrepreneurs · Equipos de alto rendimiento",
               },
               {
-                lente: "IA × Estética",
-                titulo: "Cuando el gusto es la ventaja.",
-                sub: "Las empresas que van a dominar no van a ganar por precio ni por tecnología — van a ganar porque hacen sentir algo. Usar IA como amplificador del gusto, no como reemplazo de la visión.",
+                lente: "IA × Experiencia",
+                titulo: "Cada punto de contacto cuenta.",
+                sub: "No es solo el logo — es toda la experiencia digital: desde que alguien te ve en redes hasta que navega tu web. Las empresas que van a dominar van a ganar porque cada interacción hace sentir algo. IA como amplificador de esa visión completa.",
                 para: "CMOs · Brand leaders · Founders de marca",
               },
               {
