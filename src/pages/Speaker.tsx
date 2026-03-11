@@ -314,13 +314,13 @@ const Speaker = () => {
               },
               {
                 lente: "IA × Velocidad",
-                titulo: "Mentalidad de pista.",
-                sub: "La paradoja del constructor moderno: mover a velocidad de F1 sin perder la precisión que construye marca. Desde las carreras hasta escalar ventures en paralelo — la mentalidad del racing aplicada a los negocios.",
+                titulo: "Mover rápido sin romper nada.",
+                sub: "La paradoja del constructor moderno: velocidad de startup sin perder la calidad que construye marca. Desde el automovilismo hasta escalar ventures en paralelo — cómo ejecutar a otro ritmo sin sacrificar lo que importa.",
                 para: "Entrepreneurs · Equipos de alto rendimiento",
               },
               {
                 lente: "IA × Estética",
-                titulo: "El diseño como foso defensivo.",
+                titulo: "Cuando el gusto es la ventaja.",
                 sub: "Las empresas que van a dominar no van a ganar por precio ni por tecnología — van a ganar porque hacen sentir algo. Usar IA como amplificador del gusto, no como reemplazo de la visión.",
                 para: "CMOs · Brand leaders · Founders de marca",
               },
