@@ -1,7 +1,42 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/theme/ThemeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
+
+/** Play video only when it scrolls into view (fixes mobile autoplay limits) */
+const LazyVideo = ({ src, className, style }: { src: string; className?: string; style?: React.CSSProperties }) => {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    obs.observe(v);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={src}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      className={className}
+      style={style}
+    />
+  );
+};
 
 const PROJECTS = [
   {
@@ -223,13 +258,8 @@ const WorkShowcase = () => {
                     style={{ background: project.visual.gradient }}
                   />
                   {(project as { video?: string }).video && (
-                    <video
+                    <LazyVideo
                       src={isMobile && (project as { mobileVideo?: string }).mobileVideo ? (project as { mobileVideo?: string }).mobileVideo! : (project as { video?: string }).video!}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="metadata"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
                       style={{ opacity: 0.75 }}
                     />
@@ -406,9 +436,8 @@ const WorkShowcase = () => {
                   {(project as { video?: string }).video ? (
                     <>
                       <div className="absolute inset-0" style={{ background: project.visual.gradient }} />
-                      <video
+                      <LazyVideo
                         src={isMobile && (project as { mobileVideo?: string }).mobileVideo ? (project as { mobileVideo?: string }).mobileVideo! : (project as { video?: string }).video!}
-                        autoPlay loop muted playsInline
                         className="absolute inset-0 w-full h-full object-cover"
                         style={{ opacity: 0.35 }}
                       />

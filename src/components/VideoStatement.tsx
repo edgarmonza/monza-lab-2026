@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -6,8 +6,16 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const VideoStatement = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (v) {
+      v.play().catch(() => {});
+    }
+  }, [isMobile]);
 
   return (
     <section
@@ -25,11 +33,14 @@ const VideoStatement = () => {
         >
           {/* Video — reader demo: web (16:9) or mobile (4:5) */}
           <video
+            ref={videoRef}
+            key={isMobile ? "mobile" : "desktop"}
             src={isMobile ? "/videos/monza-reader-mobile.mp4" : "/videos/monza-reader-demo.mp4"}
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
