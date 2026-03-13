@@ -19,7 +19,7 @@ const Footer = () => {
             <img 
               alt="Monza Lab" 
               className="footer-logo w-36 md:w-40 h-auto" 
-              src="/lovable-uploads/logo-crema.png"
+              src="/logo-crema.png"
             />
             <p className="text-sm leading-relaxed" style={{ color: 'rgba(255, 252, 247, 0.85)' }}>
               Acompañamiento 1:1 para convertir tu experiencia en un servicio vendible, con oferta, pricing y sistema comercial.
