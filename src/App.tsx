@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import CustomCursor from "./components/CustomCursor";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import { ThemeProvider } from "./theme/ThemeContext";
+import { Analytics } from "@vercel/analytics/react";
 
 import Index from "./pages/Index";
 import Press from "./pages/Press";
@@ -67,6 +68,7 @@ const App = () => (
         <BrowserRouter>
           <AppContent />
         </BrowserRouter>
+        <Analytics />
       </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
