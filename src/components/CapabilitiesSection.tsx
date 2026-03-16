@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, useCallback, memo } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/theme/ThemeContext";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -1100,6 +1101,8 @@ const CapabilitiesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
   const [active, setActive] = useState(0);
+  const { theme } = useTheme();
+  const isModena = theme === "modena";
 
   const cap = CAPABILITIES[active];
 
@@ -1159,7 +1162,7 @@ const CapabilitiesSection = () => {
                       onClick={() => setActive(i)}
                       className="relative font-clash text-[11px] md:text-xs tracking-[0.15em] uppercase font-medium px-4 py-2.5 rounded-lg transition-all duration-400 cursor-pointer whitespace-nowrap"
                       style={{
-                        color: isActive ? "#FFFCF7" : "rgba(var(--text-rgb), 0.30)",
+                        color: isActive ? "var(--text-primary)" : "rgba(var(--text-rgb), 0.30)",
                         background: isActive ? `${c.accent}18` : "transparent",
                         border: isActive ? `1px solid ${c.accent}35` : "1px solid rgba(var(--text-rgb), 0.06)",
                       }}
@@ -1208,7 +1211,7 @@ const CapabilitiesSection = () => {
               transition={{ duration: 0.4, ease: EASE }}
               className="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9]"
               style={{
-                background: "rgba(0,0,0,0.4)",
+                background: isModena ? "rgba(0,0,0,0.08)" : "rgba(0,0,0,0.4)",
               }}
             >
               {/* Media */}

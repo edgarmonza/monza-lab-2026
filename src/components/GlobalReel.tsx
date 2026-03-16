@@ -86,7 +86,8 @@ const GlobalReel = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden mt-20 md:mt-32 pt-20 md:pt-28 border-t border-white/[0.04] h-[80vh] md:h-[120vh]"
+      className="relative w-full overflow-hidden mt-20 md:mt-32 pt-20 md:pt-28 h-[80vh] md:h-[120vh]"
+      style={{ borderTop: "1px solid rgba(var(--border-rgb), 0.04)" }}
     >
       <div className="sticky top-0 h-[60vh] md:h-[70vh] flex flex-col justify-center overflow-hidden">
 
@@ -149,7 +150,7 @@ const GlobalReel = () => {
                     width: "clamp(110px, 28vw, 230px)",
                     aspectRatio: "9/16",
                     flexShrink: 0,
-                    boxShadow: "0 20px 60px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(255,255,255,0.03)",
+                    boxShadow: "0 20px 60px rgba(0,0,0,0.35), 0 0 0 0.5px rgba(var(--border-rgb), 0.06)",
                     position: "relative",
                   }}
                 >
@@ -160,7 +161,7 @@ const GlobalReel = () => {
                       height: "100%",
                       objectFit: "cover",
                       display: "block",
-                      backgroundColor: "#0B0B10",
+                      backgroundColor: "var(--surface-bg)",
                     }}
                   />
 
@@ -178,7 +179,7 @@ const GlobalReel = () => {
                     <p className="font-mono text-[8px] text-[#F8B4D9]/50 tracking-[0.1em] mb-[3px]">
                       {v.coords}
                     </p>
-                    <p className="font-mono text-[11px] text-[#FFFCF7]/80 tracking-[0.04em]">
+                    <p className="font-mono text-[11px] tracking-[0.04em]" style={{ color: "rgba(255,252,247,0.80)" }}>
                       {v.city}
                       <span className="text-[#F8B4D9]/50 ml-2">· {v.country}</span>
                     </p>

@@ -14,8 +14,8 @@ const FooterMinimal = () => {
   return (
     <footer
       ref={ref}
-      className="relative py-32 md:py-44 overflow-hidden border-t border-white/[0.04]"
-      style={{ background: "transparent" }}
+      className="relative py-32 md:py-44 overflow-hidden"
+      style={{ borderTop: "1px solid rgba(var(--border-rgb), 0.04)", background: "transparent" }}
     >
       {/* Radial glow */}
       <div

@@ -7,10 +7,11 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const SpeakerTeaser = () => {
   const { theme } = useTheme();
-  const bg = theme === "modena" ? "#F5F0EB" : "#0B0B10";
+  const isModena = theme === "modena";
+  const bg = isModena ? "#F5F0EB" : "#0B0B10";
 
   return (
-    <section className="relative w-full overflow-hidden border-t border-white/[0.04]" style={{ height: "70vh", minHeight: "480px" }}>
+    <section className="relative w-full overflow-hidden" style={{ height: "70vh", minHeight: "480px", borderTop: "1px solid rgba(var(--border-rgb), 0.04)" }}>
 
       {/* Photo — full bleed with Ken Burns */}
       <div
@@ -62,7 +63,8 @@ const SpeakerTeaser = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
-          className={`font-clash leading-[1.0] tracking-[-0.02em] mb-10 ${theme === 'modena' ? 'text-[#F8B4D9]' : 'text-[#FFFCF7]'}`}
+          className="font-clash leading-[1.0] tracking-[-0.02em] mb-10"
+          style={{ color: isModena ? "#F8B4D9" : "#FFFCF7" }}
           style={{ fontSize: "clamp(3rem, 9vw, 8rem)" }}
         >
           En escenario.
