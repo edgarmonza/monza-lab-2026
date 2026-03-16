@@ -36,7 +36,7 @@ type Capability = {
   desc: string;
   accent: string;
   tag: string;
-  type: "video" | "collage" | "brands" | "experiences" | "content-board";
+  type: "video" | "collage" | "brands" | "experiences" | "content-board" | "terminal";
   video?: string;
   images?: string[];
   brands?: BrandProject[];
@@ -110,8 +110,7 @@ const CAPABILITIES: Capability[] = [
       "/images/ai-motorsport/slide-07-reflection.png",
       "/images/ai-motorsport/slide-03-badge.png",
       "/images/ai-motorsport/slide-08-rain.png",
-      "/images/ai-motorsport/edgar-helmet-monza.png",
-      "/images/ai-motorsport/slide-02-overhead.png",
+      "/images/ai-motorsport/edgar-helmet-rain.png",
       "/images/ai-motorsport/slide-04-cockpit.png",
       "/images/ai-motorsport/slide-06-engine.png",
       "/images/ai-motorsport/edgar-helmet-dark.png",
@@ -152,8 +151,7 @@ const CAPABILITIES: Capability[] = [
     shortLabel: "Automatización",
     label: "Automatización, datos & infraestructura",
     desc: "Bases de datos, scrapers, pipelines de contenido, generación por API — la infraestructura invisible que hace que todo escale sin fricción.",
-    type: "video",
-    video: "/videos/monza-code-showcase.mp4",
+    type: "terminal",
     accent: "#F59E0B",
     tag: "TECH × SCALE",
   },
@@ -625,9 +623,35 @@ const SamuelBoard = memo(() => {
   );
 });
 
-/* ── Content Board — social media ecosystem showcase ── */
+/* ── Content Board — multi-platform social media ecosystem ── */
+const LINKEDIN_SLIDES = [
+  "/images/content-design/linkedin/slide-01.png",
+  "/images/content-design/linkedin/slide-02.png",
+  "/images/content-design/linkedin/slide-03.png",
+  "/images/content-design/linkedin/slide-04.png",
+  "/images/content-design/linkedin/slide-05.png",
+  "/images/content-design/linkedin/slide-06.png",
+];
+const STORY_SLIDES = [
+  "/images/content-design/stories/story-01.png",
+  "/images/content-design/stories/story-02.png",
+  "/images/content-design/stories/story-03.png",
+  "/images/content-design/stories/story-04.png",
+  "/images/content-design/stories/story-05.png",
+];
+const IG_FEED_SLIDES = [
+  "/images/content-design/feed/ig-01.png",
+  "/images/content-design/feed/ig-02.png",
+  "/images/content-design/feed/ig-03.png",
+  "/images/content-design/feed/ig-04.png",
+  "/images/content-design/feed/ig-05.png",
+  "/images/content-design/feed/ig-06.png",
+];
+
 const ContentBoard = memo(({ images }: { images: string[] }) => {
   const [activeSlide] = useAutoRotate(images.length, 3000);
+  const [activeLI] = useAutoRotate(LINKEDIN_SLIDES.length, 4000);
+  const [activeStory] = useAutoRotate(STORY_SLIDES.length, 3500);
 
   return (
     <div className="absolute inset-0 overflow-hidden" style={{ background: "#0e0e0e" }}>
@@ -642,8 +666,8 @@ const ContentBoard = memo(({ images }: { images: string[] }) => {
         backgroundSize: "60px 60px",
       }} />
 
-      {/* ★ CENTER LEFT — IG Carousel mockup (phone frame with real carousel images) */}
-      <div className="absolute left-[3%] md:left-[5%] top-[6%] bottom-[6%] w-[55%] sm:w-[40%] md:w-[35%] max-w-[280px] z-10">
+      {/* ★ LEFT — IG Carousel mockup (phone frame with real carousel images) */}
+      <div className="absolute left-[2%] md:left-[3%] top-[4%] bottom-[4%] w-[52%] sm:w-[34%] md:w-[28%] max-w-[240px] z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -680,7 +704,6 @@ const ContentBoard = memo(({ images }: { images: string[] }) => {
                 }} />
               ))}
             </div>
-            {/* Slide counter */}
             <div className="absolute top-2 right-2 px-1.5 py-0.5 rounded-full" style={{ background: "rgba(0,0,0,0.5)" }}>
               <span className="text-[7px] text-white/60 font-mono">{(activeSlide % 6) + 1}/6</span>
             </div>
@@ -698,31 +721,40 @@ const ContentBoard = memo(({ images }: { images: string[] }) => {
         </motion.div>
       </div>
 
-      {/* ★ CENTER RIGHT — LinkedIn post mockup (hidden on very small screens) */}
-      <MockCard delay={0.25} className="hidden sm:block" style={{ top: "6%", right: "3%", width: "38%", maxWidth: 300, background: "#1B2430", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="p-3 md:p-4">
+      {/* ★ CENTER — LinkedIn carousel mockup with REAL LinkedIn content */}
+      <MockCard delay={0.2} className="hidden sm:block" style={{ top: "4%", left: "36%", width: "34%", maxWidth: 300, background: "#1B2430", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="p-3">
           {/* LinkedIn header */}
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center">
-              <span className="text-[8px] font-bold text-white">M</span>
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center">
+              <span className="text-[7px] font-bold text-white">M</span>
             </div>
             <div>
-              <p className="text-[9px] font-bold text-white/80">Monza Lab</p>
-              <p className="text-[6px] text-white/30">Creative Studio · 1d</p>
+              <p className="text-[8px] font-bold text-white/80">Edgar Navarro</p>
+              <p className="text-[6px] text-white/30">Founder @ Monza Lab · 1d</p>
             </div>
             <div className="ml-auto w-4 h-4 rounded-sm flex items-center justify-center" style={{ background: "rgba(0,119,181,0.3)" }}>
               <span className="text-[7px] font-bold" style={{ color: "#0077B5" }}>in</span>
             </div>
           </div>
-          {/* Post content */}
-          <p className="text-[9px] md:text-[10px] text-white/60 leading-relaxed mb-3">
-            Tu marca no necesita 47 posts al mes.<br />
-            Necesita <span className="text-white/90 font-bold">10 piezas que impacten</span>.<br />
-            <span className="text-[8px]" style={{ color: "#FF6B6B" }}>#BrandDesign #ContentStrategy</span>
-          </p>
-          {/* Preview image */}
-          <div className="rounded-lg overflow-hidden" style={{ aspectRatio: "1.91/1", background: "#0e0e0e" }}>
-            <img src={images[0]} alt="" className="w-full h-full object-cover opacity-80" />
+          {/* Real LinkedIn carousel image */}
+          <div className="rounded-lg overflow-hidden relative" style={{ aspectRatio: "1/1", background: "#0e0e0e" }}>
+            {LINKEDIN_SLIDES.map((img, i) => (
+              <img
+                key={img}
+                src={img}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+                style={{ opacity: i === activeLI ? 1 : 0 }}
+              />
+            ))}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+              {LINKEDIN_SLIDES.map((_, i) => (
+                <div key={i} className="w-1 h-1 rounded-full transition-all duration-300" style={{
+                  background: i === activeLI ? "#0077B5" : "rgba(255,255,255,0.2)",
+                }} />
+              ))}
+            </div>
           </div>
           {/* Engagement */}
           <div className="flex items-center justify-between mt-2 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
@@ -732,14 +764,24 @@ const ContentBoard = memo(({ images }: { images: string[] }) => {
         </div>
       </MockCard>
 
-      {/* ★ BOTTOM RIGHT — IG Story mockup (hidden on small screens) */}
-      <MockCard delay={0.4} className="hidden md:block" style={{ bottom: "6%", right: "5%", width: "22%", maxWidth: 160, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.06)" }}>
+      {/* ★ RIGHT — IG Story mockup with REAL story content */}
+      <MockCard delay={0.35} className="hidden sm:block" style={{ top: "4%", right: "2%", width: "22%", maxWidth: 160, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.06)" }}>
         <div className="relative" style={{ aspectRatio: "9/16" }}>
-          <img src={images[2] || images[0]} alt="" className="w-full h-full object-cover rounded-xl" />
+          {STORY_SLIDES.map((img, i) => (
+            <img
+              key={img}
+              src={img}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover rounded-xl transition-opacity duration-700"
+              style={{ opacity: i === activeStory ? 1 : 0 }}
+            />
+          ))}
           {/* Story top bar */}
-          <div className="absolute top-0 left-0 right-0 p-2">
-            <div className="w-full h-0.5 rounded-full bg-white/20">
-              <div className="h-full rounded-full" style={{ width: "60%", background: "rgba(255,107,107,0.8)" }} />
+          <div className="absolute top-0 left-0 right-0 p-2 z-10">
+            <div className="flex gap-0.5">
+              {STORY_SLIDES.map((_, i) => (
+                <div key={i} className="flex-1 h-0.5 rounded-full" style={{ background: i <= activeStory ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.2)" }} />
+              ))}
             </div>
             <div className="flex items-center gap-1.5 mt-1.5">
               <div className="w-4 h-4 rounded-full bg-gradient-to-br from-pink-400 to-red-400" />
@@ -747,21 +789,33 @@ const ContentBoard = memo(({ images }: { images: string[] }) => {
               <span className="text-[6px] text-white/30">2h</span>
             </div>
           </div>
-          {/* Story CTA */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
-            <div className="px-3 py-1 rounded-full" style={{ background: "rgba(255,107,107,0.3)", border: "1px solid rgba(255,107,107,0.4)" }}>
-              <span className="text-[7px] font-bold" style={{ color: "#FF6B6B" }}>Ver más ↑</span>
-            </div>
+        </div>
+      </MockCard>
+
+      {/* ★ BOTTOM LEFT — IG Feed grid with REAL IG carousel content */}
+      <MockCard delay={0.45} className="hidden md:block" style={{ bottom: "4%", left: "3%", width: "28%", maxWidth: 220, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.06)" }}>
+        <div className="p-2">
+          <div className="flex items-center gap-1.5 mb-2 px-1">
+            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-pink-400 to-purple-500" />
+            <span className="text-[7px] font-bold text-white/60">monza.lab</span>
+            <span className="text-[6px] text-white/20 ml-auto">324 posts</span>
+          </div>
+          <div className="grid grid-cols-3 gap-0.5">
+            {IG_FEED_SLIDES.map((img) => (
+              <div key={img} className="relative" style={{ aspectRatio: "1/1" }}>
+                <img src={img} alt="" className="w-full h-full object-cover" />
+              </div>
+            ))}
           </div>
         </div>
       </MockCard>
 
-      {/* ★ BOTTOM — Format labels (hidden on very small, visible sm+) */}
-      <MockCard delay={0.5} className="hidden sm:block" style={{ bottom: "8%", left: "42%", background: "rgba(14,14,14,0.9)", border: "1px solid rgba(255,107,107,0.08)" }}>
-        <div className="px-4 py-3">
+      {/* ★ BOTTOM CENTER — Format labels */}
+      <MockCard delay={0.55} className="hidden sm:block" style={{ bottom: "6%", left: "34%", background: "rgba(14,14,14,0.9)", border: "1px solid rgba(255,107,107,0.08)" }}>
+        <div className="px-3 py-2 md:px-4 md:py-3">
           <p className="text-[7px] tracking-[0.25em] uppercase mb-2" style={{ color: "rgba(255,107,107,0.3)" }}>Formatos que entrego</p>
           <div className="flex flex-wrap gap-1.5">
-            {["IG Carousel", "IG Story", "LinkedIn", "Reels Cover", "Twitter/X", "Thumbnail"].map((f) => (
+            {["IG Carousel", "IG Story", "IG Feed", "LinkedIn", "Reels Cover", "Twitter/X"].map((f) => (
               <span key={f} className="text-[7px] md:text-[8px] px-2 py-0.5 rounded-md font-medium" style={{
                 background: "rgba(255,107,107,0.08)", color: "rgba(255,107,107,0.6)",
                 border: "1px solid rgba(255,107,107,0.1)",
@@ -848,6 +902,30 @@ const ExperiencesShowcase = ({ experiences }: { experiences: Experience[] }) => 
         background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 40%, transparent 100%)",
       }} />
 
+      {/* Editorial tagline — comic-style statement */}
+      <div className="absolute top-4 sm:top-6 right-4 sm:right-6 md:right-8 z-10 max-w-[200px] sm:max-w-[260px] md:max-w-xs pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+          animate={{ opacity: 1, scale: 1, rotate: -1.5 }}
+          transition={{ delay: 0.8, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="relative"
+        >
+          <div className="relative px-3 py-2 sm:px-4 sm:py-3" style={{
+            background: "rgba(0,0,0,0.5)",
+            backdropFilter: "blur(12px)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: "2px",
+          }}>
+            <p className="font-clash text-[10px] sm:text-xs md:text-sm leading-tight" style={{ color: "rgba(255,252,247,0.5)" }}>
+              Yo no creo websites.
+            </p>
+            <p className="font-clash text-sm sm:text-lg md:text-xl font-bold leading-tight mt-0.5" style={{ color: "#FFFCF7" }}>
+              Creo experiencias <span style={{ color: "#F8B4D9" }}>digitales.</span>
+            </p>
+          </div>
+        </motion.div>
+      </div>
+
       {/* Client name overlay — bottom left */}
       <div className="absolute bottom-12 sm:bottom-14 left-4 sm:left-6 md:left-8 z-10">
         <AnimatePresence mode="wait">
@@ -892,6 +970,130 @@ const ExperiencesShowcase = ({ experiences }: { experiences: Experience[] }) => 
     </div>
   );
 };
+
+/* ── Terminal Viva — animated terminal for automation showcase ── */
+const TERMINAL_LINES = [
+  { type: "cmd", text: "$ monza pipeline --init client-onboarding" },
+  { type: "out", text: "✓ Pipeline created: client-onboarding-v3" },
+  { type: "out", text: "  → Trigger: New client form submitted" },
+  { type: "out", text: "  → Action 1: Create Notion workspace" },
+  { type: "out", text: "  → Action 2: Send welcome email sequence" },
+  { type: "out", text: "  → Action 3: Generate brand audit report" },
+  { type: "out", text: "  → Action 4: Schedule onboarding call" },
+  { type: "cmd", text: "$ monza db --status" },
+  { type: "out", text: "✓ PostgreSQL: 3 schemas · 847 records" },
+  { type: "out", text: "✓ Redis cache: hit rate 98.4%" },
+  { type: "out", text: "✓ Webhook endpoints: 12 active" },
+  { type: "cmd", text: "$ monza scrape --run content-audit" },
+  { type: "out", text: "⟳ Scanning 4 platforms..." },
+  { type: "out", text: "  LinkedIn:  142 posts analyzed" },
+  { type: "out", text: "  Instagram: 89 posts analyzed" },
+  { type: "out", text: "  Twitter/X: 203 posts analyzed" },
+  { type: "out", text: "  Website:   34 pages indexed" },
+  { type: "out", text: "✓ Content audit complete → report.pdf" },
+  { type: "cmd", text: "$ monza ai --generate proposal --client $NAME" },
+  { type: "out", text: "✓ Proposal generated from transcript + audit" },
+  { type: "out", text: "✓ PDF exported → /proposals/latest.pdf" },
+  { type: "out", text: "✓ Notion page created · link sent via email" },
+  { type: "cmd", text: "$ monza deploy --production" },
+  { type: "out", text: "✓ Build passed · Assets optimized" },
+  { type: "out", text: "✓ Deployed to monzalab.com in 4.2s" },
+] as const;
+
+const TerminalShowcase = memo(() => {
+  const [visibleLines, setVisibleLines] = useState(0);
+
+  useEffect(() => {
+    if (visibleLines >= TERMINAL_LINES.length) {
+      const reset = setTimeout(() => setVisibleLines(0), 3000);
+      return () => clearTimeout(reset);
+    }
+    const line = TERMINAL_LINES[visibleLines];
+    const delay = line.type === "cmd" ? 800 : 180;
+    const id = setTimeout(() => setVisibleLines(v => v + 1), delay);
+    return () => clearTimeout(id);
+  }, [visibleLines]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden" style={{ background: "#0a0a0f" }}>
+      {/* Ambient glow */}
+      <div className="absolute inset-0" style={{
+        background: "radial-gradient(ellipse at 30% 50%, rgba(245,158,11,0.06) 0%, transparent 50%), radial-gradient(ellipse at 70% 30%, rgba(56,189,248,0.04) 0%, transparent 45%)",
+      }} />
+
+      {/* Subtle scan lines */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: "repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 3px)",
+      }} />
+
+      {/* Terminal window */}
+      <div className="absolute inset-3 sm:inset-4 md:inset-6 rounded-xl overflow-hidden flex flex-col" style={{
+        background: "rgba(10,10,18,0.95)",
+        border: "1px solid rgba(245,158,11,0.12)",
+        boxShadow: "0 0 60px rgba(245,158,11,0.05), inset 0 1px 0 rgba(255,255,255,0.03)",
+      }}>
+        {/* Title bar */}
+        <div className="flex items-center px-3 py-2 sm:px-4 sm:py-2.5 shrink-0" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#ff5f57" }} />
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#febc2e" }} />
+            <div className="w-2.5 h-2.5 rounded-full" style={{ background: "#28c840" }} />
+          </div>
+          <span className="ml-3 text-[9px] sm:text-[10px] font-mono tracking-wide" style={{ color: "rgba(255,255,255,0.2)" }}>
+            monza-lab — infrastructure
+          </span>
+          <div className="ml-auto flex gap-2">
+            <span className="text-[7px] font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "rgba(245,158,11,0.5)" }}>LIVE</span>
+          </div>
+        </div>
+
+        {/* Terminal body */}
+        <div className="flex-1 overflow-hidden p-3 sm:p-4 md:p-5 font-mono text-[9px] sm:text-[10px] md:text-[11px] leading-[1.8] relative">
+          <div className="space-y-0">
+            {TERMINAL_LINES.slice(0, visibleLines).map((line, i) => (
+              <motion.div
+                key={`${i}-${line.text}`}
+                initial={{ opacity: 0, x: -4 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.15 }}
+              >
+                {line.type === "cmd" ? (
+                  <p className="mt-2 first:mt-0" style={{ color: "#F59E0B" }}>{line.text}</p>
+                ) : (
+                  <p style={{ color: line.text.startsWith("✓") ? "rgba(40,200,64,0.7)" : line.text.startsWith("⟳") ? "rgba(56,189,248,0.6)" : "rgba(255,255,255,0.35)" }}>
+                    {line.text}
+                  </p>
+                )}
+              </motion.div>
+            ))}
+            {/* Blinking cursor */}
+            {visibleLines < TERMINAL_LINES.length && (
+              <span className="inline-block w-[6px] h-[14px] ml-0.5 animate-pulse" style={{ background: "#F59E0B", opacity: 0.7 }} />
+            )}
+          </div>
+          {/* Fade at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none" style={{
+            background: "linear-gradient(to top, rgba(10,10,18,0.95), transparent)",
+          }} />
+        </div>
+      </div>
+
+      {/* Side metrics panel — desktop only */}
+      <div className="absolute top-6 right-6 hidden lg:flex flex-col gap-2 z-10" style={{ width: 120 }}>
+        {[
+          { label: "Uptime", value: "99.9%", color: "#28c840" },
+          { label: "Pipelines", value: "12 active", color: "#F59E0B" },
+          { label: "API calls/d", value: "2,847", color: "#38BDF8" },
+        ].map((m) => (
+          <div key={m.label} className="px-3 py-2 rounded-lg" style={{ background: "rgba(10,10,18,0.8)", border: "1px solid rgba(255,255,255,0.04)" }}>
+            <p className="text-[7px] tracking-[0.15em] uppercase" style={{ color: "rgba(255,255,255,0.2)" }}>{m.label}</p>
+            <p className="text-[11px] font-mono font-bold mt-0.5" style={{ color: m.color }}>{m.value}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+});
 
 /* ── Main section ── */
 const CapabilitiesSection = () => {
@@ -1028,10 +1230,13 @@ const CapabilitiesSection = () => {
                 {cap.type === "experiences" && cap.experiences && (
                   <ExperiencesShowcase experiences={cap.experiences} />
                 )}
+                {cap.type === "terminal" && (
+                  <TerminalShowcase />
+                )}
               </div>
 
               {/* Gradient overlay — skip for brands and experiences (they have their own) */}
-              {cap.type !== "brands" && cap.type !== "experiences" && cap.type !== "content-board" && (
+              {cap.type !== "brands" && cap.type !== "experiences" && cap.type !== "content-board" && cap.type !== "terminal" && (
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
@@ -1059,7 +1264,7 @@ const CapabilitiesSection = () => {
               </div>
 
               {/* Bottom content — skip for brands and experiences */}
-              {cap.type !== "brands" && cap.type !== "experiences" && cap.type !== "content-board" && (
+              {cap.type !== "brands" && cap.type !== "experiences" && cap.type !== "content-board" && cap.type !== "terminal" && (
                 <div className="absolute bottom-0 left-0 right-0 z-10 p-6 md:p-8">
                   <h3
                     className="font-clash text-xl md:text-2xl lg:text-3xl font-bold mb-2"
