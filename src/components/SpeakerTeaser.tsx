@@ -64,8 +64,7 @@ const SpeakerTeaser = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
           className="font-clash leading-[1.0] tracking-[-0.02em] mb-10"
-          style={{ color: isModena ? "#F8B4D9" : "#FFFCF7" }}
-          style={{ fontSize: "clamp(3rem, 9vw, 8rem)" }}
+          style={{ color: isModena ? "#F8B4D9" : "#FFFCF7", fontSize: "clamp(3rem, 9vw, 8rem)" }}
         >
           En escenario.
         </motion.h2>
