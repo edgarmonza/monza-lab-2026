@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import FooterMinimal from "@/components/FooterMinimal";
 import { Helmet } from "react-helmet";
 
 const PRESS_ITEMS = [
@@ -153,7 +153,7 @@ const Press = () => {
         </div>
       </main>
 
-      <Footer />
+      <FooterMinimal />
     </div>
   );
 };

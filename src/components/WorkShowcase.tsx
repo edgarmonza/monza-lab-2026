@@ -88,7 +88,7 @@ const PROJECTS = [
       ],
     },
     gridClass: "md:col-span-2 md:row-span-2",
-    aspect: "aspect-[16/10] md:aspect-auto md:h-full",
+    aspect: "aspect-[16/10] md:aspect-auto",
     // Visual identity for placeholder
     visual: {
       gradient: "radial-gradient(ellipse at 20% 30%, #C4A35A22 0%, transparent 45%), radial-gradient(ellipse at 80% 70%, #C4A35A12 0%, transparent 40%), linear-gradient(135deg, #0D0D14 0%, #141418 100%)",
@@ -111,7 +111,7 @@ const PROJECTS = [
     color: "#8B5CF6",
     url: null,
     gridClass: "md:col-span-1 md:row-span-1",
-    aspect: "aspect-[4/5]",
+    aspect: "aspect-[4/5] md:aspect-auto",
     visual: {
       gradient: "conic-gradient(from 180deg at 50% 50%, #8B5CF608 0deg, #8B5CF620 120deg, #8B5CF608 240deg, #8B5CF600 360deg), linear-gradient(180deg, #0E0D16 0%, #12111A 100%)",
       letter: "S",
@@ -133,7 +133,7 @@ const PROJECTS = [
     color: "#F8B4D9",
     url: null,
     gridClass: "md:col-span-1 md:row-span-1",
-    aspect: "aspect-[4/5]",
+    aspect: "aspect-[4/5] md:aspect-auto",
     visual: {
       gradient: "radial-gradient(circle at 70% 20%, #F8B4D918 0%, transparent 50%), radial-gradient(circle at 30% 80%, #F8B4D90C 0%, transparent 40%), linear-gradient(160deg, #110F16 0%, #0D0D14 100%)",
       letter: "PA",
@@ -169,7 +169,7 @@ const PROJECTS = [
       press: [],
     },
     gridClass: "md:col-span-2 md:row-span-1",
-    aspect: "aspect-[4/5] md:aspect-[21/9]",
+    aspect: "aspect-[4/5] md:aspect-auto",
     visual: {
       gradient: "radial-gradient(ellipse at 10% 50%, #C4A35A15 0%, transparent 40%), radial-gradient(ellipse at 90% 50%, #C4A35A10 0%, transparent 40%), linear-gradient(90deg, #14100F 0%, #0D0D14 50%, #14100F 100%)",
       letter: "GS",
@@ -187,6 +187,7 @@ const PROJECTS = [
     desc: "El Bloomberg de los carros. Base de datos, frontend, UI y modelo de negocio. En construcción.",
     image: null as string | null,
     video: "/videos/monza-haus-reel.mp4",
+    mobileVideo: "/videos/monza-haus-mobile.mp4",
     color: "#F8B4D9",
     url: null,
     caseStudy: {
@@ -204,7 +205,7 @@ const PROJECTS = [
       press: [],
     },
     gridClass: "md:col-span-1 md:row-span-1",
-    aspect: "aspect-[4/5]",
+    aspect: "aspect-[4/5] md:aspect-auto",
     visual: {
       gradient: "radial-gradient(circle at 30% 40%, #F8B4D918 0%, transparent 50%), radial-gradient(circle at 70% 70%, #F8B4D90C 0%, transparent 40%), linear-gradient(160deg, #110F16 0%, #0D0D14 100%)",
       letter: "MH",
@@ -254,7 +255,7 @@ const WorkShowcase = () => {
           </motion.div>
 
           {/* Editorial asymmetric grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-3 auto-rows-auto md:auto-rows-[260px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 auto-rows-auto md:auto-rows-[280px]">
             {PROJECTS.map((project, i) => {
               const isHovered = hovered === project.id;
               return (

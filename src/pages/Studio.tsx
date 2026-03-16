@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import FooterMinimal from "@/components/FooterMinimal";
 import EdgarPink from "@/assets/edgar-pink.png";
 import { Gem, Layers, Monitor, Cpu } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -454,7 +454,7 @@ const Studio = () => {
         </div>
       </section>
 
-      <Footer />
+      <FooterMinimal />
       </div>
     </div>
   );

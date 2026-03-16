@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import HelmetIcon from "./HelmetIcon";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { useTheme } from "@/theme/ThemeContext";
@@ -37,6 +37,28 @@ const Navbar = () => {
   const lang = language as Lang;
   const { theme } = useTheme();
   const isModena = theme === 'modena';
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  /** Handle anchor links — if not on home, navigate to home first then scroll */
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith("#")) return; // regular links work normally
+    e.preventDefault();
+    const hash = href;
+    const isHome = location.pathname === "/" || location.pathname === "/en";
+    if (isHome) {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      const base = language === "en" ? "/en" : "/";
+      navigate(base, { replace: false });
+      // Wait for page to render then scroll
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -107,6 +129,7 @@ const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="font-clash text-[11px] tracking-[0.25em] uppercase transition-colors duration-300"
                   style={{ color: textMuted }}
                   onMouseEnter={e => (e.currentTarget.style.color = textMutedHover)}
@@ -206,7 +229,7 @@ const Navbar = () => {
                 <motion.a
                   key={link.label}
                   href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => { handleNavClick(e, link.href); setIsMenuOpen(false); }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}

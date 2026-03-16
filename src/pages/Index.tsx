@@ -3,6 +3,7 @@ import WorkShowcase from "@/components/WorkShowcase";
 import CredibilityBand from "@/components/CredibilityBand";
 import AboutEdgarSection from "@/components/AboutEdgarSection";
 import MetodoMonzaSection from "@/components/MetodoMonzaSection";
+import CapabilitiesSection from "@/components/CapabilitiesSection";
 import SpeakerTeaser from "@/components/SpeakerTeaser";
 import GlobalReel from "@/components/GlobalReel";
 import VideoStatement from "@/components/VideoStatement";
@@ -17,6 +18,7 @@ const Index = () => {
       <CredibilityBand />
       <AboutEdgarSection />
       <MetodoMonzaSection />
+      <CapabilitiesSection />
       <SpeakerTeaser />
       <GlobalReel />
       <VideoStatement />
