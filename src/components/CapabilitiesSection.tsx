@@ -624,51 +624,127 @@ const SamuelBoard = memo(() => {
   );
 });
 
-/* ── Content Board — multi-platform social media ecosystem ── */
-const LINKEDIN_SLIDES = [
-  "/images/content-design/linkedin/slide-01.png",
-  "/images/content-design/linkedin/slide-02.png",
-  "/images/content-design/linkedin/slide-03.png",
-  "/images/content-design/linkedin/slide-04.png",
-  "/images/content-design/linkedin/slide-05.png",
-  "/images/content-design/linkedin/slide-06.png",
-];
-const STORY_SLIDES = [
-  "/images/content-design/stories/story-01.png",
-  "/images/content-design/stories/story-02.png",
-  "/images/content-design/stories/story-03.png",
-  "/images/content-design/stories/story-04.png",
-  "/images/content-design/stories/story-05.png",
-];
-const IG_FEED_SLIDES = [
-  "/images/content-design/feed/ig-01.png",
-  "/images/content-design/feed/ig-02.png",
-  "/images/content-design/feed/ig-03.png",
-  "/images/content-design/feed/ig-04.png",
-  "/images/content-design/feed/ig-05.png",
-  "/images/content-design/feed/ig-06.png",
-];
+/* ── Content Board — Content Production System ── */
+const CONTENT_POSTS = [
+  {
+    id: "cual-es-real",
+    title: "¿Cuál es real?",
+    tag: "AI EXPERIMENT",
+    slides: [
+      "/images/content-design/posts/hyperreal-a.png",
+      "/images/content-design/posts/hyperreal-b.png",
+      "/images/content-design/posts/hyperreal-c.png",
+    ],
+    slideCount: 5,
+    format: "Carousel",
+  },
+  {
+    id: "ai-motorsport",
+    title: "AI × Motorsport",
+    tag: "SERIE AI",
+    slides: [
+      "/images/content-design/carousel-01.png",
+      "/images/content-design/carousel-02.png",
+      "/images/content-design/carousel-03.png",
+      "/images/content-design/carousel-04.png",
+      "/images/content-design/carousel-05.png",
+      "/images/content-design/carousel-06.png",
+    ],
+    slideCount: 10,
+    format: "Carousel",
+  },
+  {
+    id: "prompt-detras",
+    title: "El prompt detrás",
+    tag: "PROMPT ENGINEERING",
+    slides: [
+      "/images/content-design/stories/story-01.png",
+      "/images/content-design/stories/story-02.png",
+      "/images/content-design/stories/story-03.png",
+      "/images/content-design/stories/story-04.png",
+      "/images/content-design/stories/story-05.png",
+    ],
+    slideCount: 6,
+    format: "Story",
+  },
+] as const;
 
 const ContentBoard = memo(({ images }: { images: string[] }) => {
-  const [activeSlide] = useAutoRotate(images.length, 3000);
-  const [activeLI] = useAutoRotate(LINKEDIN_SLIDES.length, 4000);
-  const [activeStory] = useAutoRotate(STORY_SLIDES.length, 3500);
+  const [activePost, setActivePost] = useState(0);
+  const post = CONTENT_POSTS[activePost];
+  const [activeSlide] = useAutoRotate(post.slides.length, 2800);
+  const totalSlides = CONTENT_POSTS.reduce((a, p) => a + p.slideCount, 0);
+
+  /* Auto-rotate posts every 12s */
+  useEffect(() => {
+    const id = setInterval(() => setActivePost(p => (p + 1) % CONTENT_POSTS.length), 12000);
+    return () => clearInterval(id);
+  }, []);
+
+  const isStory = post.format === "Story";
 
   return (
     <div className="absolute inset-0 overflow-hidden" style={{ background: "#0e0e0e" }}>
-      {/* Subtle warm glow */}
+      {/* Subtle glow */}
       <div className="absolute inset-0" style={{
-        background: "radial-gradient(ellipse at 40% 40%, rgba(255,107,107,0.08) 0%, transparent 55%), radial-gradient(ellipse at 70% 70%, rgba(248,180,217,0.05) 0%, transparent 45%)",
+        background: "radial-gradient(ellipse at 35% 45%, rgba(255,107,107,0.07) 0%, transparent 55%), radial-gradient(ellipse at 70% 60%, rgba(248,180,217,0.05) 0%, transparent 45%)",
       }} />
 
       {/* Grid pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
+      <div className="absolute inset-0 opacity-[0.025]" style={{
         backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-        backgroundSize: "60px 60px",
+        backgroundSize: "50px 50px",
       }} />
 
-      {/* ★ LEFT — IG Carousel mockup (phone frame with real carousel images) */}
-      <div className="absolute left-[2%] md:left-[3%] top-[4%] bottom-[4%] w-[52%] sm:w-[34%] md:w-[28%] max-w-[240px] z-10">
+      {/* ★ TOP BAR — Dashboard header */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="absolute top-0 left-0 right-0 z-20 px-4 py-2.5 flex items-center justify-between"
+        style={{ background: "rgba(14,14,14,0.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid rgba(255,255,255,0.04)" }}
+      >
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full" style={{ background: "#FF6B6B" }} />
+          <span className="text-[9px] font-bold tracking-[0.15em] uppercase" style={{ color: "rgba(255,252,247,0.50)" }}>
+            Content System
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-[8px] font-mono" style={{ color: "rgba(255,107,107,0.45)" }}>
+            {CONTENT_POSTS.length} posts
+          </span>
+          <span className="text-[8px] font-mono" style={{ color: "rgba(255,252,247,0.20)" }}>·</span>
+          <span className="text-[8px] font-mono" style={{ color: "rgba(255,107,107,0.45)" }}>
+            {totalSlides} slides
+          </span>
+        </div>
+      </motion.div>
+
+      {/* ★ POST TABS */}
+      <div className="absolute top-[38px] left-0 right-0 z-20 px-3 py-2 flex gap-1.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.03)" }}>
+        {CONTENT_POSTS.map((p, i) => (
+          <button
+            key={p.id}
+            onClick={() => setActivePost(i)}
+            className="flex-1 px-2 py-1.5 rounded-lg text-left transition-all duration-300"
+            style={{
+              background: i === activePost ? "rgba(255,107,107,0.08)" : "transparent",
+              border: `1px solid ${i === activePost ? "rgba(255,107,107,0.15)" : "rgba(255,255,255,0.03)"}`,
+            }}
+          >
+            <p className="text-[6px] tracking-[0.2em] uppercase mb-0.5" style={{
+              color: i === activePost ? "rgba(255,107,107,0.6)" : "rgba(255,252,247,0.15)",
+            }}>{p.tag}</p>
+            <p className="text-[8px] font-bold truncate" style={{
+              color: i === activePost ? "rgba(255,252,247,0.85)" : "rgba(255,252,247,0.30)",
+            }}>{p.title}</p>
+          </button>
+        ))}
+      </div>
+
+      {/* ★ MAIN VIEWER — Phone frame with slides */}
+      <div className="absolute left-[3%] md:left-[4%] top-[90px] bottom-[60px] w-[55%] sm:w-[42%] md:w-[36%] max-w-[280px] z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -676,157 +752,163 @@ const ContentBoard = memo(({ images }: { images: string[] }) => {
           className="w-full h-full rounded-2xl overflow-hidden relative"
           style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.06)" }}
         >
-          {/* Phone top bar */}
+          {/* Phone header */}
           <div className="flex items-center gap-2 px-3 py-2" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
             <div className="w-5 h-5 rounded-full bg-gradient-to-br from-pink-400 to-purple-500" />
             <div>
               <p className="text-[8px] font-bold text-white/70">monza.lab</p>
-              <p className="text-[6px] text-white/25">Sponsored</p>
+              <p className="text-[6px] text-white/25">{post.format === "Story" ? "Story · 2h" : "Sponsored"}</p>
             </div>
             <span className="ml-auto text-[8px] text-white/20">•••</span>
           </div>
 
-          {/* Carousel image area */}
-          <div className="relative w-full" style={{ aspectRatio: "4/5" }}>
-            {images.map((img, i) => (
-              <img
-                key={img}
-                src={img}
+          {/* Slide viewer */}
+          <div className="relative w-full flex-1" style={{ aspectRatio: isStory ? "9/16" : "4/5" }}>
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={`${post.id}-${activeSlide}`}
+                src={post.slides[activeSlide]}
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
-                style={{ opacity: i === activeSlide ? 1 : 0 }}
+                className="absolute inset-0 w-full h-full object-cover"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
               />
-            ))}
-            {/* Carousel dots */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-              {images.slice(0, 6).map((_, i) => (
-                <div key={i} className="w-1 h-1 rounded-full transition-all duration-300" style={{
-                  background: i === activeSlide % 6 ? "#FF6B6B" : "rgba(255,255,255,0.25)",
-                }} />
-              ))}
+            </AnimatePresence>
+            {/* Slide counter */}
+            <div className="absolute top-2 right-2 px-1.5 py-0.5 rounded-full" style={{ background: "rgba(0,0,0,0.55)" }}>
+              <span className="text-[7px] text-white/60 font-mono">{activeSlide + 1}/{post.slides.length}</span>
             </div>
-            <div className="absolute top-2 right-2 px-1.5 py-0.5 rounded-full" style={{ background: "rgba(0,0,0,0.5)" }}>
-              <span className="text-[7px] text-white/60 font-mono">{(activeSlide % 6) + 1}/6</span>
-            </div>
+            {/* Story progress bars */}
+            {isStory && (
+              <div className="absolute top-2 left-2 right-10 flex gap-0.5 z-10">
+                {post.slides.map((_, i) => (
+                  <div key={i} className="flex-1 h-0.5 rounded-full" style={{
+                    background: i <= activeSlide ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.2)",
+                  }} />
+                ))}
+              </div>
+            )}
           </div>
 
-          {/* Engagement bar */}
-          <div className="px-3 py-2">
-            <div className="flex gap-3 mb-1.5">
-              {["♡", "💬", "↗"].map((e) => (
-                <span key={e} className="text-[12px]" style={{ filter: "grayscale(1) brightness(0.7)" }}>{e}</span>
-              ))}
+          {/* Carousel dots (non-story) */}
+          {!isStory && (
+            <div className="px-3 py-2">
+              <div className="flex justify-center gap-1 mb-1.5">
+                {post.slides.map((_, i) => (
+                  <div key={i} className="w-1 h-1 rounded-full transition-all duration-300" style={{
+                    background: i === activeSlide ? "#FF6B6B" : "rgba(255,255,255,0.2)",
+                  }} />
+                ))}
+              </div>
+              <div className="flex gap-3 mb-1">
+                {["♡", "💬", "↗"].map((e) => (
+                  <span key={e} className="text-[11px]" style={{ filter: "grayscale(1) brightness(0.7)" }}>{e}</span>
+                ))}
+              </div>
+              <p className="text-[7px] text-white/50"><span className="font-bold text-white/70">monza.lab</span> Diseño que posiciona.</p>
             </div>
-            <p className="text-[7px] text-white/50"><span className="font-bold text-white/70">monza.lab</span> Diseño que posiciona.</p>
-          </div>
+          )}
         </motion.div>
       </div>
 
-      {/* ★ CENTER — LinkedIn carousel mockup with REAL LinkedIn content */}
-      <MockCard delay={0.2} className="hidden sm:block" style={{ top: "4%", left: "36%", width: "34%", maxWidth: 300, background: "#1B2430", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="p-3">
-          {/* LinkedIn header */}
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center">
-              <span className="text-[7px] font-bold text-white">M</span>
-            </div>
-            <div>
-              <p className="text-[8px] font-bold text-white/80">Edgar Navarro</p>
-              <p className="text-[6px] text-white/30">Founder @ Monza Lab · 1d</p>
-            </div>
-            <div className="ml-auto w-4 h-4 rounded-sm flex items-center justify-center" style={{ background: "rgba(0,119,181,0.3)" }}>
-              <span className="text-[7px] font-bold" style={{ color: "#0077B5" }}>in</span>
-            </div>
+      {/* ★ RIGHT PANEL — Post details + mini previews */}
+      <div className="absolute right-[3%] top-[90px] bottom-[60px] left-[60%] sm:left-[48%] md:left-[44%] z-10 flex flex-col gap-3 overflow-hidden">
+        {/* Active post info */}
+        <motion.div
+          key={post.id}
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+          className="rounded-xl p-3 md:p-4"
+          style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }}
+        >
+          <p className="text-[7px] tracking-[0.25em] uppercase mb-1.5" style={{ color: "rgba(255,107,107,0.5)" }}>{post.tag}</p>
+          <p className="text-[13px] md:text-[15px] font-bold mb-2" style={{ color: "rgba(255,252,247,0.88)", letterSpacing: "-0.02em" }}>{post.title}</p>
+          <div className="flex gap-2">
+            <span className="text-[7px] px-2 py-0.5 rounded-md" style={{ background: "rgba(255,107,107,0.08)", color: "rgba(255,107,107,0.55)", border: "1px solid rgba(255,107,107,0.1)" }}>
+              {post.slideCount} slides
+            </span>
+            <span className="text-[7px] px-2 py-0.5 rounded-md" style={{ background: "rgba(248,180,217,0.06)", color: "rgba(248,180,217,0.50)", border: "1px solid rgba(248,180,217,0.1)" }}>
+              {post.format}
+            </span>
           </div>
-          {/* Real LinkedIn carousel image */}
-          <div className="rounded-lg overflow-hidden relative" style={{ aspectRatio: "1/1", background: "#0e0e0e" }}>
-            {LINKEDIN_SLIDES.map((img, i) => (
-              <img
-                key={img}
-                src={img}
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
-                style={{ opacity: i === activeLI ? 1 : 0 }}
-              />
-            ))}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-              {LINKEDIN_SLIDES.map((_, i) => (
-                <div key={i} className="w-1 h-1 rounded-full transition-all duration-300" style={{
-                  background: i === activeLI ? "#0077B5" : "rgba(255,255,255,0.2)",
-                }} />
-              ))}
-            </div>
-          </div>
-          {/* Engagement */}
-          <div className="flex items-center justify-between mt-2 pt-2" style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}>
-            <span className="text-[7px] text-white/25">👍 142 · 23 comments</span>
-            <span className="text-[7px] text-white/20">Share</span>
-          </div>
-        </div>
-      </MockCard>
+        </motion.div>
 
-      {/* ★ RIGHT — IG Story mockup with REAL story content */}
-      <MockCard delay={0.35} className="hidden sm:block" style={{ top: "4%", right: "2%", width: "22%", maxWidth: 160, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="relative" style={{ aspectRatio: "9/16" }}>
-          {STORY_SLIDES.map((img, i) => (
-            <img
-              key={img}
-              src={img}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover rounded-xl transition-opacity duration-700"
-              style={{ opacity: i === activeStory ? 1 : 0 }}
-            />
+        {/* Mini slide strip */}
+        <div className="flex gap-1.5 overflow-hidden">
+          {post.slides.slice(0, 4).map((img, i) => (
+            <div key={img} className="relative rounded-lg overflow-hidden flex-shrink-0 transition-all duration-300" style={{
+              width: "48px", height: "60px",
+              border: `1px solid ${i === activeSlide ? "rgba(255,107,107,0.3)" : "rgba(255,255,255,0.04)"}`,
+              opacity: i === activeSlide ? 1 : 0.4,
+            }}>
+              <img src={img} alt="" className="w-full h-full object-cover" />
+            </div>
           ))}
-          {/* Story top bar */}
-          <div className="absolute top-0 left-0 right-0 p-2 z-10">
-            <div className="flex gap-0.5">
-              {STORY_SLIDES.map((_, i) => (
-                <div key={i} className="flex-1 h-0.5 rounded-full" style={{ background: i <= activeStory ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.2)" }} />
-              ))}
+          {post.slides.length > 4 && (
+            <div className="flex items-center justify-center rounded-lg flex-shrink-0" style={{
+              width: "48px", height: "60px", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)",
+            }}>
+              <span className="text-[8px] text-white/25">+{post.slides.length - 4}</span>
             </div>
-            <div className="flex items-center gap-1.5 mt-1.5">
-              <div className="w-4 h-4 rounded-full bg-gradient-to-br from-pink-400 to-red-400" />
-              <span className="text-[7px] font-bold text-white/80">monza.lab</span>
-              <span className="text-[6px] text-white/30">2h</span>
-            </div>
-          </div>
+          )}
         </div>
-      </MockCard>
 
-      {/* ★ BOTTOM LEFT — IG Feed grid with REAL IG carousel content */}
-      <MockCard delay={0.45} className="hidden md:block" style={{ bottom: "4%", left: "3%", width: "28%", maxWidth: 220, background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="p-2">
-          <div className="flex items-center gap-1.5 mb-2 px-1">
-            <div className="w-4 h-4 rounded-full bg-gradient-to-br from-pink-400 to-purple-500" />
-            <span className="text-[7px] font-bold text-white/60">monza.lab</span>
-            <span className="text-[6px] text-white/20 ml-auto">324 posts</span>
-          </div>
-          <div className="grid grid-cols-3 gap-0.5">
-            {IG_FEED_SLIDES.map((img) => (
-              <div key={img} className="relative" style={{ aspectRatio: "1/1" }}>
-                <img src={img} alt="" className="w-full h-full object-cover" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </MockCard>
-
-      {/* ★ BOTTOM CENTER — Format labels */}
-      <MockCard delay={0.55} className="hidden sm:block" style={{ bottom: "6%", left: "34%", background: "rgba(14,14,14,0.9)", border: "1px solid rgba(255,107,107,0.08)" }}>
-        <div className="px-3 py-2 md:px-4 md:py-3">
-          <p className="text-[7px] tracking-[0.25em] uppercase mb-2" style={{ color: "rgba(255,107,107,0.3)" }}>Formatos que entrego</p>
-          <div className="flex flex-wrap gap-1.5">
-            {["IG Carousel", "IG Story", "IG Feed", "LinkedIn", "Reels Cover", "Twitter/X"].map((f) => (
-              <span key={f} className="text-[7px] md:text-[8px] px-2 py-0.5 rounded-md font-medium" style={{
-                background: "rgba(255,107,107,0.08)", color: "rgba(255,107,107,0.6)",
-                border: "1px solid rgba(255,107,107,0.1)",
+        {/* Format export card */}
+        <div className="rounded-xl p-3" style={{ background: "rgba(14,14,14,0.6)", border: "1px solid rgba(255,107,107,0.06)" }}>
+          <p className="text-[7px] tracking-[0.25em] uppercase mb-2" style={{ color: "rgba(255,107,107,0.3)" }}>Formatos disponibles</p>
+          <div className="flex flex-wrap gap-1">
+            {["Feed 4:5", "Story 9:16", "LinkedIn", "Reels", "X/Twitter"].map((f) => (
+              <span key={f} className="text-[7px] px-1.5 py-0.5 rounded" style={{
+                background: "rgba(255,107,107,0.06)", color: "rgba(255,107,107,0.50)",
+                border: "1px solid rgba(255,107,107,0.08)",
               }}>
                 {f}
               </span>
             ))}
           </div>
         </div>
-      </MockCard>
+
+        {/* IG Feed mini grid */}
+        <div className="hidden md:block rounded-xl overflow-hidden" style={{ background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.04)" }}>
+          <div className="flex items-center gap-1.5 px-2 py-1.5" style={{ borderBottom: "1px solid rgba(255,255,255,0.03)" }}>
+            <div className="w-3 h-3 rounded-full bg-gradient-to-br from-pink-400 to-purple-500" />
+            <span className="text-[6px] font-bold text-white/50">monza.lab</span>
+            <span className="text-[5px] text-white/15 ml-auto">Feed preview</span>
+          </div>
+          <div className="grid grid-cols-3 gap-px p-px">
+            {[
+              ...CONTENT_POSTS[0].slides.slice(0, 3),
+              ...CONTENT_POSTS[1].slides.slice(0, 3),
+            ].map((img, i) => (
+              <div key={`feed-${i}`} className="relative" style={{ aspectRatio: "1/1" }}>
+                <img src={img} alt="" className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ★ BOTTOM BAR — Stats */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 px-4 py-2 flex items-center justify-between"
+        style={{ background: "rgba(14,14,14,0.85)", backdropFilter: "blur(12px)", borderTop: "1px solid rgba(255,255,255,0.04)" }}
+      >
+        <div className="flex items-center gap-4">
+          <span className="text-[7px] text-white/20 tracking-wider uppercase">Sistema de contenido</span>
+        </div>
+        <div className="flex items-center gap-2">
+          {["IG Carousel", "IG Story", "LinkedIn"].map((f) => (
+            <span key={f} className="text-[6px] px-1.5 py-0.5 rounded" style={{
+              background: "rgba(248,180,217,0.05)", color: "rgba(248,180,217,0.35)",
+              border: "1px solid rgba(248,180,217,0.08)",
+            }}>
+              {f}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   );
 });
