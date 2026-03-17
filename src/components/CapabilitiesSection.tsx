@@ -153,7 +153,7 @@ const CAPABILITIES: Capability[] = [
     label: "Automatización, datos & infraestructura",
     desc: "Bases de datos, scrapers, pipelines de contenido, generación por API — la infraestructura invisible que hace que todo escale sin fricción.",
     type: "terminal",
-    accent: "#F59E0B",
+    accent: "#F8B4D9",
     tag: "TECH × SCALE",
   },
 ];
@@ -992,7 +992,7 @@ const TERMINAL_LINES = [
   { type: "out", text: "  Twitter/X: 203 posts analyzed", group: 2 },
   { type: "out", text: "  Website:   34 pages indexed", group: 2 },
   { type: "out", text: "✓ Content audit complete → report.pdf", group: 2 },
-  { type: "cmd", text: "$ monza ai --generate proposal --client $NAME", group: 3 },
+  { type: "cmd", text: "$ monza generate --proposal --client $NAME", group: 3 },
   { type: "out", text: "✓ Proposal generated from transcript + audit", group: 3 },
   { type: "out", text: "✓ PDF exported → /proposals/latest.pdf", group: 3 },
   { type: "out", text: "✓ Notion page created · link sent via email", group: 3 },
@@ -1002,10 +1002,10 @@ const TERMINAL_LINES = [
 ] as const;
 
 const BENEFITS = [
-  { icon: "⚡", title: "Cada cliente nuevo, automatizado", desc: "Entra un cliente → se crea su workspace, se manda el email de bienvenida, se agenda la llamada. Sin que toques nada." },
-  { icon: "🗄", title: "Tu infraestructura, siempre activa", desc: "Bases de datos, caché, webhooks — todo conectado y corriendo 24/7 para que tu negocio no pare." },
-  { icon: "📊", title: "Tu contenido, auditado en segundos", desc: "Escaneamos LinkedIn, Instagram, X y tu web. Te decimos qué funciona, qué no, y qué hacer diferente." },
-  { icon: "🤖", title: "Propuestas que se arman solas", desc: "De la transcripción de la llamada al PDF listo para enviar. Todo generado automáticamente por AI." },
+  { num: "01", title: "Cada cliente nuevo, automatizado", desc: "Entra un cliente → se crea su workspace, se manda el email de bienvenida, se agenda la llamada. Sin que toques nada." },
+  { num: "02", title: "Tu infraestructura, siempre activa", desc: "Bases de datos, caché, webhooks — todo conectado y corriendo 24/7 para que tu negocio no pare." },
+  { num: "03", title: "Tu contenido, auditado en segundos", desc: "Escaneamos LinkedIn, Instagram, X y tu web. Te decimos qué funciona, qué no, y qué hacer diferente." },
+  { num: "04", title: "Propuestas listas en minutos", desc: "De la llamada al PDF listo para enviar. El sistema procesa, estructura y entrega — tú solo revisas y mandas." },
 ] as const;
 
 const TerminalShowcase = memo(() => {
@@ -1029,7 +1029,7 @@ const TerminalShowcase = memo(() => {
     <div className="absolute inset-0 overflow-hidden" style={{ background: "#0a0a0f" }}>
       {/* Ambient glow */}
       <div className="absolute inset-0" style={{
-        background: "radial-gradient(ellipse at 30% 50%, rgba(245,158,11,0.06) 0%, transparent 50%), radial-gradient(ellipse at 70% 30%, rgba(56,189,248,0.04) 0%, transparent 45%)",
+        background: "radial-gradient(ellipse at 30% 50%, rgba(248,180,217,0.06) 0%, transparent 50%), radial-gradient(ellipse at 70% 30%, rgba(248,180,217,0.03) 0%, transparent 45%)",
       }} />
 
       {/* Layout: Terminal left + Benefits right */}
@@ -1038,8 +1038,8 @@ const TerminalShowcase = memo(() => {
         {/* Terminal window — full on mobile, 55% on desktop */}
         <div className="flex-1 md:w-[55%] rounded-xl overflow-hidden flex flex-col min-h-0" style={{
           background: "rgba(10,10,18,0.95)",
-          border: "1px solid rgba(245,158,11,0.12)",
-          boxShadow: "0 0 60px rgba(245,158,11,0.05), inset 0 1px 0 rgba(255,255,255,0.03)",
+          border: "1px solid rgba(248,180,217,0.12)",
+          boxShadow: "0 0 60px rgba(248,180,217,0.05), inset 0 1px 0 rgba(255,255,255,0.03)",
         }}>
           {/* Title bar */}
           <div className="flex items-center px-3 py-2 sm:px-4 sm:py-2.5 shrink-0" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
@@ -1052,7 +1052,7 @@ const TerminalShowcase = memo(() => {
               monza-lab — infrastructure
             </span>
             <div className="ml-auto flex gap-2">
-              <span className="text-[7px] font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(245,158,11,0.1)", color: "rgba(245,158,11,0.5)" }}>LIVE</span>
+              <span className="text-[7px] font-mono px-1.5 py-0.5 rounded" style={{ background: "rgba(248,180,217,0.1)", color: "rgba(248,180,217,0.5)" }}>LIVE</span>
             </div>
           </div>
 
@@ -1067,16 +1067,16 @@ const TerminalShowcase = memo(() => {
                   transition={{ duration: 0.15 }}
                 >
                   {line.type === "cmd" ? (
-                    <p className="mt-2 first:mt-0" style={{ color: "#F59E0B" }}>{line.text}</p>
+                    <p className="mt-2 first:mt-0" style={{ color: "#F8B4D9" }}>{line.text}</p>
                   ) : (
-                    <p style={{ color: line.text.startsWith("✓") ? "rgba(40,200,64,0.7)" : line.text.startsWith("⟳") ? "rgba(56,189,248,0.6)" : "rgba(255,255,255,0.35)" }}>
+                    <p style={{ color: line.text.startsWith("✓") ? "rgba(248,180,217,0.7)" : line.text.startsWith("⟳") ? "rgba(248,180,217,0.5)" : "rgba(255,255,255,0.35)" }}>
                       {line.text}
                     </p>
                   )}
                 </motion.div>
               ))}
               {visibleLines < TERMINAL_LINES.length && (
-                <span className="inline-block w-[6px] h-[14px] ml-0.5 animate-pulse" style={{ background: "#F59E0B", opacity: 0.7 }} />
+                <span className="inline-block w-[6px] h-[14px] ml-0.5 animate-pulse" style={{ background: "#F8B4D9", opacity: 0.7 }} />
               )}
             </div>
             <div className="absolute bottom-0 left-0 right-0 h-12 pointer-events-none" style={{
@@ -1089,7 +1089,7 @@ const TerminalShowcase = memo(() => {
         <div className="hidden md:flex md:w-[45%] flex-col gap-2.5">
           {/* Panel header */}
           <div className="px-4 py-3 rounded-xl" style={{ background: "rgba(10,10,18,0.6)", border: "1px solid rgba(255,255,255,0.04)" }}>
-            <p className="text-[8px] tracking-[0.3em] uppercase font-clash" style={{ color: "rgba(245,158,11,0.5)" }}>
+            <p className="text-[8px] tracking-[0.3em] uppercase font-clash" style={{ color: "rgba(248,180,217,0.5)" }}>
               ¿Qué significa esto para tu marca?
             </p>
           </div>
@@ -1109,12 +1109,14 @@ const TerminalShowcase = memo(() => {
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 className="flex-1 px-4 py-3 rounded-xl transition-all duration-500"
                 style={{
-                  background: isCurrent ? "rgba(245,158,11,0.06)" : "rgba(10,10,18,0.6)",
-                  border: isCurrent ? "1px solid rgba(245,158,11,0.18)" : "1px solid rgba(255,255,255,0.04)",
+                  background: isCurrent ? "rgba(248,180,217,0.06)" : "rgba(10,10,18,0.6)",
+                  border: isCurrent ? "1px solid rgba(248,180,217,0.18)" : "1px solid rgba(255,255,255,0.04)",
                 }}
               >
                 <div className="flex items-start gap-3">
-                  <span className="text-base mt-0.5 shrink-0" style={{ filter: isActive ? "none" : "grayscale(1) brightness(0.4)" }}>{b.icon}</span>
+                  <span className="font-mono text-[10px] mt-0.5 shrink-0 transition-colors duration-400" style={{
+                    color: isActive ? "rgba(248,180,217,0.7)" : "rgba(255,255,255,0.15)",
+                  }}>{b.num}</span>
                   <div className="min-w-0">
                     <p className="font-clash text-[11px] md:text-xs font-semibold leading-tight transition-colors duration-400" style={{
                       color: isActive ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.25)",
@@ -1137,29 +1139,32 @@ const TerminalShowcase = memo(() => {
       {/* Mobile benefits — bottom overlay on small screens */}
       <div className="absolute bottom-3 left-3 right-3 md:hidden z-10">
         <AnimatePresence mode="wait">
-          {activeGroup >= 0 && (
-            <motion.div
-              key={activeGroup}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -4 }}
-              transition={{ duration: 0.3 }}
-              className="px-3 py-2.5 rounded-lg"
-              style={{ background: "rgba(10,10,18,0.92)", border: "1px solid rgba(245,158,11,0.15)", backdropFilter: "blur(12px)" }}
-            >
-              <div className="flex items-start gap-2.5">
-                <span className="text-sm shrink-0">{BENEFITS[activeGroup].icon}</span>
-                <div>
-                  <p className="font-clash text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.85)" }}>
-                    {BENEFITS[activeGroup].title}
-                  </p>
-                  <p className="font-clash text-[8px] leading-relaxed mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    {BENEFITS[activeGroup].desc}
-                  </p>
+          {activeGroup >= 0 && activeGroup < BENEFITS.length && (() => {
+            const idx = activeGroup as 0 | 1 | 2 | 3;
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.3 }}
+                className="px-3 py-2.5 rounded-lg"
+                style={{ background: "rgba(10,10,18,0.92)", border: "1px solid rgba(248,180,217,0.15)", backdropFilter: "blur(12px)" }}
+              >
+                <div className="flex items-start gap-2.5">
+                  <span className="font-mono text-[10px] shrink-0" style={{ color: "rgba(248,180,217,0.7)" }}>{BENEFITS[idx].num}</span>
+                  <div>
+                    <p className="font-clash text-[10px] font-semibold" style={{ color: "rgba(255,255,255,0.85)" }}>
+                      {BENEFITS[idx].title}
+                    </p>
+                    <p className="font-clash text-[8px] leading-relaxed mt-0.5" style={{ color: "rgba(255,255,255,0.4)" }}>
+                      {BENEFITS[idx].desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          )}
+              </motion.div>
+            );
+          })()}
         </AnimatePresence>
       </div>
     </div>
