@@ -133,7 +133,6 @@ const CAPABILITIES: Capability[] = [
       "/images/content-design/carousel-04.png",
       "/images/content-design/carousel-05.png",
       "/images/content-design/carousel-06.png",
-      "/images/content-design/carousel-07.png",
     ],
     accent: "#FF6B6B",
     tag: "CONTENT × DESIGN",
