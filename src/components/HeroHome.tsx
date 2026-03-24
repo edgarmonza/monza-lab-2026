@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import HelmetIcon from "./HelmetIcon";
 import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
 import { useTheme } from "@/theme/ThemeContext";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 /* ── Public transparent PNGs ── */
 const EDGAR_HELMET  = "/images/Edgar/2.png"; // MONZA pink helmet, transparent bg
@@ -49,6 +50,12 @@ const HeroHome = () => {
   const touchedOnce = useRef(false);
   const { theme } = useTheme();
   const isModena = theme === "modena";
+  const { language } = useLanguage();
+
+  const content = {
+    touchHint: { es: 'Touch to reveal', en: 'Touch to reveal', de: 'Berühre zum Enthüllen' },
+    cta: { es: 'Ver el trabajo', en: 'See the work', de: 'Arbeit ansehen' },
+  };
 
   const themeRef = useRef(theme);
   useEffect(() => { themeRef.current = theme; }, [theme]);
@@ -247,6 +254,31 @@ const HeroHome = () => {
   useEffect(() => () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); }, []);
 
   const mobile = useMemo(() => typeof window !== "undefined" && window.innerWidth < 768, []);
+
+  const typewriterWords = {
+    es: [
+      { text: mobile ? "AI STUDIO" : "AI-NATIVE CREATIVE STUDIO" },
+      { text: "COMPANY BUILDER" },
+      { text: mobile ? "BUILT DIFFERENT" : "FOR AMBITIOUS BRANDS" },
+      { text: mobile ? "BRAND · TECH · AI" : "BRAND · TECH · BUSINESS" },
+      { text: "BUILT DIFFERENT" },
+    ],
+    en: [
+      { text: mobile ? "AI STUDIO" : "AI-NATIVE CREATIVE STUDIO" },
+      { text: "COMPANY BUILDER" },
+      { text: mobile ? "BUILT DIFFERENT" : "FOR AMBITIOUS BRANDS" },
+      { text: mobile ? "BRAND · TECH · AI" : "BRAND · TECH · BUSINESS" },
+      { text: "BUILT DIFFERENT" },
+    ],
+    de: [
+      { text: mobile ? "AI STUDIO" : "AI-NATIVE CREATIVE STUDIO" },
+      { text: "COMPANY BUILDER" },
+      { text: mobile ? "BUILT DIFFERENT" : "FÜR AMBITIONIERTE MARKEN" },
+      { text: mobile ? "BRAND · TECH · AI" : "BRAND · TECH · BUSINESS" },
+      { text: "BUILT DIFFERENT" },
+    ],
+  };
+
   const sectionBg    = isModena ? "#F5F0EB" : "#0B0B10";
   const ctaColor     = isModena ? "rgba(11,11,16,0.75)"  : "rgba(255,252,247,0.60)";
   const cornerBorder = isModena ? "rgba(11,11,16,0.12)"  : "rgba(255,255,255,0.10)";
@@ -392,13 +424,7 @@ const HeroHome = () => {
           className="mt-4 md:mt-6 h-5 md:h-7 flex items-center justify-center px-4 overflow-hidden"
         >
           <TypewriterEffectSmooth
-            words={[
-              { text: mobile ? "AI STUDIO" : "AI-NATIVE CREATIVE STUDIO" },
-              { text: "COMPANY BUILDER"                                   },
-              { text: mobile ? "BUILT DIFFERENT" : "FOR AMBITIOUS BRANDS" },
-              { text: mobile ? "BRAND · TECH · AI" : "BRAND · TECH · BUSINESS" },
-              { text: "BUILT DIFFERENT"                                   },
-            ]}
+            words={typewriterWords[language]}
             className="text-[9px] md:text-sm font-medium tracking-[0.2em] md:tracking-[0.25em] uppercase text-[#F8B4D9]/70 font-clash whitespace-nowrap"
             cursorClassName="bg-[#F8B4D9]/40"
             config={{ typingSpeed: 60, deletingSpeed: 30, pauseBetweenPhrases: 1400 }}
@@ -421,7 +447,7 @@ const HeroHome = () => {
               <div className="w-1.5 h-1.5 rounded-full bg-[#F8B4D9]/60" />
             </motion.div>
             <span className="font-clash text-[9px] uppercase tracking-[0.35em] text-[#F8B4D9]/35">
-              Touch to reveal
+              {content.touchHint[language]}
             </span>
           </motion.div>
         )}
@@ -441,7 +467,7 @@ const HeroHome = () => {
           onMouseEnter={e => (e.currentTarget.style.color = "#F8B4D9")}
           onMouseLeave={e => (e.currentTarget.style.color = ctaColor)}
         >
-          Ver el trabajo
+          {content.cta[language]}
           <span className="inline-block w-8 h-px bg-current transition-all duration-300 group-hover:w-14" />
         </a>
       </motion.div>

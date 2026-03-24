@@ -6,9 +6,9 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import { useTheme } from "@/theme/ThemeContext";
 import { useLanguage } from "@/i18n/LanguageContext";
 
-type Lang = "es" | "en";
+type Lang = "es" | "en" | "de";
 
-const LANGS: Lang[] = ["es", "en"];
+const LANGS: Lang[] = ["es", "en", "de"];
 
 const NAV_LINKS: Record<Lang, { label: string; href: string }[]> = {
   es: [
@@ -23,11 +23,18 @@ const NAV_LINKS: Record<Lang, { label: string; href: string }[]> = {
     { label: "Approach", href: "#metodo" },
     { label: "Speaker", href: "/en/speaker" },
   ],
+  de: [
+    { label: "Work", href: "#work" },
+    { label: "Über uns", href: "#about" },
+    { label: "Methode", href: "#metodo" },
+    { label: "Speaker", href: "/de/speaker" },
+  ],
 };
 
 const CTA_LABEL: Record<Lang, string> = {
   es: "Construyamos",
   en: "Let's build",
+  de: "Let's build",
 };
 
 const Navbar = () => {
@@ -45,12 +52,12 @@ const Navbar = () => {
     if (!href.startsWith("#")) return; // regular links work normally
     e.preventDefault();
     const hash = href;
-    const isHome = location.pathname === "/" || location.pathname === "/en";
+    const isHome = location.pathname === "/" || location.pathname === "/en" || location.pathname === "/de";
     if (isHome) {
       const el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: "smooth" });
     } else {
-      const base = language === "en" ? "/en" : "/";
+      const base = language === "en" ? "/en" : language === "de" ? "/de" : "/";
       navigate(base, { replace: false });
       // Wait for page to render then scroll
       setTimeout(() => {

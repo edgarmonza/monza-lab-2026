@@ -1,6 +1,7 @@
 import { useRef, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -8,6 +9,11 @@ const VideoStatement = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const isMobile = useIsMobile();
+  const { language } = useLanguage();
+
+  const content = {
+    cta: { es: 'Construyamos →', en: "Let's build →", de: "Let's build →" },
+  };
 
   /** Callback ref — fires every time the video element mounts (including after key change) */
   const videoCallback = useCallback((node: HTMLVideoElement | null) => {
@@ -85,7 +91,7 @@ const VideoStatement = () => {
               e.currentTarget.style.borderColor = "rgba(255,252,247,0.15)";
             }}
           >
-            Construyamos →
+            {content.cta[language]}
           </motion.a>
 
         </motion.div>

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import edgarEditorial from "@/assets/edgar-editorial-pink.png";
 import { useTheme } from "@/theme/ThemeContext";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 // Terminal-style typing lines
 const LINES = [
@@ -102,6 +103,11 @@ const AboutEdgarSection = () => {
   const [photoPos, setPhotoPos] = useState({ x: 0, y: 0 });
   const { theme } = useTheme();
   const isModena = theme === "modena";
+  const { language } = useLanguage();
+
+  const content = {
+    hoverHint: { es: "// hover name to reveal", en: "// hover name to reveal", de: "// Name hovern zum Zeigen" },
+  };
 
   const handleHoverName = (hovering: boolean, rect: DOMRect | null) => {
     setPhotoVisible(hovering);
@@ -196,7 +202,7 @@ const AboutEdgarSection = () => {
             className="mt-6 font-mono text-[9px] italic"
             style={{ color: muteText }}
           >
-            // hover name to reveal
+            {content.hoverHint[language]}
           </motion.p>
 
           {/* Bottom status bar */}

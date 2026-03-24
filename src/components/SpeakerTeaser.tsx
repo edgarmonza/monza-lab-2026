@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useTheme } from "@/theme/ThemeContext";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const edgarSpeaking = "/images/Speaker/15474a8a-40f8-4533-b39d-20a91fb73992.jpg";
 
@@ -8,7 +9,15 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 const SpeakerTeaser = () => {
   const { theme } = useTheme();
   const isModena = theme === "modena";
+  const { language } = useLanguage();
   const bg = isModena ? "#F5F0EB" : "#0B0B10";
+
+  const content = {
+    headline: { es: 'En escenario.', en: 'On stage.', de: 'Auf der Bühne.' },
+    cta: { es: 'Ver página de speaker', en: 'View speaker page', de: 'Speaker-Seite ansehen' },
+  };
+
+  const speakerHref = language === 'en' ? '/en/speaker' : language === 'de' ? '/de/speaker' : '/speaker';
 
   return (
     <section className="relative w-full overflow-hidden" style={{ height: "70vh", minHeight: "480px", borderTop: "1px solid rgba(var(--border-rgb), 0.04)" }}>
@@ -66,18 +75,18 @@ const SpeakerTeaser = () => {
           className="font-clash leading-[1.0] tracking-[-0.02em] mb-10"
           style={{ color: isModena ? "#F8B4D9" : "#FFFCF7", fontSize: "clamp(3rem, 9vw, 8rem)" }}
         >
-          En escenario.
+          {content.headline[language]}
         </motion.h2>
 
         <motion.a
-          href="/speaker"
+          href={speakerHref}
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
           className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-[#F8B4D9]/60 hover:text-[#F8B4D9] transition-colors duration-500 group"
         >
-          Ver página de speaker
+          {content.cta[language]}
           <span className="group-hover:translate-x-1.5 transition-transform duration-300">→</span>
         </motion.a>
       </div>

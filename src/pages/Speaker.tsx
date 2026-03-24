@@ -3,22 +3,245 @@ import { motion } from "framer-motion";
 import FooterMinimal from "@/components/FooterMinimal";
 import PremiumBackground from "@/components/layout/PremiumBackground";
 import { useTheme } from "@/theme/ThemeContext";
+import { useLanguage } from "@/i18n/LanguageContext";
 import edgarEditorial from "@/assets/edgar-editorial-pink.png";
 
 const SPEAKER_PHOTOS = [
-  { src: "/images/Speaker/8565b51b-2338-4737-958b-042761b06ceb.jpg", aspect: "landscape", label: "KPMG · Bogotá" },
+  { src: "/images/Speaker/8565b51b-2338-4737-958b-042761b06ceb.jpg", aspect: "landscape", label: "KPMG · Bogota" },
   { src: "/images/Speaker/15474a8a-40f8-4533-b39d-20a91fb73992.jpg", aspect: "portrait",  label: "Keynote · En escenario" },
   { src: "/images/Speaker/772cff2c-09c9-454b-8870-aae7ff4dab43.jpg", aspect: "landscape", label: "Sala llena · IA en vivo" },
-  { src: "/images/Speaker/816b944b-0546-4c9b-aef5-6554e532cf52.jpg", aspect: "portrait",  label: "Panel · Director Innovación" },
+  { src: "/images/Speaker/816b944b-0546-4c9b-aef5-6554e532cf52.jpg", aspect: "portrait",  label: "Panel · Director Innovacion" },
   { src: "/images/Speaker/448c3893-58da-466f-8e0c-5022330ff37c.jpg", aspect: "landscape", label: "University Demo Day" },
 ];
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+const content = {
+  es: {
+    hero: {
+      eyebrow: "Edgar Navarro · Speaker",
+      headline1: "No habla de IA.",
+      headlineAccent: "La usa.",
+      cta: "Trae a Edgar a tu evento",
+      readMore: "Leer más ↓",
+    },
+    numbers: [
+      { n: "15+", label: "años construyendo" },
+      { n: "6", label: "años en KPMG" },
+      { n: "1.200+", label: "en escenario" },
+      { n: "2", label: "empresas fundadas" },
+    ],
+    who: {
+      eyebrow: "El speaker",
+      headline1: "No viene a hablar",
+      headline2: "de lo que estudió.",
+      headlineAccent1: "Viene a mostrar",
+      headlineAccent2: "lo que hace.",
+      bio: "Consultor de Big Four. Fundador de múltiples ventures en paralelo. Construye con IA desde el día uno — no como herramienta, sino como sistema operativo. No habla desde la teoría. Habla desde la obra que está corriendo hoy.",
+    },
+    ventures: [
+      { name: "Monza Lab",      href: null,                              desc: "AI-native creative studio · Colombia" },
+      { name: "Monza Haus",     href: null,                              desc: "Plataforma · US/UK/EU/Japan" },
+      { name: "Bavarian Econs", href: "https://www.bavarianecons.com/",  desc: "Electrificación de BMW clásicos" },
+      { name: "Guardian Speed", href: "https://www.guardianofspeed.de",  desc: "Logistics · München" },
+    ],
+    statement: {
+      part1: "\u201CNo da la misma charla dos veces. ",
+      accent: "Diseña cada conferencia como una experiencia",
+      part2: " — cruza mundos que nadie más conecta.\u201D",
+    },
+    themes: {
+      eyebrow: "Cómo funciona",
+      headline1: "Cada escenario es diferente.",
+      headline2: "Cada conferencia también.",
+      description: "No repito charlas. Diseño cada experiencia según tu público, tu industria y lo que necesitan llevarse. Cruzo mundos que normalmente no se tocan — y desde ahí construyo el ángulo.",
+      cards: [
+        {
+          lente: "IA × Empresa",
+          titulo: "La empresa que se compila.",
+          sub: "Construir un negocio donde la IA no es un departamento — es el sistema operativo. Cómo mover más rápido, contratar menos y producir a escala de equipo grande con equipo pequeño.",
+          para: "CEOs · Founders · Directorios",
+        },
+        {
+          lente: "IA × Velocidad",
+          titulo: "Mover rápido sin romper nada.",
+          sub: "La paradoja del constructor moderno: velocidad de startup sin perder la calidad que construye marca. Desde el automovilismo hasta escalar ventures en paralelo — cómo ejecutar a otro ritmo sin sacrificar lo que importa.",
+          para: "Entrepreneurs · Equipos de alto rendimiento",
+        },
+        {
+          lente: "IA × Experiencia",
+          titulo: "Cada punto de contacto cuenta.",
+          sub: "No es solo el logo — es toda la experiencia digital: desde que alguien te ve en redes hasta que navega tu web. Las empresas que van a dominar van a ganar porque cada interacción hace sentir algo. IA como amplificador de esa visión completa.",
+          para: "CMOs · Brand leaders · Founders de marca",
+        },
+        {
+          lente: "IA × Construcción",
+          titulo: "De cero a marca global.",
+          sub: "Cómo llevar un proyecto de idea a producto real con estética global desde Latinoamérica. El proceso completo: validación, marca, tech, go-to-market — todo con IA integrada desde el primer día.",
+          para: "Founders · Product leaders · Innovación",
+        },
+      ],
+      note: "Estos son los mundos que cruzo — no temas fijos. Cada conferencia se diseña desde cero para tu audiencia. El formato, el idioma y el ángulo se definen juntos.",
+    },
+    cta: {
+      headline1: "¿Quieres traer",
+      headlineAccent: "a Monza?",
+      button: "Hablemos por WhatsApp",
+    },
+  },
+  en: {
+    hero: {
+      eyebrow: "Edgar Navarro · Speaker",
+      headline1: "He doesn\u2019t talk about AI.",
+      headlineAccent: "He uses it.",
+      cta: "Bring Edgar to your event",
+      readMore: "Read more \u2193",
+    },
+    numbers: [
+      { n: "15+", label: "years building" },
+      { n: "6", label: "years at KPMG" },
+      { n: "1,200+", label: "on stage" },
+      { n: "2", label: "companies founded" },
+    ],
+    who: {
+      eyebrow: "The speaker",
+      headline1: "He doesn\u2019t come to talk",
+      headline2: "about what he studied.",
+      headlineAccent1: "He comes to show",
+      headlineAccent2: "what he builds.",
+      bio: "Big Four consultant. Founder of multiple ventures in parallel. Builds with AI from day one — not as a tool, but as an operating system. He doesn\u2019t speak from theory. He speaks from the work that\u2019s running today.",
+    },
+    ventures: [
+      { name: "Monza Lab",      href: null,                              desc: "AI-native creative studio · Colombia" },
+      { name: "Monza Haus",     href: null,                              desc: "Platform · US/UK/EU/Japan" },
+      { name: "Bavarian Econs", href: "https://www.bavarianecons.com/",  desc: "Classic BMW electrification" },
+      { name: "Guardian Speed", href: "https://www.guardianofspeed.de",  desc: "Logistics · München" },
+    ],
+    statement: {
+      part1: "\u201CHe never gives the same talk twice. ",
+      accent: "He designs every conference as an experience",
+      part2: " — crossing worlds no one else connects.\u201D",
+    },
+    themes: {
+      eyebrow: "How it works",
+      headline1: "Every stage is different.",
+      headline2: "Every conference too.",
+      description: "I don\u2019t repeat talks. I design each experience based on your audience, your industry, and what they need to take away. I cross worlds that normally don\u2019t touch — and build the angle from there.",
+      cards: [
+        {
+          lente: "AI × Business",
+          titulo: "The company that compiles itself.",
+          sub: "Building a business where AI isn't a department — it's the operating system. How to move faster, hire less, and produce at big-team scale with a small team.",
+          para: "CEOs · Founders · Board members",
+        },
+        {
+          lente: "AI × Speed",
+          titulo: "Move fast without breaking things.",
+          sub: "The modern builder's paradox: startup speed without losing the quality that builds brand. From motorsport to scaling ventures in parallel — how to execute at a different pace without sacrificing what matters.",
+          para: "Entrepreneurs · High-performance teams",
+        },
+        {
+          lente: "AI × Experience",
+          titulo: "Every touchpoint counts.",
+          sub: "It's not just the logo — it's the entire digital experience: from when someone sees you on social media to when they browse your web. Companies that will dominate will win because every interaction makes people feel something. AI as the amplifier of that complete vision.",
+          para: "CMOs · Brand leaders · Brand founders",
+        },
+        {
+          lente: "AI × Building",
+          titulo: "From zero to global brand.",
+          sub: "How to take a project from idea to real product with global aesthetics from Latin America. The complete process: validation, brand, tech, go-to-market — all with AI integrated from day one.",
+          para: "Founders · Product leaders · Innovation",
+        },
+      ],
+      note: "These are the worlds I cross — not fixed topics. Every conference is designed from scratch for your audience. The format, language, and angle are defined together.",
+    },
+    cta: {
+      headline1: "Want to bring",
+      headlineAccent: "Monza?",
+      button: "Let\u2019s talk on WhatsApp",
+    },
+  },
+  de: {
+    hero: {
+      eyebrow: "Edgar Navarro · Speaker",
+      headline1: "Er redet nicht \u00FCber KI.",
+      headlineAccent: "Er nutzt sie.",
+      cta: "Edgar f\u00FCr dein Event buchen",
+      readMore: "Weiterlesen ↓",
+    },
+    numbers: [
+      { n: "15+", label: "Jahre am Bauen" },
+      { n: "6", label: "Jahre bei KPMG" },
+      { n: "1.200+", label: "auf der Bühne" },
+      { n: "2", label: "Unternehmen gegründet" },
+    ],
+    who: {
+      eyebrow: "Der Speaker",
+      headline1: "Er kommt nicht, um",
+      headline2: "über Studiertes zu reden.",
+      headlineAccent1: "Er kommt, um zu zeigen,",
+      headlineAccent2: "was er baut.",
+      bio: "Big-Four-Berater. Gründer mehrerer Ventures parallel. Baut mit KI vom ersten Tag — nicht als Tool, sondern als Betriebssystem. Er spricht nicht aus der Theorie. Er spricht aus dem Werk, das heute läuft.",
+    },
+    ventures: [
+      { name: "Monza Lab",      href: null,                              desc: "AI-native Creative Studio · Kolumbien" },
+      { name: "Monza Haus",     href: null,                              desc: "Plattform · US/UK/EU/Japan" },
+      { name: "Bavarian Econs", href: "https://www.bavarianecons.com/",  desc: "Elektrifizierung klassischer BMWs" },
+      { name: "Guardian Speed", href: "https://www.guardianofspeed.de",  desc: "Logistik · München" },
+    ],
+    statement: {
+      part1: "\u201EEr hält nie denselben Vortrag zweimal. ",
+      accent: "Er designt jede Konferenz als Erlebnis",
+      part2: " — und verbindet Welten, die sonst niemand zusammenbringt.\u201C",
+    },
+    themes: {
+      eyebrow: "Wie es funktioniert",
+      headline1: "Jede Bühne ist anders.",
+      headline2: "Jede Konferenz auch.",
+      description: "Ich wiederhole keine Vorträge. Ich designe jedes Erlebnis nach deinem Publikum, deiner Branche und dem, was sie mitnehmen sollen. Ich kreuze Welten, die sich normalerweise nicht berühren — und baue den Winkel von dort.",
+      cards: [
+        {
+          lente: "KI × Unternehmen",
+          titulo: "Das Unternehmen, das sich selbst kompiliert.",
+          sub: "Ein Business bauen, in dem KI keine Abteilung ist — sondern das Betriebssystem. Wie man schneller agiert, weniger einstellt und im großen Maßstab produziert mit einem kleinen Team.",
+          para: "CEOs · Founders · Aufsichtsräte",
+        },
+        {
+          lente: "KI × Geschwindigkeit",
+          titulo: "Schnell bewegen, ohne etwas zu zerstören.",
+          sub: "Das Paradox des modernen Builders: Startup-Speed ohne die Qualität zu verlieren, die Marke aufbaut. Vom Motorsport bis zur Skalierung paralleler Ventures — wie man in einem anderen Rhythmus umsetzt.",
+          para: "Entrepreneurs · High-Performance Teams",
+        },
+        {
+          lente: "KI × Experience",
+          titulo: "Jeder Touchpoint zählt.",
+          sub: "Es geht nicht nur um das Logo — es geht um die gesamte digitale Experience: vom ersten Social-Media-Kontakt bis zur Website. Unternehmen, die dominieren werden, gewinnen, weil jede Interaktion etwas fühlen lässt. KI als Verstärker dieser kompletten Vision.",
+          para: "CMOs · Brand Leaders · Marken-Gründer",
+        },
+        {
+          lente: "KI × Aufbau",
+          titulo: "Von null zur globalen Marke.",
+          sub: "Wie man ein Projekt von der Idee zum realen Produkt mit globaler Ästhetik aus Lateinamerika bringt. Der komplette Prozess: Validierung, Marke, Tech, Go-to-Market — alles mit KI integriert vom ersten Tag.",
+          para: "Founders · Product Leaders · Innovation",
+        },
+      ],
+      note: "Das sind die Welten, die ich kreuze — keine festen Themen. Jede Konferenz wird von Grund auf für dein Publikum designt. Format, Sprache und Winkel werden gemeinsam definiert.",
+    },
+    cta: {
+      headline1: "Willst du",
+      headlineAccent: "Monza einladen?",
+      button: "Per WhatsApp kontaktieren",
+    },
+  },
+};
+
 const Speaker = () => {
   const [loaded, setLoaded] = useState(false);
   const { theme } = useTheme();
+  const { language } = useLanguage();
   const isModena = theme === "modena";
+
+  const t = content[language];
 
   // Theme-aware colors
   const textPrimary = isModena ? "#0B0B10" : "#FFFCF7";
@@ -27,14 +250,14 @@ const Speaker = () => {
   const bgFade = isModena ? "#F5F0EB" : "#0B0B10";
 
   useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 80);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setLoaded(true), 80);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <PremiumBackground>
 
-      {/* ── HERO — full height editorial ── */}
+      {/* -- HERO -- full height editorial -- */}
       <section className="relative h-[100svh] w-full overflow-hidden">
 
         {/* Photo with Ken Burns */}
@@ -61,7 +284,7 @@ const Speaker = () => {
         {/* Bottom fade */}
         <div className="absolute inset-0 z-[2] pointer-events-none" style={{ background: `linear-gradient(to top, ${bgFade}f2, ${bgFade}1a, transparent)` }} />
 
-        {/* Eyebrow — top left */}
+        {/* Eyebrow -- top left */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={loaded ? { opacity: 1 } : {}}
@@ -69,11 +292,11 @@ const Speaker = () => {
           className="absolute top-28 left-6 sm:left-8 lg:left-12 z-10"
         >
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40">
-            Edgar Navarro · Speaker
+            {t.hero.eyebrow}
           </p>
         </motion.div>
 
-        {/* Main headline — bottom left */}
+        {/* Main headline -- bottom left */}
         <div className="absolute bottom-16 md:bottom-20 left-6 sm:left-8 lg:left-12 z-10 max-w-[900px]">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -82,8 +305,8 @@ const Speaker = () => {
             className="font-clash leading-[1.0] tracking-[-0.025em] mb-8"
             style={{ fontSize: "clamp(3rem, 8vw, 7.5rem)", color: textPrimary }}
           >
-            No habla de IA.<br />
-            <span className="text-[#F8B4D9]">La usa.</span>
+            {t.hero.headline1}<br />
+            <span className="text-[#F8B4D9]">{t.hero.headlineAccent}</span>
           </motion.h1>
 
           <motion.div
@@ -98,12 +321,12 @@ const Speaker = () => {
               rel="noopener noreferrer"
               className="rounded-full px-8 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase bg-[#F8B4D9] text-[#0b0b10] hover:bg-[#f4cbde] shadow-[0_6px_24px_-6px_rgba(248,180,217,0.4)] hover:shadow-[0_10px_36px_-6px_rgba(248,180,217,0.55)] hover:-translate-y-[1px] transition-all duration-300"
             >
-              Trae a Edgar a tu evento
+              {t.hero.cta}
             </a>
             <a href="#quien" className="text-[10px] uppercase tracking-[0.3em] transition-colors" style={{ color: textMuted(0.30) }}
               onMouseEnter={e => e.currentTarget.style.color = textMuted(0.60)}
               onMouseLeave={e => e.currentTarget.style.color = textMuted(0.30)}>
-              Leer más ↓
+              {t.hero.readMore}
             </a>
           </motion.div>
         </div>
@@ -116,16 +339,11 @@ const Speaker = () => {
         `}</style>
       </section>
 
-      {/* ── NÚMEROS — strip ── */}
+      {/* -- NUMEROS -- strip -- */}
       <section className="py-14 md:py-16" style={{ borderBottom: `1px solid ${borderColor(0.05)}` }}>
         <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { n: "15+", label: "años construyendo" },
-              { n: "6", label: "años en KPMG" },
-              { n: "1.200+", label: "en escenario" },
-              { n: "2", label: "empresas fundadas" },
-            ].map((s, i) => (
+            {t.numbers.map((s, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 12 }}
@@ -142,7 +360,7 @@ const Speaker = () => {
         </div>
       </section>
 
-      {/* ── QUIÉN ES — editorial split ── */}
+      {/* -- QUIEN ES -- editorial split -- */}
       <section id="quien" className="py-32 md:py-44 relative">
         <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
           <div className="grid lg:grid-cols-[1fr_400px] gap-20 lg:gap-28 items-center">
@@ -153,14 +371,14 @@ const Speaker = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.9, ease: EASE }}
             >
-              <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-10">El speaker</p>
+              <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-10">{t.who.eyebrow}</p>
               <h2
                 className="font-clash leading-[1.08] tracking-[-0.02em] mb-10"
                 style={{ fontSize: "clamp(2rem, 4.5vw, 3.8rem)", color: textPrimary }}
               >
-                No viene a hablar<br />
-                de lo que estudió.<br />
-                <span className="text-[#F8B4D9]">Viene a mostrar<br />lo que hace.</span>
+                {t.who.headline1}<br />
+                {t.who.headline2}<br />
+                <span className="text-[#F8B4D9]">{t.who.headlineAccent1}<br />{t.who.headlineAccent2}</span>
               </h2>
               {/* Credencial pills */}
               <div className="flex flex-wrap gap-2 mb-10">
@@ -172,17 +390,12 @@ const Speaker = () => {
               </div>
 
               <p className="text-lg leading-[1.85] max-w-[500px] mb-14" style={{ color: textMuted(0.45) }}>
-                Consultor de Big Four. Fundador de múltiples ventures en paralelo. Construye con IA desde el día uno — no como herramienta, sino como sistema operativo. No habla desde la teoría. Habla desde la obra que está corriendo hoy.
+                {t.who.bio}
               </p>
 
               {/* Ventures list */}
               <div className="space-y-0" style={{ borderTop: `1px solid ${borderColor(0.06)}` }}>
-                {[
-                  { name: "Monza Lab",      href: null,                          desc: "AI-native creative studio · Colombia" },
-                  { name: "Monza Haus",     href: null,                          desc: "Plataforma · US/UK/EU/Japan" },
-                  { name: "Bavarian Econs", href: "https://www.bavarianecons.com/", desc: "Electrificación de BMW clásicos" },
-                  { name: "Guardian Speed", href: "https://www.guardianofspeed.de", desc: "Logistics · München" },
-                ].map((v, i) => (
+                {t.ventures.map((v, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -12 }}
@@ -228,7 +441,7 @@ const Speaker = () => {
         </div>
       </section>
 
-      {/* ── STATEMENT — full width ── */}
+      {/* -- STATEMENT -- full width -- */}
       <section className="py-24 md:py-32" style={{ borderTop: `1px solid ${borderColor(0.05)}`, borderBottom: `1px solid ${borderColor(0.05)}` }}>
         <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
           <motion.blockquote
@@ -239,14 +452,14 @@ const Speaker = () => {
             className="font-clash leading-[1.15] tracking-[-0.015em] max-w-4xl"
             style={{ fontSize: "clamp(1.6rem, 3.8vw, 3.2rem)", color: textMuted(0.70) }}
           >
-            "No da la misma charla dos veces.{" "}
-            <span className="text-[#F8B4D9]">Diseña cada conferencia como una experiencia</span>{" "}
-            — cruza mundos que nadie más conecta."
+            {t.statement.part1}
+            <span className="text-[#F8B4D9]">{t.statement.accent}</span>
+            {t.statement.part2}
           </motion.blockquote>
         </div>
       </section>
 
-      {/* ── GALERÍA — film strip ── */}
+      {/* -- GALERIA -- film strip -- */}
       <section className="py-0 overflow-hidden">
         <div
           className="flex gap-3 overflow-x-auto scrollbar-none"
@@ -280,7 +493,7 @@ const Speaker = () => {
         </div>
       </section>
 
-      {/* ── TEMAS — minimal list ── */}
+      {/* -- TEMAS -- minimal list -- */}
       <section className="py-32 md:py-44 relative">
         <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -290,47 +503,22 @@ const Speaker = () => {
             transition={{ duration: 0.7, ease: EASE }}
             className="mb-20"
           >
-            <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-5">Cómo funciona</p>
+            <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-5">{t.themes.eyebrow}</p>
             <h2
               className="font-clash leading-[1.08] tracking-[-0.02em] mb-6"
               style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", color: textPrimary }}
             >
-              Cada escenario es diferente.<br />
-              <span style={{ color: textMuted(0.35) }}>Cada conferencia también.</span>
+              {t.themes.headline1}<br />
+              <span style={{ color: textMuted(0.35) }}>{t.themes.headline2}</span>
             </h2>
             <p className="text-base leading-[1.8] max-w-[600px]" style={{ color: textMuted(0.35) }}>
-              No repito charlas. Diseño cada experiencia según tu público, tu industria y lo que necesitan llevarse. Cruzo mundos que normalmente no se tocan — y desde ahí construyo el ángulo.
+              {t.themes.description}
             </p>
           </motion.div>
 
-          {/* Lentes / ángulos — grid */}
+          {/* Lentes / angulos -- grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
-            {[
-              {
-                lente: "IA × Empresa",
-                titulo: "La empresa que se compila.",
-                sub: "Construir un negocio donde la IA no es un departamento — es el sistema operativo. Cómo mover más rápido, contratar menos y producir a escala de equipo grande con equipo pequeño.",
-                para: "CEOs · Founders · Directorios",
-              },
-              {
-                lente: "IA × Velocidad",
-                titulo: "Mover rápido sin romper nada.",
-                sub: "La paradoja del constructor moderno: velocidad de startup sin perder la calidad que construye marca. Desde el automovilismo hasta escalar ventures en paralelo — cómo ejecutar a otro ritmo sin sacrificar lo que importa.",
-                para: "Entrepreneurs · Equipos de alto rendimiento",
-              },
-              {
-                lente: "IA × Experiencia",
-                titulo: "Cada punto de contacto cuenta.",
-                sub: "No es solo el logo — es toda la experiencia digital: desde que alguien te ve en redes hasta que navega tu web. Las empresas que van a dominar van a ganar porque cada interacción hace sentir algo. IA como amplificador de esa visión completa.",
-                para: "CMOs · Brand leaders · Founders de marca",
-              },
-              {
-                lente: "IA × Construcción",
-                titulo: "De cero a marca global.",
-                sub: "Cómo llevar un proyecto de idea a producto real con estética global desde Latinoamérica. El proceso completo: validación, marca, tech, go-to-market — todo con IA integrada desde el primer día.",
-                para: "Founders · Product leaders · Innovación",
-              },
-            ].map((t, i) => (
+            {t.themes.cards.map((card, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 16 }}
@@ -343,17 +531,17 @@ const Speaker = () => {
                   border: `1px solid ${borderColor(0.06)}`,
                 }}
               >
-                <span className="text-[9px] uppercase tracking-[0.3em] text-[#F8B4D9]/50 group-hover:text-[#F8B4D9]/80 transition-colors">{t.lente}</span>
+                <span className="text-[9px] uppercase tracking-[0.3em] text-[#F8B4D9]/50 group-hover:text-[#F8B4D9]/80 transition-colors">{card.lente}</span>
                 <h3
                   className="font-clash leading-[1.15] tracking-[-0.01em] mt-4 mb-4 transition-colors"
                   style={{ fontSize: "clamp(1.15rem, 2.2vw, 1.5rem)", color: textMuted(0.85) }}
                 >
-                  {t.titulo}
+                  {card.titulo}
                 </h3>
                 <p className="text-sm leading-[1.75] mb-5" style={{ color: textMuted(0.30) }}>
-                  {t.sub}
+                  {card.sub}
                 </p>
-                <span className="text-[9px] uppercase tracking-[0.2em]" style={{ color: textMuted(0.20) }}>{t.para}</span>
+                <span className="text-[9px] uppercase tracking-[0.2em]" style={{ color: textMuted(0.20) }}>{card.para}</span>
               </motion.div>
             ))}
           </div>
@@ -367,17 +555,17 @@ const Speaker = () => {
             className="flex items-start gap-4 rounded-lg p-6"
             style={{ background: isModena ? "rgba(248,180,217,0.06)" : "rgba(248,180,217,0.04)", border: `1px solid rgba(248,180,217,0.10)` }}
           >
-            <span className="text-[#F8B4D9]/60 text-lg mt-0.5">✦</span>
+            <span className="text-[#F8B4D9]/60 text-lg mt-0.5">{"\u2726"}</span>
             <div>
               <p className="text-sm leading-[1.75]" style={{ color: textMuted(0.50) }}>
-                Estos son los mundos que cruzo — no temas fijos. Cada conferencia se diseña desde cero para tu audiencia. El formato, el idioma y el ángulo se definen juntos.
+                {t.themes.note}
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ── CTA FINAL ── */}
+      {/* -- CTA FINAL -- */}
       <section className="py-32 md:py-44 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
@@ -394,8 +582,8 @@ const Speaker = () => {
               className="font-clash leading-[1.0] tracking-[-0.025em] mb-12"
               style={{ fontSize: "clamp(3rem, 8vw, 7rem)", color: textPrimary }}
             >
-              ¿Quieres traer<br />
-              <span className="text-[#F8B4D9]">a Monza?</span>
+              {t.cta.headline1}<br />
+              <span className="text-[#F8B4D9]">{t.cta.headlineAccent}</span>
             </h2>
             <a
               href="https://wa.me/573208496241?text=Hola%20Edgar%2C%20me%20interesa%20tenerte%20como%20speaker%20en%20mi%20evento."
@@ -403,7 +591,7 @@ const Speaker = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-10 py-4 rounded-full text-sm font-semibold uppercase tracking-[0.2em] bg-[#F8B4D9] text-[#0b0b10] hover:bg-[#f4cbde] shadow-[0_6px_28px_-6px_rgba(248,180,217,0.4)] hover:shadow-[0_14px_44px_-8px_rgba(248,180,217,0.55)] hover:-translate-y-[2px] transition-all duration-300"
             >
-              Hablemos por WhatsApp
+              {t.cta.button}
             </a>
             <p className="text-xs mt-8 tracking-[0.15em]" style={{ color: textMuted(0.18) }}>
               edgar@monzalab.com

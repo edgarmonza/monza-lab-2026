@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 /** Play video only when visible — prevents iOS autoplay limits */
 const LazyReelVideo = ({ src, style }: { src: string; style?: React.CSSProperties }) => {
@@ -74,7 +75,14 @@ const VIDEOS = [
 ];
 
 const GlobalReel = () => {
+  const { language } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  const content = {
+    label: { es: 'Presencia Global', en: 'Global Presence', de: 'Globale Präsenz' },
+    headline: { es: 'No deck. No pitch. Esto.', en: 'No deck. No pitch. This.', de: 'Kein Deck. Kein Pitch. Das hier.' },
+    subtitle: { es: 'Tres continentes. Proyectos que corren hoy.', en: 'Three continents. Projects running today.', de: 'Drei Kontinente. Projekte, die heute laufen.' },
+  };
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -107,7 +115,7 @@ const GlobalReel = () => {
           transition={{ duration: 0.6, ease: EASE }}
           className="text-center text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-4 relative z-10"
         >
-          Presencia Global
+          {content.label[language]}
         </motion.p>
 
         <motion.h2
@@ -118,7 +126,7 @@ const GlobalReel = () => {
           className="text-center font-clash leading-[1.0] tracking-[-0.02em] mb-3 relative z-10"
           style={{ color: "rgba(var(--text-rgb), 0.90)", fontSize: "clamp(2.2rem, 5vw, 4.5rem)" }}
         >
-          No deck. No pitch. Esto.
+          {content.headline[language]}
         </motion.h2>
 
         <motion.p
@@ -129,7 +137,7 @@ const GlobalReel = () => {
           className="text-center text-[13px] mb-8 relative z-10"
           style={{ color: "rgba(var(--text-rgb), 0.25)" }}
         >
-          Tres continentes. Proyectos que corren hoy.
+          {content.subtitle[language]}
         </motion.p>
 
         {/* Scrolling strip */}

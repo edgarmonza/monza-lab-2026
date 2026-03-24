@@ -1,6 +1,9 @@
 import { useRef, useState, useEffect, useCallback, memo } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/theme/ThemeContext";
+import { useLanguage } from "@/i18n/LanguageContext";
+
+type LangText = { es: string; en: string; de: string };
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -17,24 +20,24 @@ const useAutoRotate = (length: number, ms: number) => {
 
 type BrandProject = {
   name: string;
-  subtitle: string;
+  subtitle: LangText;
   colors: string[];
   font: string;
-  tagline: string;
+  tagline: LangText;
 };
 
 type Experience = {
   name: string;
-  subtitle: string;
+  subtitle: LangText;
   video: string;
   accent: string;
 };
 
 type Capability = {
   id: string;
-  label: string;
-  shortLabel: string;
-  desc: string;
+  label: LangText;
+  shortLabel: LangText;
+  desc: LangText;
   accent: string;
   tag: string;
   type: "video" | "collage" | "brands" | "experiences" | "content-board" | "terminal";
@@ -47,31 +50,35 @@ type Capability = {
 const CAPABILITIES: Capability[] = [
   {
     id: "brand-systems",
-    shortLabel: "Brand Systems",
-    label: "Sistemas de marca completos",
-    desc: "Manual de marca, paleta, tipografía, logo, aplicaciones, voz — entregados como sistema interactivo, no un PDF estático. Listos en días, no meses.",
+    shortLabel: { es: "Brand Systems", en: "Brand Systems", de: "Brand Systems" },
+    label: { es: "Sistemas de marca completos", en: "Complete brand systems", de: "Komplette Markensysteme" },
+    desc: {
+      es: "Manual de marca, paleta, tipografía, logo, aplicaciones, voz — entregados como sistema interactivo, no un PDF estático. Listos en días, no meses.",
+      en: "Brand manual, palette, typography, logo, applications, voice — delivered as an interactive system, not a static PDF. Ready in days, not months.",
+      de: "Markenhandbuch, Palette, Typografie, Logo, Anwendungen, Stimme — als interaktives System geliefert, nicht als statisches PDF. Fertig in Tagen, nicht Monaten.",
+    },
     type: "brands",
     brands: [
       {
         name: "ELEONORA MORALES",
-        subtitle: "Coleccionista de belleza · Moda circular & lujo",
+        subtitle: { es: "Coleccionista de belleza · Moda circular & lujo", en: "Beauty collector · Circular fashion & luxury", de: "Beauty-Sammlerin · Circular Fashion & Luxus" },
         colors: ["#f074aa", "#d461c1", "#9af5fd", "#e5ff21"],
         font: "Midashi Min",
-        tagline: "Nada es más sostenible que lo que ya existe.",
+        tagline: { es: "Nada es más sostenible que lo que ya existe.", en: "Nothing is more sustainable than what already exists.", de: "Nichts ist nachhaltiger als das, was bereits existiert." },
       },
       {
         name: "MUSGO",
-        subtitle: "Juanita López · Transiciones regenerativas",
+        subtitle: { es: "Juanita López · Transiciones regenerativas", en: "Juanita López · Regenerative transitions", de: "Juanita López · Regenerative Übergänge" },
         colors: ["#689b61", "#7fb878", "#0f0f0f", "#eeeeee"],
         font: "Bebas Neue",
-        tagline: "Regenera sin imponer.",
+        tagline: { es: "Regenera sin imponer.", en: "Regenerate without imposing.", de: "Regenerieren ohne aufzuzwingen." },
       },
       {
         name: "SAMUEL CORDERO",
-        subtitle: "El Estratega · Reestructuración empresarial",
+        subtitle: { es: "El Estratega · Reestructuración empresarial", en: "The Strategist · Business restructuring", de: "Der Stratege · Unternehmensrestrukturierung" },
         colors: ["#E3342F", "#FFDA00", "#006CB7", "#00852B"],
         font: "Space Grotesk",
-        tagline: "Sistemas, no motivación.",
+        tagline: { es: "Sistemas, no motivación.", en: "Systems, not motivation.", de: "Systeme, nicht Motivation." },
       },
     ],
     accent: "#F8B4D9",
@@ -79,9 +86,13 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "digital-branding",
-    shortLabel: "Digital Branding",
-    label: "Branding digital — marcas que cobran vida",
-    desc: "Logos animados, identidad visual en web, sistemas interactivos. Tu marca no es un archivo — es una experiencia que vive en cada pantalla.",
+    shortLabel: { es: "Digital Branding", en: "Digital Branding", de: "Digital Branding" },
+    label: { es: "Branding digital — marcas que cobran vida", en: "Digital branding — brands that come alive", de: "Digital Branding — Marken, die lebendig werden" },
+    desc: {
+      es: "Logos animados, identidad visual en web, sistemas interactivos. Tu marca no es un archivo — es una experiencia que vive en cada pantalla.",
+      en: "Animated logos, visual identity on web, interactive systems. Your brand isn't a file — it's an experience that lives on every screen.",
+      de: "Animierte Logos, visuelle Identität im Web, interaktive Systeme. Deine Marke ist keine Datei — sie ist ein Erlebnis auf jedem Bildschirm.",
+    },
     type: "video",
     video: "/videos/monza-reel-beat-synced.mp4",
     accent: "#C4A35A",
@@ -89,23 +100,31 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "experiencias",
-    shortLabel: "Experiencias Digitales",
-    label: "No hago websites — creo experiencias digitales",
-    desc: "Cada interacción, cada transición, cada detalle diseñado para que tu marca se sienta a otro nivel. Esto no es una página web.",
+    shortLabel: { es: "Experiencias Digitales", en: "Digital Experiences", de: "Digitale Erlebnisse" },
+    label: { es: "No hago websites — creo experiencias digitales", en: "I don't make websites — I create digital experiences", de: "Ich mache keine Websites — ich kreiere digitale Erlebnisse" },
+    desc: {
+      es: "Cada interacción, cada transición, cada detalle diseñado para que tu marca se sienta a otro nivel. Esto no es una página web.",
+      en: "Every interaction, every transition, every detail designed to make your brand feel next-level. This is not a webpage.",
+      de: "Jede Interaktion, jeder Übergang, jedes Detail — gestaltet, damit sich deine Marke auf einem anderen Level anfühlt. Das ist keine Webseite.",
+    },
     type: "experiences",
     experiences: [
-      { name: "PACHO ALVAREZ", subtitle: "Piloto Dakar · Experiencia inmersiva", video: "/videos/pacho-alvarez-reel.mp4", accent: "#E8C547" },
-      { name: "BAVARIAN ECONS", subtitle: "BMW 2002te · The Classic of the Future", video: "/videos/bavarian-econs-reel.mp4", accent: "#38BDF8" },
-      { name: "SPECTRO", subtitle: "Gaming & Esports · Plataforma digital", video: "/videos/spectro-reel.mp4", accent: "#8B5CF6" },
+      { name: "PACHO ALVAREZ", subtitle: { es: "Piloto Dakar · Experiencia inmersiva", en: "Dakar Driver · Immersive experience", de: "Dakar-Fahrer · Immersives Erlebnis" }, video: "/videos/pacho-alvarez-reel.mp4", accent: "#E8C547" },
+      { name: "BAVARIAN ECONS", subtitle: { es: "BMW 2002te · The Classic of the Future", en: "BMW 2002te · The Classic of the Future", de: "BMW 2002te · The Classic of the Future" }, video: "/videos/bavarian-econs-reel.mp4", accent: "#38BDF8" },
+      { name: "SPECTRO", subtitle: { es: "Gaming & Esports · Plataforma digital", en: "Gaming & Esports · Digital platform", de: "Gaming & Esports · Digitale Plattform" }, video: "/videos/spectro-reel.mp4", accent: "#8B5CF6" },
     ],
     accent: "#38BDF8",
     tag: "EXPERIENCE × DIGITAL",
   },
   {
     id: "ai-photos",
-    shortLabel: "AI Photography",
-    label: "Fotografía AI a escala",
-    desc: "Bibliotecas enteras de fotografía editorial generadas en minutos. Sin sesión, sin estudio, sin límites de volumen.",
+    shortLabel: { es: "AI Photography", en: "AI Photography", de: "AI Photography" },
+    label: { es: "Fotografía AI a escala", en: "AI Photography at scale", de: "KI-Fotografie im großen Maßstab" },
+    desc: {
+      es: "Bibliotecas enteras de fotografía editorial generadas en minutos. Sin sesión, sin estudio, sin límites de volumen.",
+      en: "Entire editorial photography libraries generated in minutes. No session, no studio, no volume limits.",
+      de: "Ganze redaktionelle Fotobibliotheken in Minuten generiert. Kein Shooting, kein Studio, keine Volumenbegrenzung.",
+    },
     type: "collage",
     images: [
       "/images/ai-motorsport/slide-07-reflection.png",
@@ -122,9 +141,17 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "content-design",
-    shortLabel: "Contenido",
-    label: "Ecosistema completo de contenido",
-    desc: "LinkedIn, stories, carousels, posts — todo el diseño de piezas para tu marca. No solo hago un post: te entrego el sistema visual completo.",
+    shortLabel: { es: "Contenido", en: "Content", de: "Content" },
+    label: {
+      es: "Ecosistema completo de contenido",
+      en: "Complete content ecosystem",
+      de: "Komplettes Content-Ökosystem",
+    },
+    desc: {
+      es: "LinkedIn, stories, carousels, posts — todo el diseño de piezas para tu marca. No solo hago un post: te entrego el sistema visual completo.",
+      en: "LinkedIn, stories, carousels, posts — all the design pieces for your brand. I don't just make a post: I deliver the complete visual system.",
+      de: "LinkedIn, Stories, Karussells, Posts — alle Designstücke für deine Marke. Ich mache nicht nur einen Post: Ich liefere das komplette visuelle System.",
+    },
     type: "content-board",
     images: [
       "/images/content-design/carousel-01.png",
@@ -139,9 +166,17 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "readers",
-    shortLabel: "Voice & Motion",
-    label: "Tipografía cinética, readers & voz",
-    desc: "Contenido que impacta en 3 segundos. Speed readers, manifiestos animados, integración de voz — formatos que detienen el scroll.",
+    shortLabel: { es: "Voice & Motion", en: "Voice & Motion", de: "Voice & Motion" },
+    label: {
+      es: "Tipografía cinética, readers & voz",
+      en: "Kinetic typography, readers & voice",
+      de: "Kinetische Typografie, Readers & Stimme",
+    },
+    desc: {
+      es: "Contenido que impacta en 3 segundos. Speed readers, manifiestos animados, integración de voz — formatos que detienen el scroll.",
+      en: "Content that hits in 3 seconds. Speed readers, animated manifestos, voice integration — formats that stop the scroll.",
+      de: "Content, der in 3 Sekunden wirkt. Speed Readers, animierte Manifeste, Sprachintegration — Formate, die das Scrollen stoppen.",
+    },
     type: "video",
     video: "/videos/monza-reader-demo.mp4",
     accent: "#4ECDC4",
@@ -149,9 +184,17 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "automation",
-    shortLabel: "Automatización",
-    label: "Automatización, datos & infraestructura",
-    desc: "Bases de datos, scrapers, pipelines de contenido, generación por API — la infraestructura invisible que hace que todo escale sin fricción.",
+    shortLabel: { es: "Automatización", en: "Automation", de: "Automatisierung" },
+    label: {
+      es: "Automatización, datos & infraestructura",
+      en: "Automation, data & infrastructure",
+      de: "Automatisierung, Daten & Infrastruktur",
+    },
+    desc: {
+      es: "Bases de datos, scrapers, pipelines de contenido, generación por API — la infraestructura invisible que hace que todo escale sin fricción.",
+      en: "Databases, scrapers, content pipelines, API generation — the invisible infrastructure that makes everything scale without friction.",
+      de: "Datenbanken, Scraper, Content-Pipelines, API-Generierung — die unsichtbare Infrastruktur, die alles reibungslos skalieren lässt.",
+    },
     type: "terminal",
     accent: "#F8B4D9",
     tag: "TECH × SCALE",
@@ -960,7 +1003,7 @@ const BrandShowcase = ({ brands }: { brands: BrandProject[] }) => {
 };
 
 /* ── Experiences showcase — rotates between client site videos ── */
-const ExperiencesShowcase = ({ experiences }: { experiences: Experience[] }) => {
+const ExperiencesShowcase = ({ experiences, language }: { experiences: Experience[]; language: string }) => {
   const [activeExp, setActiveExp] = useAutoRotate(experiences.length, 7000);
 
   const exp = experiences[activeExp];
@@ -1023,7 +1066,7 @@ const ExperiencesShowcase = ({ experiences }: { experiences: Experience[] }) => 
               {exp.name}
             </p>
             <p className="font-clash text-[10px] md:text-xs tracking-[0.15em] uppercase mt-1" style={{ color: `${exp.accent}90` }}>
-              {exp.subtitle}
+              {exp.subtitle[language]}
             </p>
           </motion.div>
         </AnimatePresence>
@@ -1259,6 +1302,7 @@ const CapabilitiesSection = () => {
   const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
   const [active, setActive] = useState(0);
   const { theme } = useTheme();
+  const { language } = useLanguage();
   const isModena = theme === "modena";
 
   const cap = CAPABILITIES[active];
@@ -1284,8 +1328,8 @@ const CapabilitiesSection = () => {
             className="font-clash text-[8vw] md:text-[5vw] lg:text-[3.5vw] font-bold leading-[1.05]"
             style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.80)" }}
           >
-            Todo lo que necesitas.<br />
-            <span style={{ color: "rgba(var(--text-rgb), 0.35)" }}>Un solo lugar.</span>
+            {{ es: "Todo lo que necesitas.", en: "Everything you need.", de: "Alles, was du brauchst." }[language]}<br />
+            <span style={{ color: "rgba(var(--text-rgb), 0.35)" }}>{{ es: "Un solo lugar.", en: "One place.", de: "An einem Ort." }[language]}</span>
           </h2>
         </motion.div>
 
@@ -1324,7 +1368,7 @@ const CapabilitiesSection = () => {
                         border: isActive ? `1px solid ${c.accent}35` : "1px solid rgba(var(--text-rgb), 0.06)",
                       }}
                     >
-                      {c.shortLabel}
+                      {c.shortLabel[language]}
                       {isActive && (
                         <motion.div
                           layoutId="tab-dot"
@@ -1388,7 +1432,7 @@ const CapabilitiesSection = () => {
                   <BrandShowcase brands={cap.brands} />
                 )}
                 {cap.type === "experiences" && cap.experiences && (
-                  <ExperiencesShowcase experiences={cap.experiences} />
+                  <ExperiencesShowcase experiences={cap.experiences} language={language} />
                 )}
                 {cap.type === "terminal" && (
                   <TerminalShowcase />
@@ -1430,10 +1474,10 @@ const CapabilitiesSection = () => {
                     className="font-clash text-xl md:text-2xl lg:text-3xl font-bold mb-2"
                     style={{ letterSpacing: "-0.01em", color: "rgba(255,252,247,0.95)" }}
                   >
-                    {cap.label}
+                    {cap.label[language]}
                   </h3>
                   <p className="font-clash text-xs md:text-sm text-[#FFFCF7]/45 leading-relaxed max-w-xl">
-                    {cap.desc}
+                    {cap.desc[language]}
                   </p>
                 </div>
               )}

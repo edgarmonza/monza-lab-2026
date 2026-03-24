@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/theme/ThemeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 /**
  * Truly lazy video for mobile compatibility.
@@ -63,7 +64,11 @@ const PROJECTS = [
     id: "bavarian",
     name: "Bavarian Econs",
     tag: "0→1 × LUXURY",
-    desc: "Marca de lujo automotriz. Branding, web global y sistema de ventas. Featured in Forbes.",
+    desc: {
+      es: "Marca de lujo automotriz. Branding, web global y sistema de ventas. Featured in Forbes.",
+      en: "Automotive luxury brand. Branding, global web & sales system. Featured in Forbes.",
+      de: "Automotive Luxusmarke. Branding, globale Web & Vertriebssystem. Featured in Forbes.",
+    },
     image: null as string | null,
     video: "/videos/bavarian-econs-reel.mp4",
     mobileVideo: "/videos/bavarian-econs-mobile.mp4",
@@ -73,13 +78,21 @@ const PROJECTS = [
       role: "Co-Founder & Creative Director",
       location: "Europa · USA",
       year: "2022–present",
-      headline: "De idea a marca de lujo global en un mercado que nadie había tocado.",
-      story: "Validé el MVP, estructuré el pitch de financiación y construí el sistema digital completo — desde la identidad de marca hasta el ecosistema de ventas. El BMW 2002 es hoy uno de los clásicos más cotizados del mundo. Bavarian Econs lo electrifica para coleccionistas en Europa y Estados Unidos.",
+      headline: {
+        es: "De idea a marca de lujo global en un mercado que nadie había tocado.",
+        en: "From idea to global luxury brand in a market no one had touched.",
+        de: "Von der Idee zur globalen Luxusmarke in einem Markt, den niemand berührt hatte.",
+      },
+      story: {
+        es: "Validé el MVP, estructuré el pitch de financiación y construí el sistema digital completo — desde la identidad de marca hasta el ecosistema de ventas. El BMW 2002 es hoy uno de los clásicos más cotizados del mundo. Bavarian Econs lo electrifica para coleccionistas en Europa y Estados Unidos.",
+        en: "I validated the MVP, structured the funding pitch and built the complete digital system — from brand identity to the sales ecosystem. The BMW 2002 is one of the most sought-after classics in the world today. Bavarian Econs electrifies it for collectors in Europe and the United States.",
+        de: "Ich validierte das MVP, strukturierte den Finanzierungs-Pitch und baute das komplette digitale System — von der Markenidentität bis zum Vertriebs-Ökosystem. Der BMW 2002 ist heute einer der begehrtesten Klassiker der Welt. Bavarian Econs elektrifiziert ihn für Sammler in Europa und den USA.",
+      },
       pillars: [
-        { label: "Strategy", detail: "Validación de mercado, MVP y modelo de negocio" },
-        { label: "Brand", detail: "Identidad, naming, sistema visual completo" },
-        { label: "Digital", detail: "Web global, SEO y ecosistema de ventas" },
-        { label: "Capital", detail: "Pitch deck y ronda de financiación" },
+        { label: "Strategy", detail: { es: "Validación de mercado, MVP y modelo de negocio", en: "Market validation, MVP & business model", de: "Marktvalidierung, MVP & Geschäftsmodell" } },
+        { label: "Brand", detail: { es: "Identidad, naming, sistema visual completo", en: "Identity, naming, complete visual system", de: "Identität, Naming, komplettes visuelles System" } },
+        { label: "Digital", detail: { es: "Web global, SEO y ecosistema de ventas", en: "Global web, SEO & sales ecosystem", de: "Globale Web, SEO & Vertriebs-Ökosystem" } },
+        { label: "Capital", detail: { es: "Pitch deck y ronda de financiación", en: "Pitch deck & funding round", de: "Pitch Deck & Finanzierungsrunde" } },
       ],
       press: [
         { name: "Forbes Colombia", href: "https://forbes.co/2024/09/10/editors-picks/estos-colombianos-estan-electrificando-clasicos-de-bmw-para-coleccionistas-en-europa-y-estados-unidos" },
@@ -104,7 +117,11 @@ const PROJECTS = [
     id: "spectro",
     name: "Spectro",
     tag: "STUDIO PRO × SPORTS",
-    desc: "Plataforma de entretenimiento deportivo. Copa Creadores, branding y ecosistema digital.",
+    desc: {
+      es: "Plataforma de entretenimiento deportivo. Copa Creadores, branding y ecosistema digital.",
+      en: "Sports entertainment platform. Copa Creadores, branding & digital ecosystem.",
+      de: "Sport-Entertainment-Plattform. Copa Creadores, Branding & digitales Ökosystem.",
+    },
     image: null as string | null,
     video: "/videos/spectro-reel.mp4",
     mobileVideo: "/videos/spectro-mobile.mp4",
@@ -126,7 +143,11 @@ const PROJECTS = [
     id: "pacho",
     name: "Pacho Alvarez",
     tag: "STUDIO 1:1 × COMPANY BUILDER",
-    desc: "Piloto del Dakar Rally. Web inmersiva, estructura de negocio, conferencias, pricing y go-to-market.",
+    desc: {
+      es: "Piloto del Dakar Rally. Web inmersiva, estructura de negocio, conferencias, pricing y go-to-market.",
+      en: "Dakar Rally driver. Immersive web, business structure, conferences, pricing & go-to-market.",
+      de: "Dakar-Rally-Fahrer. Immersive Web, Geschäftsstruktur, Konferenzen, Pricing & Go-to-Market.",
+    },
     image: null as string | null,
     video: "/videos/pacho-alvarez-reel.mp4",
     mobileVideo: "/videos/pacho-alvarez-mobile.mp4",
@@ -148,7 +169,11 @@ const PROJECTS = [
     id: "guardian",
     name: "Guardian of Speed",
     tag: "0→1 × COMPANY BUILDER",
-    desc: "Transporte de lujo para autos de alta gama en Europa. Experiencia digital hiperpersonalizada, pitch de inversión y go-to-market.",
+    desc: {
+      es: "Transporte de lujo para autos de alta gama en Europa. Experiencia digital hiperpersonalizada, pitch de inversión y go-to-market.",
+      en: "Luxury transport for high-end cars in Europe. Hyper-personalized digital experience, investment pitch & go-to-market.",
+      de: "Luxus-Transport für High-End-Autos in Europa. Hyperpersonalisierte Digital Experience, Investoren-Pitch & Go-to-Market.",
+    },
     image: null as string | null,
     video: "/videos/guardian-speed-reel.mp4",
     mobileVideo: "/videos/guardian-speed-mobile.mp4",
@@ -158,13 +183,21 @@ const PROJECTS = [
       role: "Co-Founder & Creative Director",
       location: "München · Europa",
       year: "2025–present",
-      headline: "Logística de lujo para los autos más exclusivos del mundo.",
-      story: "Construí la marca, el sistema digital hiperpersonalizado para clientes y la estructura de crecimiento con inversores. Guardian of Speed transporta autos de alta gama por toda Europa con una experiencia que iguala el nivel de los vehículos que mueve.",
+      headline: {
+        es: "Logística de lujo para los autos más exclusivos del mundo.",
+        en: "Luxury logistics for the most exclusive cars in the world.",
+        de: "Luxus-Logistik für die exklusivsten Autos der Welt.",
+      },
+      story: {
+        es: "Construí la marca, el sistema digital hiperpersonalizado para clientes y la estructura de crecimiento con inversores. Guardian of Speed transporta autos de alta gama por toda Europa con una experiencia que iguala el nivel de los vehículos que mueve.",
+        en: "I built the brand, the hyper-personalized digital system for clients and the growth structure with investors. Guardian of Speed transports high-end cars across Europe with an experience that matches the level of the vehicles it moves.",
+        de: "Ich baute die Marke, das hyperpersonalisierte digitale System für Kunden und die Wachstumsstruktur mit Investoren. Guardian of Speed transportiert High-End-Autos durch ganz Europa mit einer Erfahrung, die dem Niveau der Fahrzeuge entspricht.",
+      },
       pillars: [
-        { label: "Brand", detail: "Identidad premium y sistema visual" },
-        { label: "Digital", detail: "Web y experiencia hiperpersonalizada" },
-        { label: "Capital", detail: "Pitch deck y ronda de inversión" },
-        { label: "Growth", detail: "Go-to-market y estrategia comercial" },
+        { label: "Brand", detail: { es: "Identidad premium y sistema visual", en: "Premium identity & visual system", de: "Premium-Identität & visuelles System" } },
+        { label: "Digital", detail: { es: "Web y experiencia hiperpersonalizada", en: "Web & hyper-personalized experience", de: "Web & hyperpersonalisierte Erfahrung" } },
+        { label: "Capital", detail: { es: "Pitch deck y ronda de inversión", en: "Pitch deck & investment round", de: "Pitch Deck & Investitionsrunde" } },
+        { label: "Growth", detail: { es: "Go-to-market y estrategia comercial", en: "Go-to-market & commercial strategy", de: "Go-to-Market & kommerzielle Strategie" } },
       ],
       press: [],
     },
@@ -184,7 +217,11 @@ const PROJECTS = [
     id: "monzahaus",
     name: "Monza Haus",
     tag: "0→1 × PRODUCT",
-    desc: "El Bloomberg de los carros. Base de datos, frontend, UI y modelo de negocio. En construcción.",
+    desc: {
+      es: "El Bloomberg de los carros. Base de datos, frontend, UI y modelo de negocio. En construcción.",
+      en: "The Bloomberg of cars. Database, frontend, UI & business model. Under construction.",
+      de: "Das Bloomberg der Autos. Datenbank, Frontend, UI & Geschäftsmodell. Im Aufbau.",
+    },
     image: null as string | null,
     video: "/videos/monza-haus-reel.mp4",
     mobileVideo: "/videos/monza-haus-mobile.mp4",
@@ -194,13 +231,21 @@ const PROJECTS = [
       role: "Founder & Product Lead",
       location: "Global",
       year: "2026–present",
-      headline: "El Bloomberg de los carros.",
-      story: "Base de datos en tiempo real, configuración de frontend y UI desde cero, y diseño del modelo de negocio. Monza Haus centraliza toda la inteligencia del mercado automotriz en una sola plataforma.",
+      headline: {
+        es: "El Bloomberg de los carros.",
+        en: "The Bloomberg of cars.",
+        de: "Das Bloomberg der Autos.",
+      },
+      story: {
+        es: "Base de datos en tiempo real, configuración de frontend y UI desde cero, y diseño del modelo de negocio. Monza Haus centraliza toda la inteligencia del mercado automotriz en una sola plataforma.",
+        en: "Real-time database, frontend and UI configuration from scratch, and business model design. Monza Haus centralizes all automotive market intelligence in a single platform.",
+        de: "Echtzeit-Datenbank, Frontend- und UI-Konfiguration von Grund auf und Geschäftsmodell-Design. Monza Haus zentralisiert die gesamte Automotive-Marktintelligenz auf einer einzigen Plattform.",
+      },
       pillars: [
-        { label: "Database", detail: "Arquitectura de datos en tiempo real" },
-        { label: "Frontend", detail: "UI/UX desde cero" },
-        { label: "Product", detail: "Modelo de negocio y go-to-market" },
-        { label: "AI", detail: "Inteligencia de mercado automotriz" },
+        { label: "Database", detail: { es: "Arquitectura de datos en tiempo real", en: "Real-time data architecture", de: "Echtzeit-Datenarchitektur" } },
+        { label: "Frontend", detail: { es: "UI/UX desde cero", en: "UI/UX from scratch", de: "UI/UX von Grund auf" } },
+        { label: "Product", detail: { es: "Modelo de negocio y go-to-market", en: "Business model & go-to-market", de: "Geschäftsmodell & Go-to-Market" } },
+        { label: "AI", detail: { es: "Inteligencia de mercado automotriz", en: "Automotive market intelligence", de: "Automotive-Marktintelligenz" } },
       ],
       press: [],
     },
@@ -226,6 +271,14 @@ const WorkShowcase = () => {
   const { theme } = useTheme();
   const isModena = theme === "modena";
   const isMobile = useIsMobile();
+  const { language } = useLanguage();
+
+  const content = {
+    tag: { es: 'SELECTED WORK', en: 'SELECTED WORK', de: 'SELECTED WORK' },
+    heading: { es: 'Lo que construyo.', en: 'What I build.', de: 'Was ich baue.' },
+    back: { es: 'Volver', en: 'Back', de: 'Zurück' },
+    visitSite: { es: 'Visitar sitio', en: 'Visit site', de: 'Website besuchen' },
+  };
 
   return (
     <>
@@ -244,13 +297,13 @@ const WorkShowcase = () => {
             className="mb-16 md:mb-20"
           >
             <p className="font-clash text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#F8B4D9]/50 font-medium mb-4">
-              SELECTED WORK
+              {content.tag[language]}
             </p>
             <h2
               className="font-clash text-[8vw] md:text-[5vw] lg:text-[3.5vw] font-bold leading-[1.05]"
               style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.80)" }}
             >
-              Lo que construyo.
+              {content.heading[language]}
             </h2>
           </motion.div>
 
@@ -368,7 +421,7 @@ const WorkShowcase = () => {
                         }}
                       >
                         <p className="font-clash text-xs text-[#FFFCF7]/35 leading-relaxed mt-2 max-w-sm">
-                          {project.desc}
+                          {project.desc[language]}
                         </p>
                       </div>
 
@@ -491,7 +544,7 @@ const WorkShowcase = () => {
 
                   {/* Case study layout — two columns on desktop */}
                   {(project as { caseStudy?: object }).caseStudy ? (() => {
-                    const cs = (project as { caseStudy: { role: string; location: string; year: string; headline: string; story: string; pillars: { label: string; detail: string }[]; press: { name: string; href: string }[] } }).caseStudy;
+                    const cs = (project as { caseStudy: { role: string; location: string; year: string; headline: { es: string; en: string; de: string }; story: { es: string; en: string; de: string }; pillars: { label: string; detail: { es: string; en: string; de: string } }[]; press: { name: string; href: string }[] } }).caseStudy;
                     return (
                       <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 lg:p-14">
                         <div className="flex flex-col md:flex-row md:items-end gap-8 md:gap-16">
@@ -516,7 +569,7 @@ const WorkShowcase = () => {
                             </h3>
 
                             <p className={`font-clash text-[13px] md:text-sm mb-4 max-w-lg leading-relaxed ${isModena ? 'text-[#0B0B10]/65' : 'text-[#FFFCF7]/35'}`}>
-                              {cs.story}
+                              {cs.story[language]}
                             </p>
 
                             {/* Press links */}
@@ -547,7 +600,7 @@ const WorkShowcase = () => {
                                   onMouseLeave={e => { e.currentTarget.style.color = isModena ? "rgba(11,11,16,0.40)" : "rgba(255,252,247,0.30)"; }}
                                   onClick={e => e.stopPropagation()}
                                 >
-                                  Visitar sitio →
+                                  {content.visitSite[language]} →
                                 </a>
                               )}
                             </div>
@@ -568,7 +621,7 @@ const WorkShowcase = () => {
                                   {pillar.label}
                                 </p>
                                 <p className={`font-clash text-[11px] leading-snug ${isModena ? 'text-[#0B0B10]/60' : 'text-[#FFFCF7]/35'}`}>
-                                  {pillar.detail}
+                                  {pillar.detail[language]}
                                 </p>
                               </div>
                             ))}
@@ -590,7 +643,7 @@ const WorkShowcase = () => {
                         {project.name}
                       </h3>
                       <p className={`font-clash text-sm md:text-base max-w-xl leading-relaxed ${isModena ? 'text-[#0B0B10]/65' : 'text-[#FFFCF7]/40'}`}>
-                        {project.desc}
+                        {project.desc[language]}
                       </p>
                       {project.url && (
                         <a
@@ -603,7 +656,7 @@ const WorkShowcase = () => {
                           onMouseLeave={(e) => { e.currentTarget.style.color = `${project.visual.accent}70`; }}
                           onClick={e => e.stopPropagation()}
                         >
-                          Visitar sitio
+                          {content.visitSite[language]}
                           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                             <path d="M4 10L10 4M10 4H5M10 4v5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
@@ -621,7 +674,7 @@ const WorkShowcase = () => {
                   <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
                     <path d="M11 7H3M3 7l3.5-3.5M3 7l3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <span className="font-clash text-[11px] tracking-[0.15em] uppercase font-semibold">Volver</span>
+                  <span className="font-clash text-[11px] tracking-[0.15em] uppercase font-semibold">{content.back[language]}</span>
                 </button>
 
                 {/* Close — top right, visible on mobile */}

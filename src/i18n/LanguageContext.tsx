@@ -19,6 +19,9 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     if (location.pathname.startsWith('/en')) {
       return 'en';
     }
+    if (location.pathname.startsWith('/de')) {
+      return 'de';
+    }
     return 'es';
   };
 
@@ -28,24 +31,22 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     const currentPath = location.pathname;
     let newPath: string;
 
-    if (lang === 'en') {
-      // Switch to English
-      if (currentPath.startsWith('/es')) {
-        newPath = currentPath.replace('/es', '/en');
-      } else if (currentPath.startsWith('/en')) {
-        newPath = currentPath;
-      } else {
-        newPath = '/en' + (currentPath === '/' ? '' : currentPath);
-      }
+    // Strip any existing language prefix to get the base path
+    let basePath = currentPath;
+    if (basePath.startsWith('/en')) {
+      basePath = basePath.slice(3) || '/';
+    } else if (basePath.startsWith('/de')) {
+      basePath = basePath.slice(3) || '/';
+    } else if (basePath.startsWith('/es')) {
+      basePath = basePath.slice(3) || '/';
+    }
+
+    if (lang === 'es') {
+      // Spanish is default — no prefix
+      newPath = basePath;
     } else {
-      // Switch to Spanish (default, no prefix)
-      if (currentPath.startsWith('/en')) {
-        newPath = currentPath.replace('/en', '') || '/';
-      } else if (currentPath.startsWith('/es')) {
-        newPath = currentPath.replace('/es', '') || '/';
-      } else {
-        newPath = currentPath;
-      }
+      // English or German — add prefix
+      newPath = `/${lang}${basePath === '/' ? '' : basePath}`;
     }
 
     navigate(newPath, { replace: true });

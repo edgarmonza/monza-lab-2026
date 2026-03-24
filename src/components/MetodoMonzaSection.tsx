@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const LOOP_PATH =
   "M 50 50 C 50 22, 75 22, 100 50 C 125 78, 150 78, 150 50 C 150 22, 125 22, 100 50 C 75 78, 50 78, 50 50";
@@ -7,6 +8,14 @@ const LOOP_PATH =
 const MetodoMonzaSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const { language } = useLanguage();
+
+  const content = {
+    tag: { es: "CÓMO CONSTRUIMOS", en: "HOW WE BUILD", de: "WIE WIR BAUEN" },
+    headline1: { es: "Vision. Build. Ship.", en: "Vision. Build. Ship.", de: "Vision. Build. Ship." },
+    headline2: { es: "Learn. Scale.", en: "Learn. Scale.", de: "Learn. Scale." },
+    oneLiner: { es: "7 días. 1 sprint. Sin parar.", en: "7 days. 1 sprint. Non-stop.", de: "7 Tage. 1 Sprint. Ohne Pause." },
+  };
 
   return (
     <section
@@ -25,15 +34,15 @@ const MetodoMonzaSection = () => {
           className="text-center mb-20 md:mb-28"
         >
           <p className="font-clash text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#F8B4D9]/50 font-medium mb-6">
-            HOW WE BUILD
+            {content.tag[language]}
           </p>
           <h2
             className="font-clash text-[10vw] md:text-[6vw] lg:text-[4.5vw] font-bold leading-[1.05]"
             style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.80)" }}
           >
-            Vision. Build. Ship.
+            {content.headline1[language]}
             <br />
-            <span className="text-[#F8B4D9]/80">Learn. Scale.</span>
+            <span className="text-[#F8B4D9]/80">{content.headline2[language]}</span>
           </h2>
         </motion.div>
 
@@ -111,7 +120,7 @@ const MetodoMonzaSection = () => {
           className="text-center font-clash text-xs md:text-sm tracking-[0.2em] uppercase mt-16 md:mt-20"
           style={{ color: "rgba(var(--text-rgb), 0.25)" }}
         >
-          7 días. 1 sprint. Sin parar.
+          {content.oneLiner[language]}
         </motion.p>
 
       </div>

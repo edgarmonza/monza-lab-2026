@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useTheme } from "@/theme/ThemeContext";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -24,6 +25,11 @@ const CredibilityBand = () => {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
   const { theme } = useTheme();
   const isModena = theme === "modena";
+  const { language } = useLanguage();
+
+  const content = {
+    readArticle: { es: "Leer artículo →", en: "Read article →", de: "Artikel lesen →" },
+  };
 
   return (
     <section

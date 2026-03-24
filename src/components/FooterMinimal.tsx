@@ -2,14 +2,28 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import HelmetIcon from "./HelmetIcon";
 import { useTheme } from "@/theme/ThemeContext";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+const content = {
+  eyebrow: { es: 'Disponibilidad limitada', en: 'Limited availability', de: 'Begrenzte Verfügbarkeit' },
+  headline1: { es: 'Proyectos', en: 'Selected', de: 'Ausgewählte' },
+  headline2: { es: 'seleccionados.', en: 'projects.', de: 'Projekte.' },
+  sub: {
+    es: 'No acepto todo. Si crees que hay algo que construir juntos, agenda aquí.',
+    en: "I don't take everything. If you think there's something to build together, book here.",
+    de: 'Ich nehme nicht alles an. Wenn du glaubst, dass wir etwas zusammen bauen können, buche hier.',
+  },
+  cta: { es: 'Solicitar una sesión', en: 'Request a session', de: 'Session anfragen' },
+};
 
 const FooterMinimal = () => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const { theme } = useTheme();
   const isModena = theme === "modena";
+  const { language } = useLanguage();
 
   return (
     <footer
@@ -34,7 +48,7 @@ const FooterMinimal = () => {
           transition={{ duration: 0.6, ease: EASE }}
           className="font-clash text-[10px] tracking-[0.5em] uppercase text-[#F8B4D9]/30 mb-8"
         >
-          Disponibilidad limitada
+          {content.eyebrow[language]}
         </motion.p>
 
         {/* Big headline */}
@@ -48,7 +62,7 @@ const FooterMinimal = () => {
             color: `rgba(var(--text-rgb), 0.88)`,
           }}
         >
-          Proyectos<br />seleccionados.
+          {content.headline1[language]}<br />{content.headline2[language]}
         </motion.h2>
 
         {/* Sub */}
@@ -59,7 +73,7 @@ const FooterMinimal = () => {
           className="text-[13px] mb-12 max-w-sm mx-auto leading-relaxed"
           style={{ color: `rgba(var(--text-rgb), 0.30)` }}
         >
-          No acepto todo. Si crees que hay algo que construir juntos, agenda aquí.
+          {content.sub[language]}
         </motion.p>
 
         {/* CTA button */}
@@ -89,7 +103,7 @@ const FooterMinimal = () => {
               e.currentTarget.style.color = "rgba(248,180,217,0.80)";
             }}
           >
-            Solicitar una sesión
+            {content.cta[language]}
             <span className="text-[#F8B4D9]/40">→</span>
           </a>
         </motion.div>
