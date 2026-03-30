@@ -257,25 +257,25 @@ const HeroHome = () => {
 
   const typewriterWords = {
     es: [
-      { text: mobile ? "AI STUDIO" : "AI-NATIVE CREATIVE STUDIO" },
-      { text: "COMPANY BUILDER" },
-      { text: mobile ? "BUILT DIFFERENT" : "FOR AMBITIOUS BRANDS" },
-      { text: mobile ? "BRAND · TECH · AI" : "BRAND · TECH · BUSINESS" },
-      { text: "BUILT DIFFERENT" },
+      { text: mobile ? "I BUILD COMPANIES." : "I BUILD COMPANIES. ALONE." },
+      { text: "BRAND · CODE · CONTENT" },
+      { text: mobile ? "ONE-MAN STUDIO." : "ONE-MAN STUDIO. GLOBAL OUTPUT." },
+      { text: mobile ? "COMPANY BUILDER" : "END-TO-END COMPANY BUILDER" },
+      { text: "BUILT WITH CRITERIA" },
     ],
     en: [
-      { text: mobile ? "AI STUDIO" : "AI-NATIVE CREATIVE STUDIO" },
-      { text: "COMPANY BUILDER" },
-      { text: mobile ? "BUILT DIFFERENT" : "FOR AMBITIOUS BRANDS" },
-      { text: mobile ? "BRAND · TECH · AI" : "BRAND · TECH · BUSINESS" },
-      { text: "BUILT DIFFERENT" },
+      { text: mobile ? "I BUILD COMPANIES." : "I BUILD COMPANIES. ALONE." },
+      { text: "BRAND · CODE · CONTENT" },
+      { text: mobile ? "ONE-MAN STUDIO." : "ONE-MAN STUDIO. GLOBAL OUTPUT." },
+      { text: mobile ? "COMPANY BUILDER" : "END-TO-END COMPANY BUILDER" },
+      { text: "BUILT WITH CRITERIA" },
     ],
     de: [
-      { text: mobile ? "AI STUDIO" : "AI-NATIVE CREATIVE STUDIO" },
-      { text: "COMPANY BUILDER" },
-      { text: mobile ? "BUILT DIFFERENT" : "FÜR AMBITIONIERTE MARKEN" },
-      { text: mobile ? "BRAND · TECH · AI" : "BRAND · TECH · BUSINESS" },
-      { text: "BUILT DIFFERENT" },
+      { text: mobile ? "I BUILD COMPANIES." : "I BUILD COMPANIES. ALONE." },
+      { text: "BRAND · CODE · CONTENT" },
+      { text: mobile ? "ONE-MAN STUDIO." : "ONE-MAN STUDIO. GLOBAL OUTPUT." },
+      { text: mobile ? "COMPANY BUILDER" : "END-TO-END COMPANY BUILDER" },
+      { text: "BUILT WITH CRITERIA" },
     ],
   };
 

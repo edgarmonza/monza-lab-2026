@@ -8,12 +8,12 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const content = {
   eyebrow: { es: 'Disponibilidad limitada', en: 'Limited availability', de: 'Begrenzte Verfügbarkeit' },
-  headline1: { es: 'Proyectos', en: 'Selected', de: 'Ausgewählte' },
-  headline2: { es: 'seleccionados.', en: 'projects.', de: 'Projekte.' },
+  headline1: { es: '¿Tienes una', en: 'Got a', de: 'Ein Unternehmen' },
+  headline2: { es: 'empresa por construir?', en: 'company to build?', de: 'aufzubauen?' },
   sub: {
-    es: 'No acepto todo. Si crees que hay algo que construir juntos, agenda aquí.',
-    en: "I don't take everything. If you think there's something to build together, book here.",
-    de: 'Ich nehme nicht alles an. Wenn du glaubst, dass wir etwas zusammen bauen können, buche hier.',
+    es: 'Tomo 2–3 proyectos por trimestre. Si tienes una visión que vale la pena ejecutar, hablemos.',
+    en: "I take on 2–3 builds per quarter. If you have a vision worth executing, let's talk.",
+    de: 'Ich nehme 2–3 Projekte pro Quartal an. Wenn du eine Vision hast, die es wert ist — lass uns reden.',
   },
   cta: { es: 'Solicitar una sesión', en: 'Request a session', de: 'Session anfragen' },
 };

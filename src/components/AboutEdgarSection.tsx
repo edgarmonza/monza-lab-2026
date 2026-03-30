@@ -13,6 +13,9 @@ const LINES = [
   { prefix: "now", value: '"Founder @ Monza Lab"', delay: 2.4, isName: false },
   { prefix: "method", value: '"7-day sprints. Ship or die."', delay: 3.0, isName: false },
   { prefix: "stack", value: '"Strategy + Design + Tech + AI"', delay: 3.6, isName: false },
+  { prefix: "scope", value: '"From pitch deck to production code — solo"', delay: 4.2, isName: false },
+  { prefix: "proof", value: '"Bavarian Econs · Monza Haus · Guardian — all one person"', delay: 4.8, isName: false },
+  { prefix: "thesis", value: '"Companies don\'t need teams to start. They need criteria."', delay: 5.4, isName: false },
 ];
 
 const TypingLine = ({
@@ -198,7 +201,7 @@ const AboutEdgarSection = () => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 4.5 }}
+            transition={{ duration: 0.5, delay: 6.5 }}
             className="mt-6 font-mono text-[9px] italic"
             style={{ color: muteText }}
           >

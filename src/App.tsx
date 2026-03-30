@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import Index from "./pages/Index";
 import Speaker from "./pages/Speaker";
+import ProjectPage from "./pages/ProjectPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,14 +30,17 @@ const AppContent = () => (
       {/* Spanish routes (default - no prefix) */}
       <Route path="/" element={<Index />} />
       <Route path="/speaker" element={<Speaker />} />
+      <Route path="/work/:slug" element={<ProjectPage />} />
 
       {/* English routes (with /en prefix) */}
       <Route path="/en" element={<Index />} />
       <Route path="/en/speaker" element={<Speaker />} />
+      <Route path="/en/work/:slug" element={<ProjectPage />} />
 
       {/* German routes (with /de prefix) */}
       <Route path="/de" element={<Index />} />
       <Route path="/de/speaker" element={<Speaker />} />
+      <Route path="/de/work/:slug" element={<ProjectPage />} />
 
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />

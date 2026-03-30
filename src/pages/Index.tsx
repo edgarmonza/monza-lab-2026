@@ -1,4 +1,5 @@
 import HeroHome from "@/components/HeroHome";
+import ManifestoSection from "@/components/home/ManifestoSection";
 import WorkShowcase from "@/components/WorkShowcase";
 import CredibilityBand from "@/components/CredibilityBand";
 import AboutEdgarSection from "@/components/AboutEdgarSection";
@@ -14,6 +15,7 @@ const Index = () => {
   return (
     <PremiumBackground>
       <HeroHome />
+      <ManifestoSection />
       <WorkShowcase />
       <CredibilityBand />
       <AboutEdgarSection />

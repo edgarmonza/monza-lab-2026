@@ -125,17 +125,8 @@ const CAPABILITIES: Capability[] = [
       en: "Entire editorial photography libraries generated in minutes. No session, no studio, no volume limits.",
       de: "Ganze redaktionelle Fotobibliotheken in Minuten generiert. Kein Shooting, kein Studio, keine Volumenbegrenzung.",
     },
-    type: "collage",
-    images: [
-      "/images/ai-motorsport/slide-07-reflection.png",
-      "/images/ai-motorsport/slide-03-badge.png",
-      "/images/ai-motorsport/slide-08-rain.png",
-      "/images/ai-motorsport/edgar-helmet-rain.png",
-      "/images/ai-motorsport/slide-04-cockpit.png",
-      "/images/ai-motorsport/slide-06-engine.png",
-      "/images/ai-motorsport/edgar-helmet-dark.png",
-      "/images/ai-motorsport/slide-05-wheel.png",
-    ],
+    type: "video",
+    video: "/videos/monza-helmet-reel.mp4",
     accent: "#8B5CF6",
     tag: "AI × VOLUME",
   },
@@ -1322,15 +1313,21 @@ const CapabilitiesSection = () => {
           className="mb-14 md:mb-16"
         >
           <p className="font-clash text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#F8B4D9]/50 font-medium mb-4">
-            ALL-IN-ONE CREATIVE STUDIO
+            {{ es: "CONSTRUCCIÓN DE EMPRESAS FULL-STACK", en: "FULL-STACK COMPANY BUILDING", de: "FULL-STACK UNTERNEHMENSAUFBAU" }[language]}
           </p>
           <h2
             className="font-clash text-[8vw] md:text-[5vw] lg:text-[3.5vw] font-bold leading-[1.05]"
             style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.80)" }}
           >
-            {{ es: "Todo lo que necesitas.", en: "Everything you need.", de: "Alles, was du brauchst." }[language]}<br />
-            <span style={{ color: "rgba(var(--text-rgb), 0.35)" }}>{{ es: "Un solo lugar.", en: "One place.", de: "An einem Ort." }[language]}</span>
+            {{ es: "Cada capa.", en: "Every layer.", de: "Jede Schicht." }[language]}<br />
+            <span style={{ color: "rgba(var(--text-rgb), 0.35)" }}>{{ es: "Una persona.", en: "One person.", de: "Eine Person." }[language]}</span>
           </h2>
+          <p
+            className="font-clash text-[13px] md:text-sm mt-4 max-w-lg leading-relaxed"
+            style={{ color: "rgba(var(--text-rgb), 0.30)" }}
+          >
+            {{ es: "Estos no son servicios. Son las capas que controlo para construir empresas enteras desde cero.", en: "These aren't services. They're the layers I control to build entire companies from zero.", de: "Das sind keine Dienstleistungen. Es sind die Schichten, die ich kontrolliere, um ganze Unternehmen von null aufzubauen." }[language]}
+          </p>
         </motion.div>
 
         {/* Tab navigation */}

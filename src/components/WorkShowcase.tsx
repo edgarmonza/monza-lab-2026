@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/theme/ThemeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -62,6 +63,7 @@ const LazyVideo = ({ src, className, style }: { src: string; className?: string;
 const PROJECTS = [
   {
     id: "bavarian",
+    slug: "bavarian-econs",
     name: "Bavarian Econs",
     tag: "0→1 × LUXURY",
     desc: {
@@ -115,12 +117,13 @@ const PROJECTS = [
   },
   {
     id: "spectro",
+    slug: "spectro",
     name: "Spectro",
-    tag: "STUDIO PRO × SPORTS",
+    tag: "PARTNER × GLOBAL CONTENT",
     desc: {
-      es: "Plataforma de entretenimiento deportivo. Copa Creadores, branding y ecosistema digital.",
-      en: "Sports entertainment platform. Copa Creadores, branding & digital ecosystem.",
-      de: "Sport-Entertainment-Plattform. Copa Creadores, Branding & digitales Ökosystem.",
+      es: "Plataforma global de entretenimiento deportivo. Socio en Spectro Legends — contenido audiovisual de Colombia al mundo.",
+      en: "Global sports entertainment platform. Partner in Spectro Legends — Colombia's audiovisual content to the world.",
+      de: "Globale Sport-Entertainment-Plattform. Partner bei Spectro Legends — Kolumbiens audiovisuelle Inhalte weltweit.",
     },
     image: null as string | null,
     video: "/videos/spectro-reel.mp4",
@@ -141,6 +144,7 @@ const PROJECTS = [
   },
   {
     id: "pacho",
+    slug: "pacho-alvarez",
     name: "Pacho Alvarez",
     tag: "STUDIO 1:1 × COMPANY BUILDER",
     desc: {
@@ -167,6 +171,7 @@ const PROJECTS = [
   },
   {
     id: "guardian",
+    slug: "guardian-of-speed",
     name: "Guardian of Speed",
     tag: "0→1 × COMPANY BUILDER",
     desc: {
@@ -215,6 +220,7 @@ const PROJECTS = [
   },
   {
     id: "monzahaus",
+    slug: "monza-haus",
     name: "Monza Haus",
     tag: "0→1 × PRODUCT",
     desc: {
@@ -272,6 +278,8 @@ const WorkShowcase = () => {
   const isModena = theme === "modena";
   const isMobile = useIsMobile();
   const { language } = useLanguage();
+  const navigate = useNavigate();
+  const langPrefix = language === "es" ? "" : `/${language}`;
 
   const content = {
     tag: { es: 'SELECTED WORK', en: 'SELECTED WORK', de: 'SELECTED WORK' },
@@ -322,7 +330,7 @@ const WorkShowcase = () => {
                     ease: [0.16, 1, 0.3, 1],
                   }}
                   className={`group relative rounded-xl overflow-hidden cursor-pointer ${project.gridClass} ${(project as { aspect?: string }).aspect || ""}`}
-                  onClick={() => setExpanded(project.id)}
+                  onClick={() => navigate(`${langPrefix}/work/${(project as { slug: string }).slug}`)}
                   onMouseEnter={() => setHovered(project.id)}
                   onMouseLeave={() => setHovered(null)}
                 >
