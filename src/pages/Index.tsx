@@ -1,7 +1,7 @@
 import HeroHome from "@/components/HeroHome";
 import ManifestoSection from "@/components/home/ManifestoSection";
 import WorkShowcase from "@/components/WorkShowcase";
-import CredibilityBand from "@/components/CredibilityBand";
+
 import AboutEdgarSection from "@/components/AboutEdgarSection";
 import MetodoMonzaSection from "@/components/MetodoMonzaSection";
 import CapabilitiesSection from "@/components/CapabilitiesSection";
@@ -17,7 +17,6 @@ const Index = () => {
       <HeroHome />
       <ManifestoSection />
       <WorkShowcase />
-      <CredibilityBand />
       <AboutEdgarSection />
       <MetodoMonzaSection />
       <CapabilitiesSection />
