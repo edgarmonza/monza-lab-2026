@@ -10,13 +10,13 @@ export const translations = {
   // ===== HOME PAGE =====
   home: {
     hero: {
-      tag: { es: 'MONZA LAB | EXECUTION STUDIO', en: 'MONZA LAB | EXECUTION STUDIO', de: 'MONZA LAB | EXECUTION STUDIO' },
+      tag: { es: 'MONZA LAB | COMPANY BUILDER', en: 'MONZA LAB | COMPANY BUILDER', de: 'MONZA LAB | COMPANY BUILDER' },
       title1: { es: 'Ejecución Impecable.', en: 'Flawless Execution.', de: 'Makellose Umsetzung.' },
       title2: { es: 'High-Performance Assets.', en: 'High-Performance Assets.', de: 'High-Performance Assets.' },
       subtitle: {
-        es: 'No entregamos teoría. Hacemos Deployment de Activos de Negocio. Velocidad de Startup con rigor Corporate para líderes que exigen excelencia.',
-        en: 'We don\'t deliver theory. We deploy Business Assets. Venture velocity with Corporate Governance for leaders who demand excellence.',
-        de: 'Keine Theorie. Wir deployen Business Assets. Startup-Geschwindigkeit mit Corporate Governance für Führungskräfte, die Exzellenz fordern.',
+        es: 'Construimos empresas con AI. Estrategia, branding, tech y go-to-market — ejecutados en semanas, no en trimestres.',
+        en: 'Building companies with AI. Strategy, brand, tech and go-to-market — shipped in weeks, not quarters.',
+        de: 'Wir bauen Unternehmen mit KI. Strategie, Branding, Tech und Go-to-Market — in Wochen, nicht in Quartalen.',
       },
       cta: { es: 'Agendar Monza Session', en: 'Book Monza Session', de: 'Monza Session buchen' },
     },

@@ -2,6 +2,7 @@ import { useRef, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useLanguage } from "@/i18n/LanguageContext";
+import CTAButton from "./ui/CTAButton";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -12,7 +13,7 @@ const VideoStatement = () => {
   const { language } = useLanguage();
 
   const content = {
-    cta: { es: 'Construyamos →', en: "Let's build →", de: "Let's build →" },
+    cta: { es: 'Construyamos', en: "Let's build", de: "Let's build" },
   };
 
   /** Callback ref — fires every time the video element mounts (including after key change) */
@@ -68,31 +69,16 @@ const VideoStatement = () => {
           </motion.p>
 
           {/* Bottom-right CTA */}
-          <motion.a
-            href="https://calendar.notion.so/meet/monzaedgar/monzastudiopro"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.div
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.6, ease: EASE }}
-            className="absolute bottom-5 right-6 font-clash text-[11px] tracking-[0.25em] uppercase px-4 py-2 rounded-lg transition-all duration-300"
-            style={{
-              color: "rgba(255,252,247,0.85)",
-              background: "rgba(255,252,247,0.08)",
-              border: "1px solid rgba(255,252,247,0.15)",
-              backdropFilter: "blur(8px)",
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = "rgba(255,252,247,0.14)";
-              e.currentTarget.style.borderColor = "rgba(255,252,247,0.25)";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = "rgba(255,252,247,0.08)";
-              e.currentTarget.style.borderColor = "rgba(255,252,247,0.15)";
-            }}
+            className="absolute bottom-5 right-6"
           >
-            {content.cta[language]}
-          </motion.a>
+            <CTAButton href="mailto:edgar@monzalab.com" size="sm" arrow className="font-clash">
+              {content.cta[language]}
+            </CTAButton>
+          </motion.div>
 
         </motion.div>
       </div>

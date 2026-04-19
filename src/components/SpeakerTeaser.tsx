@@ -20,7 +20,7 @@ const SpeakerTeaser = () => {
   const speakerHref = language === 'en' ? '/en/speaker' : language === 'de' ? '/de/speaker' : '/speaker';
 
   return (
-    <section className="relative w-full overflow-hidden" style={{ height: "70vh", minHeight: "480px", borderTop: "1px solid rgba(var(--border-rgb), 0.04)" }}>
+    <section className="relative w-full overflow-hidden" style={{ height: "58vh", minHeight: "380px", maxHeight: "620px", borderTop: "1px solid rgba(var(--border-rgb), 0.04)" }}>
 
       {/* Photo — full bleed with Ken Burns */}
       <div
@@ -62,7 +62,7 @@ const SpeakerTeaser = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/50 mb-8"
+          className="text-[9px] md:text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/75 mb-5 md:mb-6"
         >
           Speaker
         </motion.p>
@@ -72,8 +72,8 @@ const SpeakerTeaser = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
-          className="font-clash leading-[1.0] tracking-[-0.02em] mb-10"
-          style={{ color: isModena ? "#F8B4D9" : "#FFFCF7", fontSize: "clamp(3rem, 9vw, 8rem)" }}
+          className="font-clash font-bold leading-[1.0] tracking-[-0.025em] mb-8 md:mb-10"
+          style={{ color: isModena ? "#F8B4D9" : "#FFFCF7", fontSize: "clamp(2rem, 6vw, 4.5rem)" }}
         >
           {content.headline[language]}
         </motion.h2>
@@ -84,10 +84,16 @@ const SpeakerTeaser = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3, ease: EASE }}
-          className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-[#F8B4D9]/60 hover:text-[#F8B4D9] transition-colors duration-500 group"
+          className="group inline-flex items-center gap-3 font-clash text-[10px] md:text-[11px] uppercase tracking-[0.3em] transition-colors duration-500"
+          style={{ color: "rgba(248,180,217,0.70)" }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(248,180,217,0.98)"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(248,180,217,0.70)"; }}
         >
+          <span
+            className="inline-block w-6 h-px transition-all duration-500 group-hover:w-10"
+            style={{ background: "currentColor" }}
+          />
           {content.cta[language]}
-          <span className="group-hover:translate-x-1.5 transition-transform duration-300">→</span>
         </motion.a>
       </div>
 

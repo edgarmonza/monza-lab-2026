@@ -446,7 +446,7 @@ const HeroHome = () => {
             >
               <div className="w-1.5 h-1.5 rounded-full bg-[#F8B4D9]/60" />
             </motion.div>
-            <span className="font-clash text-[9px] uppercase tracking-[0.35em] text-[#F8B4D9]/35">
+            <span className="font-clash text-[9px] uppercase tracking-[0.35em] text-[#F8B4D9]/75">
               {content.touchHint[language]}
             </span>
           </motion.div>

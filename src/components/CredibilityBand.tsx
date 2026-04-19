@@ -94,7 +94,7 @@ const CredibilityBand = () => {
               <div className="relative z-10 p-6 flex flex-col justify-end h-full">
                 <p
                   className="font-clash text-[10px] tracking-[0.3em] uppercase mb-4"
-                  style={{ color: "rgba(248,180,217,0.60)" }}
+                  style={{ color: "rgba(248,180,217,0.85)" }}
                 >
                   {item.publication}
                 </p>
@@ -108,7 +108,7 @@ const CredibilityBand = () => {
 
                 <span
                   className="font-clash text-[10px] tracking-[0.25em] uppercase transition-colors duration-300"
-                  style={{ color: "rgba(248,180,217,0.50)" }}
+                  style={{ color: "rgba(248,180,217,0.80)" }}
                 >
                   Leer artículo →
                 </span>

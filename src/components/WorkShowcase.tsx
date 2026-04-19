@@ -65,7 +65,7 @@ const PROJECTS = [
     id: "bavarian",
     slug: "bavarian-econs",
     name: "Bavarian Econs",
-    tag: "0→1 × LUXURY",
+    tag: "VENTURE × LUXURY",
     desc: {
       es: "Marca de lujo automotriz. Branding, web global y sistema de ventas. Featured in Forbes.",
       en: "Automotive luxury brand. Branding, global web & sales system. Featured in Forbes.",
@@ -116,6 +116,180 @@ const PROJECTS = [
     },
   },
   {
+    id: "monzahaus",
+    slug: "monza-haus",
+    name: "Monza Haus",
+    tag: "VENTURE × AI PLATFORM",
+    desc: {
+      es: "El Bloomberg de los carros coleccionables. Base de datos en tiempo real, inteligencia de mercado y AI nativa.",
+      en: "The Bloomberg of collector cars. Real-time database, market intelligence and AI-native.",
+      de: "Das Bloomberg der Sammlerautos. Echtzeit-Datenbank, Marktintelligenz und AI-native.",
+    },
+    image: null as string | null,
+    video: null,
+    mobileVideo: null,
+    color: "#F8B4D9",
+    url: "https://www.monzahaus.com",
+    caseStudy: {
+      role: "Founder & Product Lead",
+      location: "Global",
+      year: "2026–present",
+      headline: {
+        es: "El Bloomberg de los carros coleccionables.",
+        en: "The Bloomberg of collector cars.",
+        de: "Das Bloomberg der Sammlerautos.",
+      },
+      story: {
+        es: "Base de datos en tiempo real, frontend y UI desde cero, y diseño del modelo de negocio. Monza Haus centraliza toda la inteligencia del mercado automotriz de colección en una sola plataforma AI-native.",
+        en: "Real-time database, frontend and UI from scratch, and business model design. Monza Haus centralizes all collector automotive market intelligence in a single AI-native platform.",
+        de: "Echtzeit-Datenbank, Frontend und UI von Grund auf und Geschäftsmodell-Design. Monza Haus zentralisiert die gesamte Collector-Automotive-Marktintelligenz auf einer einzigen AI-nativen Plattform.",
+      },
+      pillars: [
+        { label: "Database", detail: { es: "Arquitectura de datos en tiempo real", en: "Real-time data architecture", de: "Echtzeit-Datenarchitektur" } },
+        { label: "Frontend", detail: { es: "UI/UX desde cero", en: "UI/UX from scratch", de: "UI/UX von Grund auf" } },
+        { label: "Product", detail: { es: "Modelo de negocio y go-to-market", en: "Business model & go-to-market", de: "Geschäftsmodell & Go-to-Market" } },
+        { label: "AI", detail: { es: "Inteligencia de mercado automotriz", en: "Automotive market intelligence", de: "Automotive-Marktintelligenz" } },
+      ],
+      press: [],
+    },
+    gridClass: "md:col-span-1 md:row-span-2",
+    aspect: "aspect-[4/5] md:aspect-auto",
+    visual: {
+      gradient: "radial-gradient(circle at 30% 40%, #F8B4D918 0%, transparent 50%), radial-gradient(circle at 70% 70%, #F8B4D90C 0%, transparent 40%), linear-gradient(160deg, #110F16 0%, #0D0D14 100%)",
+      letter: "MH",
+      letterSize: "clamp(80px, 14vw, 180px)",
+      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+      accent: "#F8B4D9",
+      decorLine: false,
+      number: "02",
+    },
+  },
+  {
+    id: "iaindex",
+    slug: "ia-index",
+    name: "IA Index",
+    tag: "VENTURE × MARKET INTELLIGENCE",
+    desc: {
+      es: "El primer índice que mide la penetración real de la IA en empresas y personas. 6 dimensiones, reportes co-creados, data compartida para el ecosistema.",
+      en: "The first index measuring real AI penetration across companies and people. 6 dimensions, co-created reports, shared ecosystem data.",
+      de: "Der erste Index, der die echte KI-Penetration in Unternehmen und Personen misst. 6 Dimensionen, co-kreierte Reports, geteilte Ökosystem-Daten.",
+    },
+    image: "/images/projects/ia-index-cover.jpg" as string | null,
+    video: null,
+    mobileVideo: null,
+    color: "#C4A35A",
+    url: "https://www.monzaindex.ai",
+    caseStudy: {
+      role: "Co-Founder",
+      location: "Colombia · LATAM · Global",
+      year: "Launch Agosto 2026",
+      headline: {
+        es: "Acelerar la adopción estratégica de la inteligencia artificial.",
+        en: "Accelerating strategic adoption of artificial intelligence.",
+        de: "Die strategische Adoption von künstlicher Intelligenz beschleunigen.",
+      },
+      story: {
+        es: "Venture co-fundado con Guillermo Jaramillo y Giovanni Stella. Plataforma de inteligencia de mercado donde co-creamos reportes con empresas líderes — cada reporte genera data de valor para todo el ecosistema. Lanzamiento público en agosto 2026 con expansión multi-país.",
+        en: "Venture co-founded with Guillermo Jaramillo and Giovanni Stella. A market intelligence platform where we co-create reports with leading companies — each report generates valuable data for the entire ecosystem. Public launch in August 2026 with multi-country expansion.",
+        de: "Venture mitgegründet mit Guillermo Jaramillo und Giovanni Stella. Eine Market-Intelligence-Plattform, auf der wir Reports gemeinsam mit führenden Unternehmen erstellen — jeder Report generiert wertvolle Daten für das gesamte Ökosystem. Öffentlicher Launch im August 2026 mit Multi-Country-Expansion.",
+      },
+      pillars: [
+        { label: "Intelligence", detail: { es: "Reportes co-creados con empresas líderes", en: "Reports co-created with leading companies", de: "Mit führenden Unternehmen co-kreierte Reports" } },
+        { label: "Data", detail: { es: "Data compartida de valor para el ecosistema", en: "Shared ecosystem-grade data", de: "Geteilte Ökosystem-Daten von Wert" } },
+        { label: "Product", detail: { es: "Plataforma AI-native y distribución", en: "AI-native platform & distribution", de: "AI-native Plattform & Distribution" } },
+        { label: "Network", detail: { es: "Expansión multi-país desde LATAM", en: "Multi-country expansion from LATAM", de: "Multi-Country-Expansion aus LATAM" } },
+      ],
+      press: [],
+    },
+    gridClass: "md:col-span-2 md:row-span-1",
+    aspect: "aspect-[16/9] md:aspect-auto",
+    visual: {
+      gradient: "radial-gradient(circle at 20% 30%, #C4A35A20 0%, transparent 50%), radial-gradient(circle at 80% 70%, #C4A35A10 0%, transparent 40%), linear-gradient(135deg, #110F0C 0%, #0D0D14 100%)",
+      letter: "IA",
+      letterSize: "clamp(70px, 13vw, 160px)",
+      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+      accent: "#C4A35A",
+      decorLine: true,
+      number: "03",
+    },
+  },
+  {
+    id: "eleonora",
+    slug: "eleonora-morales",
+    name: "Eleonora Morales",
+    tag: "STUDIO × DIGITAL ECOSYSTEM",
+    desc: {
+      es: "Seis mundos de lujo circular bajo una sombrilla. 350K seguidores, e-commerce live, pipeline de fotos con IA y growth multi-canal.",
+      en: "Six worlds of circular luxury under one umbrella. 350K followers, live e-commerce, AI photo pipeline and multi-channel growth.",
+      de: "Sechs Welten zirkulären Luxus unter einem Dach. 350K Follower, Live-E-Commerce, KI-Foto-Pipeline und Multi-Channel-Growth.",
+    },
+    image: "/images/projects/eleonora-cover.jpg" as string | null,
+    video: null,
+    mobileVideo: null,
+    color: "#f074aa",
+    url: "https://eleonora-morales.vercel.app",
+    caseStudy: {
+      role: "Creative Director & Tech Partner",
+      location: "Colombia · Global",
+      year: "2026–present",
+      headline: {
+        es: "Lujo circular con ecosistema digital 360° — en operación.",
+        en: "Circular luxury with a 360° live digital ecosystem.",
+        de: "Zirkulärer Luxus mit einem 360° Live-Ökosystem.",
+      },
+      story: {
+        es: "Arranque con e-commerce (Shopify + Storefront API custom) y 6 sub-brands bajo una sombrilla, incluyendo Garage Sale para la operación second-hand. Dirección creativa, producción de contenido y growth multi-canal — pauta digital y orgánico. Go-live Abril 2026, escalamiento continuo hacia Día de la Madre.",
+        en: "Kicked off with e-commerce (Shopify + custom Storefront API) and 6 sub-brands under one umbrella, including Garage Sale for the second-hand operation. Creative direction, content production and multi-channel growth — paid and organic. Live April 2026, ongoing ramp-up toward Mother's Day.",
+        de: "Start mit E-Commerce (Shopify + Custom Storefront API) und 6 Sub-Brands unter einem Dach, einschließlich Garage Sale für den Second-Hand-Betrieb. Kreativdirektion, Content-Produktion und Multi-Channel-Growth — Paid und Organic. Live seit April 2026, kontinuierlicher Ramp-Up bis Muttertag.",
+      },
+      pillars: [
+        { label: "Brand", detail: { es: "Sistema visual y manual live", en: "Visual system & live brand manual", de: "Visuelles System & Live-Brand-Manual" } },
+        { label: "E-commerce", detail: { es: "Shopify + Storefront API custom", en: "Shopify + custom Storefront API", de: "Shopify + Custom Storefront API" } },
+        { label: "Content", detail: { es: "Second-hand y dirección creativa", en: "Second-hand & creative direction", de: "Second-Hand & Kreativdirektion" } },
+        { label: "Growth", detail: { es: "Pauta y orgánico multi-canal", en: "Paid & organic multi-channel", de: "Paid & Organic Multi-Channel" } },
+      ],
+      press: [],
+    },
+    gridClass: "md:col-span-1 md:row-span-1",
+    aspect: "aspect-[4/5] md:aspect-auto",
+    visual: {
+      gradient: "radial-gradient(circle at 30% 30%, #f074aa18 0%, transparent 50%), radial-gradient(circle at 70% 80%, #f074aa0C 0%, transparent 40%), linear-gradient(160deg, #15101A 0%, #0D0D14 100%)",
+      letter: "EM",
+      letterSize: "clamp(70px, 13vw, 160px)",
+      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+      accent: "#f074aa",
+      decorLine: false,
+      number: "04",
+    },
+  },
+  {
+    id: "pacho",
+    slug: "pacho-alvarez",
+    name: "Pacho Alvarez",
+    tag: "STUDIO × COMPANY BUILDER",
+    desc: {
+      es: "Piloto del Dakar Rally. Web inmersiva, estructura de negocio, conferencias, pricing y go-to-market.",
+      en: "Dakar Rally driver. Immersive web, business structure, conferences, pricing & go-to-market.",
+      de: "Dakar-Rally-Fahrer. Immersive Web, Geschäftsstruktur, Konferenzen, Pricing & Go-to-Market.",
+    },
+    image: null as string | null,
+    video: "/videos/pacho-alvarez-reel.mp4",
+    mobileVideo: "/videos/pacho-alvarez-mobile.mp4",
+    color: "#F8B4D9",
+    url: "https://pacho-alvarez-dakar.vercel.app",
+    gridClass: "md:col-span-1 md:row-span-1",
+    aspect: "aspect-[4/5] md:aspect-auto",
+    visual: {
+      gradient: "radial-gradient(circle at 70% 20%, #F8B4D918 0%, transparent 50%), radial-gradient(circle at 30% 80%, #F8B4D90C 0%, transparent 40%), linear-gradient(160deg, #110F16 0%, #0D0D14 100%)",
+      letter: "PA",
+      letterSize: "clamp(60px, 12vw, 140px)",
+      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+      accent: "#F8B4D9",
+      decorLine: false,
+      number: "05",
+    },
+  },
+  {
     id: "spectro",
     slug: "spectro",
     name: "Spectro",
@@ -130,8 +304,8 @@ const PROJECTS = [
     mobileVideo: "/videos/spectro-mobile.mp4",
     color: "#8B5CF6",
     url: null,
-    gridClass: "md:col-span-1 md:row-span-1",
-    aspect: "aspect-[4/5] md:aspect-auto",
+    gridClass: "md:col-span-2 md:row-span-1",
+    aspect: "aspect-[16/9] md:aspect-auto",
     visual: {
       gradient: "conic-gradient(from 180deg at 50% 50%, #8B5CF608 0deg, #8B5CF620 120deg, #8B5CF608 240deg, #8B5CF600 360deg), linear-gradient(180deg, #0E0D16 0%, #12111A 100%)",
       letter: "S",
@@ -139,132 +313,7 @@ const PROJECTS = [
       letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
       accent: "#8B5CF6",
       decorLine: false,
-      number: "02",
-    },
-  },
-  {
-    id: "pacho",
-    slug: "pacho-alvarez",
-    name: "Pacho Alvarez",
-    tag: "STUDIO 1:1 × COMPANY BUILDER",
-    desc: {
-      es: "Piloto del Dakar Rally. Web inmersiva, estructura de negocio, conferencias, pricing y go-to-market.",
-      en: "Dakar Rally driver. Immersive web, business structure, conferences, pricing & go-to-market.",
-      de: "Dakar-Rally-Fahrer. Immersive Web, Geschäftsstruktur, Konferenzen, Pricing & Go-to-Market.",
-    },
-    image: null as string | null,
-    video: "/videos/pacho-alvarez-reel.mp4",
-    mobileVideo: "/videos/pacho-alvarez-mobile.mp4",
-    color: "#F8B4D9",
-    url: null,
-    gridClass: "md:col-span-1 md:row-span-1",
-    aspect: "aspect-[4/5] md:aspect-auto",
-    visual: {
-      gradient: "radial-gradient(circle at 70% 20%, #F8B4D918 0%, transparent 50%), radial-gradient(circle at 30% 80%, #F8B4D90C 0%, transparent 40%), linear-gradient(160deg, #110F16 0%, #0D0D14 100%)",
-      letter: "PA",
-      letterSize: "clamp(60px, 12vw, 140px)",
-      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
-      accent: "#F8B4D9",
-      decorLine: false,
-      number: "03",
-    },
-  },
-  {
-    id: "guardian",
-    slug: "guardian-of-speed",
-    name: "Guardian of Speed",
-    tag: "0→1 × COMPANY BUILDER",
-    desc: {
-      es: "Transporte de lujo para autos de alta gama en Europa. Experiencia digital hiperpersonalizada, pitch de inversión y go-to-market.",
-      en: "Luxury transport for high-end cars in Europe. Hyper-personalized digital experience, investment pitch & go-to-market.",
-      de: "Luxus-Transport für High-End-Autos in Europa. Hyperpersonalisierte Digital Experience, Investoren-Pitch & Go-to-Market.",
-    },
-    image: null as string | null,
-    video: "/videos/guardian-speed-reel.mp4",
-    mobileVideo: "/videos/guardian-speed-mobile.mp4",
-    color: "#C4A35A",
-    url: null,
-    caseStudy: {
-      role: "Co-Founder & Creative Director",
-      location: "München · Europa",
-      year: "2025–present",
-      headline: {
-        es: "Logística de lujo para los autos más exclusivos del mundo.",
-        en: "Luxury logistics for the most exclusive cars in the world.",
-        de: "Luxus-Logistik für die exklusivsten Autos der Welt.",
-      },
-      story: {
-        es: "Construí la marca, el sistema digital hiperpersonalizado para clientes y la estructura de crecimiento con inversores. Guardian of Speed transporta autos de alta gama por toda Europa con una experiencia que iguala el nivel de los vehículos que mueve.",
-        en: "I built the brand, the hyper-personalized digital system for clients and the growth structure with investors. Guardian of Speed transports high-end cars across Europe with an experience that matches the level of the vehicles it moves.",
-        de: "Ich baute die Marke, das hyperpersonalisierte digitale System für Kunden und die Wachstumsstruktur mit Investoren. Guardian of Speed transportiert High-End-Autos durch ganz Europa mit einer Erfahrung, die dem Niveau der Fahrzeuge entspricht.",
-      },
-      pillars: [
-        { label: "Brand", detail: { es: "Identidad premium y sistema visual", en: "Premium identity & visual system", de: "Premium-Identität & visuelles System" } },
-        { label: "Digital", detail: { es: "Web y experiencia hiperpersonalizada", en: "Web & hyper-personalized experience", de: "Web & hyperpersonalisierte Erfahrung" } },
-        { label: "Capital", detail: { es: "Pitch deck y ronda de inversión", en: "Pitch deck & investment round", de: "Pitch Deck & Investitionsrunde" } },
-        { label: "Growth", detail: { es: "Go-to-market y estrategia comercial", en: "Go-to-market & commercial strategy", de: "Go-to-Market & kommerzielle Strategie" } },
-      ],
-      press: [],
-    },
-    gridClass: "md:col-span-2 md:row-span-1",
-    aspect: "aspect-[4/5] md:aspect-auto",
-    visual: {
-      gradient: "radial-gradient(ellipse at 10% 50%, #C4A35A15 0%, transparent 40%), radial-gradient(ellipse at 90% 50%, #C4A35A10 0%, transparent 40%), linear-gradient(90deg, #14100F 0%, #0D0D14 50%, #14100F 100%)",
-      letter: "GS",
-      letterSize: "clamp(60px, 12vw, 180px)",
-      letterPos: "top-[50%] right-[8%] -translate-y-1/2",
-      accent: "#C4A35A",
-      decorLine: true,
-      number: "04",
-    },
-  },
-  {
-    id: "monzahaus",
-    slug: "monza-haus",
-    name: "Monza Haus",
-    tag: "0→1 × PRODUCT",
-    desc: {
-      es: "El Bloomberg de los carros. Base de datos, frontend, UI y modelo de negocio. En construcción.",
-      en: "The Bloomberg of cars. Database, frontend, UI & business model. Under construction.",
-      de: "Das Bloomberg der Autos. Datenbank, Frontend, UI & Geschäftsmodell. Im Aufbau.",
-    },
-    image: null as string | null,
-    video: "/videos/monza-haus-reel.mp4",
-    mobileVideo: "/videos/monza-haus-mobile.mp4",
-    color: "#F8B4D9",
-    url: null,
-    caseStudy: {
-      role: "Founder & Product Lead",
-      location: "Global",
-      year: "2026–present",
-      headline: {
-        es: "El Bloomberg de los carros.",
-        en: "The Bloomberg of cars.",
-        de: "Das Bloomberg der Autos.",
-      },
-      story: {
-        es: "Base de datos en tiempo real, configuración de frontend y UI desde cero, y diseño del modelo de negocio. Monza Haus centraliza toda la inteligencia del mercado automotriz en una sola plataforma.",
-        en: "Real-time database, frontend and UI configuration from scratch, and business model design. Monza Haus centralizes all automotive market intelligence in a single platform.",
-        de: "Echtzeit-Datenbank, Frontend- und UI-Konfiguration von Grund auf und Geschäftsmodell-Design. Monza Haus zentralisiert die gesamte Automotive-Marktintelligenz auf einer einzigen Plattform.",
-      },
-      pillars: [
-        { label: "Database", detail: { es: "Arquitectura de datos en tiempo real", en: "Real-time data architecture", de: "Echtzeit-Datenarchitektur" } },
-        { label: "Frontend", detail: { es: "UI/UX desde cero", en: "UI/UX from scratch", de: "UI/UX von Grund auf" } },
-        { label: "Product", detail: { es: "Modelo de negocio y go-to-market", en: "Business model & go-to-market", de: "Geschäftsmodell & Go-to-Market" } },
-        { label: "AI", detail: { es: "Inteligencia de mercado automotriz", en: "Automotive market intelligence", de: "Automotive-Marktintelligenz" } },
-      ],
-      press: [],
-    },
-    gridClass: "md:col-span-1 md:row-span-1",
-    aspect: "aspect-[4/5] md:aspect-auto",
-    visual: {
-      gradient: "radial-gradient(circle at 30% 40%, #F8B4D918 0%, transparent 50%), radial-gradient(circle at 70% 70%, #F8B4D90C 0%, transparent 40%), linear-gradient(160deg, #110F16 0%, #0D0D14 100%)",
-      letter: "MH",
-      letterSize: "clamp(60px, 12vw, 140px)",
-      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
-      accent: "#F8B4D9",
-      decorLine: false,
-      number: "05",
+      number: "06",
     },
   },
 ];
@@ -304,12 +353,16 @@ const WorkShowcase = () => {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-16 md:mb-20"
           >
-            <p className="font-clash text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#F8B4D9]/50 font-medium mb-4">
+            <p className="font-clash text-[9px] md:text-[11px] tracking-[0.4em] uppercase text-[#F8B4D9]/75 font-medium mb-3 md:mb-4">
               {content.tag[language]}
             </p>
             <h2
-              className="font-clash text-[8vw] md:text-[5vw] lg:text-[3.5vw] font-bold leading-[1.05]"
-              style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.80)" }}
+              className="font-clash font-bold leading-[1.05]"
+              style={{
+                letterSpacing: "-0.025em",
+                color: "rgba(var(--text-rgb), 0.85)",
+                fontSize: "clamp(26px, 5.5vw, 56px)",
+              }}
             >
               {content.heading[language]}
             </h2>
@@ -339,13 +392,21 @@ const WorkShowcase = () => {
                     className="absolute inset-0"
                     style={{ background: project.visual.gradient }}
                   />
-                  {(project as { video?: string }).video && (
+                  {(project as { video?: string }).video ? (
                     <LazyVideo
                       src={isMobile && (project as { mobileVideo?: string }).mobileVideo ? (project as { mobileVideo?: string }).mobileVideo! : (project as { video?: string }).video!}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
                       style={{ opacity: 0.75 }}
                     />
-                  )}
+                  ) : project.image ? (
+                    <img
+                      src={project.image}
+                      alt={`${project.name} — cover`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-[1.03]"
+                      style={{ opacity: 0.85 }}
+                    />
+                  ) : null}
 
                   {/* Decorative accent line */}
                   {project.visual.decorLine && (
@@ -525,7 +586,17 @@ const WorkShowcase = () => {
                       />
                     </>
                   ) : project.image ? (
-                    <img src={project.image} alt={project.name} className="w-full h-full object-cover" />
+                    <>
+                      {/* Brand background gradient behind image, visible where image doesn't cover */}
+                      <div className="absolute inset-0" style={{ background: project.visual.gradient }} />
+                      {/* Image positioned top so hero of the captured website is visible */}
+                      <img
+                        src={project.image}
+                        alt={`${project.name} — website preview`}
+                        className="absolute inset-0 w-full h-full object-cover object-top"
+                        style={{ opacity: 0.70 }}
+                      />
+                    </>
                   ) : (
                     <div className="w-full h-full" style={{ background: project.visual.gradient }}>
                       <span
@@ -537,10 +608,14 @@ const WorkShowcase = () => {
                     </div>
                   )}
 
-                  {/* Gradient overlay */}
+                  {/* Gradient overlay — lighter up top when we have an image, heavy only at bottom */}
                   <div className="absolute inset-0" style={{ background: isModena
-                    ? "linear-gradient(to top, rgba(245,240,235,0.99) 0%, rgba(245,240,235,0.92) 35%, rgba(245,240,235,0.70) 60%, rgba(245,240,235,0.30) 100%)"
-                    : "linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.15) 100%)"
+                    ? (project.image
+                        ? "linear-gradient(to top, rgba(245,240,235,0.98) 0%, rgba(245,240,235,0.82) 30%, rgba(245,240,235,0.15) 55%, rgba(245,240,235,0.05) 100%)"
+                        : "linear-gradient(to top, rgba(245,240,235,0.99) 0%, rgba(245,240,235,0.92) 35%, rgba(245,240,235,0.70) 60%, rgba(245,240,235,0.30) 100%)")
+                    : (project.image
+                        ? "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.08) 55%, rgba(0,0,0,0.02) 100%)"
+                        : "linear-gradient(to top, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.15) 100%)")
                   }} />
 
                   {/* Number */}

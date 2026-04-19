@@ -20,8 +20,11 @@ const queryClient = new QueryClient();
 // Wrapper component to provide language context inside router
 const AppContent = () => (
   <LanguageProvider>
+    {/* Skip link — WCAG 2.4.1 bypass blocks */}
+    <a href="#main" className="skip-link">Skip to content</a>
+
     {/* ULTRA PREMIUM BACKGROUND - Fixed, theme-aware */}
-    <div className="premium-black-bg" />
+    <div className="premium-black-bg" aria-hidden="true" />
 
     <CustomCursor />
     <ScrollToTop />

@@ -33,16 +33,20 @@ const MetodoMonzaSection = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-20 md:mb-28"
         >
-          <p className="font-clash text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#F8B4D9]/50 font-medium mb-6">
+          <p className="font-clash text-[9px] md:text-[11px] tracking-[0.4em] uppercase text-[#F8B4D9]/80 font-medium mb-4 md:mb-6">
             {content.tag[language]}
           </p>
           <h2
-            className="font-clash text-[10vw] md:text-[6vw] lg:text-[4.5vw] font-bold leading-[1.05]"
-            style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.80)" }}
+            className="font-clash font-bold leading-[1.05]"
+            style={{
+              letterSpacing: "-0.025em",
+              color: "rgba(var(--text-rgb), 0.85)",
+              fontSize: "clamp(30px, 6.5vw, 68px)",
+            }}
           >
             {content.headline1[language]}
             <br />
-            <span className="text-[#F8B4D9]/80">{content.headline2[language]}</span>
+            <span className="text-[#F8B4D9]/85">{content.headline2[language]}</span>
           </h2>
         </motion.div>
 

@@ -266,6 +266,53 @@ All colors MUST be HSL.
     transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
   }
 
+  /* Performance — disable backdrop-filter on mobile to avoid GPU hit */
+  @media (max-width: 768px) {
+    nav[class*="fixed"] {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+  }
+
+  /* Accessibility — visible focus indicator (WCAG 2.4.7) */
+  *:focus {
+    outline: none;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid hsl(var(--monza-pink));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Skip link — only visible on focus */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 16px;
+    background: hsl(var(--monza-pink));
+    color: hsl(var(--monza-black));
+    padding: 8px 16px;
+    font-family: "Clash Display", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    z-index: 10000;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 16px;
+  }
+
   /* Hero a pantalla completa */
   .hero-section {
     min-height: 100vh;

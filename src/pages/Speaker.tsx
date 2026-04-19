@@ -5,6 +5,8 @@ import PremiumBackground from "@/components/layout/PremiumBackground";
 import { useTheme } from "@/theme/ThemeContext";
 import { useLanguage } from "@/i18n/LanguageContext";
 import edgarEditorial from "@/assets/edgar-editorial-pink.png";
+import CTAButton from "@/components/ui/CTAButton";
+import SEO from "@/components/SEO";
 
 const SPEAKER_PHOTOS = [
   { src: "/images/Speaker/8565b51b-2338-4737-958b-042761b06ceb.jpg", aspect: "landscape", label: "KPMG · Bogota" },
@@ -40,7 +42,7 @@ const content = {
       bio: "Consultor de Big Four. Fundador de múltiples ventures en paralelo. Construye con IA desde el día uno — no como herramienta, sino como sistema operativo. No habla desde la teoría. Habla desde la obra que está corriendo hoy.",
     },
     ventures: [
-      { name: "Monza Lab",      href: null,                              desc: "AI-native creative studio · Colombia" },
+      { name: "Monza Lab",      href: null,                              desc: "AI-native company builder · Colombia" },
       { name: "Monza Haus",     href: null,                              desc: "Plataforma · US/UK/EU/Japan" },
       { name: "Bavarian Econs", href: "https://www.bavarianecons.com/",  desc: "Electrificación de BMW clásicos" },
       { name: "Guardian Speed", href: "https://www.guardianofspeed.de",  desc: "Logistics · München" },
@@ -112,7 +114,7 @@ const content = {
       bio: "Big Four consultant. Founder of multiple ventures in parallel. Builds with AI from day one — not as a tool, but as an operating system. He doesn\u2019t speak from theory. He speaks from the work that\u2019s running today.",
     },
     ventures: [
-      { name: "Monza Lab",      href: null,                              desc: "AI-native creative studio · Colombia" },
+      { name: "Monza Lab",      href: null,                              desc: "AI-native company builder · Colombia" },
       { name: "Monza Haus",     href: null,                              desc: "Platform · US/UK/EU/Japan" },
       { name: "Bavarian Econs", href: "https://www.bavarianecons.com/",  desc: "Classic BMW electrification" },
       { name: "Guardian Speed", href: "https://www.guardianofspeed.de",  desc: "Logistics · München" },
@@ -184,7 +186,7 @@ const content = {
       bio: "Big-Four-Berater. Gründer mehrerer Ventures parallel. Baut mit KI vom ersten Tag — nicht als Tool, sondern als Betriebssystem. Er spricht nicht aus der Theorie. Er spricht aus dem Werk, das heute läuft.",
     },
     ventures: [
-      { name: "Monza Lab",      href: null,                              desc: "AI-native Creative Studio · Kolumbien" },
+      { name: "Monza Lab",      href: null,                              desc: "AI-native Company Builder · Kolumbien" },
       { name: "Monza Haus",     href: null,                              desc: "Plattform · US/UK/EU/Japan" },
       { name: "Bavarian Econs", href: "https://www.bavarianecons.com/",  desc: "Elektrifizierung klassischer BMWs" },
       { name: "Guardian Speed", href: "https://www.guardianofspeed.de",  desc: "Logistik · München" },
@@ -256,6 +258,47 @@ const Speaker = () => {
 
   return (
     <PremiumBackground>
+      <SEO
+        path="/speaker"
+        image="/images/Speaker/15474a8a-40f8-4533-b39d-20a91fb73992.jpg"
+        type="profile"
+        title={{
+          es: "Edgar Navarro · Keynote Speaker IA — Monza Lab",
+          en: "Edgar Navarro · AI Keynote Speaker — Monza Lab",
+          de: "Edgar Navarro · KI Keynote Speaker — Monza Lab",
+        }}
+        description={{
+          es: "Keynote speaker sobre inteligencia artificial, innovación y company building. Ex-Director de Innovación KPMG. Conferencias para empresas, universidades y eventos en LATAM, Europa y USA.",
+          en: "Keynote speaker on artificial intelligence, innovation and company building. Former KPMG Innovation Director. Talks for companies, universities and events across LATAM, Europe and the US.",
+          de: "Keynote Speaker für Künstliche Intelligenz, Innovation und Company Building. Ehem. KPMG-Innovationsdirektor. Vorträge für Unternehmen, Universitäten und Events in LATAM, Europa und USA.",
+        }}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Edgar Navarro",
+          jobTitle: "AI Keynote Speaker & Founder",
+          worksFor: { "@type": "Organization", name: "Monza Lab" },
+          url: "https://monzalab.com/speaker",
+          image: "https://monzalab.com/images/Speaker/15474a8a-40f8-4533-b39d-20a91fb73992.jpg",
+          sameAs: [
+            "https://www.linkedin.com/in/edgarnavarrosoto/",
+            "https://www.instagram.com/monza.lab/",
+          ],
+          knowsAbout: [
+            "Artificial Intelligence",
+            "AI Adoption Strategy",
+            "Company Building",
+            "Innovation",
+            "Luxury Branding",
+            "Go-to-Market Strategy",
+          ],
+          hasOccupation: [
+            { "@type": "Occupation", name: "Keynote Speaker", occupationalCategory: "Public Speaking" },
+            { "@type": "Occupation", name: "AI Specialist", occupationalCategory: "Artificial Intelligence" },
+            { "@type": "Occupation", name: "Company Builder", occupationalCategory: "Entrepreneurship" },
+          ],
+        }}
+      />
 
       {/* -- HERO -- full height editorial -- */}
       <section className="relative h-[100svh] w-full overflow-hidden">
@@ -315,14 +358,12 @@ const Speaker = () => {
             transition={{ duration: 0.7, delay: 0.85, ease: EASE }}
             className="flex items-center gap-8"
           >
-            <a
+            <CTAButton
               href="https://wa.me/573208496241?text=Hola%20Edgar%2C%20me%20interesa%20tenerte%20como%20speaker%20en%20mi%20evento."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full px-8 py-3.5 text-xs font-semibold tracking-[0.2em] uppercase bg-[#F8B4D9] text-[#0b0b10] hover:bg-[#f4cbde] shadow-[0_6px_24px_-6px_rgba(248,180,217,0.4)] hover:shadow-[0_10px_36px_-6px_rgba(248,180,217,0.55)] hover:-translate-y-[1px] transition-all duration-300"
+              size="md"
             >
               {t.hero.cta}
-            </a>
+            </CTAButton>
             <a href="#quien" className="text-[10px] uppercase tracking-[0.3em] transition-colors" style={{ color: textMuted(0.30) }}
               onMouseEnter={e => e.currentTarget.style.color = textMuted(0.60)}
               onMouseLeave={e => e.currentTarget.style.color = textMuted(0.30)}>
@@ -383,7 +424,7 @@ const Speaker = () => {
               {/* Credencial pills */}
               <div className="flex flex-wrap gap-2 mb-10">
                 {["Big Four backup", "Startup velocity", "Global aesthetics"].map((tag) => (
-                  <span key={tag} className="text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border border-[#F8B4D9]/20 text-[#F8B4D9]/50">
+                  <span key={tag} className="text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border border-[#F8B4D9]/20 text-[#F8B4D9]/80">
                     {tag}
                   </span>
                 ))}
@@ -585,14 +626,12 @@ const Speaker = () => {
               {t.cta.headline1}<br />
               <span className="text-[#F8B4D9]">{t.cta.headlineAccent}</span>
             </h2>
-            <a
+            <CTAButton
               href="https://wa.me/573208496241?text=Hola%20Edgar%2C%20me%20interesa%20tenerte%20como%20speaker%20en%20mi%20evento."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-10 py-4 rounded-full text-sm font-semibold uppercase tracking-[0.2em] bg-[#F8B4D9] text-[#0b0b10] hover:bg-[#f4cbde] shadow-[0_6px_28px_-6px_rgba(248,180,217,0.4)] hover:shadow-[0_14px_44px_-8px_rgba(248,180,217,0.55)] hover:-translate-y-[2px] transition-all duration-300"
+              size="lg"
             >
               {t.cta.button}
-            </a>
+            </CTAButton>
             <p className="text-xs mt-8 tracking-[0.15em]" style={{ color: textMuted(0.18) }}>
               edgar@monzalab.com
             </p>

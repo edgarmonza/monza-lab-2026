@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import SEO from "@/components/SEO";
 
 const content = {
   message: { es: "Oops! Página no encontrada", en: "Oops! Page not found", de: "Oops! Seite nicht gefunden" },
@@ -17,6 +18,19 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
+      <SEO
+        noindex
+        title={{
+          es: "Página no encontrada — Monza Lab",
+          en: "Page not found — Monza Lab",
+          de: "Seite nicht gefunden — Monza Lab",
+        }}
+        description={{
+          es: "La página que buscas no existe. Volver al inicio de Monza Lab.",
+          en: "The page you are looking for does not exist. Return to Monza Lab.",
+          de: "Die gesuchte Seite existiert nicht. Zurück zur Startseite von Monza Lab.",
+        }}
+      />
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-bold">404</h1>
         <p className="mb-4 text-xl text-muted-foreground">{content.message[language]}</p>

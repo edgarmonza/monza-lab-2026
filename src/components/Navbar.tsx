@@ -5,6 +5,7 @@ import HelmetIcon from "./HelmetIcon";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { useTheme } from "@/theme/ThemeContext";
 import { useLanguage } from "@/i18n/LanguageContext";
+import CTAButton from "./ui/CTAButton";
 
 type Lang = "es" | "en" | "de";
 
@@ -150,12 +151,14 @@ const Navbar = () => {
               <ThemeSwitcher />
 
               {/* Language switcher */}
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1" role="group" aria-label="Language selector">
                 {LANGS.map((l) => (
                   <button
                     key={l}
                     onClick={() => setLanguage(l)}
-                    className="font-clash text-[10px] tracking-[0.15em] uppercase px-2 py-1 rounded-md transition-all duration-300"
+                    aria-label={`Switch to ${l === 'es' ? 'Spanish' : l === 'en' ? 'English' : 'German'}`}
+                    aria-pressed={lang === l}
+                    className="font-clash text-[10px] tracking-[0.15em] uppercase px-3 py-2 rounded-md transition-all duration-300 min-w-[36px]"
                     style={{
                       color: lang === l ? langActive : textMuted,
                       background: lang === l ? langActiveBg : 'transparent',
@@ -167,29 +170,9 @@ const Navbar = () => {
               </div>
 
               {/* CTA */}
-              <a
-                href="https://calendar.notion.so/meet/monzaedgar/monzastudiopro"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-clash text-[11px] tracking-[0.2em] uppercase px-5 py-2 rounded-full transition-all duration-300 hover:-translate-y-[1px]"
-                style={{
-                  background: isModena ? "rgba(11, 11, 16, 0.08)" : "rgba(248, 180, 217, 0.08)",
-                  border: isModena ? "1px solid rgba(11, 11, 16, 0.20)" : "1px solid rgba(248, 180, 217, 0.18)",
-                  color: isModena ? "rgba(11, 11, 16, 0.75)" : "rgba(248, 180, 217, 0.75)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = isModena ? "rgba(11, 11, 16, 0.12)" : "rgba(248, 180, 217, 0.14)";
-                  e.currentTarget.style.borderColor = isModena ? "rgba(11, 11, 16, 0.35)" : "rgba(248, 180, 217, 0.35)";
-                  e.currentTarget.style.color = isModena ? "#0B0B10" : "#F8B4D9";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = isModena ? "rgba(11, 11, 16, 0.08)" : "rgba(248, 180, 217, 0.08)";
-                  e.currentTarget.style.borderColor = isModena ? "rgba(11, 11, 16, 0.20)" : "rgba(248, 180, 217, 0.18)";
-                  e.currentTarget.style.color = isModena ? "rgba(11, 11, 16, 0.75)" : "rgba(248, 180, 217, 0.75)";
-                }}
-              >
+              <CTAButton href="mailto:edgar@monzalab.com" size="sm" className="font-clash">
                 {cta}
-              </a>
+              </CTAButton>
             </div>
 
             {/* Mobile hamburger */}
@@ -270,7 +253,9 @@ const Navbar = () => {
                   <button
                     key={l}
                     onClick={() => setLanguage(l)}
-                    className="font-clash text-xs tracking-[0.15em] uppercase px-3 py-1.5 rounded-lg transition-all duration-300 border"
+                    aria-label={`Switch to ${l === 'es' ? 'Spanish' : l === 'en' ? 'English' : 'German'}`}
+                    aria-pressed={lang === l}
+                    className="font-clash text-xs tracking-[0.15em] uppercase px-4 py-3 rounded-lg transition-all duration-300 border min-w-[48px] min-h-[44px]"
                     style={{
                       color: lang === l ? '#F8B4D9' : textMuted,
                       background: lang === l ? 'rgba(248,180,217,0.10)' : 'transparent',
@@ -290,20 +275,14 @@ const Navbar = () => {
                 transition={{ duration: 0.4, delay: 0.48 }}
                 className="mt-4"
               >
-                <a
-                  href="https://calendar.notion.so/meet/monzaedgar/monzastudiopro"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <CTAButton
+                  href="mailto:edgar@monzalab.com"
+                  size="md"
                   onClick={() => setIsMenuOpen(false)}
-                  className="font-clash text-sm tracking-[0.2em] uppercase px-8 py-3 rounded-full"
-                  style={{
-                    background: "rgba(248, 180, 217, 0.10)",
-                    border: "1px solid rgba(248, 180, 217, 0.20)",
-                    color: "rgba(248, 180, 217, 0.85)",
-                  }}
+                  className="font-clash"
                 >
                   {cta}
-                </a>
+                </CTAButton>
               </motion.div>
             </nav>
           </motion.div>

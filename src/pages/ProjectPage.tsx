@@ -7,6 +7,7 @@ import { PROJECTS } from "@/data/projects";
 import type { Project, LangText } from "@/data/projects";
 import FooterMinimal from "@/components/FooterMinimal";
 import PremiumBackground from "@/components/layout/PremiumBackground";
+import SEO from "@/components/SEO";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -88,16 +89,65 @@ const ProjectPage = () => {
 
   const langPrefix = language === "es" ? "" : `/${language}`;
 
+  const seoTitle: { es: string; en: string; de: string } = cs
+    ? {
+        es: `${project.name} — Caso de estudio · Monza Lab`,
+        en: `${project.name} — Case study · Monza Lab`,
+        de: `${project.name} — Case Study · Monza Lab`,
+      }
+    : {
+        es: `${project.name} — Monza Lab`,
+        en: `${project.name} — Monza Lab`,
+        de: `${project.name} — Monza Lab`,
+      };
+
   return (
     <PremiumBackground>
+      <SEO
+        path={`/work/${project.slug}`}
+        image={project.image ?? undefined}
+        type="article"
+        title={seoTitle}
+        description={project.desc}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          name: project.name,
+          headline: cs ? cs.headline[language] : project.name,
+          description: project.desc[language],
+          url: `https://monzalab.com${langPrefix}/work/${project.slug}`,
+          image: project.image ? `https://monzalab.com${project.image}` : undefined,
+          author: {
+            "@type": "Organization",
+            name: "Monza Lab",
+            url: "https://monzalab.com",
+          },
+          creator: {
+            "@type": "Person",
+            name: "Edgar Navarro",
+            url: "https://monzalab.com/speaker",
+          },
+          ...(cs && {
+            keywords: cs.pillars.map((p) => p.label).join(", "),
+          }),
+        }}
+      />
       {/* ── HERO ── */}
       <section className="relative h-[85vh] md:h-[90vh] w-full overflow-hidden">
-        {/* Video bg */}
+        {/* Video / image bg */}
         <div className="absolute inset-0 z-0">
-          <LazyVideo
-            src={project.video}
-            className="w-full h-full object-cover"
-          />
+          {project.video ? (
+            <LazyVideo
+              src={project.video}
+              className="w-full h-full object-cover"
+            />
+          ) : project.image ? (
+            <img
+              src={project.image}
+              alt={project.name}
+              className="w-full h-full object-cover"
+            />
+          ) : null}
           <div
             className="absolute inset-0"
             style={{

@@ -27,8 +27,8 @@ export type Project = {
   tag: string;
   desc: LangText;
   image: string | null;
-  video: string;
-  mobileVideo: string;
+  video: string | null;
+  mobileVideo: string | null;
   color: string;
   url: string | null;
   caseStudy?: {
@@ -284,6 +284,106 @@ export const PROJECTS: Project[] = [
       accent: "#F8B4D9",
       decorLine: false,
       number: "05",
+    },
+  },
+  {
+    id: "iaindex",
+    slug: "ia-index",
+    name: "IA Index",
+    tag: "VENTURE × MARKET INTELLIGENCE",
+    desc: {
+      es: "El primer índice que mide la penetración real de la inteligencia artificial en empresas y personas. Co-creamos reportes con empresas líderes y generamos data de valor para todo el ecosistema.",
+      en: "The first index measuring real AI penetration across companies and people. We co-create reports with leading companies and generate valuable data for the entire ecosystem.",
+      de: "Der erste Index, der die echte KI-Penetration in Unternehmen und Personen misst. Wir co-kreieren Reports mit führenden Unternehmen und generieren wertvolle Daten für das gesamte Ökosystem.",
+    },
+    image: "/images/projects/ia-index-cover.jpg",
+    video: null,
+    mobileVideo: null,
+    color: "#C4A35A",
+    url: "https://www.monzaindex.ai",
+    caseStudy: {
+      role: "Co-Founder",
+      location: "Colombia · LATAM · Global",
+      year: "Beta live · Launch público Agosto 2026",
+      headline: {
+        es: "Midiendo la revolución de la IA — dato por dato, sector por sector.",
+        en: "Measuring the AI revolution — data by data, sector by sector.",
+        de: "Wir messen die KI-Revolution — Datenpunkt für Datenpunkt, Sektor für Sektor.",
+      },
+      story: {
+        es: "Venture co-fundado con Guillermo Jaramillo y Giovanni Stella. IA Index es el primer índice que cuantifica la penetración real de inteligencia artificial en empresas y personas, a través de 6 dimensiones clave: Explorer, Talento, Herramientas, Startups, Macro y Reportes. Cada reporte se co-crea con empresas líderes — el dato que entregan se vuelve parte de un pool de inteligencia compartida para todo el ecosistema. Beta en vivo en monzaindex.ai con score en tiempo real. Lanzamiento público agosto 2026, expansión multi-país desde LATAM.",
+        en: "Venture co-founded with Guillermo Jaramillo and Giovanni Stella. IA Index is the first index quantifying real AI penetration in companies and people, through 6 key dimensions: Explorer, Talent, Tools, Startups, Macro and Reports. Each report is co-created with leading companies — the data they contribute becomes part of a shared intelligence pool for the entire ecosystem. Beta live on monzaindex.ai with real-time score. Public launch August 2026, multi-country expansion from LATAM.",
+        de: "Venture mitgegründet mit Guillermo Jaramillo und Giovanni Stella. IA Index ist der erste Index, der die echte KI-Penetration in Unternehmen und Personen durch 6 Schlüsseldimensionen quantifiziert: Explorer, Talent, Tools, Startups, Macro und Reports. Jeder Report wird mit führenden Unternehmen co-kreiert — die Daten werden Teil eines geteilten Intelligence-Pools für das gesamte Ökosystem. Beta live auf monzaindex.ai mit Echtzeit-Score. Öffentlicher Launch August 2026, Multi-Country-Expansion aus LATAM.",
+      },
+      pillars: [
+        { label: "Intelligence", detail: { es: "6 dimensiones: Explorer, Talento, Herramientas, Startups, Macro, Reportes", en: "6 dimensions: Explorer, Talent, Tools, Startups, Macro, Reports", de: "6 Dimensionen: Explorer, Talent, Tools, Startups, Macro, Reports" } },
+        { label: "Co-creation", detail: { es: "Reportes construidos junto a empresas líderes", en: "Reports built together with leading companies", de: "Reports gemeinsam mit führenden Unternehmen erstellt" } },
+        { label: "Product", detail: { es: "Plataforma AI-native, score en tiempo real — beta live en monzaindex.ai", en: "AI-native platform, real-time score — beta live on monzaindex.ai", de: "AI-native Plattform, Echtzeit-Score — Beta live auf monzaindex.ai" } },
+        { label: "Network", detail: { es: "Data compartida para el ecosistema, expansión multi-país", en: "Shared ecosystem data, multi-country expansion", de: "Geteilte Ökosystem-Daten, Multi-Country-Expansion" } },
+      ],
+      press: [],
+    },
+    gallery: [],
+    gridClass: "md:col-span-1 md:row-span-1",
+    aspect: "aspect-[4/5] md:aspect-auto",
+    visual: {
+      gradient: "radial-gradient(circle at 20% 30%, #C4A35A20 0%, transparent 50%), radial-gradient(circle at 80% 70%, #C4A35A10 0%, transparent 40%), linear-gradient(135deg, #110F0C 0%, #0D0D14 100%)",
+      letter: "IA",
+      letterSize: "clamp(70px, 13vw, 160px)",
+      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+      accent: "#C4A35A",
+      decorLine: true,
+      number: "06",
+    },
+  },
+  {
+    id: "eleonora",
+    slug: "eleonora-morales",
+    name: "Eleonora Morales",
+    tag: "STUDIO × DIGITAL ECOSYSTEM",
+    desc: {
+      es: "Ecosistema digital 360° para una coleccionista de belleza con 350K seguidores en TikTok. Seis mundos bajo una sombrilla, e-commerce en vivo, pipeline de fotos con IA y growth multi-canal.",
+      en: "360° digital ecosystem for a beauty collector with 350K TikTok followers. Six worlds under one umbrella, live e-commerce, AI-powered photo pipeline and multi-channel growth.",
+      de: "360° digitales Ökosystem für eine Beauty-Collectorin mit 350K TikTok-Followern. Sechs Welten unter einem Dach, Live-E-Commerce, KI-gestützte Foto-Pipeline und Multi-Channel-Growth.",
+    },
+    image: "/images/projects/eleonora-cover.jpg",
+    video: null,
+    mobileVideo: null,
+    color: "#f074aa",
+    url: "https://eleonora-morales.vercel.app",
+    caseStudy: {
+      role: "Creative Director & Tech Partner",
+      location: "Colombia · Global",
+      year: "2026–present",
+      headline: {
+        es: "Lujo circular, seis mundos, un ecosistema en vivo.",
+        en: "Circular luxury, six worlds, one live ecosystem.",
+        de: "Zirkulärer Luxus, sechs Welten, ein Live-Ökosystem.",
+      },
+      story: {
+        es: "Ecosistema digital completo para Eleonora Morales — empresaria colombiana con 350K seguidores en TikTok. Sistema de marca con manual live, tipografías custom (Midashi Min, Telidon), color firma #F074AA y casco rosa-gold como signature. Seis sub-brands bajo una sombrilla: Garage Sale (second-hand curado, 54 productos activos de Johanna Ortiz, Kika Vargas, Kenzo, Bimba y Lola), Luxe, Mundo Lujo, Parisienne, Mayoristas y Segundas Oportunidades. Frontend HTML custom sobre Shopify Storefront API, tema Horizon 3.5.1, PayU para pagos y Coordinadora para envíos. Pipeline de producción de fotos con Gemini AI para fondo blanco editorial. Growth multi-canal: pauta Meta + orgánico. Go-live abril 2026, escalamiento hacia Día de la Madre.",
+        en: "Complete digital ecosystem for Eleonora Morales — Colombian entrepreneur with 350K TikTok followers. Brand system with live manual, custom typography (Midashi Min, Telidon), signature color #F074AA and a pink-gold helmet as the signature element. Six sub-brands under one umbrella: Garage Sale (curated second-hand with 54 active products from Johanna Ortiz, Kika Vargas, Kenzo, Bimba y Lola), Luxe, Mundo Lujo, Parisienne, Mayoristas and Segundas Oportunidades. Custom HTML frontend on Shopify Storefront API, Horizon 3.5.1 theme, PayU for payments and Coordinadora for shipping. AI-powered product photo pipeline (Gemini) for editorial white-background shots. Multi-channel growth: Meta ads + organic. Live April 2026, ramp-up toward Mother's Day.",
+        de: "Komplettes digitales Ökosystem für Eleonora Morales — kolumbianische Unternehmerin mit 350K TikTok-Followern. Brand-System mit Live-Manual, Custom-Typografie (Midashi Min, Telidon), Signature-Farbe #F074AA und einem rosa-goldenen Helm als Signature. Sechs Sub-Brands: Garage Sale (kuratiertes Second-Hand mit 54 aktiven Produkten von Johanna Ortiz, Kika Vargas, Kenzo, Bimba y Lola), Luxe, Mundo Lujo, Parisienne, Mayoristas und Segundas Oportunidades. Custom HTML Frontend auf Shopify Storefront API, Horizon 3.5.1 Theme, PayU für Payments, Coordinadora für Versand. KI-gestützte Produktfoto-Pipeline (Gemini). Multi-Channel-Growth: Meta Ads + Organic. Live April 2026, Ramp-Up bis Muttertag.",
+      },
+      pillars: [
+        { label: "Brand", detail: { es: "6 sub-brands, manual live, casco rosa-gold como signature", en: "6 sub-brands, live manual, pink-gold helmet as signature", de: "6 Sub-Brands, Live-Manual, rosa-goldener Helm als Signature" } },
+        { label: "E-commerce", detail: { es: "Shopify Horizon + Storefront API custom, PayU + Coordinadora, 54 productos activos", en: "Shopify Horizon + custom Storefront API, PayU + Coordinadora, 54 active products", de: "Shopify Horizon + Custom Storefront API, PayU + Coordinadora, 54 aktive Produkte" } },
+        { label: "Content", detail: { es: "Pipeline de fotos con Gemini AI, dirección creativa editorial", en: "Gemini AI photo pipeline, editorial creative direction", de: "Gemini-AI-Foto-Pipeline, editoriale Kreativdirektion" } },
+        { label: "Growth", detail: { es: "Base 350K en TikTok, pauta Meta + orgánico multi-canal", en: "350K TikTok base, Meta ads + organic multi-channel", de: "350K TikTok-Basis, Meta Ads + Organic Multi-Channel" } },
+      ],
+      press: [],
+    },
+    gallery: [],
+    gridClass: "md:col-span-1 md:row-span-1",
+    aspect: "aspect-[4/5] md:aspect-auto",
+    visual: {
+      gradient: "radial-gradient(circle at 30% 30%, #f074aa18 0%, transparent 50%), radial-gradient(circle at 70% 80%, #f074aa0C 0%, transparent 40%), linear-gradient(160deg, #15101A 0%, #0D0D14 100%)",
+      letter: "EM",
+      letterSize: "clamp(70px, 13vw, 160px)",
+      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+      accent: "#f074aa",
+      decorLine: false,
+      number: "07",
     },
   },
 ];

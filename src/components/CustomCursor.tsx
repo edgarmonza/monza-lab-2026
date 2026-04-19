@@ -14,50 +14,47 @@ const CustomCursor = () => {
   const smoothY = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    let rafId: number | null = null;
+    let lastX = 0;
+    let lastY = 0;
+
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+      lastX = e.clientX;
+      lastY = e.clientY;
       setIsVisible(true);
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        cursorX.set(lastX);
+        cursorY.set(lastY);
+        rafId = null;
+      });
     };
 
+    const isInteractive = (target: HTMLElement) =>
+      target.tagName === "A" ||
+      target.tagName === "BUTTON" ||
+      target.closest("a") ||
+      target.closest("button") ||
+      target.classList.contains("interactive") ||
+      target.closest(".interactive");
+
     const handleMouseEnter = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.classList.contains("interactive") ||
-        target.closest(".interactive")
-      ) {
-        setIsHovering(true);
-      }
+      if (isInteractive(e.target as HTMLElement)) setIsHovering(true);
     };
 
     const handleMouseLeave = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.classList.contains("interactive") ||
-        target.closest(".interactive")
-      ) {
-        setIsHovering(false);
-      }
+      if (isInteractive(e.target as HTMLElement)) setIsHovering(false);
     };
 
-    const handleMouseOut = () => {
-      setIsVisible(false);
-    };
+    const handleMouseOut = () => setIsVisible(false);
 
-    window.addEventListener("mousemove", moveCursor);
-    document.addEventListener("mouseover", handleMouseEnter);
-    document.addEventListener("mouseout", handleMouseLeave);
-    document.addEventListener("mouseleave", handleMouseOut);
+    window.addEventListener("mousemove", moveCursor, { passive: true });
+    document.addEventListener("mouseover", handleMouseEnter, { passive: true });
+    document.addEventListener("mouseout", handleMouseLeave, { passive: true });
+    document.addEventListener("mouseleave", handleMouseOut, { passive: true });
 
     return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
       window.removeEventListener("mousemove", moveCursor);
       document.removeEventListener("mouseover", handleMouseEnter);
       document.removeEventListener("mouseout", handleMouseLeave);

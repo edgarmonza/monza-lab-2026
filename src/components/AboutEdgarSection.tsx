@@ -274,7 +274,7 @@ const AboutEdgarSection = () => {
               >
                 <img
                   src={edgarEditorial}
-                  alt="Edgar Navarro"
+                  alt="Edgar Navarro — Founder & Creative Director de Monza Lab"
                   className="w-full h-full object-cover object-top"
                   style={{ filter: "brightness(0.9) contrast(1.1) saturate(0.9)" }}
                 />

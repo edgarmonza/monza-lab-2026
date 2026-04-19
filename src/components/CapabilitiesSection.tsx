@@ -395,14 +395,37 @@ const EleonoraBoard = memo(() => (
       </div>
     </MockCard>
 
-    {/* Pink manifesto card — top right corner — hidden xs */}
-    <MockCard delay={0.5} className="hidden sm:block" style={{ top: "5%", right: "4%", width: "28%", maxWidth: 200, background: "#f074aa", border: "none" }}>
+    {/* Editorial portrait card — top right corner — Eleonora con casco */}
+    <MockCard delay={0.5} className="hidden sm:block" style={{ top: "5%", right: "4%", width: "28%", maxWidth: 200, background: "rgba(10,10,10,0.6)", border: "1px solid rgba(240,116,170,0.15)", padding: 0 }}>
+      <div className="relative overflow-hidden rounded-sm" style={{ aspectRatio: "4/5" }}>
+        <img
+          src="/images/brands/eleonora/casco.jpg"
+          alt="Eleonora Morales — portrait with gold helmet"
+          loading="lazy"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: "linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.15) 45%, transparent 70%)",
+        }} />
+        <div className="absolute bottom-2 left-2.5 right-2.5">
+          <p className="text-[7px] tracking-[0.3em] uppercase font-bold" style={{ color: "#f074aa" }}>
+            Eleonora Morales
+          </p>
+          <p className="text-[6px] tracking-[0.2em] uppercase mt-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>
+            Coleccionista
+          </p>
+        </div>
+      </div>
+    </MockCard>
+
+    {/* Pink manifesto card — bottom left, moved to make room for portrait */}
+    <MockCard delay={0.55} className="hidden sm:block" style={{ bottom: "22%", left: "4%", width: "28%", maxWidth: 200, background: "#f074aa", border: "none" }}>
       <div className="p-3 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.08]" style={{
           backgroundImage: "radial-gradient(circle, #000 1.5px, transparent 1.5px)",
           backgroundSize: "8px 8px",
         }} />
-        <p className="relative text-sm md:text-base font-bold leading-tight" style={{ color: "rgba(0,0,0,0.85)", letterSpacing: "-0.02em" }}>
+        <p className="relative text-[11px] md:text-sm font-bold leading-tight" style={{ color: "rgba(0,0,0,0.85)", letterSpacing: "-0.02em" }}>
           Nada es más sostenible que lo que ya existe.
         </p>
         <span className="relative block text-[7px] mt-2" style={{
@@ -477,13 +500,13 @@ const MusgoBoard = memo(() => (
         }}>
           MUSGO
         </h3>
-        {/* Animated green line */}
+        {/* Animated green line — uses transform for GPU acceleration */}
         <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: "80px" }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           className="h-[2px] rounded-full mx-auto mt-3"
-          style={{ background: "#689b61" }}
+          style={{ background: "#689b61", width: "80px", transformOrigin: "left", willChange: "transform" }}
         />
         {/* Tagline — Inter light, editorial */}
         <p className="text-[10px] md:text-xs tracking-[0.35em] uppercase mt-4 font-light" style={{ color: "rgba(104,155,97,0.45)" }}>
