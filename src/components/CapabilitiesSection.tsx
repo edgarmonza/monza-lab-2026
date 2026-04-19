@@ -305,47 +305,56 @@ const pinkDots = {
   backgroundClip: "text" as const,
 };
 
-/* ── Eleonora Morales brand board ── */
+/* ── Eleonora Morales brand board — Real brand: cream bg, editorial serif italic, pink dotted signature ── */
 const EleonoraBoard = memo(() => (
-  <div className="absolute inset-0 overflow-hidden" style={{ background: "#0a0a0a" }}>
-    {/* Radial glows — pink atmosphere */}
-    <div className="absolute inset-0" style={{
-      background: "radial-gradient(ellipse at 30% 40%, rgba(240,116,170,0.18) 0%, transparent 55%), radial-gradient(ellipse at 70% 25%, rgba(212,97,193,0.10) 0%, transparent 45%), radial-gradient(ellipse at 55% 75%, rgba(154,245,253,0.06) 0%, transparent 50%), radial-gradient(ellipse at 20% 80%, rgba(229,255,33,0.03) 0%, transparent 40%)",
+  <div className="absolute inset-0 overflow-hidden" style={{ background: "#FAF8F5" }}>
+    {/* Subtle pink dot field — signature element */}
+    <div className="absolute inset-0 opacity-[0.05]" style={{
+      backgroundImage: "radial-gradient(circle, #f074aa 1.2px, transparent 1.2px)",
+      backgroundSize: "12px 12px",
     }} />
 
-    {/* Punticos rosados background pattern */}
-    <div className="absolute inset-0 opacity-[0.07]" style={{
-      backgroundImage: "radial-gradient(circle, #f074aa 1.5px, transparent 1.5px)",
-      backgroundSize: "10px 10px",
-    }} />
-
-    {/* ★ Mobile: stacked center layout / Desktop: left-right split */}
-    {/* LEFT SIDE — Hero name stack */}
-    <div className="absolute left-[5%] md:left-[6%] top-[15%] md:top-0 md:bottom-0 flex items-start md:items-center z-10 pointer-events-none">
+    {/* LEFT SIDE — Hero name stack: "Eleonora" (serif) / "Morales" (italic serif pink) */}
+    <div className="absolute left-[5%] md:left-[6%] top-[14%] md:top-0 md:bottom-0 flex items-start md:items-center z-10 pointer-events-none">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7, delay: 0.1 }}
         className="flex flex-col"
       >
-        <span className="block text-[22px] sm:text-[32px] md:text-[46px] lg:text-[58px] font-bold leading-[0.88]" style={{
-          ...pinkDots, letterSpacing: "-0.04em",
-        }}>
+        <span
+          className="block text-[26px] sm:text-[36px] md:text-[52px] lg:text-[66px] leading-[0.92]"
+          style={{
+            fontFamily: "'Cormorant Garamond', 'Times New Roman', serif",
+            fontWeight: 500,
+            letterSpacing: "-0.02em",
+            color: "#1a1a1a",
+          }}
+        >
           Eleonora
         </span>
-        <span className="block text-[26px] sm:text-[38px] md:text-[54px] lg:text-[68px] italic font-bold leading-[0.85]" style={{
-          color: "#f074aa", letterSpacing: "-0.03em",
-        }}>
+        <span
+          className="block text-[30px] sm:text-[42px] md:text-[58px] lg:text-[74px] italic leading-[0.88]"
+          style={{
+            fontFamily: "'Cormorant Garamond', 'Times New Roman', serif",
+            fontWeight: 400,
+            letterSpacing: "-0.02em",
+            ...pinkDots,
+          }}
+        >
           Morales
         </span>
-        <div className="mt-2 md:mt-3" style={{ borderBottom: "2px dotted #f074aa", width: 60, opacity: 0.5 }} />
-        <p className="text-[7px] md:text-[9px] tracking-[0.2em] uppercase mt-2 md:mt-3" style={{ color: "rgba(240,116,170,0.35)" }}>
+        <div className="mt-3 md:mt-4" style={{ borderBottom: "1px dotted #f074aa", width: 80, opacity: 0.7 }} />
+        <p
+          className="text-[8px] md:text-[10px] tracking-[0.35em] uppercase mt-2 md:mt-3"
+          style={{ color: "rgba(26,26,26,0.45)", fontFamily: "Inter, sans-serif", fontWeight: 500 }}
+        >
           Coleccionista de belleza
         </p>
       </motion.div>
     </div>
 
-    {/* RIGHT SIDE — "La Moda es Magia" title block */}
+    {/* RIGHT SIDE — "La Moda es Magia" display */}
     <div className="absolute right-[5%] md:right-[8%] bottom-[20%] md:bottom-auto md:top-0 md:h-full flex items-end md:items-center z-10 pointer-events-none">
       <motion.div
         initial={{ opacity: 0, x: 20 }}
@@ -353,115 +362,201 @@ const EleonoraBoard = memo(() => (
         transition={{ duration: 0.7, delay: 0.25 }}
         className="text-right flex flex-col items-end"
       >
-        <span className="block text-[7px] sm:text-[9px] md:text-[12px] lg:text-[14px] font-bold uppercase" style={{
-          letterSpacing: "0.5em", color: "rgba(255,255,255,0.5)",
-        }}>
+        <span
+          className="block text-[8px] sm:text-[10px] md:text-[12px] lg:text-[14px] uppercase"
+          style={{ letterSpacing: "0.5em", color: "rgba(26,26,26,0.35)", fontFamily: "Inter, sans-serif", fontWeight: 600 }}
+        >
           LA
         </span>
-        <span className="block text-[24px] sm:text-[36px] md:text-[50px] lg:text-[64px] italic font-bold leading-[0.85]" style={{
-          ...pinkDots, letterSpacing: "-0.03em",
-        }}>
+        <span
+          className="block text-[28px] sm:text-[40px] md:text-[56px] lg:text-[70px] italic leading-[0.85]"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 400,
+            letterSpacing: "-0.02em",
+            color: "#1a1a1a",
+          }}
+        >
           Moda
         </span>
-        <span className="block text-[6px] sm:text-[8px] md:text-[10px] lg:text-[12px] font-bold uppercase" style={{
-          letterSpacing: "0.4em", color: "rgba(255,255,255,0.4)",
-        }}>
+        <span
+          className="block text-[7px] sm:text-[9px] md:text-[10px] lg:text-[12px] uppercase"
+          style={{ letterSpacing: "0.4em", color: "rgba(26,26,26,0.3)", fontFamily: "Inter, sans-serif", fontWeight: 600 }}
+        >
           ES
         </span>
-        <span className="block text-[28px] sm:text-[40px] md:text-[56px] lg:text-[72px] font-bold leading-[0.85]" style={{
-          ...pinkDots, letterSpacing: "-0.04em",
-          backgroundImage: "radial-gradient(circle, #d461c1 2px, transparent 2px)",
-        }}>
+        <span
+          className="block text-[32px] sm:text-[44px] md:text-[62px] lg:text-[78px] italic leading-[0.85]"
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontWeight: 500,
+            letterSpacing: "-0.03em",
+            ...pinkDots,
+          }}
+        >
           Magia
         </span>
       </motion.div>
     </div>
 
-    {/* Three worlds — floating bottom center — hidden xs */}
-    <MockCard delay={0.4} className="hidden sm:block" style={{ bottom: "14%", left: "50%", transform: "translateX(-50%)", background: "rgba(10,10,10,0.85)", border: "1px solid rgba(240,116,170,0.1)" }}>
+    {/* Nav mockup — top left corner — cream aesthetic */}
+    <MockCard
+      delay={0.45}
+      className="hidden sm:block"
+      style={{
+        top: "5%",
+        left: "4%",
+        background: "rgba(255,255,255,0.85)",
+        border: "1px solid rgba(26,26,26,0.08)",
+      }}
+    >
+      <div className="px-3 py-2 flex items-center gap-3">
+        <span className="text-[9px] tracking-[0.15em] uppercase" style={{ color: "#1a1a1a", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 500 }}>
+          Eleonora <span style={{ color: "#f074aa" }}>Morales</span>
+        </span>
+        <div className="flex gap-2.5">
+          {["Tienda", "Nosotros", "Contacto"].map((t) => (
+            <span
+              key={t}
+              className="text-[7px] md:text-[8px] tracking-[0.15em] uppercase"
+              style={{ color: "rgba(26,26,26,0.45)", fontFamily: "Inter, sans-serif", fontWeight: 500 }}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </MockCard>
+
+    {/* Typography card — top right (replaces portrait) */}
+    <MockCard
+      delay={0.5}
+      className="hidden sm:block"
+      style={{
+        top: "5%",
+        right: "4%",
+        width: "26%",
+        maxWidth: 200,
+        background: "rgba(255,255,255,0.85)",
+        border: "1px solid rgba(26,26,26,0.08)",
+      }}
+    >
+      <div className="px-3 py-3">
+        <p className="text-[6px] tracking-[0.3em] uppercase mb-2" style={{ color: "rgba(26,26,26,0.4)", fontFamily: "Inter, sans-serif", fontWeight: 600 }}>
+          Typography
+        </p>
+        <p className="text-[18px] leading-[0.95]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500, color: "#1a1a1a" }}>
+          Aa <span className="italic">Bb</span>
+        </p>
+        <p className="text-[7px] mt-2" style={{ color: "rgba(26,26,26,0.55)", fontFamily: "Inter, sans-serif" }}>
+          Midashi Min · Telidon · Inter
+        </p>
+      </div>
+    </MockCard>
+
+    {/* Three sub-brands — floating bottom center */}
+    <MockCard
+      delay={0.4}
+      className="hidden sm:block"
+      style={{
+        bottom: "14%",
+        left: "50%",
+        transform: "translateX(-50%)",
+        background: "rgba(255,255,255,0.9)",
+        border: "1px solid rgba(26,26,26,0.08)",
+      }}
+    >
       <div className="px-4 py-3 flex items-center gap-4 md:gap-6">
         {[
           { name: "Garage Sale", em: "by EM", color: "#f074aa" },
-          { name: "Luxe", em: "by EM", color: "#d461c1" },
-          { name: "Mundo", em: "Lujo", color: "#9af5fd" },
+          { name: "Luxe", em: "by EM", color: "#6B2D3E" },
+          { name: "Parisienne", em: "by EM", color: "#1A1A2E" },
         ].map((w, i) => (
           <div key={i} className="flex items-center gap-1.5">
             <div className="w-2 h-2 rounded-full" style={{ background: w.color }} />
-            <p className="text-[9px] md:text-[10px] font-bold text-white/70 leading-tight whitespace-nowrap">
-              {w.name} <span className="italic" style={{ color: w.color }}>{w.em}</span>
+            <p
+              className="text-[9px] md:text-[10px] leading-tight whitespace-nowrap"
+              style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, color: "rgba(26,26,26,0.75)" }}
+            >
+              {w.name}{" "}
+              <span
+                className="italic"
+                style={{ color: w.color, fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+              >
+                {w.em}
+              </span>
             </p>
           </div>
         ))}
       </div>
     </MockCard>
 
-    {/* Editorial portrait card — top right corner — Eleonora (real) */}
-    <MockCard delay={0.5} className="hidden sm:block" style={{ top: "5%", right: "4%", width: "28%", maxWidth: 200, background: "rgba(10,10,10,0.6)", border: "1px solid rgba(240,116,170,0.15)", padding: 0 }}>
-      <div className="relative overflow-hidden rounded-sm" style={{ aspectRatio: "4/5" }}>
-        <img
-          src="/images/brands/eleonora/eleonora-portrait.jpg"
-          alt="Eleonora Morales — editorial portrait"
-          loading="lazy"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: "linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.15) 45%, transparent 70%)",
-        }} />
-        <div className="absolute bottom-2 left-2.5 right-2.5">
-          <p className="text-[7px] tracking-[0.3em] uppercase font-bold" style={{ color: "#f074aa" }}>
-            Eleonora Morales
-          </p>
-          <p className="text-[6px] tracking-[0.2em] uppercase mt-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>
-            Coleccionista
-          </p>
-        </div>
-      </div>
-    </MockCard>
-
-    {/* Pink manifesto card — bottom left, moved to make room for portrait */}
-    <MockCard delay={0.55} className="hidden sm:block" style={{ bottom: "22%", left: "4%", width: "28%", maxWidth: 200, background: "#f074aa", border: "none" }}>
+    {/* Pink manifesto card — bottom left */}
+    <MockCard
+      delay={0.55}
+      className="hidden sm:block"
+      style={{
+        bottom: "22%",
+        left: "4%",
+        width: "28%",
+        maxWidth: 220,
+        background: "#f074aa",
+        border: "none",
+      }}
+    >
       <div className="p-3 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.08]" style={{
-          backgroundImage: "radial-gradient(circle, #000 1.5px, transparent 1.5px)",
-          backgroundSize: "8px 8px",
-        }} />
-        <p className="relative text-[11px] md:text-sm font-bold leading-tight" style={{ color: "rgba(0,0,0,0.85)", letterSpacing: "-0.02em" }}>
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: "radial-gradient(circle, #fff 1.5px, transparent 1.5px)",
+            backgroundSize: "8px 8px",
+          }}
+        />
+        <p
+          className="relative text-[12px] md:text-[14px] leading-[1.15] italic"
+          style={{ color: "#fff", letterSpacing: "-0.01em", fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+        >
           Nada es más sostenible que lo que ya existe.
         </p>
-        <span className="relative block text-[7px] mt-2" style={{
-          color: "rgba(0,0,0,0.35)",
-          textDecorationLine: "underline",
-          textDecorationStyle: "dotted",
-          textDecorationColor: "rgba(0,0,0,0.2)",
-        }}>
+        <span
+          className="relative block text-[7px] mt-2 tracking-[0.15em] uppercase"
+          style={{ color: "rgba(255,255,255,0.65)", fontFamily: "Inter, sans-serif", fontWeight: 500 }}
+        >
           — Eleonora Morales
         </span>
       </div>
     </MockCard>
 
-    {/* Color palette — bottom right */}
-    <MockCard delay={0.55} style={{ bottom: "5%", right: "4%", background: "rgba(10,10,10,0.8)", border: "1px solid rgba(240,116,170,0.08)" }}>
-      <div className="px-3 py-2 flex gap-1.5">
-        {["#f074aa", "#d461c1", "#e587f8", "#9af5fd", "#e5ff21", "#ffa2eb"].map((c, i) => (
-          <div key={i} className="w-5 h-5 md:w-6 md:h-6 rounded-md" style={{ background: c, boxShadow: `0 3px 8px ${c}20` }} />
-        ))}
-      </div>
-    </MockCard>
-
-    {/* Nav mockup — top left corner — hidden xs */}
-    <MockCard delay={0.45} className="hidden sm:block" style={{ top: "5%", left: "4%", background: "rgba(10,10,10,0.8)", border: "1px solid rgba(240,116,170,0.06)" }}>
-      <div className="px-3 py-2 flex items-center gap-3">
-        <span className="text-[8px] font-bold" style={{ color: "#f074aa" }}>EM</span>
-        <div className="flex gap-2">
-          {["Tienda", "Nosotros", "Contacto"].map((t) => (
-            <span key={t} className="text-[6px] md:text-[7px] tracking-[0.1em] uppercase" style={{
-              color: "rgba(255,255,255,0.25)",
-              textDecorationLine: "underline",
-              textDecorationStyle: "dotted",
-              textDecorationColor: "rgba(240,116,170,0.2)",
-            }}>
-              {t}
-            </span>
+    {/* Color palette — bottom right — full EM system */}
+    <MockCard
+      delay={0.55}
+      style={{
+        bottom: "5%",
+        right: "4%",
+        background: "rgba(255,255,255,0.9)",
+        border: "1px solid rgba(26,26,26,0.08)",
+      }}
+    >
+      <div className="px-3 py-2.5 flex flex-col gap-1.5">
+        <p className="text-[6px] tracking-[0.3em] uppercase" style={{ color: "rgba(26,26,26,0.4)", fontFamily: "Inter, sans-serif", fontWeight: 600 }}>
+          Palette
+        </p>
+        <div className="flex gap-1.5">
+          {[
+            "#f074aa", // pink primary
+            "#d461c1", // magenta
+            "#e587f8", // purple
+            "#edbdff", // lavender
+            "#bbecff", // cyan
+            "#e5ff21", // lime
+            "#6B2D3E", // luxe burgundy
+            "#C9A96E", // parisienne gold
+          ].map((c, i) => (
+            <div
+              key={i}
+              className="w-4 h-4 md:w-5 md:h-5 rounded-sm"
+              style={{ background: c, boxShadow: `0 2px 6px ${c}25` }}
+            />
           ))}
         </div>
       </div>
