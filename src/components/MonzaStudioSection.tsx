@@ -205,12 +205,12 @@ const MonzaStudioSection = () => {
             }
           `}</style>
 
-          {/* Capabilities — editorial single-row line, replaces old CapabilitiesSection */}
+          {/* Capabilities — mobile-only summary row; desktop has the full CapabilitiesSection */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.5, ease: EASE }}
-            className="mt-20 md:mt-28 pt-10 md:pt-14"
+            className="md:hidden mt-20 pt-10"
             style={{ borderTop: `1px solid ${isModena ? "rgba(11,11,16,0.08)" : "rgba(255,252,247,0.08)"}` }}
           >
             <p

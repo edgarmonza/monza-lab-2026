@@ -296,10 +296,10 @@ const MockCard = ({ children, delay, className = "", style = {} }: {
   </motion.div>
 );
 
-/* ── Punticos rosados text style (reusable) ── */
+/* ── Punticos rosados text style — exact EM brand manual spec (1.2px dot / 3.5px spacing) ── */
 const pinkDots = {
-  backgroundImage: "radial-gradient(circle, #f074aa 2px, transparent 2px)",
-  backgroundSize: "6px 6px",
+  backgroundImage: "radial-gradient(circle, #f074aa 1.2px, transparent 1.2px)",
+  backgroundSize: "3.5px 3.5px",
   WebkitBackgroundClip: "text" as const,
   WebkitTextFillColor: "transparent" as const,
   backgroundClip: "text" as const,
@@ -343,7 +343,7 @@ const EleonoraBoard = memo(() => (
           style={{
             fontFamily: "'Telidon Italic', 'Times New Roman', serif",
             letterSpacing: "-0.02em",
-            ...pinkDots,
+            color: "#f074aa",
           }}
         >
           Morales
