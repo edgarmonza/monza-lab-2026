@@ -222,10 +222,10 @@ const MonzaStudioSection = () => {
             <ul className="flex flex-wrap items-center gap-x-3 gap-y-2 md:gap-x-5">
               {(() => {
                 const allCaps: Array<{ label: { es: string; en: string; de: string }; mobileHide?: boolean }> = [
-                  { label: { es: "Brand systems", en: "Brand systems", de: "Brand Systems" }, mobileHide: true },
+                  { label: { es: "Brand systems", en: "Brand systems", de: "Brand Systems" } },
                   { label: { es: "Digital experiences", en: "Digital experiences", de: "Digital Experiences" } },
                   { label: { es: "Contenido", en: "Content", de: "Content" }, mobileHide: true },
-                  { label: { es: "Pauta", en: "Ads", de: "Ads" } },
+                  { label: { es: "Pauta", en: "Ads", de: "Ads" }, mobileHide: true },
                   { label: { es: "AI", en: "AI", de: "AI" } },
                 ];
                 const visible = isMobile ? allCaps.filter((c) => !c.mobileHide) : allCaps;
