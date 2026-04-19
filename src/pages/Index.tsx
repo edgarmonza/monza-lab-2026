@@ -2,6 +2,7 @@ import HeroHome from "@/components/HeroHome";
 import ManifestoSection from "@/components/home/ManifestoSection";
 import WorkShowcase from "@/components/WorkShowcase";
 import MonzaStudioSection from "@/components/MonzaStudioSection";
+import CapabilitiesSection from "@/components/CapabilitiesSection";
 
 import AboutEdgarSection from "@/components/AboutEdgarSection";
 import MetodoMonzaSection from "@/components/MetodoMonzaSection";
@@ -31,6 +32,9 @@ const Index = () => {
         <ManifestoSection />
         <WorkShowcase />
         <MonzaStudioSection />
+        <div className="hidden md:block">
+          <CapabilitiesSection />
+        </div>
         <MetodoMonzaSection />
         <AboutEdgarSection />
         <SpeakerTeaser />
