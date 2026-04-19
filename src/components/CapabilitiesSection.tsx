@@ -305,16 +305,21 @@ const pinkDots = {
   backgroundClip: "text" as const,
 };
 
-/* ── Eleonora Morales brand board — Real brand: cream bg, editorial serif italic, pink dotted signature ── */
+/* ── Eleonora Morales brand board — Black bg + REAL brand fonts (Midashi Min, Telidon) ── */
 const EleonoraBoard = memo(() => (
-  <div className="absolute inset-0 overflow-hidden" style={{ background: "#FAF8F5" }}>
-    {/* Subtle pink dot field — signature element */}
-    <div className="absolute inset-0 opacity-[0.05]" style={{
-      backgroundImage: "radial-gradient(circle, #f074aa 1.2px, transparent 1.2px)",
-      backgroundSize: "12px 12px",
+  <div className="absolute inset-0 overflow-hidden" style={{ background: "#0a0a0a" }}>
+    {/* Radial glows — pink atmosphere */}
+    <div className="absolute inset-0" style={{
+      background: "radial-gradient(ellipse at 30% 40%, rgba(240,116,170,0.18) 0%, transparent 55%), radial-gradient(ellipse at 70% 25%, rgba(212,97,193,0.10) 0%, transparent 45%), radial-gradient(ellipse at 55% 75%, rgba(187,236,255,0.06) 0%, transparent 50%), radial-gradient(ellipse at 20% 80%, rgba(229,255,33,0.03) 0%, transparent 40%)",
     }} />
 
-    {/* LEFT SIDE — Hero name stack: "Eleonora" (serif) / "Morales" (italic serif pink) */}
+    {/* Punticos rosados background pattern */}
+    <div className="absolute inset-0 opacity-[0.07]" style={{
+      backgroundImage: "radial-gradient(circle, #f074aa 1.5px, transparent 1.5px)",
+      backgroundSize: "10px 10px",
+    }} />
+
+    {/* LEFT SIDE — Hero name stack: "Eleonora" (Midashi Min) / "Morales" (Telidon Italic pink dotted) */}
     <div className="absolute left-[5%] md:left-[6%] top-[14%] md:top-0 md:bottom-0 flex items-start md:items-center z-10 pointer-events-none">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
@@ -323,21 +328,20 @@ const EleonoraBoard = memo(() => (
         className="flex flex-col"
       >
         <span
-          className="block text-[26px] sm:text-[36px] md:text-[52px] lg:text-[66px] leading-[0.92]"
+          className="block text-[28px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[0.92]"
           style={{
-            fontFamily: "'Cormorant Garamond', 'Times New Roman', serif",
-            fontWeight: 500,
+            fontFamily: "'Midashi Min', 'Times New Roman', serif",
+            fontWeight: 600,
             letterSpacing: "-0.02em",
-            color: "#1a1a1a",
+            color: "#FAF8F5",
           }}
         >
           Eleonora
         </span>
         <span
-          className="block text-[30px] sm:text-[42px] md:text-[58px] lg:text-[74px] italic leading-[0.88]"
+          className="block text-[28px] sm:text-[40px] md:text-[56px] lg:text-[72px] italic leading-[0.88]"
           style={{
-            fontFamily: "'Cormorant Garamond', 'Times New Roman', serif",
-            fontWeight: 400,
+            fontFamily: "'Telidon Italic', 'Times New Roman', serif",
             letterSpacing: "-0.02em",
             ...pinkDots,
           }}
@@ -347,7 +351,11 @@ const EleonoraBoard = memo(() => (
         <div className="mt-3 md:mt-4" style={{ borderBottom: "1px dotted #f074aa", width: 80, opacity: 0.7 }} />
         <p
           className="text-[8px] md:text-[10px] tracking-[0.35em] uppercase mt-2 md:mt-3"
-          style={{ color: "rgba(26,26,26,0.45)", fontFamily: "Inter, sans-serif", fontWeight: 500 }}
+          style={{
+            color: "rgba(240,116,170,0.45)",
+            fontFamily: "'TeX Gyre Heros Cn Bold', 'Arial Narrow', sans-serif",
+            fontWeight: 700,
+          }}
         >
           Coleccionista de belleza
         </p>
@@ -364,34 +372,44 @@ const EleonoraBoard = memo(() => (
       >
         <span
           className="block text-[8px] sm:text-[10px] md:text-[12px] lg:text-[14px] uppercase"
-          style={{ letterSpacing: "0.5em", color: "rgba(26,26,26,0.35)", fontFamily: "Inter, sans-serif", fontWeight: 600 }}
+          style={{
+            letterSpacing: "0.5em",
+            color: "rgba(255,255,255,0.4)",
+            fontFamily: "'TeX Gyre Heros Cn Bold', 'Arial Narrow', sans-serif",
+            fontWeight: 700,
+          }}
         >
           LA
         </span>
         <span
-          className="block text-[28px] sm:text-[40px] md:text-[56px] lg:text-[70px] italic leading-[0.85]"
+          className="block text-[26px] sm:text-[38px] md:text-[54px] lg:text-[68px] leading-[0.85]"
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 400,
+            fontFamily: "'Midashi Min', 'Times New Roman', serif",
+            fontWeight: 600,
             letterSpacing: "-0.02em",
-            color: "#1a1a1a",
+            color: "#FAF8F5",
           }}
         >
           Moda
         </span>
         <span
           className="block text-[7px] sm:text-[9px] md:text-[10px] lg:text-[12px] uppercase"
-          style={{ letterSpacing: "0.4em", color: "rgba(26,26,26,0.3)", fontFamily: "Inter, sans-serif", fontWeight: 600 }}
+          style={{
+            letterSpacing: "0.4em",
+            color: "rgba(255,255,255,0.35)",
+            fontFamily: "'TeX Gyre Heros Cn Bold', 'Arial Narrow', sans-serif",
+            fontWeight: 700,
+          }}
         >
           ES
         </span>
         <span
-          className="block text-[32px] sm:text-[44px] md:text-[62px] lg:text-[78px] italic leading-[0.85]"
+          className="block text-[30px] sm:text-[42px] md:text-[60px] lg:text-[76px] italic leading-[0.85]"
           style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontWeight: 500,
+            fontFamily: "'Telidon Italic', 'Times New Roman', serif",
             letterSpacing: "-0.03em",
             ...pinkDots,
+            backgroundImage: "radial-gradient(circle, #d461c1 2px, transparent 2px)",
           }}
         >
           Magia
@@ -399,27 +417,29 @@ const EleonoraBoard = memo(() => (
       </motion.div>
     </div>
 
-    {/* Nav mockup — top left corner — cream aesthetic */}
+    {/* Nav mockup — top left */}
     <MockCard
       delay={0.45}
       className="hidden sm:block"
-      style={{
-        top: "5%",
-        left: "4%",
-        background: "rgba(255,255,255,0.85)",
-        border: "1px solid rgba(26,26,26,0.08)",
-      }}
+      style={{ top: "5%", left: "4%", background: "rgba(10,10,10,0.8)", border: "1px solid rgba(240,116,170,0.1)" }}
     >
       <div className="px-3 py-2 flex items-center gap-3">
-        <span className="text-[9px] tracking-[0.15em] uppercase" style={{ color: "#1a1a1a", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 500 }}>
-          Eleonora <span style={{ color: "#f074aa" }}>Morales</span>
+        <span
+          className="text-[10px]"
+          style={{ color: "#FAF8F5", fontFamily: "'Midashi Min', serif", fontWeight: 600 }}
+        >
+          Eleonora <span style={{ color: "#f074aa", fontFamily: "'Telidon Italic', serif", fontStyle: "italic" }}>Morales</span>
         </span>
         <div className="flex gap-2.5">
           {["Tienda", "Nosotros", "Contacto"].map((t) => (
             <span
               key={t}
-              className="text-[7px] md:text-[8px] tracking-[0.15em] uppercase"
-              style={{ color: "rgba(26,26,26,0.45)", fontFamily: "Inter, sans-serif", fontWeight: 500 }}
+              className="text-[6px] md:text-[7px] tracking-[0.2em] uppercase"
+              style={{
+                color: "rgba(255,255,255,0.35)",
+                fontFamily: "'TeX Gyre Heros Cn Bold', sans-serif",
+                fontWeight: 700,
+              }}
             >
               {t}
             </span>
@@ -428,7 +448,7 @@ const EleonoraBoard = memo(() => (
       </div>
     </MockCard>
 
-    {/* Typography card — top right (replaces portrait) */}
+    {/* Typography specimen — top right (replaces portrait) */}
     <MockCard
       delay={0.5}
       className="hidden sm:block"
@@ -437,19 +457,34 @@ const EleonoraBoard = memo(() => (
         right: "4%",
         width: "26%",
         maxWidth: 200,
-        background: "rgba(255,255,255,0.85)",
-        border: "1px solid rgba(26,26,26,0.08)",
+        background: "rgba(10,10,10,0.7)",
+        border: "1px solid rgba(240,116,170,0.15)",
       }}
     >
       <div className="px-3 py-3">
-        <p className="text-[6px] tracking-[0.3em] uppercase mb-2" style={{ color: "rgba(26,26,26,0.4)", fontFamily: "Inter, sans-serif", fontWeight: 600 }}>
+        <p
+          className="text-[6px] tracking-[0.3em] uppercase mb-2"
+          style={{ color: "rgba(240,116,170,0.55)", fontFamily: "'TeX Gyre Heros Cn Bold', sans-serif", fontWeight: 700 }}
+        >
           Typography
         </p>
-        <p className="text-[18px] leading-[0.95]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 500, color: "#1a1a1a" }}>
-          Aa <span className="italic">Bb</span>
+        <p
+          className="text-[22px] leading-[0.9]"
+          style={{ fontFamily: "'Midashi Min', serif", fontWeight: 600, color: "#FAF8F5" }}
+        >
+          Aa{" "}
+          <span
+            className="italic"
+            style={{ fontFamily: "'Telidon Italic', serif", color: "#f074aa" }}
+          >
+            Bb
+          </span>
         </p>
-        <p className="text-[7px] mt-2" style={{ color: "rgba(26,26,26,0.55)", fontFamily: "Inter, sans-serif" }}>
-          Midashi Min · Telidon · Inter
+        <p
+          className="text-[7px] mt-2 tracking-[0.15em] uppercase"
+          style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'TeX Gyre Heros Cn Bold', sans-serif", fontWeight: 700 }}
+        >
+          Midashi · Telidon · Heros
         </p>
       </div>
     </MockCard>
@@ -462,26 +497,26 @@ const EleonoraBoard = memo(() => (
         bottom: "14%",
         left: "50%",
         transform: "translateX(-50%)",
-        background: "rgba(255,255,255,0.9)",
-        border: "1px solid rgba(26,26,26,0.08)",
+        background: "rgba(10,10,10,0.85)",
+        border: "1px solid rgba(240,116,170,0.1)",
       }}
     >
       <div className="px-4 py-3 flex items-center gap-4 md:gap-6">
         {[
           { name: "Garage Sale", em: "by EM", color: "#f074aa" },
-          { name: "Luxe", em: "by EM", color: "#6B2D3E" },
-          { name: "Parisienne", em: "by EM", color: "#1A1A2E" },
+          { name: "Luxe", em: "by EM", color: "#8B3A4A" },
+          { name: "Parisienne", em: "by EM", color: "#C9A96E" },
         ].map((w, i) => (
           <div key={i} className="flex items-center gap-1.5">
             <div className="w-2 h-2 rounded-full" style={{ background: w.color }} />
             <p
               className="text-[9px] md:text-[10px] leading-tight whitespace-nowrap"
-              style={{ fontFamily: "Inter, sans-serif", fontWeight: 600, color: "rgba(26,26,26,0.75)" }}
+              style={{ fontFamily: "'TeX Gyre Heros Cn Bold', sans-serif", fontWeight: 700, color: "rgba(255,255,255,0.75)" }}
             >
               {w.name}{" "}
               <span
                 className="italic"
-                style={{ color: w.color, fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+                style={{ color: w.color, fontFamily: "'Telidon Italic', serif", fontWeight: 400 }}
               >
                 {w.em}
               </span>
@@ -508,19 +543,28 @@ const EleonoraBoard = memo(() => (
         <div
           className="absolute inset-0 opacity-[0.08]"
           style={{
-            backgroundImage: "radial-gradient(circle, #fff 1.5px, transparent 1.5px)",
+            backgroundImage: "radial-gradient(circle, #000 1.5px, transparent 1.5px)",
             backgroundSize: "8px 8px",
           }}
         />
         <p
-          className="relative text-[12px] md:text-[14px] leading-[1.15] italic"
-          style={{ color: "#fff", letterSpacing: "-0.01em", fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+          className="relative text-[12px] md:text-[15px] leading-[1.1]"
+          style={{
+            color: "rgba(0,0,0,0.9)",
+            letterSpacing: "-0.01em",
+            fontFamily: "'Midashi Min', serif",
+            fontWeight: 600,
+          }}
         >
           Nada es más sostenible que lo que ya existe.
         </p>
         <span
-          className="relative block text-[7px] mt-2 tracking-[0.15em] uppercase"
-          style={{ color: "rgba(255,255,255,0.65)", fontFamily: "Inter, sans-serif", fontWeight: 500 }}
+          className="relative block text-[7px] mt-2 tracking-[0.2em] uppercase"
+          style={{
+            color: "rgba(0,0,0,0.5)",
+            fontFamily: "'TeX Gyre Heros Cn Bold', sans-serif",
+            fontWeight: 700,
+          }}
         >
           — Eleonora Morales
         </span>
@@ -533,12 +577,15 @@ const EleonoraBoard = memo(() => (
       style={{
         bottom: "5%",
         right: "4%",
-        background: "rgba(255,255,255,0.9)",
-        border: "1px solid rgba(26,26,26,0.08)",
+        background: "rgba(10,10,10,0.8)",
+        border: "1px solid rgba(240,116,170,0.08)",
       }}
     >
       <div className="px-3 py-2.5 flex flex-col gap-1.5">
-        <p className="text-[6px] tracking-[0.3em] uppercase" style={{ color: "rgba(26,26,26,0.4)", fontFamily: "Inter, sans-serif", fontWeight: 600 }}>
+        <p
+          className="text-[6px] tracking-[0.3em] uppercase"
+          style={{ color: "rgba(240,116,170,0.5)", fontFamily: "'TeX Gyre Heros Cn Bold', sans-serif", fontWeight: 700 }}
+        >
           Palette
         </p>
         <div className="flex gap-1.5">

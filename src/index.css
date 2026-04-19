@@ -1,5 +1,31 @@
 @tailwind base;
 
+/* ── Eleonora Morales brand fonts (used in Brand Systems board) ── */
+@font-face {
+  font-family: "Midashi Min";
+  src: url("/fonts/eleonora/midashi-min.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 500 700;
+}
+@font-face {
+  font-family: "Telidon Bold";
+  src: url("/fonts/eleonora/telidon-bold.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Telidon Italic";
+  src: url("/fonts/eleonora/telidon-italic.woff2") format("woff2");
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "TeX Gyre Heros Cn Bold";
+  src: url("/fonts/eleonora/texgyre-heros-cn-bold.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 700;
+}
+
 /* Hide scrollbar utility */
 .scrollbar-hide {
   -ms-overflow-style: none;
