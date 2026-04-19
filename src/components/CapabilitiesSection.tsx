@@ -395,12 +395,12 @@ const EleonoraBoard = memo(() => (
       </div>
     </MockCard>
 
-    {/* Editorial portrait card — top right corner — Eleonora con casco */}
+    {/* Editorial portrait card — top right corner — Eleonora (real) */}
     <MockCard delay={0.5} className="hidden sm:block" style={{ top: "5%", right: "4%", width: "28%", maxWidth: 200, background: "rgba(10,10,10,0.6)", border: "1px solid rgba(240,116,170,0.15)", padding: 0 }}>
       <div className="relative overflow-hidden rounded-sm" style={{ aspectRatio: "4/5" }}>
         <img
-          src="/images/brands/eleonora/casco.jpg"
-          alt="Eleonora Morales — portrait with gold helmet"
+          src="/images/brands/eleonora/eleonora-portrait.jpg"
+          alt="Eleonora Morales — editorial portrait"
           loading="lazy"
           className="w-full h-full object-cover"
         />
