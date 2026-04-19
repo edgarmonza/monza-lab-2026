@@ -33,6 +33,39 @@ const LazyVideo = ({ src, className }: { src: string; className?: string }) => {
   );
 };
 
+/* ── Story text with auto-linked team member names ── */
+const renderStoryWithLinks = (
+  text: string,
+  teamLinks: Array<{ name: string; url: string }> | undefined,
+  accentColor: string,
+): React.ReactNode => {
+  if (!teamLinks || teamLinks.length === 0) return text;
+
+  // Escape regex specials so names with punctuation still match
+  const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(`(${teamLinks.map((t) => escape(t.name)).join("|")})`, "g");
+  const byName = new Map(teamLinks.map((t) => [t.name, t.url]));
+
+  return text.split(pattern).map((chunk, i) => {
+    const url = byName.get(chunk);
+    if (!url) return <span key={i}>{chunk}</span>;
+    return (
+      <a
+        key={i}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline underline-offset-[6px] decoration-[1.5px] transition-colors duration-300"
+        style={{ color: accentColor, textDecorationColor: `${accentColor}55` }}
+        onMouseEnter={(e) => (e.currentTarget.style.textDecorationColor = accentColor)}
+        onMouseLeave={(e) => (e.currentTarget.style.textDecorationColor = `${accentColor}55`)}
+      >
+        {chunk}
+      </a>
+    );
+  });
+};
+
 /* ── Section wrapper ── */
 const Section = ({ children, id, className = "" }: { children: React.ReactNode; id?: string; className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -264,7 +297,7 @@ const ProjectPage = () => {
                   className="font-clash text-lg md:text-xl lg:text-2xl font-semibold leading-[1.4]"
                   style={{ color: textMain }}
                 >
-                  {t(cs.story)}
+                  {renderStoryWithLinks(t(cs.story), cs.teamLinks, accent)}
                 </p>
               </div>
               <div className="flex flex-col justify-center">

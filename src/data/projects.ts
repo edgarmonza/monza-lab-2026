@@ -39,6 +39,8 @@ export type Project = {
     story: LangText;
     pillars: Layer[];
     press: PressLink[];
+    /** Names to auto-link inside story text (LinkedIn, website, etc.) */
+    teamLinks?: Array<{ name: string; url: string }>;
   };
   gallery?: string[];
   gridClass: string;
@@ -322,6 +324,10 @@ export const PROJECTS: Project[] = [
         { label: "Network", detail: { es: "Data compartida para el ecosistema, expansión multi-país", en: "Shared ecosystem data, multi-country expansion", de: "Geteilte Ökosystem-Daten, Multi-Country-Expansion" } },
       ],
       press: [],
+      teamLinks: [
+        { name: "Guillermo Jaramillo", url: "https://www.linkedin.com/in/guillermojaramillo/" },
+        { name: "Giovanni Stella", url: "https://www.linkedin.com/in/giovanni-stella/?locale=en" },
+      ],
     },
     gallery: [],
     gridClass: "md:col-span-1 md:row-span-1",
