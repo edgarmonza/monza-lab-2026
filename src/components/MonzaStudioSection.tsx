@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useTheme } from "@/theme/ThemeContext";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -53,6 +54,7 @@ const MonzaStudioSection = () => {
   const { theme } = useTheme();
   const isModena = theme === "modena";
   const { language } = useLanguage();
+  const isMobile = useIsMobile();
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -218,31 +220,35 @@ const MonzaStudioSection = () => {
               Capabilities
             </p>
             <ul className="flex flex-wrap items-center gap-x-3 gap-y-2 md:gap-x-5">
-              {[
-                { es: "Brand systems", en: "Brand systems", de: "Brand Systems" },
-                { es: "Digital experiences", en: "Digital experiences", de: "Digital Experiences" },
-                { es: "Contenido", en: "Content", de: "Content" },
-                { es: "Pauta", en: "Ads", de: "Ads" },
-                { es: "AI", en: "AI", de: "AI" },
-              ].map((cap, i, arr) => (
-                <li key={i} className="flex items-center gap-3 md:gap-5">
-                  <span
-                    className="font-clash text-[12px] md:text-[16px] lg:text-[20px] font-bold tracking-[-0.02em]"
-                    style={{ color: textPrimary }}
-                  >
-                    {cap[language]}
-                  </span>
-                  {i < arr.length - 1 && (
+              {(() => {
+                const allCaps: Array<{ label: { es: string; en: string; de: string }; mobileHide?: boolean }> = [
+                  { label: { es: "Brand systems", en: "Brand systems", de: "Brand Systems" }, mobileHide: true },
+                  { label: { es: "Digital experiences", en: "Digital experiences", de: "Digital Experiences" } },
+                  { label: { es: "Contenido", en: "Content", de: "Content" }, mobileHide: true },
+                  { label: { es: "Pauta", en: "Ads", de: "Ads" } },
+                  { label: { es: "AI", en: "AI", de: "AI" } },
+                ];
+                const visible = isMobile ? allCaps.filter((c) => !c.mobileHide) : allCaps;
+                return visible.map((cap, i, arr) => (
+                  <li key={cap.label.en} className="flex items-center gap-3 md:gap-5">
                     <span
-                      className="font-clash text-[12px] md:text-[16px] lg:text-[20px] font-bold select-none"
-                      style={{ color: "rgba(248,180,217,0.85)" }}
-                      aria-hidden="true"
+                      className="font-clash text-[12px] md:text-[16px] lg:text-[20px] font-bold tracking-[-0.02em]"
+                      style={{ color: textPrimary }}
                     >
-                      ·
+                      {cap.label[language]}
                     </span>
-                  )}
-                </li>
-              ))}
+                    {i < arr.length - 1 && (
+                      <span
+                        className="font-clash text-[12px] md:text-[16px] lg:text-[20px] font-bold select-none"
+                        style={{ color: "rgba(248,180,217,0.85)" }}
+                        aria-hidden="true"
+                      >
+                        ·
+                      </span>
+                    )}
+                  </li>
+                ));
+              })()}
             </ul>
           </motion.div>
         </div>
