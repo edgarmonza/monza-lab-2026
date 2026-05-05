@@ -10,7 +10,7 @@ const content = {
   headline: {
     es: "Construyamos.",
     en: "Let's build.",
-    de: "Lass uns bauen.",
+    de: "Lass uns bauen.", pt: "Construyamos.",
   },
   email: "edgar@monzalab.com",
 };

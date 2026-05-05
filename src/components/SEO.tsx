@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
 import { useLanguage } from "@/i18n/LanguageContext";
 
-export type TrilingualText = { es: string; en: string; de: string };
+export type TrilingualText = { es: string; en: string; de: string; pt: string };
 
 type SEOProps = {
   title: TrilingualText;
@@ -23,9 +23,10 @@ const LOCALE_MAP = {
   es: "es_ES",
   en: "en_US",
   de: "de_DE",
+  pt: "pt_PT",
 } as const;
 
-const buildUrl = (lang: "es" | "en" | "de", path: string) => {
+const buildUrl = (lang: "es" | "en" | "de" | "pt", path: string) => {
   const prefix = lang === "es" ? "" : `/${lang}`;
   const cleanPath = path === "/" ? "" : path;
   return `${SITE_URL}${prefix}${cleanPath}`;
@@ -41,10 +42,11 @@ const SEO = ({ title, description, path = "", image, type = "website", jsonLd, n
     ? (image.startsWith("http") ? image : `${SITE_URL}${image}`)
     : `${SITE_URL}/og-image.png`;
 
-  const hreflangs: Array<{ lang: "es" | "en" | "de"; url: string }> = [
+  const hreflangs: Array<{ lang: "es" | "en" | "de" | "pt"; url: string }> = [
     { lang: "es", url: buildUrl("es", path) },
     { lang: "en", url: buildUrl("en", path) },
     { lang: "de", url: buildUrl("de", path) },
+    { lang: "pt", url: buildUrl("pt", path) },
   ];
 
   return (

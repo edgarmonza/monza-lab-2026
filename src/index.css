@@ -300,6 +300,30 @@ All colors MUST be HSL.
     }
   }
 
+  /* Mobile UX — kill iOS tap flash + enable instant tap response */
+  a, button, [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Smooth momentum scrolling on iOS */
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+
+  /* Honor reduced motion preferences — accessibility + battery */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* Accessibility — visible focus indicator (WCAG 2.4.7) */
   *:focus {
     outline: none;

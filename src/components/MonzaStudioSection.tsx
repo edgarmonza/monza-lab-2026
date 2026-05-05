@@ -39,13 +39,13 @@ const IMAGES: StudioImage[] = [
 const eyebrowContent = {
   es: "MONZA STUDIO",
   en: "MONZA STUDIO",
-  de: "MONZA STUDIO",
+  de: "MONZA STUDIO", pt: "MONZA STUDIO",
 };
 
 const taglineContent = {
   es: "Fashion. Automotive. Obsesión.",
   en: "Fashion. Automotive. Obsession.",
-  de: "Fashion. Automotive. Obsession.",
+  de: "Fashion. Automotive. Obsession.", pt: "Fashion. Automotive. Obsesión.",
 };
 
 const MonzaStudioSection = () => {
@@ -222,11 +222,11 @@ const MonzaStudioSection = () => {
             <ul className="flex flex-wrap items-center gap-x-3 gap-y-2 md:gap-x-5">
               {(() => {
                 const allCaps: Array<{ label: { es: string; en: string; de: string }; mobileHide?: boolean }> = [
-                  { label: { es: "Brand systems", en: "Brand systems", de: "Brand Systems" } },
-                  { label: { es: "Digital experiences", en: "Digital experiences", de: "Digital Experiences" } },
-                  { label: { es: "Contenido", en: "Content", de: "Content" }, mobileHide: true },
-                  { label: { es: "Pauta", en: "Ads", de: "Ads" }, mobileHide: true },
-                  { label: { es: "AI", en: "AI", de: "AI" } },
+                  { label: { es: "Brand systems", en: "Brand systems", de: "Brand Systems", pt: "Brand systems" } },
+                  { label: { es: "Digital experiences", en: "Digital experiences", de: "Digital Experiences", pt: "Digital experiences" } },
+                  { label: { es: "Contenido", en: "Content", de: "Content", pt: "Contenido" }, mobileHide: true },
+                  { label: { es: "Pauta", en: "Ads", de: "Ads", pt: "Pauta" }, mobileHide: true },
+                  { label: { es: "AI", en: "AI", de: "AI", pt: "AI" } },
                 ];
                 const visible = isMobile ? allCaps.filter((c) => !c.mobileHide) : allCaps;
                 return visible.map((cap, i, arr) => (

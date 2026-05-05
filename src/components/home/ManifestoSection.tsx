@@ -17,6 +17,7 @@ const LINES: Line[] = [
       es: "Construyo empresas solo.",
       en: "I build companies alone.",
       de: "Ich baue Unternehmen allein.",
+      pt: "Construo empresas sozinho.",
     },
     opacity: 0.85,
     size: "lg",
@@ -26,6 +27,7 @@ const LINES: Line[] = [
       es: "Desde el modelo de negocio hasta el código.",
       en: "From the business model to the code.",
       de: "Vom Geschäftsmodell bis zum Code.",
+      pt: "Do modelo de negócio até ao código.",
     },
     opacity: 0.45,
     size: "md",
@@ -35,6 +37,7 @@ const LINES: Line[] = [
       es: "Desde la marca hasta cada pieza de contenido.",
       en: "From the brand to every piece of content.",
       de: "Von der Marke bis zu jedem Stück Content.",
+      pt: "Da marca até cada peça de conteúdo.",
     },
     opacity: 0.45,
     size: "md",
@@ -44,6 +47,7 @@ const LINES: Line[] = [
       es: "Una marca de autos. Una plataforma de coleccionistas. Una marca de ropa — sin inventario.",
       en: "A car brand. A collector platform. A fashion label — no inventory.",
       de: "Eine Automarke. Eine Sammlerplattform. Ein Modelabel — kein Inventar.",
+      pt: "Uma marca de carros. Uma plataforma de colecionadores. Uma marca de moda — sem inventário.",
     },
     opacity: 0.30,
     size: "sm",
@@ -53,10 +57,11 @@ const LINES: Line[] = [
       es: "Una persona. Full-stack. Con ",
       en: "One person. Full-stack. With ",
       de: "Eine Person. Full-stack. Mit ",
+      pt: "Uma pessoa. Full-stack. Com ",
     },
     opacity: 0.85,
     size: "lg",
-    accent: { es: "criterio", en: "criteria", de: "Kriterien" },
+    accent: { es: "criterio", en: "criteria", de: "Kriterien", pt: "critério" },
   },
 ];
 
@@ -85,7 +90,7 @@ const ManifestoSection = () => {
           transition={{ duration: 0.8, ease: EASE }}
           className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase text-[#F8B4D9]/40 font-medium mb-14 md:mb-20"
         >
-          {{ es: "LA TESIS", en: "THE THESIS", de: "DIE THESE" }[language]}
+          {{ es: "LA TESIS", en: "THE THESIS", de: "DIE THESE", pt: "LA TESIS" }[language]}
         </motion.p>
 
         {/* Manifesto lines */}

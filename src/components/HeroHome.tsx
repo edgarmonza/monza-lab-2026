@@ -53,8 +53,8 @@ const HeroHome = () => {
   const { language } = useLanguage();
 
   const content = {
-    touchHint: { es: 'Touch to reveal', en: 'Touch to reveal', de: 'Berühre zum Enthüllen' },
-    cta: { es: 'Ver el trabajo', en: 'See the work', de: 'Arbeit ansehen' },
+    touchHint: { es: 'Touch to reveal', en: 'Touch to reveal', de: 'Berühre zum Enthüllen', pt: 'Touch to reveal' },
+    cta: { es: 'Ver los ventures', en: 'See the ventures', de: 'Ventures ansehen', pt: 'Ver los ventures' },
   };
 
   const themeRef = useRef(theme);
@@ -277,6 +277,13 @@ const HeroHome = () => {
       { text: mobile ? "COMPANY BUILDER" : "END-TO-END COMPANY BUILDER" },
       { text: "BUILT WITH CRITERIA" },
     ],
+    pt: [
+      { text: mobile ? "I BUILD COMPANIES." : "I BUILD COMPANIES. ALONE." },
+      { text: "BRAND · CODE · CONTENT" },
+      { text: mobile ? "ONE-MAN STUDIO." : "ONE-MAN STUDIO. GLOBAL OUTPUT." },
+      { text: mobile ? "COMPANY BUILDER" : "END-TO-END COMPANY BUILDER" },
+      { text: "BUILT WITH CRITERIA" },
+    ],
   };
 
   const sectionBg    = isModena ? "#F5F0EB" : "#0B0B10";
@@ -461,7 +468,7 @@ const HeroHome = () => {
         className="absolute bottom-8 md:bottom-12 left-0 right-0 z-10 flex justify-center pointer-events-auto"
       >
         <a
-          href="#work"
+          href="#ventures"
           className="group inline-flex items-center gap-3 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase transition-colors duration-300"
           style={{ color: ctaColor }}
           onMouseEnter={e => (e.currentTarget.style.color = "#F8B4D9")}

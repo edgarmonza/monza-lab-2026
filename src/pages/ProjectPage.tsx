@@ -206,7 +206,7 @@ const ProjectPage = () => {
             onMouseLeave={(e) => (e.currentTarget.style.color = textMid)}
           >
             <span className="text-lg leading-none">←</span>
-            {{ es: "Volver", en: "Back", de: "Zurück" }[language]}
+            {{ es: "Volver", en: "Back", de: "Zurück", pt: "Volver" }[language]}
           </button>
         </motion.div>
 
@@ -249,11 +249,11 @@ const ProjectPage = () => {
         >
           <div className="mx-auto max-w-[1200px] px-6 md:px-16 flex flex-wrap gap-8 md:gap-16">
             {[
-              { label: { es: "Rol", en: "Role", de: "Rolle" }, value: cs.role },
-              { label: { es: "Ubicación", en: "Location", de: "Standort" }, value: cs.location },
-              { label: { es: "Año", en: "Year", de: "Jahr" }, value: cs.year },
+              { label: { es: "Rol", en: "Role", de: "Rolle", pt: "Rol" }, value: cs.role },
+              { label: { es: "Ubicación", en: "Location", de: "Standort", pt: "Ubicación" }, value: cs.location },
+              { label: { es: "Año", en: "Year", de: "Jahr", pt: "Año" }, value: cs.year },
               ...(project.url
-                ? [{ label: { es: "Sitio", en: "Site", de: "Seite" }, value: "__link__" }]
+                ? [{ label: { es: "Sitio", en: "Site", de: "Seite", pt: "Sitio" }, value: "__link__" }]
                 : []),
             ].map((stat) => (
               <div key={t(stat.label as LangText)}>
@@ -291,7 +291,7 @@ const ProjectPage = () => {
                   className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-6"
                   style={{ color: `${accent}70` }}
                 >
-                  {{ es: "LA HISTORIA", en: "THE STORY", de: "DIE GESCHICHTE" }[language]}
+                  {{ es: "LA HISTORIA", en: "THE STORY", de: "DIE GESCHICHTE", pt: "LA HISTORIA" }[language]}
                 </p>
                 <p
                   className="font-clash text-lg md:text-xl lg:text-2xl font-semibold leading-[1.4]"
@@ -315,10 +315,37 @@ const ProjectPage = () => {
                     className="mt-6 inline-flex items-center gap-2 font-clash text-xs tracking-[0.2em] uppercase font-medium transition-colors duration-300"
                     style={{ color: accent }}
                   >
-                    {{ es: "Ver sitio", en: "Visit site", de: "Seite besuchen" }[language]} <span>↗</span>
+                    {{ es: "Ver sitio", en: "Visit site", de: "Seite besuchen", pt: "Ver sitio" }[language]} <span>↗</span>
                   </a>
                 )}
               </div>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      {/* ── REEL / VIDEO (post-story) ── */}
+      {project.video && (
+        <Section>
+          <div className="mx-auto max-w-[1200px] px-6 md:px-16">
+            <p
+              className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-6 md:mb-8"
+              style={{ color: `${accent}70` }}
+            >
+              {{ es: "EL REEL", en: "THE REEL", de: "DER REEL", pt: "EL REEL" }[language]}
+            </p>
+            <div
+              className="relative w-full rounded-2xl overflow-hidden aspect-video"
+              style={{
+                border: `1px solid ${accent}33`,
+                boxShadow: `0 30px 80px -30px ${accent}40`,
+                background: "rgba(0,0,0,0.4)",
+              }}
+            >
+              <LazyVideo
+                src={project.video}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </Section>
@@ -332,7 +359,7 @@ const ProjectPage = () => {
               className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-10 md:mb-14"
               style={{ color: `${accent}70` }}
             >
-              {{ es: "LO QUE CONSTRUÍ", en: "WHAT I BUILT", de: "WAS ICH GEBAUT HABE" }[language]}
+              {{ es: "LO QUE CONSTRUÍ", en: "WHAT I BUILT", de: "WAS ICH GEBAUT HABE", pt: "LO QUE CONSTRUÍ" }[language]}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {cs.pillars.map((pillar, i) => (
@@ -372,7 +399,7 @@ const ProjectPage = () => {
               className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-10 md:mb-14"
               style={{ color: `${accent}70` }}
             >
-              {{ es: "EL OUTPUT", en: "THE OUTPUT", de: "DAS ERGEBNIS" }[language]}
+              {{ es: "EL OUTPUT", en: "THE OUTPUT", de: "DAS ERGEBNIS", pt: "EL OUTPUT" }[language]}
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {project.gallery.map((img, i) => (
@@ -438,7 +465,7 @@ const ProjectPage = () => {
             className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-6"
             style={{ color: textDim }}
           >
-            {{ es: "SIGUIENTE PROYECTO", en: "NEXT PROJECT", de: "NÄCHSTES PROJEKT" }[language]}
+            {{ es: "SIGUIENTE PROYECTO", en: "NEXT PROJECT", de: "NÄCHSTES PROJEKT", pt: "SIGUIENTE PROYECTO" }[language]}
           </p>
           <Link
             to={`${langPrefix}/work/${nextProject.slug}`}

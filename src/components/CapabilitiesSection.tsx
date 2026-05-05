@@ -50,35 +50,35 @@ type Capability = {
 const CAPABILITIES: Capability[] = [
   {
     id: "brand-systems",
-    shortLabel: { es: "Brand Systems", en: "Brand Systems", de: "Brand Systems" },
-    label: { es: "Sistemas de marca completos", en: "Complete brand systems", de: "Komplette Markensysteme" },
+    shortLabel: { es: "Brand Systems", en: "Brand Systems", de: "Brand Systems", pt: "Brand Systems" },
+    label: { es: "Sistemas de marca completos", en: "Complete brand systems", de: "Komplette Markensysteme", pt: "Sistemas de marca completos" },
     desc: {
       es: "Manual de marca, paleta, tipografía, logo, aplicaciones, voz — entregados como sistema interactivo, no un PDF estático. Listos en días, no meses.",
       en: "Brand manual, palette, typography, logo, applications, voice — delivered as an interactive system, not a static PDF. Ready in days, not months.",
-      de: "Markenhandbuch, Palette, Typografie, Logo, Anwendungen, Stimme — als interaktives System geliefert, nicht als statisches PDF. Fertig in Tagen, nicht Monaten.",
+      de: "Markenhandbuch, Palette, Typografie, Logo, Anwendungen, Stimme — als interaktives System geliefert, nicht als statisches PDF. Fertig in Tagen, nicht Monaten.", pt: "Manual de marca, paleta, tipografía, logo, aplicaciones, voz — entregados como sistema interactivo, no un PDF estático. Listos en días, no meses.",
     },
     type: "brands",
     brands: [
       {
         name: "ELEONORA MORALES",
-        subtitle: { es: "Coleccionista de belleza · Moda circular & lujo", en: "Beauty collector · Circular fashion & luxury", de: "Beauty-Sammlerin · Circular Fashion & Luxus" },
+        subtitle: { es: "Coleccionista de belleza · Moda circular & lujo", en: "Beauty collector · Circular fashion & luxury", de: "Beauty-Sammlerin · Circular Fashion & Luxus", pt: "Coleccionista de belleza · Moda circular & lujo" },
         colors: ["#f074aa", "#d461c1", "#9af5fd", "#e5ff21"],
         font: "Midashi Min",
-        tagline: { es: "Nada es más sostenible que lo que ya existe.", en: "Nothing is more sustainable than what already exists.", de: "Nichts ist nachhaltiger als das, was bereits existiert." },
+        tagline: { es: "Nada es más sostenible que lo que ya existe.", en: "Nothing is more sustainable than what already exists.", de: "Nichts ist nachhaltiger als das, was bereits existiert.", pt: "Nada es más sostenible que lo que ya existe." },
       },
       {
         name: "MUSGO",
-        subtitle: { es: "Juanita López · Transiciones regenerativas", en: "Juanita López · Regenerative transitions", de: "Juanita López · Regenerative Übergänge" },
+        subtitle: { es: "Juanita López · Transiciones regenerativas", en: "Juanita López · Regenerative transitions", de: "Juanita López · Regenerative Übergänge", pt: "Juanita López · Transiciones regenerativas" },
         colors: ["#689b61", "#7fb878", "#0f0f0f", "#eeeeee"],
         font: "Bebas Neue",
-        tagline: { es: "Regenera sin imponer.", en: "Regenerate without imposing.", de: "Regenerieren ohne aufzuzwingen." },
+        tagline: { es: "Regenera sin imponer.", en: "Regenerate without imposing.", de: "Regenerieren ohne aufzuzwingen.", pt: "Regenera sin imponer." },
       },
       {
         name: "SAMUEL CORDERO",
-        subtitle: { es: "El Estratega · Reestructuración empresarial", en: "The Strategist · Business restructuring", de: "Der Stratege · Unternehmensrestrukturierung" },
+        subtitle: { es: "El Estratega · Reestructuración empresarial", en: "The Strategist · Business restructuring", de: "Der Stratege · Unternehmensrestrukturierung", pt: "El Estratega · Reestructuración empresarial" },
         colors: ["#E3342F", "#FFDA00", "#006CB7", "#00852B"],
         font: "Space Grotesk",
-        tagline: { es: "Sistemas, no motivación.", en: "Systems, not motivation.", de: "Systeme, nicht Motivation." },
+        tagline: { es: "Sistemas, no motivación.", en: "Systems, not motivation.", de: "Systeme, nicht Motivation.", pt: "Sistemas, no motivación." },
       },
     ],
     accent: "#F8B4D9",
@@ -86,12 +86,12 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "digital-branding",
-    shortLabel: { es: "Digital Branding", en: "Digital Branding", de: "Digital Branding" },
-    label: { es: "Branding digital — marcas que cobran vida", en: "Digital branding — brands that come alive", de: "Digital Branding — Marken, die lebendig werden" },
+    shortLabel: { es: "Digital Branding", en: "Digital Branding", de: "Digital Branding", pt: "Digital Branding" },
+    label: { es: "Branding digital — marcas que cobran vida", en: "Digital branding — brands that come alive", de: "Digital Branding — Marken, die lebendig werden", pt: "Branding digital — marcas que cobran vida" },
     desc: {
       es: "Logos animados, identidad visual en web, sistemas interactivos. Tu marca no es un archivo — es una experiencia que vive en cada pantalla.",
       en: "Animated logos, visual identity on web, interactive systems. Your brand isn't a file — it's an experience that lives on every screen.",
-      de: "Animierte Logos, visuelle Identität im Web, interaktive Systeme. Deine Marke ist keine Datei — sie ist ein Erlebnis auf jedem Bildschirm.",
+      de: "Animierte Logos, visuelle Identität im Web, interaktive Systeme. Deine Marke ist keine Datei — sie ist ein Erlebnis auf jedem Bildschirm.", pt: "Logos animados, identidad visual en web, sistemas interactivos. Tu marca no es un archivo — es una experiencia que vive en cada pantalla.",
     },
     type: "video",
     video: "/videos/monza-reel-beat-synced.mp4",
@@ -100,30 +100,30 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "experiencias",
-    shortLabel: { es: "Experiencias Digitales", en: "Digital Experiences", de: "Digitale Erlebnisse" },
-    label: { es: "No hago websites — creo experiencias digitales", en: "I don't make websites — I create digital experiences", de: "Ich mache keine Websites — ich kreiere digitale Erlebnisse" },
+    shortLabel: { es: "Experiencias Digitales", en: "Digital Experiences", de: "Digitale Erlebnisse", pt: "Experiencias Digitales" },
+    label: { es: "No hago websites — creo experiencias digitales", en: "I don't make websites — I create digital experiences", de: "Ich mache keine Websites — ich kreiere digitale Erlebnisse", pt: "No hago websites — creo experiencias digitales" },
     desc: {
       es: "Cada interacción, cada transición, cada detalle diseñado para que tu marca se sienta a otro nivel. Esto no es una página web.",
       en: "Every interaction, every transition, every detail designed to make your brand feel next-level. This is not a webpage.",
-      de: "Jede Interaktion, jeder Übergang, jedes Detail — gestaltet, damit sich deine Marke auf einem anderen Level anfühlt. Das ist keine Webseite.",
+      de: "Jede Interaktion, jeder Übergang, jedes Detail — gestaltet, damit sich deine Marke auf einem anderen Level anfühlt. Das ist keine Webseite.", pt: "Cada interacción, cada transición, cada detalle diseñado para que tu marca se sienta a otro nivel. Esto no es una página web.",
     },
     type: "experiences",
     experiences: [
-      { name: "PACHO ALVAREZ", subtitle: { es: "Piloto Dakar · Experiencia inmersiva", en: "Dakar Driver · Immersive experience", de: "Dakar-Fahrer · Immersives Erlebnis" }, video: "/videos/pacho-alvarez-reel.mp4", accent: "#E8C547" },
-      { name: "BAVARIAN ECONS", subtitle: { es: "BMW 2002te · The Classic of the Future", en: "BMW 2002te · The Classic of the Future", de: "BMW 2002te · The Classic of the Future" }, video: "/videos/bavarian-econs-reel.mp4", accent: "#38BDF8" },
-      { name: "SPECTRO", subtitle: { es: "Gaming & Esports · Plataforma digital", en: "Gaming & Esports · Digital platform", de: "Gaming & Esports · Digitale Plattform" }, video: "/videos/spectro-reel.mp4", accent: "#8B5CF6" },
+      { name: "PACHO ALVAREZ", subtitle: { es: "Piloto Dakar · Experiencia inmersiva", en: "Dakar Driver · Immersive experience", de: "Dakar-Fahrer · Immersives Erlebnis", pt: "Piloto Dakar · Experiencia inmersiva" }, video: "/videos/pacho-alvarez-reel.mp4", accent: "#E8C547" },
+      { name: "BAVARIAN ECONS", subtitle: { es: "BMW 2002te · The Classic of the Future", en: "BMW 2002te · The Classic of the Future", de: "BMW 2002te · The Classic of the Future", pt: "BMW 2002te · The Classic of the Future" }, video: "/videos/bavarian-econs-reel.mp4", accent: "#38BDF8" },
+      { name: "SPECTRO", subtitle: { es: "Gaming & Esports · Plataforma digital", en: "Gaming & Esports · Digital platform", de: "Gaming & Esports · Digitale Plattform", pt: "Gaming & Esports · Plataforma digital" }, video: "/videos/spectro-reel.mp4", accent: "#8B5CF6" },
     ],
     accent: "#38BDF8",
     tag: "EXPERIENCE × DIGITAL",
   },
   {
     id: "ai-photos",
-    shortLabel: { es: "AI Photography", en: "AI Photography", de: "AI Photography" },
-    label: { es: "Fotografía AI a escala", en: "AI Photography at scale", de: "KI-Fotografie im großen Maßstab" },
+    shortLabel: { es: "AI Photography", en: "AI Photography", de: "AI Photography", pt: "AI Photography" },
+    label: { es: "Fotografía AI a escala", en: "AI Photography at scale", de: "KI-Fotografie im großen Maßstab", pt: "Fotografía AI a escala" },
     desc: {
       es: "Bibliotecas enteras de fotografía editorial generadas en minutos. Sin sesión, sin estudio, sin límites de volumen.",
       en: "Entire editorial photography libraries generated in minutes. No session, no studio, no volume limits.",
-      de: "Ganze redaktionelle Fotobibliotheken in Minuten generiert. Kein Shooting, kein Studio, keine Volumenbegrenzung.",
+      de: "Ganze redaktionelle Fotobibliotheken in Minuten generiert. Kein Shooting, kein Studio, keine Volumenbegrenzung.", pt: "Bibliotecas enteras de fotografía editorial generadas en minutos. Sin sesión, sin estudio, sin límites de volumen.",
     },
     type: "video",
     video: "/videos/monza-helmet-reel.mp4",
@@ -132,16 +132,16 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "content-design",
-    shortLabel: { es: "Contenido", en: "Content", de: "Content" },
+    shortLabel: { es: "Contenido", en: "Content", de: "Content", pt: "Contenido" },
     label: {
       es: "Ecosistema completo de contenido",
       en: "Complete content ecosystem",
-      de: "Komplettes Content-Ökosystem",
+      de: "Komplettes Content-Ökosystem", pt: "Ecosistema completo de contenido",
     },
     desc: {
       es: "LinkedIn, stories, carousels, posts — todo el diseño de piezas para tu marca. No solo hago un post: te entrego el sistema visual completo.",
       en: "LinkedIn, stories, carousels, posts — all the design pieces for your brand. I don't just make a post: I deliver the complete visual system.",
-      de: "LinkedIn, Stories, Karussells, Posts — alle Designstücke für deine Marke. Ich mache nicht nur einen Post: Ich liefere das komplette visuelle System.",
+      de: "LinkedIn, Stories, Karussells, Posts — alle Designstücke für deine Marke. Ich mache nicht nur einen Post: Ich liefere das komplette visuelle System.", pt: "LinkedIn, stories, carousels, posts — todo el diseño de piezas para tu marca. No solo hago un post: te entrego el sistema visual completo.",
     },
     type: "content-board",
     images: [
@@ -157,16 +157,16 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "readers",
-    shortLabel: { es: "Voice & Motion", en: "Voice & Motion", de: "Voice & Motion" },
+    shortLabel: { es: "Voice & Motion", en: "Voice & Motion", de: "Voice & Motion", pt: "Voice & Motion" },
     label: {
       es: "Tipografía cinética, readers & voz",
       en: "Kinetic typography, readers & voice",
-      de: "Kinetische Typografie, Readers & Stimme",
+      de: "Kinetische Typografie, Readers & Stimme", pt: "Tipografía cinética, readers & voz",
     },
     desc: {
       es: "Contenido que impacta en 3 segundos. Speed readers, manifiestos animados, integración de voz — formatos que detienen el scroll.",
       en: "Content that hits in 3 seconds. Speed readers, animated manifestos, voice integration — formats that stop the scroll.",
-      de: "Content, der in 3 Sekunden wirkt. Speed Readers, animierte Manifeste, Sprachintegration — Formate, die das Scrollen stoppen.",
+      de: "Content, der in 3 Sekunden wirkt. Speed Readers, animierte Manifeste, Sprachintegration — Formate, die das Scrollen stoppen.", pt: "Contenido que impacta en 3 segundos. Speed readers, manifiestos animados, integración de voz — formatos que detienen el scroll.",
     },
     type: "video",
     video: "/videos/monza-reader-demo.mp4",
@@ -175,16 +175,16 @@ const CAPABILITIES: Capability[] = [
   },
   {
     id: "automation",
-    shortLabel: { es: "Automatización", en: "Automation", de: "Automatisierung" },
+    shortLabel: { es: "Automatización", en: "Automation", de: "Automatisierung", pt: "Automatización" },
     label: {
       es: "Automatización, datos & infraestructura",
       en: "Automation, data & infrastructure",
-      de: "Automatisierung, Daten & Infrastruktur",
+      de: "Automatisierung, Daten & Infrastruktur", pt: "Automatización, datos & infraestructura",
     },
     desc: {
       es: "Bases de datos, scrapers, pipelines de contenido, generación por API — la infraestructura invisible que hace que todo escale sin fricción.",
       en: "Databases, scrapers, content pipelines, API generation — the invisible infrastructure that makes everything scale without friction.",
-      de: "Datenbanken, Scraper, Content-Pipelines, API-Generierung — die unsichtbare Infrastruktur, die alles reibungslos skalieren lässt.",
+      de: "Datenbanken, Scraper, Content-Pipelines, API-Generierung — die unsichtbare Infrastruktur, die alles reibungslos skalieren lässt.", pt: "Bases de datos, scrapers, pipelines de contenido, generación por API — la infraestructura invisible que hace que todo escale sin fricción.",
     },
     type: "terminal",
     accent: "#F8B4D9",
@@ -1478,20 +1478,20 @@ const CapabilitiesSection = () => {
           className="mb-14 md:mb-16"
         >
           <p className="font-clash text-[10px] md:text-xs tracking-[0.4em] uppercase text-[#F8B4D9]/50 font-medium mb-4">
-            {{ es: "CONSTRUCCIÓN DE EMPRESAS FULL-STACK", en: "FULL-STACK COMPANY BUILDING", de: "FULL-STACK UNTERNEHMENSAUFBAU" }[language]}
+            {{ es: "CONSTRUCCIÓN DE EMPRESAS FULL-STACK", en: "FULL-STACK COMPANY BUILDING", de: "FULL-STACK UNTERNEHMENSAUFBAU", pt: "CONSTRUCCIÓN DE EMPRESAS FULL-STACK" }[language]}
           </p>
           <h2
             className="font-clash text-[8vw] md:text-[5vw] lg:text-[3.5vw] font-bold leading-[1.05]"
             style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.80)" }}
           >
-            {{ es: "Cada capa.", en: "Every layer.", de: "Jede Schicht." }[language]}<br />
-            <span style={{ color: "rgba(var(--text-rgb), 0.35)" }}>{{ es: "Una persona.", en: "One person.", de: "Eine Person." }[language]}</span>
+            {{ es: "Cada capa.", en: "Every layer.", de: "Jede Schicht.", pt: "Cada capa." }[language]}<br />
+            <span style={{ color: "rgba(var(--text-rgb), 0.35)" }}>{{ es: "Una persona.", en: "One person.", de: "Eine Person.", pt: "Una persona." }[language]}</span>
           </h2>
           <p
             className="font-clash text-[13px] md:text-sm mt-4 max-w-lg leading-relaxed"
             style={{ color: "rgba(var(--text-rgb), 0.30)" }}
           >
-            {{ es: "Estos no son servicios. Son las capas que controlo para construir empresas enteras desde cero.", en: "These aren't services. They're the layers I control to build entire companies from zero.", de: "Das sind keine Dienstleistungen. Es sind die Schichten, die ich kontrolliere, um ganze Unternehmen von null aufzubauen." }[language]}
+            {{ es: "Estos no son servicios. Son las capas que controlo para construir empresas enteras desde cero.", en: "These aren't services. They're the layers I control to build entire companies from zero.", de: "Das sind keine Dienstleistungen. Es sind die Schichten, die ich kontrolliere, um ganze Unternehmen von null aufzubauen.", pt: "Estos no son servicios. Son las capas que controlo para construir empresas enteras desde cero." }[language]}
           </p>
         </motion.div>
 

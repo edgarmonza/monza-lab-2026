@@ -13,8 +13,8 @@ const SpeakerTeaser = () => {
   const bg = isModena ? "#F5F0EB" : "#0B0B10";
 
   const content = {
-    headline: { es: 'En escenario.', en: 'On stage.', de: 'Auf der Bühne.' },
-    cta: { es: 'Ver página de speaker', en: 'View speaker page', de: 'Speaker-Seite ansehen' },
+    headline: { es: 'En escenario.', en: 'On stage.', de: 'Auf der Bühne.', pt: 'En escenario.' },
+    cta: { es: 'Ver página de speaker', en: 'View speaker page', de: 'Speaker-Seite ansehen', pt: 'Ver página de speaker' },
   };
 
   const speakerHref = language === 'en' ? '/en/speaker' : language === 'de' ? '/de/speaker' : '/speaker';

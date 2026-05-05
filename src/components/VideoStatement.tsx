@@ -13,7 +13,7 @@ const VideoStatement = () => {
   const { language } = useLanguage();
 
   const content = {
-    cta: { es: 'Construyamos', en: "Let's build", de: "Let's build" },
+    cta: { es: 'Construyamos', en: "Let's build", de: "Let's build", pt: 'Construyamos' },
   };
 
   /** Callback ref — fires every time the video element mounts (including after key change) */

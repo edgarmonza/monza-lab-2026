@@ -265,12 +265,12 @@ const Speaker = () => {
         title={{
           es: "Edgar Navarro · Keynote Speaker IA — Monza Lab",
           en: "Edgar Navarro · AI Keynote Speaker — Monza Lab",
-          de: "Edgar Navarro · KI Keynote Speaker — Monza Lab",
+          de: "Edgar Navarro · KI Keynote Speaker — Monza Lab", pt: "Edgar Navarro · Keynote Speaker IA — Monza Lab",
         }}
         description={{
           es: "Keynote speaker sobre inteligencia artificial, innovación y company building. Ex-Director de Innovación KPMG. Conferencias para empresas, universidades y eventos en LATAM, Europa y USA.",
           en: "Keynote speaker on artificial intelligence, innovation and company building. Former KPMG Innovation Director. Talks for companies, universities and events across LATAM, Europe and the US.",
-          de: "Keynote Speaker für Künstliche Intelligenz, Innovation und Company Building. Ehem. KPMG-Innovationsdirektor. Vorträge für Unternehmen, Universitäten und Events in LATAM, Europa und USA.",
+          de: "Keynote Speaker für Künstliche Intelligenz, Innovation und Company Building. Ehem. KPMG-Innovationsdirektor. Vorträge für Unternehmen, Universitäten und Events in LATAM, Europa und USA.", pt: "Keynote speaker sobre inteligencia artificial, innovación y company building. Ex-Director de Innovación KPMG. Conferencias para empresas, universidades y eventos en LATAM, Europa y USA.",
         }}
         jsonLd={{
           "@context": "https://schema.org",

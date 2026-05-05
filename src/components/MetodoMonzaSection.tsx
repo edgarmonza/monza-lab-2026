@@ -11,10 +11,10 @@ const MetodoMonzaSection = () => {
   const { language } = useLanguage();
 
   const content = {
-    tag: { es: "CÓMO CONSTRUIMOS", en: "HOW WE BUILD", de: "WIE WIR BAUEN" },
-    headline1: { es: "Vision. Build. Ship.", en: "Vision. Build. Ship.", de: "Vision. Build. Ship." },
-    headline2: { es: "Learn. Scale.", en: "Learn. Scale.", de: "Learn. Scale." },
-    oneLiner: { es: "7 días. 1 sprint. Sin parar.", en: "7 days. 1 sprint. Non-stop.", de: "7 Tage. 1 Sprint. Ohne Pause." },
+    tag: { es: "CÓMO CONSTRUIMOS", en: "HOW WE BUILD", de: "WIE WIR BAUEN", pt: "CÓMO CONSTRUIMOS" },
+    headline1: { es: "Vision. Build. Ship.", en: "Vision. Build. Ship.", de: "Vision. Build. Ship.", pt: "Vision. Build. Ship." },
+    headline2: { es: "Learn. Scale.", en: "Learn. Scale.", de: "Learn. Scale.", pt: "Learn. Scale." },
+    oneLiner: { es: "7 días. 1 sprint. Sin parar.", en: "7 days. 1 sprint. Non-stop.", de: "7 Tage. 1 Sprint. Ohne Pause.", pt: "7 días. 1 sprint. Sin parar." },
   };
 
   return (

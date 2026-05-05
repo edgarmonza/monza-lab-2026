@@ -69,7 +69,7 @@ const PROJECTS = [
     desc: {
       es: "Marca de lujo automotriz. Branding, web global y sistema de ventas. Featured in Forbes.",
       en: "Automotive luxury brand. Branding, global web & sales system. Featured in Forbes.",
-      de: "Automotive Luxusmarke. Branding, globale Web & Vertriebssystem. Featured in Forbes.",
+      de: "Automotive Luxusmarke. Branding, globale Web & Vertriebssystem. Featured in Forbes.", pt: "Marca de lujo automotriz. Branding, web global y sistema de ventas. Featured in Forbes.",
     },
     image: null as string | null,
     video: "/videos/bavarian-econs-reel.mp4",
@@ -83,18 +83,18 @@ const PROJECTS = [
       headline: {
         es: "De idea a marca de lujo global en un mercado que nadie había tocado.",
         en: "From idea to global luxury brand in a market no one had touched.",
-        de: "Von der Idee zur globalen Luxusmarke in einem Markt, den niemand berührt hatte.",
+        de: "Von der Idee zur globalen Luxusmarke in einem Markt, den niemand berührt hatte.", pt: "De idea a marca de lujo global en un mercado que nadie había tocado.",
       },
       story: {
         es: "Validé el MVP, estructuré el pitch de financiación y construí el sistema digital completo — desde la identidad de marca hasta el ecosistema de ventas. El BMW 2002 es hoy uno de los clásicos más cotizados del mundo. Bavarian Econs lo electrifica para coleccionistas en Europa y Estados Unidos.",
         en: "I validated the MVP, structured the funding pitch and built the complete digital system — from brand identity to the sales ecosystem. The BMW 2002 is one of the most sought-after classics in the world today. Bavarian Econs electrifies it for collectors in Europe and the United States.",
-        de: "Ich validierte das MVP, strukturierte den Finanzierungs-Pitch und baute das komplette digitale System — von der Markenidentität bis zum Vertriebs-Ökosystem. Der BMW 2002 ist heute einer der begehrtesten Klassiker der Welt. Bavarian Econs elektrifiziert ihn für Sammler in Europa und den USA.",
+        de: "Ich validierte das MVP, strukturierte den Finanzierungs-Pitch und baute das komplette digitale System — von der Markenidentität bis zum Vertriebs-Ökosystem. Der BMW 2002 ist heute einer der begehrtesten Klassiker der Welt. Bavarian Econs elektrifiziert ihn für Sammler in Europa und den USA.", pt: "Validé el MVP, estructuré el pitch de financiación y construí el sistema digital completo — desde la identidad de marca hasta el ecosistema de ventas. El BMW 2002 es hoy uno de los clásicos más cotizados del mundo. Bavarian Econs lo electrifica para coleccionistas en Europa y Estados Unidos.",
       },
       pillars: [
-        { label: "Strategy", detail: { es: "Validación de mercado, MVP y modelo de negocio", en: "Market validation, MVP & business model", de: "Marktvalidierung, MVP & Geschäftsmodell" } },
-        { label: "Brand", detail: { es: "Identidad, naming, sistema visual completo", en: "Identity, naming, complete visual system", de: "Identität, Naming, komplettes visuelles System" } },
-        { label: "Digital", detail: { es: "Web global, SEO y ecosistema de ventas", en: "Global web, SEO & sales ecosystem", de: "Globale Web, SEO & Vertriebs-Ökosystem" } },
-        { label: "Capital", detail: { es: "Pitch deck y ronda de financiación", en: "Pitch deck & funding round", de: "Pitch Deck & Finanzierungsrunde" } },
+        { label: "Strategy", detail: { es: "Validación de mercado, MVP y modelo de negocio", en: "Market validation, MVP & business model", de: "Marktvalidierung, MVP & Geschäftsmodell", pt: "Validación de mercado, MVP y modelo de negocio" } },
+        { label: "Brand", detail: { es: "Identidad, naming, sistema visual completo", en: "Identity, naming, complete visual system", de: "Identität, Naming, komplettes visuelles System", pt: "Identidad, naming, sistema visual completo" } },
+        { label: "Digital", detail: { es: "Web global, SEO y ecosistema de ventas", en: "Global web, SEO & sales ecosystem", de: "Globale Web, SEO & Vertriebs-Ökosystem", pt: "Web global, SEO y ecosistema de ventas" } },
+        { label: "Capital", detail: { es: "Pitch deck y ronda de financiación", en: "Pitch deck & funding round", de: "Pitch Deck & Finanzierungsrunde", pt: "Pitch deck y ronda de financiación" } },
       ],
       press: [
         { name: "Forbes Colombia", href: "https://forbes.co/2024/09/10/editors-picks/estos-colombianos-estan-electrificando-clasicos-de-bmw-para-coleccionistas-en-europa-y-estados-unidos" },
@@ -123,7 +123,7 @@ const PROJECTS = [
     desc: {
       es: "35,000+ Porsches de Japón, UE y EEUU en una sola plataforma AI-native. Dealers, coleccionistas y compradores deciden con data real.",
       en: "35,000+ Porsches from Japan, EU and the US in a single AI-native platform. Dealers, collectors and buyers decide with real data.",
-      de: "35.000+ Porsche aus Japan, EU und den USA auf einer AI-nativen Plattform. Händler, Sammler und Käufer entscheiden mit echten Daten.",
+      de: "35.000+ Porsche aus Japan, EU und den USA auf einer AI-nativen Plattform. Händler, Sammler und Käufer entscheiden mit echten Daten.", pt: "35,000+ Porsches de Japón, UE y EEUU en una sola plataforma AI-native. Dealers, coleccionistas y compradores deciden con data real.",
     },
     image: "/images/projects/monza-haus-cover.png" as string | null,
     video: null,
@@ -137,18 +137,18 @@ const PROJECTS = [
       headline: {
         es: "El Bloomberg de los carros coleccionables.",
         en: "The Bloomberg of collector cars.",
-        de: "Das Bloomberg der Sammlerautos.",
+        de: "Das Bloomberg der Sammlerautos.", pt: "El Bloomberg de los carros coleccionables.",
       },
       story: {
         es: "Base de datos en tiempo real, frontend y UI desde cero, y diseño del modelo de negocio. Monza Haus centraliza toda la inteligencia del mercado automotriz de colección en una sola plataforma AI-native.",
         en: "Real-time database, frontend and UI from scratch, and business model design. Monza Haus centralizes all collector automotive market intelligence in a single AI-native platform.",
-        de: "Echtzeit-Datenbank, Frontend und UI von Grund auf und Geschäftsmodell-Design. Monza Haus zentralisiert die gesamte Collector-Automotive-Marktintelligenz auf einer einzigen AI-nativen Plattform.",
+        de: "Echtzeit-Datenbank, Frontend und UI von Grund auf und Geschäftsmodell-Design. Monza Haus zentralisiert die gesamte Collector-Automotive-Marktintelligenz auf einer einzigen AI-nativen Plattform.", pt: "Base de datos en tiempo real, frontend y UI desde cero, y diseño del modelo de negocio. Monza Haus centraliza toda la inteligencia del mercado automotriz de colección en una sola plataforma AI-native.",
       },
       pillars: [
-        { label: "Database", detail: { es: "Arquitectura de datos en tiempo real", en: "Real-time data architecture", de: "Echtzeit-Datenarchitektur" } },
-        { label: "Frontend", detail: { es: "UI/UX desde cero", en: "UI/UX from scratch", de: "UI/UX von Grund auf" } },
-        { label: "Product", detail: { es: "Modelo de negocio y go-to-market", en: "Business model & go-to-market", de: "Geschäftsmodell & Go-to-Market" } },
-        { label: "AI", detail: { es: "Inteligencia de mercado automotriz", en: "Automotive market intelligence", de: "Automotive-Marktintelligenz" } },
+        { label: "Database", detail: { es: "Arquitectura de datos en tiempo real", en: "Real-time data architecture", de: "Echtzeit-Datenarchitektur", pt: "Arquitectura de datos en tiempo real" } },
+        { label: "Frontend", detail: { es: "UI/UX desde cero", en: "UI/UX from scratch", de: "UI/UX von Grund auf", pt: "UI/UX desde cero" } },
+        { label: "Product", detail: { es: "Modelo de negocio y go-to-market", en: "Business model & go-to-market", de: "Geschäftsmodell & Go-to-Market", pt: "Modelo de negocio y go-to-market" } },
+        { label: "AI", detail: { es: "Inteligencia de mercado automotriz", en: "Automotive market intelligence", de: "Automotive-Marktintelligenz", pt: "Inteligencia de mercado automotriz" } },
       ],
       press: [],
     },
@@ -172,7 +172,7 @@ const PROJECTS = [
     desc: {
       es: "El primer índice que mide la penetración real de la IA en empresas y personas. 6 dimensiones, reportes co-creados, data compartida para el ecosistema.",
       en: "The first index measuring real AI penetration across companies and people. 6 dimensions, co-created reports, shared ecosystem data.",
-      de: "Der erste Index, der die echte KI-Penetration in Unternehmen und Personen misst. 6 Dimensionen, co-kreierte Reports, geteilte Ökosystem-Daten.",
+      de: "Der erste Index, der die echte KI-Penetration in Unternehmen und Personen misst. 6 Dimensionen, co-kreierte Reports, geteilte Ökosystem-Daten.", pt: "El primer índice que mide la penetración real de la IA en empresas y personas. 6 dimensiones, reportes co-creados, data compartida para el ecosistema.",
     },
     image: "/images/projects/ia-index-cover.jpg" as string | null,
     video: null,
@@ -186,18 +186,18 @@ const PROJECTS = [
       headline: {
         es: "Acelerar la adopción estratégica de la inteligencia artificial.",
         en: "Accelerating strategic adoption of artificial intelligence.",
-        de: "Die strategische Adoption von künstlicher Intelligenz beschleunigen.",
+        de: "Die strategische Adoption von künstlicher Intelligenz beschleunigen.", pt: "Acelerar la adopción estratégica de la inteligencia artificial.",
       },
       story: {
         es: "Venture co-fundado con Guillermo Jaramillo y Giovanni Stella. Plataforma de inteligencia de mercado donde co-creamos reportes con empresas líderes — cada reporte genera data de valor para todo el ecosistema. Lanzamiento público en agosto 2026 con expansión multi-país.",
         en: "Venture co-founded with Guillermo Jaramillo and Giovanni Stella. A market intelligence platform where we co-create reports with leading companies — each report generates valuable data for the entire ecosystem. Public launch in August 2026 with multi-country expansion.",
-        de: "Venture mitgegründet mit Guillermo Jaramillo und Giovanni Stella. Eine Market-Intelligence-Plattform, auf der wir Reports gemeinsam mit führenden Unternehmen erstellen — jeder Report generiert wertvolle Daten für das gesamte Ökosystem. Öffentlicher Launch im August 2026 mit Multi-Country-Expansion.",
+        de: "Venture mitgegründet mit Guillermo Jaramillo und Giovanni Stella. Eine Market-Intelligence-Plattform, auf der wir Reports gemeinsam mit führenden Unternehmen erstellen — jeder Report generiert wertvolle Daten für das gesamte Ökosystem. Öffentlicher Launch im August 2026 mit Multi-Country-Expansion.", pt: "Venture co-fundado con Guillermo Jaramillo y Giovanni Stella. Plataforma de inteligencia de mercado donde co-creamos reportes con empresas líderes — cada reporte genera data de valor para todo el ecosistema. Lanzamiento público en agosto 2026 con expansión multi-país.",
       },
       pillars: [
-        { label: "Intelligence", detail: { es: "Reportes co-creados con empresas líderes", en: "Reports co-created with leading companies", de: "Mit führenden Unternehmen co-kreierte Reports" } },
-        { label: "Data", detail: { es: "Data compartida de valor para el ecosistema", en: "Shared ecosystem-grade data", de: "Geteilte Ökosystem-Daten von Wert" } },
-        { label: "Product", detail: { es: "Plataforma AI-native y distribución", en: "AI-native platform & distribution", de: "AI-native Plattform & Distribution" } },
-        { label: "Network", detail: { es: "Expansión multi-país desde LATAM", en: "Multi-country expansion from LATAM", de: "Multi-Country-Expansion aus LATAM" } },
+        { label: "Intelligence", detail: { es: "Reportes co-creados con empresas líderes", en: "Reports co-created with leading companies", de: "Mit führenden Unternehmen co-kreierte Reports", pt: "Reportes co-creados con empresas líderes" } },
+        { label: "Data", detail: { es: "Data compartida de valor para el ecosistema", en: "Shared ecosystem-grade data", de: "Geteilte Ökosystem-Daten von Wert", pt: "Data compartida de valor para el ecosistema" } },
+        { label: "Product", detail: { es: "Plataforma AI-native y distribución", en: "AI-native platform & distribution", de: "AI-native Plattform & Distribution", pt: "Plataforma AI-native y distribución" } },
+        { label: "Network", detail: { es: "Expansión multi-país desde LATAM", en: "Multi-country expansion from LATAM", de: "Multi-Country-Expansion aus LATAM", pt: "Expansión multi-país desde LATAM" } },
       ],
       press: [],
     },
@@ -221,7 +221,7 @@ const PROJECTS = [
     desc: {
       es: "Seis mundos de lujo circular bajo una sombrilla. 350K seguidores, e-commerce live, pipeline de fotos con IA y growth multi-canal.",
       en: "Six worlds of circular luxury under one umbrella. 350K followers, live e-commerce, AI photo pipeline and multi-channel growth.",
-      de: "Sechs Welten zirkulären Luxus unter einem Dach. 350K Follower, Live-E-Commerce, KI-Foto-Pipeline und Multi-Channel-Growth.",
+      de: "Sechs Welten zirkulären Luxus unter einem Dach. 350K Follower, Live-E-Commerce, KI-Foto-Pipeline und Multi-Channel-Growth.", pt: "Seis mundos de lujo circular bajo una sombrilla. 350K seguidores, e-commerce live, pipeline de fotos con IA y growth multi-canal.",
     },
     image: "/images/projects/eleonora-cover.jpg" as string | null,
     video: null,
@@ -235,18 +235,18 @@ const PROJECTS = [
       headline: {
         es: "Lujo circular con ecosistema digital 360° — en operación.",
         en: "Circular luxury with a 360° live digital ecosystem.",
-        de: "Zirkulärer Luxus mit einem 360° Live-Ökosystem.",
+        de: "Zirkulärer Luxus mit einem 360° Live-Ökosystem.", pt: "Lujo circular con ecosistema digital 360° — en operación.",
       },
       story: {
         es: "Arranque con e-commerce (Shopify + Storefront API custom) y 6 sub-brands bajo una sombrilla, incluyendo Garage Sale para la operación second-hand. Dirección creativa, producción de contenido y growth multi-canal — pauta digital y orgánico. Go-live Abril 2026, escalamiento continuo hacia Día de la Madre.",
         en: "Kicked off with e-commerce (Shopify + custom Storefront API) and 6 sub-brands under one umbrella, including Garage Sale for the second-hand operation. Creative direction, content production and multi-channel growth — paid and organic. Live April 2026, ongoing ramp-up toward Mother's Day.",
-        de: "Start mit E-Commerce (Shopify + Custom Storefront API) und 6 Sub-Brands unter einem Dach, einschließlich Garage Sale für den Second-Hand-Betrieb. Kreativdirektion, Content-Produktion und Multi-Channel-Growth — Paid und Organic. Live seit April 2026, kontinuierlicher Ramp-Up bis Muttertag.",
+        de: "Start mit E-Commerce (Shopify + Custom Storefront API) und 6 Sub-Brands unter einem Dach, einschließlich Garage Sale für den Second-Hand-Betrieb. Kreativdirektion, Content-Produktion und Multi-Channel-Growth — Paid und Organic. Live seit April 2026, kontinuierlicher Ramp-Up bis Muttertag.", pt: "Arranque con e-commerce (Shopify + Storefront API custom) y 6 sub-brands bajo una sombrilla, incluyendo Garage Sale para la operación second-hand. Dirección creativa, producción de contenido y growth multi-canal — pauta digital y orgánico. Go-live Abril 2026, escalamiento continuo hacia Día de la Madre.",
       },
       pillars: [
-        { label: "Brand", detail: { es: "Sistema visual y manual live", en: "Visual system & live brand manual", de: "Visuelles System & Live-Brand-Manual" } },
-        { label: "E-commerce", detail: { es: "Shopify + Storefront API custom", en: "Shopify + custom Storefront API", de: "Shopify + Custom Storefront API" } },
-        { label: "Content", detail: { es: "Second-hand y dirección creativa", en: "Second-hand & creative direction", de: "Second-Hand & Kreativdirektion" } },
-        { label: "Growth", detail: { es: "Pauta y orgánico multi-canal", en: "Paid & organic multi-channel", de: "Paid & Organic Multi-Channel" } },
+        { label: "Brand", detail: { es: "Sistema visual y manual live", en: "Visual system & live brand manual", de: "Visuelles System & Live-Brand-Manual", pt: "Sistema visual y manual live" } },
+        { label: "E-commerce", detail: { es: "Shopify + Storefront API custom", en: "Shopify + custom Storefront API", de: "Shopify + Custom Storefront API", pt: "Shopify + Storefront API custom" } },
+        { label: "Content", detail: { es: "Second-hand y dirección creativa", en: "Second-hand & creative direction", de: "Second-Hand & Kreativdirektion", pt: "Second-hand y dirección creativa" } },
+        { label: "Growth", detail: { es: "Pauta y orgánico multi-canal", en: "Paid & organic multi-channel", de: "Paid & Organic Multi-Channel", pt: "Pauta y orgánico multi-canal" } },
       ],
       press: [],
     },
@@ -270,7 +270,7 @@ const PROJECTS = [
     desc: {
       es: "Piloto del Dakar Rally. Web inmersiva, estructura de negocio, conferencias, pricing y go-to-market.",
       en: "Dakar Rally driver. Immersive web, business structure, conferences, pricing & go-to-market.",
-      de: "Dakar-Rally-Fahrer. Immersive Web, Geschäftsstruktur, Konferenzen, Pricing & Go-to-Market.",
+      de: "Dakar-Rally-Fahrer. Immersive Web, Geschäftsstruktur, Konferenzen, Pricing & Go-to-Market.", pt: "Piloto del Dakar Rally. Web inmersiva, estructura de negocio, conferencias, pricing y go-to-market.",
     },
     image: null as string | null,
     video: "/videos/pacho-alvarez-reel.mp4",
@@ -297,7 +297,7 @@ const PROJECTS = [
     desc: {
       es: "Plataforma global de entretenimiento deportivo. Socio en Spectro Legends — contenido audiovisual de Colombia al mundo.",
       en: "Global sports entertainment platform. Partner in Spectro Legends — Colombia's audiovisual content to the world.",
-      de: "Globale Sport-Entertainment-Plattform. Partner bei Spectro Legends — Kolumbiens audiovisuelle Inhalte weltweit.",
+      de: "Globale Sport-Entertainment-Plattform. Partner bei Spectro Legends — Kolumbiens audiovisuelle Inhalte weltweit.", pt: "Plataforma global de entretenimiento deportivo. Socio en Spectro Legends — contenido audiovisual de Colombia al mundo.",
     },
     image: null as string | null,
     video: "/videos/spectro-reel.mp4",
@@ -331,10 +331,10 @@ const WorkShowcase = () => {
   const langPrefix = language === "es" ? "" : `/${language}`;
 
   const content = {
-    tag: { es: 'SELECTED WORK', en: 'SELECTED WORK', de: 'SELECTED WORK' },
-    heading: { es: 'Lo que construyo.', en: 'What I build.', de: 'Was ich baue.' },
-    back: { es: 'Volver', en: 'Back', de: 'Zurück' },
-    visitSite: { es: 'Visitar sitio', en: 'Visit site', de: 'Website besuchen' },
+    tag: { es: 'SELECTED WORK', en: 'SELECTED WORK', de: 'SELECTED WORK', pt: 'SELECTED WORK' },
+    heading: { es: 'Lo que construyo.', en: 'What I build.', de: 'Was ich baue.', pt: 'Lo que construyo.' },
+    back: { es: 'Volver', en: 'Back', de: 'Zurück', pt: 'Volver' },
+    visitSite: { es: 'Visitar sitio', en: 'Visit site', de: 'Website besuchen', pt: 'Visitar sitio' },
   };
 
   return (

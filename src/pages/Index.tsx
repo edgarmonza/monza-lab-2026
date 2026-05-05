@@ -1,9 +1,8 @@
 import HeroHome from "@/components/HeroHome";
 import ManifestoSection from "@/components/home/ManifestoSection";
-import WorkShowcase from "@/components/WorkShowcase";
-import MonzaStudioSection from "@/components/MonzaStudioSection";
-import CapabilitiesSection from "@/components/CapabilitiesSection";
-
+import VenturesGrid from "@/components/home/VenturesGrid";
+import BrandsStrip from "@/components/home/BrandsStrip";
+import OperationStrip from "@/components/home/OperationStrip";
 import AboutEdgarSection from "@/components/AboutEdgarSection";
 import MetodoMonzaSection from "@/components/MetodoMonzaSection";
 import SpeakerTeaser from "@/components/SpeakerTeaser";
@@ -17,24 +16,22 @@ const Index = () => {
       <SEO
         path=""
         title={{
-          es: "Monza Lab — AI-Native Company Builder · E-commerce, Growth & IA",
-          en: "Monza Lab — AI-Native Company Builder · E-commerce, Growth & AI",
-          de: "Monza Lab — AI-Native Company Builder · E-Commerce, Growth & KI",
+          es: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder",
+          en: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder",
+          de: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder", pt: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder",
         }}
         description={{
-          es: "Company builder AI-native. Construimos marcas de lujo con e-commerce Shopify, contenido con IA y growth multi-canal — de idea a marca global en semanas, no trimestres.",
-          en: "AI-native company builder. We build luxury brands with Shopify e-commerce, AI-powered content and multi-channel growth — from idea to global brand in weeks, not quarters.",
-          de: "AI-native Company Builder. Wir bauen Luxusmarken mit Shopify-E-Commerce, KI-gestütztem Content und Multi-Channel-Growth — von der Idee zur globalen Marke in Wochen, nicht in Quartalen.",
+          es: "Monza Lab es un company builder AI-native. Cuatro ventures activas — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — construidas y operadas desde una misma operación.",
+          en: "Monza Lab is an AI-native company builder. Four active ventures — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — built and operated from a single operation.",
+          de: "Monza Lab ist ein AI-native Company Builder. Vier aktive Ventures — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — gebaut und betrieben aus einer Operation.", pt: "Monza Lab es un company builder AI-native. Cuatro ventures activas — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — construidas y operadas desde una misma operación.",
         }}
       />
       <main id="main" aria-label="Monza Lab — AI-Native Company Builder">
         <HeroHome />
         <ManifestoSection />
-        <WorkShowcase />
-        <MonzaStudioSection />
-        <div className="hidden md:block">
-          <CapabilitiesSection />
-        </div>
+        <VenturesGrid />
+        <BrandsStrip />
+        <OperationStrip />
         <MetodoMonzaSection />
         <AboutEdgarSection />
         <SpeakerTeaser />

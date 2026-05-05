@@ -79,9 +79,9 @@ const GlobalReel = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const content = {
-    label: { es: 'Presencia Global', en: 'Global Presence', de: 'Globale Präsenz' },
-    headline: { es: 'No deck. No pitch. Esto.', en: 'No deck. No pitch. This.', de: 'Kein Deck. Kein Pitch. Das hier.' },
-    subtitle: { es: 'Tres continentes. Proyectos que corren hoy.', en: 'Three continents. Projects running today.', de: 'Drei Kontinente. Projekte, die heute laufen.' },
+    label: { es: 'Presencia Global', en: 'Global Presence', de: 'Globale Präsenz', pt: 'Presencia Global' },
+    headline: { es: 'No deck. No pitch. Esto.', en: 'No deck. No pitch. This.', de: 'Kein Deck. Kein Pitch. Das hier.', pt: 'No deck. No pitch. Esto.' },
+    subtitle: { es: 'Tres continentes. Proyectos que corren hoy.', en: 'Three continents. Projects running today.', de: 'Drei Kontinente. Projekte, die heute laufen.', pt: 'Tres continentes. Proyectos que corren hoy.' },
   };
 
   const { scrollYProgress } = useScroll({
