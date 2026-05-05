@@ -18,11 +18,35 @@ type OGEntry = {
   image: string;
 };
 
+/* Ventures shown in the home mosaic — 2×2 grid, top-left clockwise. */
+const HOME_MOSAIC = [
+  {
+    name: 'Studio',
+    accent: '#f074aa',
+    image: `${SITE_URL}/images/people/santi/santi-clubmaster.png`,
+  },
+  {
+    name: 'Haus',
+    accent: '#F8B4D9',
+    image: `${SITE_URL}/images/projects/monza-haus-cover.png`,
+  },
+  {
+    name: 'Index',
+    accent: '#FFFCF7',
+    image: `${SITE_URL}/images/projects/ia-index-cover.jpg`,
+  },
+  {
+    name: 'Bavarian',
+    accent: '#A8A29E',
+    image: `${SITE_URL}/images/projects/bavarian-econs/coast-frontal.jpeg`,
+  },
+];
+
 const OG_PAGES: Record<string, OGEntry> = {
   home: {
     eyebrow: 'MONZA LAB · COMPANY BUILDER',
-    headline: 'AI-Native Company Builder.',
-    sub: '4 ventures. 1 founder. Construido con criterio.',
+    headline: '4 Ventures. 1 Founder.',
+    sub: 'AI-Native Company Builder. Construido con criterio.',
     accent: '#F8B4D9',
     image: `${SITE_URL}/images/Edgar/edgar-about.png`,
   },
@@ -235,51 +259,130 @@ export default async function handler(req: Request) {
             </div>
           </div>
 
-          {/* Right column — venture image */}
-          <div
-            style={{
-              width: '40%',
-              height: '100%',
-              position: 'relative',
-              display: 'flex',
-              overflow: 'hidden',
-            }}
-          >
-            <img
-              src={cfg.image}
-              alt=""
-              width={480}
-              height={630}
+          {/* Right column — venture image OR home mosaic */}
+          {pageKey === 'home' ? (
+            <div
               style={{
-                width: '100%',
+                width: '40%',
                 height: '100%',
-                objectFit: 'cover',
-                opacity: 0.92,
-              }}
-            />
-            {/* Vignette toward left to blend with copy */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background:
-                  'linear-gradient(90deg, #0B0B10 0%, transparent 30%, transparent 100%)',
                 display: 'flex',
+                flexWrap: 'wrap',
+                position: 'relative',
+                overflow: 'hidden',
+                padding: 12,
+                gap: 8,
+                background: '#0B0B10',
               }}
-            />
-            {/* Tonal glow */}
+            >
+              {HOME_MOSAIC.map((v) => (
+                <div
+                  key={v.name}
+                  style={{
+                    width: 'calc(50% - 4px)',
+                    height: 'calc(50% - 4px)',
+                    position: 'relative',
+                    borderRadius: 12,
+                    overflow: 'hidden',
+                    display: 'flex',
+                    border: `1px solid ${v.accent}30`,
+                  }}
+                >
+                  <img
+                    src={v.image}
+                    alt=""
+                    width={240}
+                    height={310}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      opacity: 0.85,
+                    }}
+                  />
+                  {/* Bottom gradient + label */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background:
+                        'linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'flex-end',
+                      padding: '12px 14px',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: 11,
+                        letterSpacing: '0.25em',
+                        color: v.accent,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {v.name.toUpperCase()}
+                    </span>
+                  </div>
+                </div>
+              ))}
+              {/* Vignette toward left to blend with copy */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background:
+                    'linear-gradient(90deg, #0B0B10 0%, transparent 12%, transparent 100%)',
+                  pointerEvents: 'none',
+                  display: 'flex',
+                }}
+              />
+            </div>
+          ) : (
             <div
               style={{
-                position: 'absolute',
-                bottom: -100,
-                right: -100,
-                width: 400,
-                height: 400,
-                borderRadius: '50%',
-                background: `radial-gradient(circle, ${cfg.accent}33 0%, transparent 70%)`,
+                width: '40%',
+                height: '100%',
+                position: 'relative',
+                display: 'flex',
+                overflow: 'hidden',
               }}
-            />
-          </div>
+            >
+              <img
+                src={cfg.image}
+                alt=""
+                width={480}
+                height={630}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  opacity: 0.92,
+                }}
+              />
+              {/* Vignette toward left to blend with copy */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background:
+                    'linear-gradient(90deg, #0B0B10 0%, transparent 30%, transparent 100%)',
+                  display: 'flex',
+                }}
+              />
+              {/* Tonal glow */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: -100,
+                  right: -100,
+                  width: 400,
+                  height: 400,
+                  borderRadius: '50%',
+                  background: `radial-gradient(circle, ${cfg.accent}33 0%, transparent 70%)`,
+                }}
+              />
+            </div>
+          )}
 
           {/* Bottom hairline accent */}
           <div
