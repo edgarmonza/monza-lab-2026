@@ -721,7 +721,7 @@ const BavarianEcons = () => {
           en: "Bavarian Econs: BMW 2002, Turbo and E30 electrified from the Munich atelier. 500+ hours per conversion, TÜV certified, Alps tested. Featured in Forbes, MotorTrend, Top Gear.",
           de: "Bavarian Econs: BMW 2002, Turbo und E30 elektrifiziert aus dem Atelier in München. 500+ Stunden pro Umbau, TÜV-zertifiziert, in den Alpen getestet.", pt: "Bavarian Econs: BMW 2002, Turbo y E30 electrificados desde el atelier de Munich. 500+ horas por conversión, certificación TÜV, probado en los Alpes. Featured en Forbes, MotorTrend, Top Gear.",
         }}
-        image="/images/projects/bavarian-econs/coast-frontal.jpeg"
+        ogPage="bavarianecons"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Organization",

@@ -1504,7 +1504,7 @@ const MonzaStudio = () => {
           de: "Monza Studio: Strategie, Branding, Produkt, Content und Growth für globale Marken. Vom Founder betreut, mit redaktionellem Urteil und KI als Hebel.",
           pt: "Monza Studio: estratégia, branding, produto, conteúdo e growth para marcas globais. Acompanhado pelo founder, com critério editorial e a IA como alavanca.",
         }}
-        image="/images/brands/eleonora/eleonora-portrait.jpg"
+        ogPage="monzastudio"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Service",

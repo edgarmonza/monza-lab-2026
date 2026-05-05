@@ -8,8 +8,11 @@ type SEOProps = {
   description: TrilingualText;
   /** Route path WITHOUT the language prefix, e.g. "/speaker", "/work/eleonora-morales". Use "" for home. */
   path?: string;
-  /** Full URL or site-relative path of the OG image. Defaults to /og-image.png */
+  /** Full URL or site-relative path of a custom OG image — overrides ogPage. */
   image?: string;
+  /** Page key for the dynamic OG generator at /api/og?page=...
+   *  Recognised keys: home, monzastudio, monzahaus, monzaindex, bavarianecons. */
+  ogPage?: "home" | "monzastudio" | "monzahaus" | "monzaindex" | "bavarianecons";
   type?: "website" | "article" | "profile";
   /** Extra JSON-LD structured data to inject. */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
@@ -32,15 +35,23 @@ const buildUrl = (lang: "es" | "en" | "de" | "pt", path: string) => {
   return `${SITE_URL}${prefix}${cleanPath}`;
 };
 
-const SEO = ({ title, description, path = "", image, type = "website", jsonLd, noindex }: SEOProps) => {
+const SEO = ({ title, description, path = "", image, ogPage, type = "website", jsonLd, noindex }: SEOProps) => {
   const { language } = useLanguage();
 
   const currentTitle = title[language];
   const currentDescription = description[language];
   const canonical = buildUrl(language, path);
+  /* Image precedence:
+   *   1. Explicit `image` prop (full URL or site-relative path)
+   *   2. Dynamic OG via `ogPage` → /api/og?page=...
+   *   3. Static fallback /og-image.png
+   * The dynamic generator returns 1200x630 PNGs from /api/og.tsx.
+   */
   const ogImage = image
     ? (image.startsWith("http") ? image : `${SITE_URL}${image}`)
-    : `${SITE_URL}/og-image.png`;
+    : ogPage
+      ? `${SITE_URL}/api/og?page=${ogPage}`
+      : `${SITE_URL}/api/og?page=home`;
 
   const hreflangs: Array<{ lang: "es" | "en" | "de" | "pt"; url: string }> = [
     { lang: "es", url: buildUrl("es", path) },

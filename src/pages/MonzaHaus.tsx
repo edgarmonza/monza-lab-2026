@@ -847,7 +847,7 @@ const MonzaHaus = () => {
           en: "MonzaHaus: 35,000+ Porsches from Japan, Europe and the US on a single AI-native platform. Collectors, dealers and buyers decide with curated data, not raw data.",
           de: "MonzaHaus: 35.000+ Porsche aus Japan, Europa und den USA auf einer AI-nativen Plattform. Sammler, Händler und Käufer entscheiden mit kuratierten Daten.", pt: "MonzaHaus: 35.000+ Porsches de Japón, Europa y EE.UU. en una plataforma AI-native. Coleccionistas, dealers y compradores deciden con datos curados, no datos crudos.",
         }}
-        image="/images/projects/monza-haus-cover.png"
+        ogPage="monzahaus"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",

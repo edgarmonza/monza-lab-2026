@@ -48,6 +48,7 @@ const RADAR_LABELS: Record<Lang, string[]> = {
   es: ["Adopción", "Talento", "Inversión", "Consumo", "Infra", "Regulación"],
   en: ["Adoption", "Talent", "Investment", "Consumer", "Infra", "Regulation"],
   de: ["Adoption", "Talent", "Investition", "Konsum", "Infra", "Regulierung"],
+  pt: ["Adoção", "Talento", "Investimento", "Consumo", "Infra", "Regulação"],
 };
 
 const Radar = ({ lang }: { lang: Lang }) => {
@@ -944,7 +945,7 @@ const MonzaIndex = () => {
           en: "Monza Index measures real AI adoption: 6 dimensions, auditable weights, public sources. Starting in Colombia, expanding to LATAM.",
           de: "Monza Index misst die echte KI-Adoption: 6 Dimensionen, auditierbare Gewichte, öffentliche Quellen. Beginnend in Kolumbien, ausgeweitet auf LATAM.", pt: "Monza Index mide la adopción real de la inteligencia artificial: 6 dimensiones, pesos auditables, fuentes públicas. Empezando por Colombia, expandiendo a LATAM.",
         }}
-        image="/images/projects/ia-index-cover.jpg"
+        ogPage="monzaindex"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Dataset",

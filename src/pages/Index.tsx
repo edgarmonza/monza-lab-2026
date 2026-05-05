@@ -15,15 +15,18 @@ const Index = () => {
     <PremiumBackground>
       <SEO
         path=""
+        ogPage="home"
         title={{
           es: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder",
           en: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder",
-          de: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder", pt: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder",
+          de: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder",
+          pt: "Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder",
         }}
         description={{
-          es: "Monza Lab es un company builder AI-native. Cuatro ventures activas — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — construidas y operadas desde una misma operación.",
-          en: "Monza Lab is an AI-native company builder. Four active ventures — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — built and operated from a single operation.",
-          de: "Monza Lab ist ein AI-native Company Builder. Vier aktive Ventures — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — gebaut und betrieben aus einer Operation.", pt: "Monza Lab es un company builder AI-native. Cuatro ventures activas — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — construidas y operadas desde una misma operación.",
+          es: "Construyo y opero empresas globales con IA como palanca. Cuatro ventures activas — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — un solo founder, criterio editorial.",
+          en: "I build and operate global companies with AI as leverage. Four active ventures — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — one founder, editorial criterion.",
+          de: "Ich baue und betreibe globale Unternehmen mit KI als Hebel. Vier aktive Ventures — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — ein Founder, redaktionelles Urteil.",
+          pt: "Construo e opero empresas globais com IA como alavanca. Quatro ventures activas — MonzaHaus, Monza Index, Monza Studio, Bavarian Econs — um founder, critério editorial.",
         }}
       />
       <main id="main" aria-label="Monza Lab — AI-Native Company Builder">
