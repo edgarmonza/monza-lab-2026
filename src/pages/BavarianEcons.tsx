@@ -250,7 +250,7 @@ const Purpose = ({ lang }: { lang: Lang }) => {
 /* ──────────────────────────────────────────
    MODELS
    ────────────────────────────────────────── */
-type Model = { name: string; status: LT; desc: LT; cover: string };
+type Model = { name: string; status: LT; desc: LT; cover: string; objectPosition?: string };
 
 const MODELS: Model[] = [
   {
@@ -281,7 +281,8 @@ const MODELS: Model[] = [
       en: "New line: the iconic E30 Touring electrified. Production limited to 50 global units. Alps-tested, hand-tuned in Munich.",
       de: "Neue Linie: der ikonische E30 Touring elektrifiziert. Produktion auf 50 globale Einheiten limitiert. In den Alpen getestet, in München von Hand abgestimmt.", pt: "Nueva línea: el icónico E30 Touring electrificado. Producción limitada a 50 unidades globales. Probado en los Alpes, ajustado a mano en Munich.",
     },
-    cover: "/images/projects/bavarian-econs/interior-leather.jpeg",
+    cover: "/images/projects/bavarian-econs/e30-touring.jpeg",
+    objectPosition: "55% 65%",
   },
 ];
 
@@ -329,7 +330,10 @@ const ModelsSection = ({ lang }: { lang: Lang }) => {
                 alt={m.name}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
-                style={{ opacity: 0.85 }}
+                style={{
+                  opacity: 0.85,
+                  objectPosition: m.objectPosition ?? "center",
+                }}
               />
               <div
                 className="absolute inset-0"
