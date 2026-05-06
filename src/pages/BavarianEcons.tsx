@@ -281,8 +281,7 @@ const MODELS: Model[] = [
       en: "New line: the iconic E30 Touring electrified. Production limited to 50 global units. Alps-tested, hand-tuned in Munich.",
       de: "Neue Linie: der ikonische E30 Touring elektrifiziert. Produktion auf 50 globale Einheiten limitiert. In den Alpen getestet, in München von Hand abgestimmt.", pt: "Nueva línea: el icónico E30 Touring electrificado. Producción limitada a 50 unidades globales. Probado en los Alpes, ajustado a mano en Munich.",
     },
-    cover: "/images/projects/bavarian-econs/e30-touring.jpeg",
-    objectPosition: "55% 65%",
+    cover: "/images/projects/bavarian-econs/e30-touring-card.jpeg",
   },
 ];
 

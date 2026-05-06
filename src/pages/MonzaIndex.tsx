@@ -642,7 +642,7 @@ const Partners = ({ lang }: { lang: Lang }) => {
             {t(affiliated, lang)}
           </p>
           <div className="flex items-baseline gap-6 md:gap-10 flex-wrap">
-            {["KPMG", "BBVA", "Google", "Monza Lab"].map((name) => (
+            {["On Top"].map((name) => (
               <span
                 key={name}
                 className="font-clash text-base md:text-lg font-medium"
