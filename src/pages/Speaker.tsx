@@ -52,6 +52,19 @@ const content = {
       accent: "Diseña cada conferencia como una experiencia",
       part2: " — cruza mundos que nadie más conecta.\u201D",
     },
+    pastTalks: {
+      eyebrow: "Charlas pasadas",
+      headline: "Lo que ya está en escenario.",
+      items: [
+        {
+          venue: "Andigraf · Barranquilla",
+          meta: "2026 · ES",
+          topic: "IA para la industria gráfica",
+          format: "Keynote · presentado por Heidelberg",
+          href: "https://andigraf.monzalab.com",
+        },
+      ],
+    },
     themes: {
       eyebrow: "Cómo funciona",
       headline1: "Cada escenario es diferente.",
@@ -124,6 +137,19 @@ const content = {
       accent: "He designs every conference as an experience",
       part2: " — crossing worlds no one else connects.\u201D",
     },
+    pastTalks: {
+      eyebrow: "Past talks",
+      headline: "What’s already on stage.",
+      items: [
+        {
+          venue: "Andigraf · Barranquilla",
+          meta: "2026 · ES",
+          topic: "AI for the printing industry",
+          format: "Keynote · presented by Heidelberg",
+          href: "https://andigraf.monzalab.com",
+        },
+      ],
+    },
     themes: {
       eyebrow: "How it works",
       headline1: "Every stage is different.",
@@ -195,6 +221,19 @@ const content = {
       part1: "\u201EEr hält nie denselben Vortrag zweimal. ",
       accent: "Er designt jede Konferenz als Erlebnis",
       part2: " — und verbindet Welten, die sonst niemand zusammenbringt.\u201C",
+    },
+    pastTalks: {
+      eyebrow: "Vergangene Vorträge",
+      headline: "Was schon auf der Bühne ist.",
+      items: [
+        {
+          venue: "Andigraf · Barranquilla",
+          meta: "2026 · ES",
+          topic: "KI für die grafische Industrie",
+          format: "Keynote · präsentiert von Heidelberg",
+          href: "https://andigraf.monzalab.com",
+        },
+      ],
     },
     themes: {
       eyebrow: "Wie es funktioniert",
@@ -531,6 +570,73 @@ const Speaker = () => {
               </span>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* -- PAST TALKS -- editorial list -- */}
+      <section className="py-24 md:py-32" style={{ borderTop: `1px solid ${borderColor(0.05)}` }}>
+        <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="mb-12 md:mb-16"
+          >
+            <p className="text-[10px] uppercase tracking-[0.5em] text-[#F8B4D9]/40 mb-5">{t.pastTalks.eyebrow}</p>
+            <h2
+              className="font-clash leading-[1.08] tracking-[-0.02em]"
+              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", color: textPrimary }}
+            >
+              {t.pastTalks.headline}
+            </h2>
+          </motion.div>
+
+          <div style={{ borderTop: `1px solid ${borderColor(0.06)}` }}>
+            {t.pastTalks.items.map((item, i) => (
+              <motion.a
+                key={i}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: EASE }}
+                className="grid grid-cols-[1fr_auto] md:grid-cols-[1fr_2fr_auto] gap-4 md:gap-10 py-6 md:py-7 group items-baseline"
+                style={{ borderBottom: `1px solid ${borderColor(0.06)}` }}
+              >
+                <div>
+                  <p className="font-clash text-base md:text-lg leading-tight transition-colors group-hover:text-[#F8B4D9]" style={{ color: textMuted(0.85) }}>
+                    {item.venue}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] mt-1.5" style={{ color: textMuted(0.30) }}>
+                    {item.meta}
+                  </p>
+                </div>
+                <div className="hidden md:block">
+                  <p className="font-clash text-base md:text-lg leading-tight transition-colors group-hover:text-[#F8B4D9]" style={{ color: textMuted(0.80) }}>
+                    {item.topic}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] mt-1.5" style={{ color: textMuted(0.30) }}>
+                    {item.format}
+                  </p>
+                </div>
+                <span className="font-clash text-base text-[#F8B4D9]/40 group-hover:text-[#F8B4D9] transition-all duration-500 group-hover:translate-x-1">
+                  ↗
+                </span>
+                {/* Mobile: topic & format below the venue */}
+                <div className="col-span-2 md:hidden -mt-3">
+                  <p className="font-clash text-sm leading-tight transition-colors group-hover:text-[#F8B4D9]" style={{ color: textMuted(0.70) }}>
+                    {item.topic}
+                  </p>
+                  <p className="text-[9px] uppercase tracking-[0.2em] mt-1" style={{ color: textMuted(0.30) }}>
+                    {item.format}
+                  </p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
       </section>
 

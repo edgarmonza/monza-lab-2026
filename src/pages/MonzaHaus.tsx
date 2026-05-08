@@ -1,13 +1,25 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useTheme } from "@/theme/ThemeContext";
 import FooterMinimal from "@/components/FooterMinimal";
 import PremiumBackground from "@/components/layout/PremiumBackground";
 import SEO from "@/components/SEO";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-const ACCENT = "#F8B4D9";
-const ACCENT_DEEP = "#f4a0cc";
+
+// Heritage Lavender palette — synced with monzahaus.com v2.1 "Salon" brand.
+// Light theme uses Lavender Deep + Ink; dark theme uses Heritage Lavender + Lavender Mid.
+const usePalette = () => {
+  const { theme } = useTheme();
+  const isLight = theme === "modena";
+  return {
+    accent: isLight ? "#D6BEDC" : "#E1CCE5",
+    accentDeep: isLight ? "#B89FBE" : "#D6BEDC",
+    accentInk: isLight ? "#5D3F66" : "#3F2A47",
+    glowRgb: isLight ? "184, 159, 190" : "225, 204, 229",
+  };
+};
 
 type Lang = "es" | "en" | "de" | "pt";
 type LT = { es: string; en: string; de: string; pt: string };
@@ -43,6 +55,7 @@ const Section = ({
    HERO — utilidad > data
    ────────────────────────────────────────── */
 const Hero = ({ lang }: { lang: Lang }) => {
+  const palette = usePalette();
   const eyebrow: LT = {
     es: "MONZAHAUS · VENTURE 01",
     en: "MONZAHAUS · VENTURE 01",
@@ -74,7 +87,7 @@ const Hero = ({ lang }: { lang: Lang }) => {
         >
           <p
             className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-6"
-            style={{ color: `${ACCENT}cc` }}
+            style={{ color: `${palette.accent}cc` }}
           >
             {t(eyebrow, lang)}
           </p>
@@ -101,15 +114,15 @@ const Hero = ({ lang }: { lang: Lang }) => {
             className="inline-flex items-center gap-3 font-clash text-sm tracking-[0.2em] uppercase font-medium py-4 px-7 rounded-full transition-all duration-300"
             style={{
               color: "#0B0B10",
-              background: ACCENT,
-              boxShadow: `0 20px 60px -20px ${ACCENT}99`,
+              background: palette.accent,
+              boxShadow: `0 20px 60px -20px ${palette.accent}99`,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = ACCENT_DEEP;
+              e.currentTarget.style.background = palette.accentDeep;
               e.currentTarget.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = ACCENT;
+              e.currentTarget.style.background = palette.accent;
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
@@ -124,12 +137,12 @@ const Hero = ({ lang }: { lang: Lang }) => {
           transition={{ duration: 1.1, ease: EASE, delay: 0.1 }}
           className="md:col-span-6 relative aspect-[4/3] md:aspect-[5/4] rounded-2xl overflow-hidden"
           style={{
-            border: `1px solid ${ACCENT}33`,
-            boxShadow: `0 40px 100px -30px ${ACCENT}33`,
+            border: `1px solid ${palette.accent}33`,
+            boxShadow: `0 40px 100px -30px ${palette.accent}33`,
           }}
         >
           <img
-            src="/images/projects/monza-haus-cover.png"
+            src="/images/projects/monza-haus/917-rear-pure.png"
             alt="MonzaHaus product preview"
             className="w-full h-full object-cover"
             loading="eager"
@@ -137,16 +150,16 @@ const Hero = ({ lang }: { lang: Lang }) => {
           <div
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(150deg, transparent 60%, ${ACCENT}1f 100%)`,
+              background: `linear-gradient(150deg, transparent 60%, ${palette.accent}1f 100%)`,
             }}
           />
           {/* Tag overlay */}
           <div
             className="absolute top-4 left-4 px-3 py-1.5 rounded-full font-mono text-[10px] tracking-[0.2em] backdrop-blur-md"
             style={{
-              color: ACCENT,
+              color: palette.accent,
               background: "rgba(11,11,16,0.55)",
-              border: `1px solid ${ACCENT}40`,
+              border: `1px solid ${palette.accent}40`,
             }}
           >
             LIVE · monzahaus.com
@@ -161,6 +174,7 @@ const Hero = ({ lang }: { lang: Lang }) => {
    PURPOSE — utilidad > data
    ────────────────────────────────────────── */
 const Purpose = ({ lang }: { lang: Lang }) => {
+  const palette = usePalette();
   const eyebrow: LT = { es: "PROPÓSITO", en: "PURPOSE", de: "ZWECK", pt: "PROPÓSITO" };
   const head: LT = {
     es: "Generamos valor al ecosistema Porsche.",
@@ -178,7 +192,7 @@ const Purpose = ({ lang }: { lang: Lang }) => {
       <div className="mx-auto max-w-[1100px] px-6 md:px-10">
         <p
           className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-8"
-          style={{ color: `${ACCENT}b3` }}
+          style={{ color: `${palette.accent}b3` }}
         >
           {t(eyebrow, lang)}
         </p>
@@ -246,6 +260,7 @@ const FLOW: { num: string; label: LT; detail: LT }[] = [
 ];
 
 const HowItWorks = ({ lang }: { lang: Lang }) => {
+  const palette = usePalette();
   const eyebrow: LT = { es: "CÓMO FUNCIONA", en: "HOW IT WORKS", de: "WIE ES FUNKTIONIERT", pt: "CÓMO FUNCIONA" };
   const head: LT = {
     es: "De la subasta cruda a la decisión informada.",
@@ -258,7 +273,7 @@ const HowItWorks = ({ lang }: { lang: Lang }) => {
       <div className="mx-auto max-w-[1200px] px-6 md:px-10">
         <p
           className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-6"
-          style={{ color: `${ACCENT}b3` }}
+          style={{ color: `${palette.accent}b3` }}
         >
           {t(eyebrow, lang)}
         </p>
@@ -288,12 +303,12 @@ const HowItWorks = ({ lang }: { lang: Lang }) => {
                 className="rounded-2xl p-6 md:p-7 h-full"
                 style={{
                   background: "rgba(var(--text-rgb), 0.025)",
-                  border: `1px solid ${ACCENT}1f`,
+                  border: `1px solid ${palette.accent}1f`,
                 }}
               >
                 <p
                   className="font-mono text-[11px] tracking-[0.25em] mb-4"
-                  style={{ color: `${ACCENT}b3` }}
+                  style={{ color: `${palette.accent}b3` }}
                 >
                   {step.num}
                 </p>
@@ -319,12 +334,12 @@ const HowItWorks = ({ lang }: { lang: Lang }) => {
                   className="hidden md:flex absolute top-1/2 -right-5 -translate-y-1/2 w-4 h-4 rounded-full items-center justify-center z-10"
                   style={{
                     background: "var(--surface-bg)",
-                    border: `1px solid ${ACCENT}55`,
+                    border: `1px solid ${palette.accent}55`,
                   }}
                 >
                   <span
                     className="font-mono text-[10px]"
-                    style={{ color: ACCENT }}
+                    style={{ color: palette.accent }}
                   >
                     →
                   </span>
@@ -383,6 +398,7 @@ const AGENTS: Agent[] = [
 ];
 
 const AIAgents = ({ lang }: { lang: Lang }) => {
+  const palette = usePalette();
   const eyebrow: LT = { es: "AGENTES ESPECIALIZADOS", en: "SPECIALIZED AGENTS", de: "SPEZIALISIERTE AGENTEN", pt: "AGENTES ESPECIALIZADOS" };
   const head: LT = {
     es: "Cada Porsche es único. Cuatro agentes lo entienden.",
@@ -400,7 +416,7 @@ const AIAgents = ({ lang }: { lang: Lang }) => {
       <div className="mx-auto max-w-[1200px] px-6 md:px-10">
         <p
           className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-6"
-          style={{ color: `${ACCENT}b3` }}
+          style={{ color: `${palette.accent}b3` }}
         >
           {t(eyebrow, lang)}
         </p>
@@ -432,14 +448,14 @@ const AIAgents = ({ lang }: { lang: Lang }) => {
               className="rounded-2xl p-7 md:p-9 relative overflow-hidden"
               style={{
                 background: "rgba(var(--text-rgb), 0.025)",
-                border: `1px solid ${ACCENT}1a`,
+                border: `1px solid ${palette.accent}1a`,
               }}
             >
               <div className="flex items-baseline gap-5 mb-5">
                 <span
                   className="font-clash font-bold text-2xl md:text-3xl"
                   style={{
-                    color: ACCENT,
+                    color: palette.accent,
                     letterSpacing: "-0.02em",
                   }}
                 >
@@ -461,148 +477,6 @@ const AIAgents = ({ lang }: { lang: Lang }) => {
               >
                 {t(a.detail, lang)}
               </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </Section>
-  );
-};
-
-/* ──────────────────────────────────────────
-   CONTENT ENGINE — carousels reales como prueba
-   ────────────────────────────────────────── */
-type Carousel = { title: string; sub: LT; slides: string[] };
-
-const CAROUSELS: Carousel[] = [
-  {
-    title: "GT3 992",
-    sub: {
-      es: "5 slides · listing breakdown",
-      en: "5 slides · listing breakdown",
-      de: "5 Slides · Listing-Breakdown", pt: "5 slides · listing breakdown",
-    },
-    slides: [
-      "/images/projects/monza-haus/posts/gt3-992/slide-1.png",
-      "/images/projects/monza-haus/posts/gt3-992/slide-2.png",
-      "/images/projects/monza-haus/posts/gt3-992/slide-3.png",
-      "/images/projects/monza-haus/posts/gt3-992/slide-4.png",
-      "/images/projects/monza-haus/posts/gt3-992/slide-5.png",
-    ],
-  },
-  {
-    title: "Targa 4 GTS",
-    sub: {
-      es: "5 slides · spec & market read",
-      en: "5 slides · spec & market read",
-      de: "5 Slides · Spec & Markt-Read", pt: "5 slides · spec & market read",
-    },
-    slides: [
-      "/images/projects/monza-haus/posts/targa-4-gts/slide-1.png",
-      "/images/projects/monza-haus/posts/targa-4-gts/slide-2.png",
-      "/images/projects/monza-haus/posts/targa-4-gts/slide-3.png",
-      "/images/projects/monza-haus/posts/targa-4-gts/slide-4.png",
-      "/images/projects/monza-haus/posts/targa-4-gts/slide-5.png",
-    ],
-  },
-  {
-    title: "930 Turbo 1986",
-    sub: {
-      es: "5 slides · provenance deep-dive",
-      en: "5 slides · provenance deep-dive",
-      de: "5 Slides · Provenance Deep-Dive", pt: "5 slides · provenance deep-dive",
-    },
-    slides: [
-      "/images/projects/monza-haus/posts/930-turbo/slide-1.png",
-      "/images/projects/monza-haus/posts/930-turbo/slide-2.png",
-      "/images/projects/monza-haus/posts/930-turbo/slide-3.png",
-      "/images/projects/monza-haus/posts/930-turbo/slide-4.png",
-      "/images/projects/monza-haus/posts/930-turbo/slide-5.png",
-    ],
-  },
-];
-
-const ContentEngine = ({ lang }: { lang: Lang }) => {
-  const eyebrow: LT = { es: "CONTENT ENGINE", en: "CONTENT ENGINE", de: "CONTENT ENGINE", pt: "CONTENT ENGINE" };
-  const head: LT = {
-    es: "El producto también escribe.",
-    en: "The product writes too.",
-    de: "Das Produkt schreibt auch.", pt: "El producto también escribe.",
-  };
-  const body: LT = {
-    es: "Cada listing relevante genera su propio carousel editorial — provenance, spec y mercado, todo desde los agentes. AI-native no es solo el data: es también la voz pública del producto.",
-    en: "Every relevant listing generates its own editorial carousel — provenance, spec and market, all from the agents. AI-native isn't just the data: it's also the product's public voice.",
-    de: "Jedes relevante Listing erzeugt ein eigenes redaktionelles Karussell — Provenance, Spec und Markt, alles aus den Agenten. AI-native ist nicht nur das Data: Es ist auch die öffentliche Stimme des Produkts.", pt: "Cada listing relevante genera su propio carousel editorial — provenance, spec y mercado, todo desde los agentes. AI-native no es solo el data: es también la voz pública del producto.",
-  };
-
-  return (
-    <Section className="py-24 md:py-32" id="content">
-      <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-        <p
-          className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-6"
-          style={{ color: `${ACCENT}b3` }}
-        >
-          {t(eyebrow, lang)}
-        </p>
-        <h2
-          className="font-clash font-bold leading-[1.05] mb-6 max-w-3xl"
-          style={{
-            fontSize: "clamp(28px, 4vw, 48px)",
-            letterSpacing: "-0.025em",
-            color: "rgba(var(--text-rgb), 0.92)",
-          }}
-        >
-          {t(head, lang)}
-        </h2>
-        <p
-          className="font-clash text-base md:text-lg max-w-3xl leading-relaxed mb-14"
-          style={{ color: "rgba(var(--text-rgb), 0.6)" }}
-        >
-          {t(body, lang)}
-        </p>
-
-        <div className="space-y-12 md:space-y-16">
-          {CAROUSELS.map((c, ci) => (
-            <motion.div
-              key={c.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, delay: ci * 0.05 }}
-            >
-              <div className="flex items-baseline justify-between mb-4 gap-4 flex-wrap">
-                <h3
-                  className="font-clash font-bold text-xl md:text-2xl"
-                  style={{
-                    letterSpacing: "-0.02em",
-                    color: "rgba(var(--text-rgb), 0.92)",
-                  }}
-                >
-                  {c.title}
-                </h3>
-                <p
-                  className="font-clash text-[10px] md:text-[11px] tracking-[0.25em] uppercase font-medium"
-                  style={{ color: `${ACCENT}b3` }}
-                >
-                  {t(c.sub, lang)}
-                </p>
-              </div>
-              <div className="flex gap-3 md:gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
-                {c.slides.map((src, i) => (
-                  <div
-                    key={src}
-                    className="relative aspect-square w-[68%] sm:w-[40%] md:w-[19%] flex-shrink-0 rounded-xl overflow-hidden"
-                    style={{ border: `1px solid ${ACCENT}1f` }}
-                  >
-                    <img
-                      src={src}
-                      alt={`${c.title} slide ${i + 1}`}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
             </motion.div>
           ))}
         </div>
@@ -642,6 +516,7 @@ const FOR_WHO: { label: LT; detail: LT }[] = [
 ];
 
 const ForWho = ({ lang }: { lang: Lang }) => {
+  const palette = usePalette();
   const eyebrow: LT = { es: "PARA QUIÉN", en: "FOR WHO", de: "FÜR WEN", pt: "PARA QUIÉN" };
   const head: LT = {
     es: "Tres personas. Una sola plataforma.",
@@ -654,7 +529,7 @@ const ForWho = ({ lang }: { lang: Lang }) => {
       <div className="mx-auto max-w-[1200px] px-6 md:px-10">
         <p
           className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-6"
-          style={{ color: `${ACCENT}b3` }}
+          style={{ color: `${palette.accent}b3` }}
         >
           {t(eyebrow, lang)}
         </p>
@@ -684,7 +559,7 @@ const ForWho = ({ lang }: { lang: Lang }) => {
             >
               <p
                 className="font-clash text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-bold mb-4"
-                style={{ color: ACCENT }}
+                style={{ color: palette.accent }}
               >
                 {t(p.label, lang)}
               </p>
@@ -706,6 +581,7 @@ const ForWho = ({ lang }: { lang: Lang }) => {
    STATS strip
    ────────────────────────────────────────── */
 const Stats = ({ lang }: { lang: Lang }) => {
+  const palette = usePalette();
   const stats: { value: string; label: LT }[] = [
     {
       value: "35K+",
@@ -738,7 +614,7 @@ const Stats = ({ lang }: { lang: Lang }) => {
               style={{
                 fontSize: "clamp(32px, 4vw, 48px)",
                 letterSpacing: "-0.02em",
-                color: ACCENT,
+                color: palette.accent,
               }}
             >
               {s.value}
@@ -760,6 +636,7 @@ const Stats = ({ lang }: { lang: Lang }) => {
    CTA final
    ────────────────────────────────────────── */
 const FinalCTA = ({ lang }: { lang: Lang }) => {
+  const palette = usePalette();
   const head: LT = {
     es: "Empieza a decidir con datos reales.",
     en: "Start deciding with real data.",
@@ -778,8 +655,8 @@ const FinalCTA = ({ lang }: { lang: Lang }) => {
         <div
           className="rounded-3xl p-10 md:p-16 lg:p-20 relative overflow-hidden"
           style={{
-            border: `1px solid ${ACCENT}33`,
-            background: `radial-gradient(ellipse at 70% 30%, ${ACCENT}14 0%, transparent 60%), rgba(var(--text-rgb), 0.02)`,
+            border: `1px solid ${palette.accent}33`,
+            background: `radial-gradient(ellipse at 70% 30%, ${palette.accent}14 0%, transparent 60%), rgba(var(--text-rgb), 0.02)`,
           }}
         >
           <h2
@@ -805,15 +682,15 @@ const FinalCTA = ({ lang }: { lang: Lang }) => {
             className="inline-flex items-center gap-3 font-clash text-sm tracking-[0.2em] uppercase font-medium py-4 px-7 rounded-full transition-all duration-300"
             style={{
               color: "#0B0B10",
-              background: ACCENT,
-              boxShadow: `0 20px 60px -20px ${ACCENT}99`,
+              background: palette.accent,
+              boxShadow: `0 20px 60px -20px ${palette.accent}99`,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = ACCENT_DEEP;
+              e.currentTarget.style.background = palette.accentDeep;
               e.currentTarget.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = ACCENT;
+              e.currentTarget.style.background = palette.accent;
               e.currentTarget.style.transform = "translateY(0)";
             }}
           >
@@ -868,7 +745,6 @@ const MonzaHaus = () => {
         <Purpose lang={lang} />
         <HowItWorks lang={lang} />
         <AIAgents lang={lang} />
-        <ContentEngine lang={lang} />
         <ForWho lang={lang} />
         <FinalCTA lang={lang} />
       </main>

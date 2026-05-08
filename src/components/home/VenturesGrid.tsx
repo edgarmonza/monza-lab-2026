@@ -42,8 +42,8 @@ const VENTURES: Venture[] = [
     slug: "monzahaus",
     name: "MonzaHaus",
     number: "01",
-    accent: "#F8B4D9",
-    cover: "/images/projects/monza-haus-cover.png",
+    accent: "#E1CCE5",
+    cover: "/images/projects/monza-haus/917-rear-pure.png",
     tagline: {
       es: "Compra el Porsche correcto, al precio justo.",
       en: "Buy the right Porsche, at the right price.",

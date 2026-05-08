@@ -38,7 +38,7 @@ export const VENTURES: Venture[] = [
     name: "MonzaHaus",
     shortName: "Haus",
     url: "https://www.monzahaus.com",
-    accent: "#F8B4D9",
+    accent: "#E1CCE5",
     tagline: {
       es: "Decisiones inteligentes para el ecosistema Porsche.",
       en: "Intelligent decisions for the Porsche ecosystem.",
@@ -49,7 +49,7 @@ export const VENTURES: Venture[] = [
       en: "35,000+ Porsches from Japan, EU and the US on a single AI-native platform.",
       de: "35.000+ Porsche aus Japan, EU und den USA auf einer AI-nativen Plattform.", pt: "35.000+ Porsches de Japón, EU y EE.UU. en una sola plataforma AI-native.",
     },
-    cover: "/images/projects/monza-haus-cover.png",
+    cover: "/images/projects/monza-haus/917-rear-pure.png",
   },
   {
     id: "monzaindex",
