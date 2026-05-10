@@ -125,6 +125,22 @@ All colors MUST be HSL.
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 
+    /* Logo / typography constants (theme-independent) */
+    /* === HEIGHT: helmet visible shell == M cap-height ===
+       Clash Display Bold cap-height = 670/1000 = 0.67 of font-size.
+       SVG helmet shell occupies 115/121 = 0.9504 of bounding box.
+       helmet-css-height = font-size * (0.67 / 0.9504) = font-size * 0.7050 */
+    --logo-cap-ratio: 0.7050;
+
+    /* === VERTICAL POSITION: helmet center == M cap-height center ===
+       align-items:center centers the helmet at em-box center (0.5em from top).
+       But cap-height center is at 0.4457em from top (with Clash Display Bold typo
+       metrics: baseline 0.7807em, cap-line-top 0.1107em).
+       Offset = 0.5 - 0.4457 = 0.0543em UP. Apply via `translate: 0 var(...)`.
+       Verified 2026-05-09 against OS/2 sTypoAscender/sTypoDescender metrics.
+       If font changes, recompute: offset = 0.5 - ((typo_asc/(typo_asc-typo_desc)) - cap_height/upm) - cap_height/upm/2 */
+    --logo-helmet-y-offset: -0.0543em;
+
     /* Theme-aware surface colors (for components) */
     --surface-bg: #0B0B10;
     --surface-card: rgba(15, 14, 22, 0.92);

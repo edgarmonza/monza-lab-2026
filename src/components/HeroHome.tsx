@@ -399,7 +399,7 @@ const HeroHome = () => {
             animate={isLoaded ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
             className="relative text-[15vw] md:text-[10vw] lg:text-[8vw] leading-none"
-            style={{ width: "0.73em", height: "0.73em", marginLeft: "0.02em", marginRight: "0.01em", alignSelf: "center" }}
+            style={{ width: "calc(1em * var(--logo-cap-ratio))", height: "calc(1em * var(--logo-cap-ratio))", marginLeft: "0.02em", marginRight: "0.01em", alignSelf: "center", translate: "0 var(--logo-helmet-y-offset)" }}
           >
             <div ref={helmetSolidRef} className="absolute inset-0">
               <HelmetIcon variant="solid" shellColor="#F8B4D9" visorColor={isModena ? "#F5F0EB" : "#1a1a2a"} className="w-full h-full" />

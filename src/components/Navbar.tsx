@@ -207,8 +207,13 @@ const Navbar = () => {
                 visorColor={isModena ? "#0B0B10" : "#1a1a2a"}
                 className="transition-all duration-500 group-hover:scale-110"
                 style={{
-                  height: isScrolled ? "0.78rem" : "0.9rem",
-                  width: isScrolled ? "0.78rem" : "0.9rem",
+                  height: isScrolled
+                    ? "calc(1rem * var(--logo-cap-ratio))"
+                    : "calc(1.125rem * var(--logo-cap-ratio))",
+                  width: isScrolled
+                    ? "calc(1rem * var(--logo-cap-ratio))"
+                    : "calc(1.125rem * var(--logo-cap-ratio))",
+                  translate: "0 var(--logo-helmet-y-offset)",
                 }}
               />
               <span
