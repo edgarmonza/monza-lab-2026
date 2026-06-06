@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="https://monzalab.com/favicon.svg">
+  <title>Modelos de Monetizacion | Monza Lab × EAFIT</title>
+
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500,400,300&f[]=telegraf@700,600,500,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0B0B10;
+      --bg2: rgba(15, 14, 22, 0.92);
+      --bg3: #121218;
+      --accent: #F8B4D9;
+      --accent-h: #f4cbde;
+      --accent-glow: rgba(248,180,217,0.12);
+      --accent-bg: rgba(248,180,217,0.08);
+      --accent-border: rgba(248,180,217,0.18);
+      --accent-border-strong: rgba(248,180,217,0.35);
+      --text: rgba(255,252,247,0.85);
+      --text-m: rgba(255,252,247,0.70);
+      --text-d: rgba(255,252,247,0.50);
+      --brd: rgba(255,255,255,0.06);
+      --brd-h: rgba(255,255,255,0.12);
+      --font-display: 'Clash Display', -apple-system, sans-serif;
+      --font-head: 'Telegraf', -apple-system, sans-serif;
+      --font-body: 'Public Sans', -apple-system, sans-serif;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --green: #34D399;
+      --blue: #60A5FA;
+      --orange: #FBBF24;
+      --purple: #A78BFA;
+      --red: #F87171;
+      --teal: #2DD4BF;
+    }
+
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%;overflow:hidden}
+    body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;user-select:none;font-weight:400}
+    a{color:inherit;text-decoration:none}
+    .ac{color:var(--accent)}
+    .green{color:var(--green)}
+    .blue{color:var(--blue)}
+    .orange{color:var(--orange)}
+    .purple{color:var(--purple)}
+
+    /* BG layers */
+    .bgl{position:fixed;inset:0;pointer-events:none;z-index:0}
+    .bgl1{background:radial-gradient(70% 50% at 50% 0%,rgba(248,180,217,0.08) 0%,transparent 55%)}
+    .bgl2{background:radial-gradient(60% 50% at 50% 100%,rgba(248,180,217,0.03) 0%,transparent 50%)}
+    .bgl3{opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+
+    .presentation{position:relative;width:100vw;height:100vh;overflow:hidden;z-index:10}
+
+    /* Progress */
+    .progress{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,0.03);z-index:50}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-h));transition:width 0.7s var(--ease);width:0%}
+
+    /* Top bar */
+    .topbar{position:fixed;top:2rem;left:2.5rem;right:2.5rem;display:flex;justify-content:space-between;align-items:center;z-index:40;pointer-events:none}
+    .logo{display:flex;align-items:center;gap:0;font-family:var(--font-display);font-weight:700;font-size:0.85rem;letter-spacing:-0.025em;text-transform:uppercase;color:var(--text)}
+    .logo svg{width:0.6rem;height:0.6rem;margin:0 0.08rem;transform:translateY(-0.0543em)}
+    .slide-counter{font-family:var(--font-body);font-size:0.7rem;color:var(--text-d);letter-spacing:0.15em}
+
+    /* Slide shell */
+    .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;padding:4.5rem 4rem 3rem;opacity:0;visibility:hidden;transition:opacity 0.6s var(--ease),transform 0.6s var(--ease);transform:translateY(30px);overflow-y:auto;scrollbar-width:none}
+    .slide::-webkit-scrollbar{display:none}
+    .slide.active{opacity:1;visibility:visible;transform:translateY(0)}
+    .slide.slide-center{justify-content:center}
+    .slide-inner{max-width:1100px;width:100%;text-align:left}
+
+    /* Typography */
+    h1{font-family:var(--font-head);font-weight:700;font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem}
+    h2{font-family:var(--font-head);font-weight:700;font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;letter-spacing:-0.02em;margin-bottom:1rem}
+    h3{font-family:var(--font-head);font-weight:600;font-size:1.3rem;line-height:1.3;letter-spacing:-0.01em;margin-bottom:0.5rem}
+    h4{font-family:var(--font-head);font-weight:600;font-size:1rem;line-height:1.3;margin-bottom:0.3rem}
+    p{font-size:0.95rem;color:var(--text-m);line-height:1.7;margin-bottom:0.75rem}
+    .label{font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:block}
+    .sublabel{font-family:var(--font-body);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-d);margin-bottom:0.5rem}
+    .big-number{font-family:var(--font-head);font-weight:700;font-size:clamp(2rem,4vw,3.2rem);line-height:1;color:var(--accent)}
+    .quote{font-style:italic;color:var(--text-m);border-left:2px solid var(--accent-border-strong);padding-left:1.25rem;margin:1.5rem 0;font-size:0.95rem}
+
+    /* Grid layouts */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+    .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;margin-top:1.5rem}
+    .grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1rem;margin-top:1.5rem}
+
+    /* Cards */
+    .card{background:var(--bg2);border:1px solid var(--brd);border-radius:1rem;padding:1.75rem;transition:all 0.3s var(--ease)}
+    .card:hover{border-color:var(--brd-h);transform:translateY(-2px)}
+    .card-accent{background:linear-gradient(145deg,rgba(248,180,217,0.06),rgba(248,180,217,0.02));border-color:var(--accent-border)}
+    .card-dark{background:rgba(0,0,0,0.3);border-color:var(--brd)}
+    .card h3{margin-bottom:0.4rem}
+    .card p{font-size:0.85rem;margin-bottom:0.5rem}
+
+    /* Icon circles */
+    .icon-circle{width:3rem;height:3rem;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.3rem}
+    .ic-pink{background:rgba(248,180,217,0.12);color:var(--accent)}
+    .ic-green{background:rgba(52,211,153,0.12);color:var(--green)}
+    .ic-blue{background:rgba(96,165,250,0.12);color:var(--blue)}
+    .ic-orange{background:rgba(251,191,36,0.12);color:var(--orange)}
+    .ic-purple{background:rgba(167,139,250,0.12);color:var(--purple)}
+    .ic-teal{background:rgba(45,212,191,0.12);color:var(--teal)}
+
+    /* Tags */
+    .tag{display:inline-block;font-family:var(--font-body);font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.25rem 0.7rem;border-radius:2rem;margin-right:0.4rem;margin-bottom:0.4rem}
+    .tag-pink{background:rgba(248,180,217,0.12);color:var(--accent);border:1px solid var(--accent-border)}
+    .tag-green{background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.2)}
+    .tag-blue{background:rgba(96,165,250,0.1);color:var(--blue);border:1px solid rgba(96,165,250,0.2)}
+    .tag-orange{background:rgba(251,191,36,0.1);color:var(--orange);border:1px solid rgba(251,191,36,0.2)}
+    .tag-ghost{background:rgba(255,255,255,0.03);color:var(--text-d);border:1px solid var(--brd)}
+
+    /* Comparison bar */
+    .bar-row{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem}
+    .bar-label{font-size:0.75rem;color:var(--text-m);width:100px;text-align:right;flex-shrink:0}
+    .bar-track{flex:1;height:6px;background:rgba(255,255,255,0.04);border-radius:3px;overflow:hidden}
+    .bar-fill{height:100%;border-radius:3px;transition:width 1s var(--ease)}
+    .bar-pink .bar-fill{background:var(--accent)}
+    .bar-green .bar-fill{background:var(--green)}
+    .bar-blue .bar-fill{background:var(--blue)}
+    .bar-orange .bar-fill{background:var(--orange)}
+
+    /* VS divider */
+    .vs{display:flex;align-items:center;gap:0.75rem;margin:1rem 0;color:var(--text-d);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase}
+    .vs::before,.vs::after{content:'';flex:1;height:1px;background:var(--brd)}
+
+    /* Flow arrow */
+    .flow{display:flex;align-items:center;gap:0.75rem;margin:1.5rem 0;flex-wrap:wrap}
+    .flow-step{background:var(--bg2);border:1px solid var(--brd);border-radius:0.75rem;padding:0.6rem 1rem;font-size:0.8rem;color:var(--text-m)}
+    .flow-step.active{border-color:var(--accent-border);color:var(--accent);background:rgba(248,180,217,0.06)}
+    .flow-arrow{color:var(--text-d);font-size:0.7rem}
+
+    /* Photo cards */
+    .photo-card{border-radius:1rem;overflow:hidden;position:relative;aspect-ratio:16/9;background:var(--bg2)}
+    .photo-card img{width:100%;height:100%;object-fit:cover;opacity:0.85}
+    .photo-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(11,11,16,0.95));display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem}
+
+    /* Example logos (text-based) */
+    .company-logo{font-family:var(--font-head);font-weight:700;font-size:0.85rem;color:var(--text-m);opacity:0.7;letter-spacing:0.05em}
+
+    /* Footer */
+    .slide-footer{position:absolute;bottom:2rem;left:2.5rem;right:2.5rem;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+    .slide-footer span{font-size:0.65rem;color:var(--text-d);letter-spacing:0.15em;text-transform:uppercase}
+
+    /* Nav */
+    .nav-hint{position:fixed;bottom:2rem;right:2.5rem;z-index:40;display:flex;gap:0.5rem;align-items:center}
+    .nav-btn{width:2rem;height:2rem;border-radius:50%;border:1px solid var(--brd);background:transparent;color:var(--text-d);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.7rem;transition:all 0.2s var(--ease)}
+    .nav-btn:hover{border-color:var(--accent-border);color:var(--accent);background:var(--accent-bg)}
+
+    /* Metric row */
+    .metric{display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.4rem}
+    .metric-val{font-family:var(--font-head);font-weight:700;font-size:1.6rem;color:var(--accent)}
+    .metric-label{font-size:0.8rem;color:var(--text-m)}
+
+    /* Table */
+    .tbl{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.8rem}
+    .tbl th{text-align:left;padding:0.6rem 0.75rem;border-bottom:1px solid var(--brd-h);color:var(--text-d);font-family:var(--font-display);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500}
+    .tbl td{padding:0.6rem 0.75rem;border-bottom:1px solid var(--brd);color:var(--text-m)}
+    .tbl tr:hover td{background:rgba(255,255,255,0.02)}
+
+    /* Pill status */
+    .pill{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.65rem;font-weight:600;padding:0.15rem 0.5rem;border-radius:1rem}
+    .pill-yes{background:rgba(52,211,153,0.1);color:var(--green)}
+    .pill-no{background:rgba(248,113,113,0.1);color:var(--red)}
+    .pill-maybe{background:rgba(251,191,36,0.1);color:var(--orange)}
+    .pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor}
+
+    /* Split layout */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+    .split-wide{display:grid;grid-template-columns:1.2fr 0.8fr;gap:3rem;align-items:center}
+
+    /* Animated gradient bg for special slides */
+    .hero-gradient{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(248,180,217,0.10),transparent 60%);pointer-events:none}
+
+    /* Logos row */
+    .logos-row{display:flex;gap:2rem;align-items:center;margin-top:1rem;flex-wrap:wrap}
+    .logo-item{font-family:var(--font-head);font-weight:700;font-size:1rem;color:var(--text-d);opacity:0.5;letter-spacing:0.02em}
+
+    /* Funnel */
+    .funnel{display:flex;flex-direction:column;gap:0.4rem;margin-top:1rem}
+    .funnel-step{display:flex;align-items:center;gap:0.75rem}
+    .funnel-bar{height:2.5rem;border-radius:0.5rem;display:flex;align-items:center;padding:0 1rem;font-size:0.8rem;font-weight:500;color:var(--bg);transition:all 0.5s var(--ease)}
+
+    /* Checklist */
+    .check-list{list-style:none;margin-top:0.75rem}
+    .check-list li{display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.5rem;font-size:0.85rem;color:var(--text-m)}
+    .check-list li::before{content:'';width:16px;height:16px;border-radius:50%;background:rgba(52,211,153,0.15);border:1.5px solid var(--green);flex-shrink:0;margin-top:2px}
+    .check-list li.done::before{background:var(--green);box-shadow:inset 0 0 0 3px var(--bg)}
+
+    @keyframes fade-in-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .slide.active .anim{animation:fade-in-up 0.6s ease-out both}
+    .slide.active .anim-d1{animation-delay:0.1s}
+    .slide.active .anim-d2{animation-delay:0.2s}
+    .slide.active .anim-d3{animation-delay:0.3s}
+    .slide.active .anim-d4{animation-delay:0.4s}
+    .slide.active .anim-d5{animation-delay:0.5s}
+  </style>
+</head>
+<body>
+
+<!-- BG layers -->
+<div class="bgl bgl1"></div>
+<div class="bgl bgl2"></div>
+<div class="bgl bgl3"></div>
+
+<!-- Progress -->
+<div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="logo">
+    M<svg viewBox="0 0 120 121" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M60 3C36 3 12 18 7 40C2 57 2 72 6 86L15 103C23 113 38 118 57 118L60 118L63 118C82 118 97 113 105 103L114 86C118 72 118 57 113 40C108 18 84 3 60 3Z" fill="#F8B4D9"/>
+      <path d="M14 46C14 36 33 30 60 30C87 30 106 36 106 46L106 68C105 77 86 83 60 83C34 83 15 77 14 68Z" fill="#1a1a2a"/>
+      <path d="M26 90Q60 86 94 90" stroke="rgba(0,0,0,0.14)" stroke-width="1" fill="none"/>
+    </svg>NZA
+    <span style="color:var(--text-d);margin-left:0.75rem;font-family:var(--font-body);font-size:0.6rem;letter-spacing:0.2em;font-weight:400">EAFIT</span>
+  </div>
+  <div class="slide-counter" id="slideCounter">01 / 17</div>
+</div>
+
+<div class="presentation" id="presentation">
+
+<!-- ==================== SLIDE 01: COVER ==================== -->
+<div class="slide slide-center active" data-slide="1">
+  <div class="hero-gradient"></div>
+  <div class="slide-inner" style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <span class="label anim" style="margin-bottom:1.5rem">Monza Lab  |  Mentoria EAFIT  |  Junio 2026</span>
+    <h1 class="anim anim-d1" style="font-size:clamp(2.5rem,6vw,4.5rem);max-width:800px">Modelos de<br><span class="ac">Monetizacion</span></h1>
+    <p class="anim anim-d2" style="max-width:550px;text-align:center;margin-top:0.5rem">Como convertir tu producto en un negocio rentable.<br>Frameworks, ejemplos reales y el modelo correcto para tu startup.</p>
+    <div class="anim anim-d3" style="margin-top:2.5rem;display:flex;gap:0.75rem">
+      <span class="tag tag-pink">SaaS</span>
+      <span class="tag tag-green">Freemium</span>
+      <span class="tag tag-blue">Tokens</span>
+      <span class="tag tag-orange">Marketplace</span>
+      <span class="tag tag-pink">B2B</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 02: POR QUE IMPORTA ==================== -->
+<div class="slide" data-slide="2">
+  <div class="slide-inner">
+    <span class="label anim">Fundamento</span>
+    <h2 class="anim anim-d1">El modelo de monetizacion<br><span class="ac">define tu negocio.</span></h2>
+    <div class="split anim anim-d2" style="margin-top:2rem">
+      <div>
+        <p>No es solo "como cobrar". Es la decision que determina:</p>
+        <ul class="check-list" style="margin-top:1rem">
+          <li class="done">Que tipo de clientes atraes</li>
+          <li class="done">Como creces (viral, ventas, PLG)</li>
+          <li class="done">Tu valoracion ante inversionistas</li>
+          <li class="done">Tu velocidad de producto</li>
+          <li class="done">Tu capacidad de sobrevivir sin capital externo</li>
+        </ul>
+        <div class="quote" style="margin-top:1.5rem">
+          "Price is what you pay. Value is what you get."<br>
+          <span style="font-size:0.75rem;color:var(--text-d);font-style:normal">— Warren Buffett</span>
+        </div>
+      </div>
+      <div class="card card-accent" style="text-align:center;padding:2.5rem">
+        <div class="big-number" style="font-size:3.5rem;margin-bottom:0.5rem">72%</div>
+        <p style="margin-bottom:0">de las startups que fracasan<br>tenian el <strong style="color:var(--text)">modelo equivocado</strong>,<br>no el producto equivocado.</p>
+        <span style="font-size:0.65rem;color:var(--text-d);margin-top:0.5rem;display:block">CB Insights, 2025</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 03: PANORAMA ==================== -->
+<div class="slide" data-slide="3">
+  <div class="slide-inner">
+    <span class="label anim">Panorama</span>
+    <h2 class="anim anim-d1">7 modelos que dominan el mercado</h2>
+    <p class="anim anim-d2">Cada modelo tiene un superpoder y una debilidad. Entenderlos te permite combinarlos.</p>
+    <div class="grid-4 anim anim-d3" style="margin-top:1.5rem">
+      <div class="card" style="border-top:2px solid var(--accent)">
+        <div class="icon-circle ic-pink">$</div>
+        <h4>SaaS</h4>
+        <p style="font-size:0.78rem">Cobro recurrente mensual/anual. Predecible, escalable.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--green)">
+        <div class="icon-circle ic-green">F</div>
+        <h4>Freemium</h4>
+        <p style="font-size:0.78rem">Gratis para entrar, paga para crecer. Motor de distribucion.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--blue)">
+        <div class="icon-circle ic-blue">%</div>
+        <h4>Marketplace</h4>
+        <p style="font-size:0.78rem">Comision por transaccion. Escala con el volumen.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--orange)">
+        <div class="icon-circle ic-orange">T</div>
+        <h4>Tokens / Creditos</h4>
+        <p style="font-size:0.78rem">Compra creditos, gasta en features. Flexible y low-friction.</p>
+      </div>
+    </div>
+    <div class="grid-3 anim anim-d4" style="margin-top:0.75rem">
+      <div class="card" style="border-top:2px solid var(--purple)">
+        <div class="icon-circle ic-purple">U</div>
+        <h4>Usage-Based</h4>
+        <p style="font-size:0.78rem">Pagas lo que usas. Alineado con el valor entregado.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--teal)">
+        <div class="icon-circle ic-teal">I</div>
+        <h4>Implementacion + Retainer</h4>
+        <p style="font-size:0.78rem">Fee de setup + mensualidad. B2B enterprise clasico.</p>
+      </div>
+      <div class="card" style="border-top:2px solid var(--accent)">
+        <div class="icon-circle ic-pink">D</div>
+        <h4>Data Monetization</h4>
+        <p style="font-size:0.78rem">Vendes insights, no software. El dato es el producto.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 04: SaaS ==================== -->
+<div class="slide" data-slide="4">
+  <div class="slide-inner">
+    <span class="label anim">Modelo 01</span>
+    <h2 class="anim anim-d1">SaaS — Suscripcion Recurrente</h2>
+    <div class="split-wide anim anim-d2" style="margin-top:1.5rem">
+      <div>
+        <p><strong style="color:var(--text)">El rey de la previsibilidad.</strong> Cobras mensual o anual. Tu revenue es predecible, tus metricas claras, y los VCs lo aman.</p>
+        <div style="margin-top:1.25rem">
+          <h4 style="color:var(--green)">Pros</h4>
+          <ul class="check-list">
+            <li class="done">Revenue predecible (MRR/ARR)</li>
+            <li class="done">Alto LTV si retienes bien</li>
+            <li class="done">Valoraciones altas (10-20x ARR)</li>
+          </ul>
+        </div>
+        <div style="margin-top:1rem">
+          <h4 style="color:var(--red)">Riesgos</h4>
+          <p style="font-size:0.82rem">Churn es el enemigo. Si no entregas valor constante, cancelan. CAC alto en B2B.</p>
+        </div>
+        <div style="margin-top:1.25rem">
+          <span class="sublabel">Metricas clave</span>
+          <div style="display:flex;gap:1.5rem;margin-top:0.5rem">
+            <div><div class="metric-val" style="font-size:1.2rem">MRR</div><span style="font-size:0.7rem;color:var(--text-d)">Monthly Recurring Revenue</span></div>
+            <div><div class="metric-val" style="font-size:1.2rem">Churn</div><span style="font-size:0.7rem;color:var(--text-d)">% cancelacion mensual</span></div>
+            <div><div class="metric-val" style="font-size:1.2rem">LTV:CAC</div><span style="font-size:0.7rem;color:var(--text-d)">Ratio > 3:1 ideal</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card card-accent" style="margin-bottom:1rem">
+          <span class="sublabel">Ejemplo real</span>
+          <h3>Slack</h3>
+          <p style="font-size:0.82rem">Gratis para equipos pequenos. Pro a $8.75/usuario/mes. Enterprise custom. Crecio a $1.5B ARR antes de ser adquirido por Salesforce en $27.7B.</p>
+          <div style="display:flex;gap:0.5rem;margin-top:0.5rem">
+            <span class="tag tag-green">PLG</span>
+            <span class="tag tag-pink">B2B</span>
+          </div>
+        </div>
+        <div class="card">
+          <span class="sublabel">Ejemplo real</span>
+          <h3>HubSpot</h3>
+          <p style="font-size:0.82rem">CRM gratis → Marketing Hub desde $800/mes. $2.6B ARR (2025). Modelo freemium + SaaS tiers.</p>
+          <div style="display:flex;gap:0.5rem;margin-top:0.5rem">
+            <span class="tag tag-orange">Freemium + SaaS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 05: FREEMIUM ==================== -->
+<div class="slide" data-slide="5">
+  <div class="slide-inner">
+    <span class="label anim">Modelo 02</span>
+    <h2 class="anim anim-d1">Freemium — <span class="ac">El motor de distribucion</span></h2>
+    <div class="split anim anim-d2" style="margin-top:1.5rem">
+      <div>
+        <p><strong style="color:var(--text)">Das valor gratis para crear habito.</strong> Cuando el usuario necesita mas, paga. La conversion tipica es 2-5% pero el volumen compensa.</p>
+        <div class="funnel" style="margin-top:1.5rem">
+          <div class="funnel-step">
+            <div class="funnel-bar" style="width:100%;background:var(--accent)">100% usuarios gratis</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-bar" style="width:60%;background:rgba(248,180,217,0.6)">60% usuarios activos</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-bar" style="width:25%;background:rgba(248,180,217,0.4)">25% power users</div>
+          </div>
+          <div class="funnel-step">
+            <div class="funnel-bar" style="width:8%;background:var(--green)">3-5% pagan</div>
+          </div>
+        </div>
+        <div class="quote" style="margin-top:1.5rem">"Make the free product so good that upgrading feels like an obvious investment, not a paywall."</div>
+      </div>
+      <div>
+        <div class="card card-accent" style="margin-bottom:1rem">
+          <span class="sublabel">Caso iconico</span>
+          <h3>Notion</h3>
+          <p style="font-size:0.82rem">Personal gratis ilimitado. Teams a $10/usuario/mes. Paso de 0 a $10B valuacion con PLG puro. El producto se vende solo.</p>
+          <div class="metric" style="margin-top:0.5rem">
+            <span class="metric-val" style="font-size:1rem">30M+</span>
+            <span class="metric-label">usuarios (2025)</span>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:1rem">
+          <span class="sublabel">Caso iconico</span>
+          <h3>Canva</h3>
+          <p style="font-size:0.82rem">Diseno gratis para todos. Pro a $12.99/mes para features premium. $170M+ ARR. 170M usuarios.</p>
+        </div>
+        <div class="card">
+          <span class="sublabel">Caso iconico</span>
+          <h3>Figma</h3>
+          <p style="font-size:0.82rem">Gratis para 3 proyectos. Pro a $15/editor/mes. Adquirido por Adobe en $20B (luego cancelado). Proof of PLG power.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 06: MARKETPLACE ==================== -->
+<div class="slide" data-slide="6">
+  <div class="slide-inner">
+    <span class="label anim">Modelo 03</span>
+    <h2 class="anim anim-d1">Marketplace — <span class="ac">Comision por transaccion</span></h2>
+    <p class="anim anim-d2">Conectas oferta con demanda y cobras un % por cada transaccion. Efecto de red: mas usuarios = mas valor para todos.</p>
+    <div class="grid-3 anim anim-d3" style="margin-top:1.5rem">
+      <div class="card card-accent">
+        <h3>Airbnb</h3>
+        <div class="metric"><span class="metric-val" style="font-size:1.4rem">14-16%</span></div>
+        <p style="font-size:0.82rem">Split: 3% host + ~14% guest. Revenue $10.4B (2024). Efecto de red global.</p>
+        <div style="margin-top:0.5rem"><span class="tag tag-blue">P2P</span><span class="tag tag-pink">Hospitality</span></div>
+      </div>
+      <div class="card card-accent">
+        <h3>Uber</h3>
+        <div class="metric"><span class="metric-val" style="font-size:1.4rem">20-30%</span></div>
+        <p style="font-size:0.82rem">Comision al driver. Revenue $41B (2024). Pricing dinamico + suscripciones (Uber One).</p>
+        <div style="margin-top:0.5rem"><span class="tag tag-green">Mobility</span><span class="tag tag-orange">Dynamic</span></div>
+      </div>
+      <div class="card card-accent">
+        <h3>Stripe</h3>
+        <div class="metric"><span class="metric-val" style="font-size:1.4rem">2.9% + 30c</span></div>
+        <p style="font-size:0.82rem">Per transaction. Revenue $17B+ (2024). La "pala" de la fiebre del oro digital.</p>
+        <div style="margin-top:0.5rem"><span class="tag tag-purple">Infra</span><span class="tag tag-blue">Payments</span></div>
+      </div>
+    </div>
+    <div class="card anim anim-d4" style="margin-top:1.25rem;background:rgba(248,180,217,0.04)">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h4>El problema del huevo y la gallina</h4>
+          <p style="font-size:0.82rem;margin:0">Necesitas supply para atraer demand, y demand para atraer supply. <strong style="color:var(--accent)">Solucion:</strong> empieza por un lado (supply-first), subsidia el otro, y crece concentrado geograficamente.</p>
+        </div>
+        <div style="text-align:center;padding:0 2rem">
+          <div class="big-number" style="font-size:2rem">1</div>
+          <span style="font-size:0.7rem;color:var(--text-d)">ciudad primero</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 07: USAGE-BASED ==================== -->
+<div class="slide" data-slide="7">
+  <div class="slide-inner">
+    <span class="label anim">Modelo 04</span>
+    <h2 class="anim anim-d1">Usage-Based — <span class="ac">Pagas lo que usas</span></h2>
+    <div class="split anim anim-d2" style="margin-top:1.5rem">
+      <div>
+        <p><strong style="color:var(--text)">Alineacion perfecta: valor entregado = precio.</strong> El cliente empieza pequeno y crece contigo. Net Revenue Retention puede ser >130%.</p>
+        <div style="margin-top:1.5rem">
+          <span class="sublabel">Metricas clave</span>
+          <div style="margin-top:0.75rem">
+            <div class="bar-row bar-green"><span class="bar-label">NRR</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div><span style="font-size:0.7rem;color:var(--green)">130%+</span></div>
+            <div class="bar-row bar-pink"><span class="bar-label">Expansion</span><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--accent)"></div></div><span style="font-size:0.7rem;color:var(--accent)">High</span></div>
+            <div class="bar-row bar-blue"><span class="bar-label">Predict.</span><div class="bar-track"><div class="bar-fill" style="width:40%;background:var(--blue)"></div></div><span style="font-size:0.7rem;color:var(--blue)">Medium</span></div>
+          </div>
+        </div>
+        <div class="card card-dark" style="margin-top:1.5rem">
+          <h4 style="color:var(--orange)">Riesgo</h4>
+          <p style="font-size:0.82rem;margin:0">Revenue menos predecible. Si el cliente reduce uso, tu revenue baja. Funciona mejor cuando el uso crece naturalmente.</p>
+        </div>
+      </div>
+      <div>
+        <div class="card card-accent" style="margin-bottom:1rem">
+          <h3>AWS</h3>
+          <p style="font-size:0.82rem">Cobro por compute, storage, bandwidth. Revenue $105B (2024). El estandar de usage-based en infra.</p>
+          <div class="metric"><span class="metric-val" style="font-size:1rem">$105B</span><span class="metric-label">ARR</span></div>
+        </div>
+        <div class="card card-accent" style="margin-bottom:1rem">
+          <h3>Twilio</h3>
+          <p style="font-size:0.82rem">$0.0079/SMS enviado. API de comunicaciones. Dollar-based NRR de 106%. Revenue $4.4B (2024).</p>
+        </div>
+        <div class="card card-accent">
+          <h3>OpenAI API</h3>
+          <p style="font-size:0.82rem">$2.50/1M tokens input (GPT-4o). Pagas por token procesado. Revenue estimado $13B (2025). El modelo AI nativo.</p>
+          <div style="display:flex;gap:0.5rem;margin-top:0.3rem">
+            <span class="tag tag-blue">Tokens</span>
+            <span class="tag tag-pink">AI-Native</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 08: TOKENS / CREDITOS ==================== -->
+<div class="slide" data-slide="8">
+  <div class="slide-inner">
+    <span class="label anim">Modelo 05</span>
+    <h2 class="anim anim-d1">Tokens & Creditos — <span class="ac">La moneda del producto</span></h2>
+    <p class="anim anim-d2">El usuario compra creditos y los gasta en features. Combina lo mejor del usage-based (flexibilidad) con prepago (cash flow positivo).</p>
+    <div class="grid-2 anim anim-d3" style="margin-top:1.5rem">
+      <div>
+        <div class="card card-accent" style="margin-bottom:1rem">
+          <div class="icon-circle ic-pink" style="font-size:1.5rem;font-family:var(--font-head);font-weight:700">P</div>
+          <h3>Monza: Pistons</h3>
+          <p style="font-size:0.82rem">Sistema de creditos de MonzaHaus. Compras Pistons, los gastas en reportes de autos, valuaciones, alertas. Sin suscripcion — solo pagas cuando necesitas.</p>
+          <div class="flow" style="margin-top:0.75rem">
+            <div class="flow-step active">Comprar Pistons</div>
+            <span class="flow-arrow">&#8594;</span>
+            <div class="flow-step">Gastar en reportes</div>
+            <span class="flow-arrow">&#8594;</span>
+            <div class="flow-step">Recomprar cuando quieras</div>
+          </div>
+          <div style="margin-top:0.75rem;display:flex;gap:0.5rem">
+            <span class="tag tag-pink">Low friction</span>
+            <span class="tag tag-green">Cash upfront</span>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Por que funciona para early-stage</h4>
+          <ul class="check-list" style="margin-top:0.5rem">
+            <li class="done">No asusta al usuario con suscripcion</li>
+            <li class="done">Cash flow positivo (cobras antes de entregar)</li>
+            <li class="done">Puedes ajustar precios sin cambiar el modelo</li>
+            <li class="done">Gamification natural: "me quedan 3 Pistons"</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:1rem">
+          <h3>Caso: Tokens en AI</h3>
+          <p style="font-size:0.82rem">La era AI trajo los tokens como moneda universal. Cada API call consume tokens. El usuario entiende: mas tokens = mas capacidad.</p>
+          <table class="tbl" style="margin-top:0.75rem">
+            <thead><tr><th>Plataforma</th><th>Unidad</th><th>Precio ref.</th></tr></thead>
+            <tbody>
+              <tr><td>OpenAI</td><td>1M tokens</td><td>$2.50 - $15</td></tr>
+              <tr><td>Anthropic</td><td>1M tokens</td><td>$3 - $15</td></tr>
+              <tr><td>Midjourney</td><td>GPU hrs</td><td>$10/mes (200 imgs)</td></tr>
+              <tr><td>Vercel</td><td>Bandwidth GB</td><td>$0.15/GB</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card card-dark">
+          <h4 style="color:var(--orange)">Anatomia de un token system</h4>
+          <p style="font-size:0.82rem;margin-top:0.3rem">
+            <strong style="color:var(--text)">1. Pack sizes:</strong> 10 / 50 / 100 (descuento por volumen)<br>
+            <strong style="color:var(--text)">2. Exchange rate:</strong> 1 token = 1 reporte / 1 accion<br>
+            <strong style="color:var(--text)">3. Visibilidad:</strong> saldo visible en UI siempre<br>
+            <strong style="color:var(--text)">4. FOMO sutil:</strong> "te quedan 2 tokens" → recompra
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 09: IMPL + RETAINER ==================== -->
+<div class="slide" data-slide="9">
+  <div class="slide-inner">
+    <span class="label anim">Modelo 06</span>
+    <h2 class="anim anim-d1">Implementacion + Retainer<br><span class="ac">El modelo B2B clasico</span></h2>
+    <div class="split anim anim-d2" style="margin-top:1.5rem">
+      <div>
+        <p><strong style="color:var(--text)">Fee de setup + mensualidad.</strong> El cliente paga por la implementacion y luego una cuota mensual por soporte, actualizaciones y uso.</p>
+        <div class="flow" style="margin-top:1.5rem">
+          <div class="flow-step active">Setup fee<br><span style="font-size:0.7rem;color:var(--text-d)">$2K - $50K</span></div>
+          <span class="flow-arrow">&#8594;</span>
+          <div class="flow-step">Onboarding<br><span style="font-size:0.7rem;color:var(--text-d)">2-8 semanas</span></div>
+          <span class="flow-arrow">&#8594;</span>
+          <div class="flow-step active">Retainer mensual<br><span style="font-size:0.7rem;color:var(--text-d)">$500 - $5K/mes</span></div>
+        </div>
+        <div style="margin-top:1.5rem">
+          <h4 style="color:var(--green)">Cuando usarlo</h4>
+          <ul class="check-list">
+            <li class="done">Producto requiere configuracion personalizada</li>
+            <li class="done">Cliente B2B con presupuesto asignado</li>
+            <li class="done">Valor se entrega con integracion profunda</li>
+            <li class="done">Necesitas cash flow desde dia 1</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card card-accent" style="margin-bottom:1rem">
+          <span class="sublabel">Ejemplo Monza Lab</span>
+          <h3>Monza Studio</h3>
+          <p style="font-size:0.82rem">Fee de implementacion + entregables semanales en 12 semanas. El cliente paga por resultado, no por horas. Modelo productizado de alto margen.</p>
+          <div class="metric" style="margin-top:0.5rem"><span class="metric-val" style="font-size:1rem">12 sem</span><span class="metric-label">duracion standard</span></div>
+        </div>
+        <div class="card">
+          <span class="sublabel">El path natural</span>
+          <h4>De servicios a SaaS</h4>
+          <p style="font-size:0.82rem">Muchas empresas SaaS exitosas empezaron como servicios. La secuencia:</p>
+          <div class="flow" style="margin-top:0.5rem;flex-direction:column;gap:0.4rem">
+            <div class="flow-step" style="width:100%">1. Consultorias / servicios (validar problema)</div>
+            <div class="flow-step" style="width:100%">2. Productizar el servicio (templates, procesos)</div>
+            <div class="flow-step active" style="width:100%">3. Software que reemplaza el servicio (SaaS)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 10: B2B LOW FRICTION ==================== -->
+<div class="slide" data-slide="10">
+  <div class="slide-inner">
+    <span class="label anim">Modelo 07</span>
+    <h2 class="anim anim-d1">B2B Low Friction — <span class="ac">PLG</span></h2>
+    <p class="anim anim-d2">Product-Led Growth: el producto se vende solo. Cero vendedores, cero demos. El usuario prueba, adopta, y escala dentro de su empresa.</p>
+    <div class="grid-3 anim anim-d3" style="margin-top:1.5rem">
+      <div class="card card-accent">
+        <div class="icon-circle ic-green">1</div>
+        <h4>Signup sin tarjeta</h4>
+        <p style="font-size:0.82rem">El usuario entra gratis. Sin tarjeta, sin demo, sin vendedor. Fricion = 0.</p>
+        <div class="logos-row" style="margin-top:0.5rem">
+          <span class="company-logo">Calendly</span>
+          <span class="company-logo">Loom</span>
+        </div>
+      </div>
+      <div class="card card-accent">
+        <div class="icon-circle ic-blue">2</div>
+        <h4>Aha moment rapido</h4>
+        <p style="font-size:0.82rem">En menos de 5 minutos el usuario entiende el valor. Time-to-value corto = conversion alta.</p>
+        <div class="logos-row" style="margin-top:0.5rem">
+          <span class="company-logo">Notion</span>
+          <span class="company-logo">Linear</span>
+        </div>
+      </div>
+      <div class="card card-accent">
+        <div class="icon-circle ic-pink">3</div>
+        <h4>Viral loop interno</h4>
+        <p style="font-size:0.82rem">El usuario invita a su equipo. Cada invitacion es un lead calificado. Growth organico exponencial.</p>
+        <div class="logos-row" style="margin-top:0.5rem">
+          <span class="company-logo">Slack</span>
+          <span class="company-logo">Figma</span>
+        </div>
+      </div>
+    </div>
+    <div class="card anim anim-d4" style="margin-top:1.25rem;background:rgba(52,211,153,0.04);border-color:rgba(52,211,153,0.15)">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem">
+        <div>
+          <h4 style="color:var(--green)">El framework de PLG para startups early-stage</h4>
+          <p style="font-size:0.82rem;margin:0.3rem 0 0">Reduce friccion en cada paso. Si necesitas explicar tu producto, el producto no esta listo.</p>
+        </div>
+        <div style="display:flex;gap:0.75rem">
+          <div style="text-align:center"><div class="big-number" style="font-size:1.8rem;color:var(--green)">0</div><span style="font-size:0.65rem;color:var(--text-d)">vendedores</span></div>
+          <div style="text-align:center"><div class="big-number" style="font-size:1.8rem;color:var(--green)">&lt;2m</div><span style="font-size:0.65rem;color:var(--text-d)">time to value</span></div>
+          <div style="text-align:center"><div class="big-number" style="font-size:1.8rem;color:var(--green)">K=1+</div><span style="font-size:0.65rem;color:var(--text-d)">viral coeff.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 11: DATA MONETIZATION ==================== -->
+<div class="slide" data-slide="11">
+  <div class="slide-inner">
+    <span class="label anim">Modelo Avanzado</span>
+    <h2 class="anim anim-d1">Data Monetization — <span class="ac">El dato es el producto</span></h2>
+    <div class="split anim anim-d2" style="margin-top:1.5rem">
+      <div>
+        <p><strong style="color:var(--text)">No vendes software, vendes inteligencia.</strong> Recolectas datos, los procesas, y vendes insights que nadie mas tiene.</p>
+        <div style="margin-top:1.5rem">
+          <h4>3 niveles de monetizacion de datos</h4>
+          <div style="margin-top:0.75rem">
+            <div class="card card-dark" style="margin-bottom:0.6rem;padding:1rem 1.25rem">
+              <div style="display:flex;align-items:center;gap:0.75rem">
+                <div style="background:rgba(248,180,217,0.15);color:var(--accent);width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0">1</div>
+                <div><h4 style="margin:0">Raw Data</h4><p style="margin:0;font-size:0.78rem">Acceso a datasets crudos. APIs, exports. Bajo margen.</p></div>
+              </div>
+            </div>
+            <div class="card card-dark" style="margin-bottom:0.6rem;padding:1rem 1.25rem">
+              <div style="display:flex;align-items:center;gap:0.75rem">
+                <div style="background:rgba(248,180,217,0.25);color:var(--accent);width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0">2</div>
+                <div><h4 style="margin:0">Insights & Reports</h4><p style="margin:0;font-size:0.78rem">Reportes procesados, dashboards, alertas. Margen medio-alto.</p></div>
+              </div>
+            </div>
+            <div class="card card-accent" style="padding:1rem 1.25rem">
+              <div style="display:flex;align-items:center;gap:0.75rem">
+                <div style="background:var(--accent);color:var(--bg);width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0">3</div>
+                <div><h4 style="margin:0">Predictive Intelligence</h4><p style="margin:0;font-size:0.78rem">Modelos predictivos, recomendaciones, decisiones automaticas. Margen mas alto.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card card-accent" style="margin-bottom:1rem">
+          <h3>Bloomberg Terminal</h3>
+          <p style="font-size:0.82rem">$24K/ano por terminal. Revenue $12B+. No venden software — venden acceso a datos financieros procesados que no existen en ningun otro lugar.</p>
+          <div class="metric"><span class="metric-val" style="font-size:1rem">$24K</span><span class="metric-label">/ano por usuario</span></div>
+        </div>
+        <div class="card" style="margin-bottom:1rem">
+          <h3>Palantir</h3>
+          <p style="font-size:0.82rem">Analisis de datos para gobiernos y enterprises. Revenue $2.9B (2024). Contratos largos, alto valor.</p>
+        </div>
+        <div class="card card-dark">
+          <h4 style="color:var(--accent)">Aplicacion para ustedes</h4>
+          <p style="font-size:0.82rem;margin:0">Cada uno de sus proyectos genera datos unicos. Olga: datos clinicos extrahospitalarios. AgraTeck: datos de cultivos. Esos datos son un moat.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 12: AI CAMBIA TODO ==================== -->
+<div class="slide" data-slide="12">
+  <div class="slide-inner">
+    <span class="label anim">AI-Native</span>
+    <h2 class="anim anim-d1">AI cambia las reglas<br><span class="ac">del pricing</span></h2>
+    <p class="anim anim-d2">En la era AI, el costo marginal de entregar valor se acerca a cero. Eso cambia fundamentalmente como puedes cobrar.</p>
+    <div class="grid-2 anim anim-d3" style="margin-top:1.5rem">
+      <div class="card" style="border-left:3px solid var(--accent)">
+        <span class="sublabel">Antes (Software tradicional)</span>
+        <h4>Cobras por acceso</h4>
+        <p style="font-size:0.82rem">$X/mes por usar el software. El precio es por el asiento, no por el resultado. El usuario hace el trabajo.</p>
+        <div style="margin-top:0.5rem">
+          <span class="tag tag-ghost">Per-seat</span>
+          <span class="tag tag-ghost">Feature tiers</span>
+          <span class="tag tag-ghost">Storage limits</span>
+        </div>
+      </div>
+      <div class="card card-accent" style="border-left:3px solid var(--green)">
+        <span class="sublabel">Ahora (AI-Native)</span>
+        <h4 style="color:var(--green)">Cobras por resultado</h4>
+        <p style="font-size:0.82rem">$X por tarea completada. El AI hace el trabajo. El precio es por el output, no por el input. Valor medible.</p>
+        <div style="margin-top:0.5rem">
+          <span class="tag tag-green">Per-outcome</span>
+          <span class="tag tag-green">Per-task</span>
+          <span class="tag tag-green">Success fee</span>
+        </div>
+      </div>
+    </div>
+    <div class="grid-3 anim anim-d4" style="margin-top:1rem">
+      <div class="card card-dark" style="text-align:center">
+        <div class="big-number" style="color:var(--green)">95%</div>
+        <p style="font-size:0.78rem;margin:0.3rem 0 0">reduccion en costo de generar un reporte con AI</p>
+      </div>
+      <div class="card card-dark" style="text-align:center">
+        <div class="big-number" style="color:var(--blue)">10x</div>
+        <p style="font-size:0.78rem;margin:0.3rem 0 0">mas features que puedes ofrecer sin mas equipo</p>
+      </div>
+      <div class="card card-dark" style="text-align:center">
+        <div class="big-number" style="color:var(--accent)">$0.01</div>
+        <p style="font-size:0.78rem;margin:0.3rem 0 0">costo marginal por insight generado con AI</p>
+      </div>
+    </div>
+    <div class="quote anim anim-d5">"AI-native companies will charge for outcomes, not seats. The companies that figure this out first will eat the market."<br><span style="font-size:0.7rem;color:var(--text-d);font-style:normal">— a16z, 2025</span></div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 13: MONZA MODELS ==================== -->
+<div class="slide" data-slide="13">
+  <div class="slide-inner">
+    <span class="label anim">Monza Lab — Nuestros modelos</span>
+    <h2 class="anim anim-d1">Como monetiza <span class="ac">Monza</span></h2>
+    <p class="anim anim-d2">Combinamos multiples modelos segun el producto. Aqui esta lo que funciona en nuestro portafolio.</p>
+    <div class="grid-3 anim anim-d3" style="margin-top:1.5rem">
+      <div class="card card-accent" style="border-top:3px solid var(--accent)">
+        <div class="icon-circle ic-pink" style="font-size:1.5rem;font-family:var(--font-head);font-weight:700">P</div>
+        <h3>Pistons (Tokens)</h3>
+        <p style="font-size:0.82rem">MonzaHaus: creditos prepago para reportes de autos. Sin suscripcion. Compra cuando necesites. Low friction, cash upfront.</p>
+        <div style="margin-top:0.75rem">
+          <span class="tag tag-pink">Token system</span>
+          <span class="tag tag-green">Prepaid</span>
+        </div>
+        <div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--brd)">
+          <span style="font-size:0.7rem;color:var(--text-d)">Best for: </span>
+          <span style="font-size:0.7rem;color:var(--text-m)">Usuarios casuales, mercados early-stage</span>
+        </div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--green)">
+        <div class="icon-circle ic-green" style="font-size:1.1rem;font-family:var(--font-head);font-weight:700">AI</div>
+        <h3>AI-Powered SaaS</h3>
+        <p style="font-size:0.82rem">Monza Index: agentes AI que procesan datos financieros. Suscripcion mensual + usage por queries del agente. Valor: inteligencia automatizada.</p>
+        <div style="margin-top:0.75rem">
+          <span class="tag tag-green">SaaS</span>
+          <span class="tag tag-blue">Usage hybrid</span>
+        </div>
+        <div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--brd)">
+          <span style="font-size:0.7rem;color:var(--text-d)">Best for: </span>
+          <span style="font-size:0.7rem;color:var(--text-m)">B2B con valor recurrente claro</span>
+        </div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--blue)">
+        <div class="icon-circle ic-blue" style="font-size:1.1rem;font-family:var(--font-head);font-weight:700">S</div>
+        <h3>Studio (Impl + Retainer)</h3>
+        <p style="font-size:0.82rem">Monza Studio: fee de implementacion + 12 semanas de entregables. Productized service de alto margen. El cliente paga por transformacion, no por horas.</p>
+        <div style="margin-top:0.75rem">
+          <span class="tag tag-blue">Productized service</span>
+          <span class="tag tag-orange">High ticket</span>
+        </div>
+        <div style="margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--brd)">
+          <span style="font-size:0.7rem;color:var(--text-d)">Best for: </span>
+          <span style="font-size:0.7rem;color:var(--text-m)">Cash flow inmediato, validar con clientes reales</span>
+        </div>
+      </div>
+    </div>
+    <div class="card anim anim-d4" style="margin-top:1.25rem;background:rgba(248,180,217,0.04)">
+      <h4>La leccion: <span class="ac">combina modelos</span></h4>
+      <p style="font-size:0.85rem;margin:0.3rem 0 0">No tienes que elegir uno. Pistons para entrada low-friction + suscripcion para power users + enterprise para B2B grandes. Cada segmento de cliente tiene su modelo ideal.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 14: FRAMEWORK ==================== -->
+<div class="slide" data-slide="14">
+  <div class="slide-inner">
+    <span class="label anim">Framework</span>
+    <h2 class="anim anim-d1">Como elegir <span class="ac">tu modelo</span></h2>
+    <p class="anim anim-d2">Responde estas preguntas y el modelo se revela solo.</p>
+    <table class="tbl anim anim-d3" style="margin-top:1.5rem">
+      <thead>
+        <tr>
+          <th style="width:30%">Pregunta</th>
+          <th style="width:23%">Si la respuesta es A</th>
+          <th style="width:23%">Si la respuesta es B</th>
+          <th style="width:24%">Modelo sugerido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--text)">Tu valor es continuo o puntual?</td>
+          <td>Continuo (uso diario)</td>
+          <td>Puntual (cuando lo necesito)</td>
+          <td><span class="pill pill-yes">A: SaaS</span> <span class="pill pill-maybe">B: Tokens</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">Tu cliente es tecnico o no?</td>
+          <td>Tecnico (self-serve)</td>
+          <td>No tecnico (necesita onboarding)</td>
+          <td><span class="pill pill-yes">A: PLG</span> <span class="pill pill-maybe">B: Impl+Retainer</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">Tu mercado es grande o nicho?</td>
+          <td>Grande (miles de usuarios)</td>
+          <td>Nicho (decenas de clientes)</td>
+          <td><span class="pill pill-yes">A: Freemium</span> <span class="pill pill-maybe">B: Enterprise</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">Generas datos unicos?</td>
+          <td>Si, datos propietarios</td>
+          <td>No, proceso datos del cliente</td>
+          <td><span class="pill pill-yes">A: Data monet.</span> <span class="pill pill-maybe">B: SaaS</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">Tu producto tiene efecto de red?</td>
+          <td>Si (mas usuarios = mas valor)</td>
+          <td>No (valor independiente)</td>
+          <td><span class="pill pill-yes">A: Marketplace</span> <span class="pill pill-maybe">B: SaaS/Tokens</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="card card-accent anim anim-d4" style="margin-top:1.5rem">
+      <h4>Regla de oro para early-stage</h4>
+      <p style="font-size:0.85rem;margin:0.3rem 0 0"><strong style="color:var(--accent)">Empieza simple.</strong> Un modelo, un precio, un segmento. Valida que alguien pague. Despues sofistica. La complejidad de pricing mata mas startups que la competencia.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 15: DEBATE — OLGA ==================== -->
+<div class="slide" data-slide="15">
+  <div class="slide-inner">
+    <span class="label anim">Debate — Caso 1</span>
+    <h2 class="anim anim-d1" style="display:flex;align-items:center;gap:0.75rem">
+      <span style="background:var(--teal);color:var(--bg);width:2.5rem;height:2.5rem;border-radius:0.6rem;display:inline-flex;align-items:center;justify-content:center;font-size:1.2rem;font-family:var(--font-head);flex-shrink:0">O</span>
+      Olga Healthtech — <span class="ac">Como monetizar?</span>
+    </h2>
+    <p class="anim anim-d2" style="margin-bottom:0.5rem"><em>"The Operating System for Care Outside the Hospital"</em> — Pre-Seed, buscando $350K. Mercado $15B+ en LATAM, cero plataformas integradas.</p>
+    <div class="split anim anim-d3" style="margin-top:1rem">
+      <div>
+        <h4 style="color:var(--teal);margin-bottom:0.75rem">Sus 3 revenue streams (del deck)</h4>
+        <div class="card card-dark" style="margin-bottom:0.6rem;padding:1rem 1.25rem;border-left:3px solid var(--teal)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><h4 style="margin:0">Provider PaaS + Tx Fee</h4><p style="margin:0;font-size:0.78rem">Platform fee por servicio verificado que pasa por Olga. Cobro al prestador.</p></div>
+            <span class="tag tag-green" style="flex-shrink:0">Day 1</span>
+          </div>
+        </div>
+        <div class="card card-dark" style="margin-bottom:0.6rem;padding:1rem 1.25rem;border-left:3px solid var(--blue)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><h4 style="margin:0">Dynamic PMPM</h4><p style="margin:0;font-size:0.78rem">Per-member-per-month para pagadores y hospitales. Value-based pricing.</p></div>
+            <span class="tag tag-orange" style="flex-shrink:0">Phase 2</span>
+          </div>
+        </div>
+        <div class="card card-dark" style="padding:1rem 1.25rem;border-left:3px solid var(--purple)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><h4 style="margin:0">Data + Analytics</h4><p style="margin:0;font-size:0.78rem">Population health insights para pharma e insurers. Datos anonimizados.</p></div>
+            <span class="tag tag-ghost" style="flex-shrink:0">Futuro</span>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem">
+          <h4 style="color:var(--text)">Ecosistema de 4 actores</h4>
+          <div class="flow" style="margin-top:0.5rem">
+            <div class="flow-step">Paciente</div>
+            <span class="flow-arrow">&#8596;</span>
+            <div class="flow-step active">Olga</div>
+            <span class="flow-arrow">&#8596;</span>
+            <div class="flow-step">Prestador</div>
+            <span class="flow-arrow">&#8596;</span>
+            <div class="flow-step">Pagador (EPS)</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card card-accent" style="margin-bottom:1rem;border:1px solid rgba(45,212,191,0.3)">
+          <h4 style="color:var(--teal)">Preguntas para debatir</h4>
+          <ul style="list-style:none;margin-top:0.5rem">
+            <li style="margin-bottom:0.6rem;font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--teal)">1.</span> <strong style="color:var(--text)">Quien paga primero?</strong> El prestador (IPS) o el pagador (EPS)? El deck dice Provider PaaS Day 1, pero las IPS domiciliarias son pequenas y price-sensitive.</li>
+            <li style="margin-bottom:0.6rem;font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--teal)">2.</span> <strong style="color:var(--text)">Fee por transaccion vs flat rate?</strong> $X por visita verificada (usage-based) o $Y/mes flat por prestador (SaaS)? Wisalud tiene 5,000 usuarios — que modelo cierra mas facil?</li>
+            <li style="margin-bottom:0.6rem;font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--teal)">3.</span> <strong style="color:var(--text)">PMPM: cuanto por paciente?</strong> Si cobras $2-5 USD PMPM a un pagador con 5K pacientes = $10K-25K/mes. Es competitivo? El fraude cuesta $25M COP por caso ADRES.</li>
+            <li style="margin-bottom:0.6rem;font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--teal)">4.</span> <strong style="color:var(--text)">Piloto gratis o pagado?</strong> Wisalud como piloto con 20 pacientes — cobras desde el dia 1 o das gratis para validar y despues conviertes?</li>
+            <li style="font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--teal)">5.</span> <strong style="color:var(--text)">Moat de datos:</strong> Cuantos pacientes monitoreados necesitan para que el Layer 4 (Data Intelligence) sea viable y vendible a pharma?</li>
+          </ul>
+        </div>
+        <div class="card card-dark" style="text-align:center">
+          <span class="sublabel">Meta 12-18 meses</span>
+          <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:0.5rem">
+            <div><div class="big-number" style="font-size:1.5rem;color:var(--teal)">500</div><span style="font-size:0.65rem;color:var(--text-d)">pacientes</span></div>
+            <div><div class="big-number" style="font-size:1.5rem;color:var(--teal)">10</div><span style="font-size:0.65rem;color:var(--text-d)">contratos B2B</span></div>
+            <div><div class="big-number" style="font-size:1.5rem;color:var(--teal)">$350K</div><span style="font-size:0.65rem;color:var(--text-d)">pre-seed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 16: DEBATE — AGRATECK ==================== -->
+<div class="slide" data-slide="16">
+  <div class="slide-inner">
+    <span class="label anim">Debate — Caso 2</span>
+    <h2 class="anim anim-d1" style="display:flex;align-items:center;gap:0.75rem">
+      <span style="background:var(--green);color:var(--bg);width:2.5rem;height:2.5rem;border-radius:0.6rem;display:inline-flex;align-items:center;justify-content:center;font-size:1.2rem;font-family:var(--font-head);flex-shrink:0">A</span>
+      AgraTeck — <span class="ac">Como monetizar?</span>
+    </h2>
+    <p class="anim anim-d2" style="margin-bottom:0.5rem">Agricultura predictiva con drones e imagenes multiespectrales. Target: grandes productores de palma, banano y ganaderia. Facturacion actual ~$15M COP/ano.</p>
+    <div class="split anim anim-d3" style="margin-top:1rem">
+      <div>
+        <h4 style="color:var(--green);margin-bottom:0.75rem">Modelo actual vs. modelo propuesto</h4>
+        <div class="grid-2" style="margin-top:0;gap:0.75rem">
+          <div class="card card-dark" style="padding:1.25rem;border-top:2px solid var(--red)">
+            <span class="sublabel" style="color:var(--red)">Hoy</span>
+            <h4>Venta por vuelo</h4>
+            <p style="font-size:0.78rem">Cobro one-time por vuelo de dron. Revenue impredecible. Ciclo de venta 4-6 meses. Compite en precio.</p>
+            <div class="metric" style="margin-top:0.5rem"><span class="metric-val" style="font-size:1.2rem;color:var(--red)">$15M</span><span class="metric-label">COP/ano</span></div>
+          </div>
+          <div class="card card-accent" style="padding:1.25rem;border-top:2px solid var(--green)">
+            <span class="sublabel" style="color:var(--green)">Propuesto</span>
+            <h4>Paquetes + Suscripcion</h4>
+            <p style="font-size:0.78rem">Setup + retainer mensual por finca. Revenue recurrente. Diferencia en datos, no en vuelos.</p>
+            <div class="metric" style="margin-top:0.5rem"><span class="metric-val" style="font-size:1.2rem;color:var(--green)">$180K+</span><span class="metric-label">COP/mes por finca</span></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:0.75rem;padding:1.25rem">
+          <h4>Propuesta de paquetes por tamano</h4>
+          <table class="tbl" style="margin-top:0.5rem">
+            <thead><tr><th>Paquete</th><th>Hectareas</th><th>Incluye</th><th>Precio ref.</th></tr></thead>
+            <tbody>
+              <tr><td style="color:var(--text)">Starter</td><td>0 – 100</td><td>2 vuelos/ano + plataforma</td><td>$180K/mes</td></tr>
+              <tr><td style="color:var(--text)">Growth</td><td>100 – 500</td><td>4 vuelos + satelital + alertas</td><td>$450K/mes</td></tr>
+              <tr><td style="color:var(--text)">Enterprise</td><td>500+</td><td>Ilimitado + AI predictivo + API</td><td>Custom</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.72rem;color:var(--text-d);margin-top:0.5rem">Contrato minimo 6 meses. Descuento 15% anual.</p>
+        </div>
+      </div>
+      <div>
+        <div class="card card-accent" style="margin-bottom:1rem;border:1px solid rgba(52,211,153,0.3)">
+          <h4 style="color:var(--green)">Preguntas para debatir</h4>
+          <ul style="list-style:none;margin-top:0.5rem">
+            <li style="margin-bottom:0.6rem;font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--green)">1.</span> <strong style="color:var(--text)">Vuelo o dato?</strong> Hoy vendes "un vuelo de dron". Pero el valor real es el analisis, no la foto. Como cambiar el pitch de "te vuelo la finca" a "te predigo la cosecha"?</li>
+            <li style="margin-bottom:0.6rem;font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--green)">2.</span> <strong style="color:var(--text)">Satelital vs dron:</strong> La imagen satelital es mas barata y escalable. El dron da mas resolucion. Puedes usar satelital como tier basico y dron como premium?</li>
+            <li style="margin-bottom:0.6rem;font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--green)">3.</span> <strong style="color:var(--text)">Palma vs banano vs ganaderia:</strong> Cual vertical tiene el ticket mas alto y el cierre mas rapido? Los palmeros manejan >200 ha y tienen presupuesto de tecnologia.</li>
+            <li style="margin-bottom:0.6rem;font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--green)">4.</span> <strong style="color:var(--text)">El ciclo de 4-6 meses:</strong> Como reducirlo? Piloto gratuito de 1 vuelo? Demo con datos reales de la finca? El agricultor necesita ver para creer.</li>
+            <li style="font-size:0.82rem;color:var(--text-m);padding-left:1.2rem;position:relative"><span style="position:absolute;left:0;color:var(--green)">5.</span> <strong style="color:var(--text)">AI como upsell:</strong> Hoy el reporte es manual/semi. Con AI puedes generar reportes automaticos a costo casi cero. Eso cambia la economia: el margen sube y puedes ofrecer mas por menos.</li>
+          </ul>
+        </div>
+        <div class="card card-dark">
+          <h4 style="color:var(--orange)">El shift mental clave</h4>
+          <div class="vs">De vender vuelos</div>
+          <div style="display:flex;gap:1rem;align-items:stretch">
+            <div style="flex:1;background:rgba(248,113,113,0.06);border:1px solid rgba(248,113,113,0.15);border-radius:0.75rem;padding:0.75rem;text-align:center">
+              <p style="font-size:0.78rem;margin:0;color:var(--red)">"Le vuelo su finca por $800K"</p>
+              <span style="font-size:0.65rem;color:var(--text-d)">One-time, compite en precio</span>
+            </div>
+            <div style="flex:1;background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.15);border-radius:0.75rem;padding:0.75rem;text-align:center">
+              <p style="font-size:0.78rem;margin:0;color:var(--green)">"Le cuido su cultivo por $180K/mes"</p>
+              <span style="font-size:0.65rem;color:var(--text-d)">Recurrente, compite en valor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 17: CLOSE ==================== -->
+<div class="slide slide-center" data-slide="17">
+  <div class="hero-gradient"></div>
+  <div class="slide-inner" style="text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <span class="label anim" style="margin-bottom:1rem">Resumen</span>
+    <h1 class="anim anim-d1" style="font-size:clamp(2rem,5vw,3.5rem);max-width:700px">El mejor modelo es el que<br><span class="ac">tu cliente ya entiende.</span></h1>
+    <p class="anim anim-d2" style="max-width:500px;text-align:center">Empieza simple. Valida que paguen. Despues sofistica.<br>El pricing perfecto no existe — el pricing validado si.</p>
+    <div class="anim anim-d3" style="margin-top:2.5rem;display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center">
+      <div class="card" style="padding:1.25rem 1.75rem;text-align:center;min-width:140px">
+        <div class="big-number" style="font-size:1.5rem">1</div>
+        <p style="font-size:0.75rem;margin:0">Un modelo</p>
+      </div>
+      <div class="card" style="padding:1.25rem 1.75rem;text-align:center;min-width:140px">
+        <div class="big-number" style="font-size:1.5rem">1</div>
+        <p style="font-size:0.75rem;margin:0">Un precio</p>
+      </div>
+      <div class="card" style="padding:1.25rem 1.75rem;text-align:center;min-width:140px">
+        <div class="big-number" style="font-size:1.5rem">1</div>
+        <p style="font-size:0.75rem;margin:0">Un segmento</p>
+      </div>
+    </div>
+    <div class="anim anim-d4" style="margin-top:3rem">
+      <div class="logo" style="font-size:1.1rem;justify-content:center">
+        M<svg viewBox="0 0 120 121" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:0.78rem;height:0.78rem;margin:0 0.1rem;transform:translateY(-0.0543em)">
+          <path d="M60 3C36 3 12 18 7 40C2 57 2 72 6 86L15 103C23 113 38 118 57 118L60 118L63 118C82 118 97 113 105 103L114 86C118 72 118 57 113 40C108 18 84 3 60 3Z" fill="#F8B4D9"/>
+          <path d="M14 46C14 36 33 30 60 30C87 30 106 36 106 46L106 68C105 77 86 83 60 83C34 83 15 77 14 68Z" fill="#1a1a2a"/>
+          <path d="M26 90Q60 86 94 90" stroke="rgba(0,0,0,0.14)" stroke-width="1" fill="none"/>
+        </svg>NZA LAB
+      </div>
+      <p style="font-size:0.7rem;color:var(--text-d);margin-top:0.5rem;letter-spacing:0.15em">AI-NATIVE COMPANY BUILDER</p>
+      <p style="font-size:0.75rem;color:var(--text-d);margin-top:0.3rem">edgar@monzalab.com  |  monzalab.com</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /presentation -->
+
+<!-- Navigation -->
+<div class="nav-hint">
+  <button class="nav-btn" onclick="changeSlide(-1)" title="Anterior">&#8592;</button>
+  <button class="nav-btn" onclick="changeSlide(1)" title="Siguiente">&#8594;</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function showSlide(n) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n].classList.add('active');
+    document.getElementById('slideCounter').textContent =
+      String(n + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    document.getElementById('progressFill').style.width =
+      ((n + 1) / total * 100) + '%';
+  }
+
+  function changeSlide(dir) {
+    current = Math.max(0, Math.min(total - 1, current + dir));
+    showSlide(current);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') { e.preventDefault(); changeSlide(1); }
+    if (e.key === 'ArrowLeft' || e.key === 'Backspace') { e.preventDefault(); changeSlide(-1); }
+    if (e.key === 'Home') { current = 0; showSlide(0); }
+    if (e.key === 'End') { current = total - 1; showSlide(current); }
+  });
+
+  // Touch support
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(diff) > 50) changeSlide(diff < 0 ? 1 : -1);
+  });
+
+  showSlide(0);
+</script>
+
+</body>
+</html>

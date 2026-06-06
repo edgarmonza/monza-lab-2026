@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/monetizacion", "destination": "/monetizacion.html" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
