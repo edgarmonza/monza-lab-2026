@@ -276,7 +276,7 @@ const PROJECTS = [
     video: "/videos/pacho-alvarez-reel.mp4",
     mobileVideo: "/videos/pacho-alvarez-mobile.mp4",
     color: "#F8B4D9",
-    url: "https://pacho-alvarez-dakar.vercel.app",
+    url: "https://www.pachoalvarez.com",
     gridClass: "md:col-span-1 md:row-span-1",
     aspect: "aspect-[4/5] md:aspect-auto",
     visual: {

@@ -15,21 +15,25 @@ const NAV_LINKS: Record<Lang, { label: string; href: string }[]> = {
   es: [
     { label: "About", href: "#about" },
     { label: "Method", href: "#metodo" },
+    { label: "Sessions", href: "/sessions" },
     { label: "Speaker", href: "/speaker" },
   ],
   en: [
     { label: "About", href: "#about" },
     { label: "Approach", href: "#metodo" },
+    { label: "Sessions", href: "/en/sessions" },
     { label: "Speaker", href: "/en/speaker" },
   ],
   de: [
     { label: "Über uns", href: "#about" },
     { label: "Methode", href: "#metodo" },
+    { label: "Sessions", href: "/de/sessions" },
     { label: "Speaker", href: "/de/speaker" },
   ],
   pt: [
     { label: "Sobre", href: "#about" },
     { label: "Método", href: "#metodo" },
+    { label: "Sessions", href: "/pt/sessions" },
     { label: "Speaker", href: "/pt/speaker" },
   ],
 };

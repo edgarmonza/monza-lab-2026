@@ -20,9 +20,12 @@ const ProjectPage = lazy(() => import("./pages/ProjectPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Upload = lazy(() => import("./pages/Upload"));
 const MonzaStudio = lazy(() => import("./pages/MonzaStudio"));
+const StudioLanding = lazy(() => import("./pages/StudioLanding"));
 const MonzaHaus = lazy(() => import("./pages/MonzaHaus"));
 const MonzaIndex = lazy(() => import("./pages/MonzaIndex"));
 const BavarianEcons = lazy(() => import("./pages/BavarianEcons"));
+const MonzaSessions = lazy(() => import("./pages/MonzaSessions"));
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +61,7 @@ const AppContent = () => {
           <CustomCursor />
           <ScrollToTop />
           <Navbar />
+          <FloatingWhatsApp />
         </>
       )}
       <Suspense fallback={<RouteFallback />}>
@@ -70,36 +74,44 @@ const AppContent = () => {
           <Route path="/speaker" element={<Speaker />} />
           <Route path="/work/:slug" element={<ProjectPage />} />
           <Route path="/monzastudio" element={<MonzaStudio />} />
+          <Route path="/studio" element={<StudioLanding />} />
           <Route path="/monzahaus" element={<MonzaHaus />} />
           <Route path="/monzaindex" element={<MonzaIndex />} />
           <Route path="/bavarianecons" element={<BavarianEcons />} />
+          <Route path="/sessions" element={<MonzaSessions />} />
 
           {/* English routes (with /en prefix) */}
           <Route path="/en" element={<Index />} />
           <Route path="/en/speaker" element={<Speaker />} />
           <Route path="/en/work/:slug" element={<ProjectPage />} />
           <Route path="/en/monzastudio" element={<MonzaStudio />} />
+          <Route path="/en/studio" element={<StudioLanding />} />
           <Route path="/en/monzahaus" element={<MonzaHaus />} />
           <Route path="/en/monzaindex" element={<MonzaIndex />} />
           <Route path="/en/bavarianecons" element={<BavarianEcons />} />
+          <Route path="/en/sessions" element={<MonzaSessions />} />
 
           {/* German routes (with /de prefix) */}
           <Route path="/de" element={<Index />} />
           <Route path="/de/speaker" element={<Speaker />} />
           <Route path="/de/work/:slug" element={<ProjectPage />} />
           <Route path="/de/monzastudio" element={<MonzaStudio />} />
+          <Route path="/de/studio" element={<StudioLanding />} />
           <Route path="/de/monzahaus" element={<MonzaHaus />} />
           <Route path="/de/monzaindex" element={<MonzaIndex />} />
           <Route path="/de/bavarianecons" element={<BavarianEcons />} />
+          <Route path="/de/sessions" element={<MonzaSessions />} />
 
           {/* Portuguese routes (with /pt prefix) */}
           <Route path="/pt" element={<Index />} />
           <Route path="/pt/speaker" element={<Speaker />} />
           <Route path="/pt/work/:slug" element={<ProjectPage />} />
           <Route path="/pt/monzastudio" element={<MonzaStudio />} />
+          <Route path="/pt/studio" element={<StudioLanding />} />
           <Route path="/pt/monzahaus" element={<MonzaHaus />} />
           <Route path="/pt/monzaindex" element={<MonzaIndex />} />
           <Route path="/pt/bavarianecons" element={<BavarianEcons />} />
+          <Route path="/pt/sessions" element={<MonzaSessions />} />
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

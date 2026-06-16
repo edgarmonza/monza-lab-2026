@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import HelmetIcon from "./HelmetIcon";
 import { useTheme } from "@/theme/ThemeContext";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { trackContact, whatsAppUrl } from "@/lib/pixel";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -13,6 +14,18 @@ const content = {
     de: "Lass uns bauen.", pt: "Construyamos.",
   },
   email: "edgar@monzalab.com",
+  whatsapp: {
+    es: "WhatsApp directo",
+    en: "Direct WhatsApp",
+    de: "Direkter WhatsApp",
+    pt: "WhatsApp direto",
+  },
+  waMessage: {
+    es: "Hola Edgar, vengo de monzalab.com. Construyamos.",
+    en: "Hi Edgar, I came from monzalab.com. Let's build.",
+    de: "Hallo Edgar, ich komme von monzalab.com.",
+    pt: "Olá Edgar, venho de monzalab.com. Construamos.",
+  },
 };
 
 const FooterMinimal = () => {
@@ -55,19 +68,38 @@ const FooterMinimal = () => {
           transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
           className="mt-12 md:mt-16"
         >
-          <a
-            href={`mailto:${content.email}`}
-            className="group inline-flex items-center gap-3 font-clash text-[13px] md:text-[15px] tracking-[0.05em] transition-colors duration-400"
-            style={{ color: textMuted }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(248,180,217,0.95)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = textMuted; }}
-          >
-            <span
-              className="inline-block w-6 h-px transition-all duration-500 group-hover:w-10"
-              style={{ background: "currentColor" }}
-            />
-            {content.email}
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
+            <a
+              href={`mailto:${content.email}`}
+              onClick={() => trackContact("email", "footer")}
+              className="group inline-flex items-center gap-3 font-clash text-[13px] md:text-[15px] tracking-[0.05em] transition-colors duration-400"
+              style={{ color: textMuted }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(248,180,217,0.95)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = textMuted; }}
+            >
+              <span
+                className="inline-block w-6 h-px transition-all duration-500 group-hover:w-10"
+                style={{ background: "currentColor" }}
+              />
+              {content.email}
+            </a>
+            <a
+              href={whatsAppUrl(content.waMessage[language])}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackContact("whatsapp", "footer")}
+              className="group inline-flex items-center gap-3 font-clash text-[13px] md:text-[15px] tracking-[0.05em] transition-colors duration-400"
+              style={{ color: textMuted }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(37,211,102,0.95)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = textMuted; }}
+            >
+              <span
+                className="inline-block w-6 h-px transition-all duration-500 group-hover:w-10"
+                style={{ background: "currentColor" }}
+              />
+              {content.whatsapp[language]}
+            </a>
+          </div>
         </motion.div>
       </div>
 

@@ -336,6 +336,27 @@ const Speaker = () => {
             { "@type": "Occupation", name: "AI Specialist", occupationalCategory: "Artificial Intelligence" },
             { "@type": "Occupation", name: "Company Builder", occupationalCategory: "Entrepreneurship" },
           ],
+          knowsLanguage: ["es", "en"],
+          performerIn: [
+            {
+              "@type": "Event",
+              name: "Andigraf 2026 — La industria gráfica se reinventó con IA",
+              startDate: "2026-05-25",
+              location: { "@type": "Place", name: "Barranquilla, Colombia" },
+              organizer: { "@type": "Organization", name: "Andigraf · Heidelberg" },
+            },
+            {
+              "@type": "Event",
+              name: "Push of Tourism — IA aplicada al turismo",
+              startDate: "2026-04",
+              location: { "@type": "Place", name: "Lisboa, Portugal" },
+            },
+            {
+              "@type": "Event",
+              name: "Programa de mentoría en IA para startups — Universidad EAFIT",
+              location: { "@type": "Place", name: "Medellín, Colombia" },
+            },
+          ],
         }}
       />
 
@@ -398,7 +419,7 @@ const Speaker = () => {
             className="flex items-center gap-8"
           >
             <CTAButton
-              href="https://wa.me/573208496241?text=Hola%20Edgar%2C%20me%20interesa%20tenerte%20como%20speaker%20en%20mi%20evento."
+              href="https://wa.me/573208492641?text=Hola%20Edgar%2C%20me%20interesa%20tenerte%20como%20speaker%20en%20mi%20evento."
               size="md"
             >
               {t.hero.cta}
@@ -733,7 +754,7 @@ const Speaker = () => {
               <span className="text-[#F8B4D9]">{t.cta.headlineAccent}</span>
             </h2>
             <CTAButton
-              href="https://wa.me/573208496241?text=Hola%20Edgar%2C%20me%20interesa%20tenerte%20como%20speaker%20en%20mi%20evento."
+              href="https://wa.me/573208492641?text=Hola%20Edgar%2C%20me%20interesa%20tenerte%20como%20speaker%20en%20mi%20evento."
               size="lg"
             >
               {t.cta.button}
