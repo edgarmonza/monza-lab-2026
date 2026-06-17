@@ -67,7 +67,7 @@ const PATHS: Array<{ tag: LT; name: LT; meta: LT; price: string; body: LT; href:
     tag: { es: "Para empezar" },
     name: { es: "La tarde presencial" },
     meta: { es: "Tarde 2–6 p.m. + diagnóstico 1:1 previo" },
-    price: "$450.000 COP",
+    price: "$150 USD",
     body: { es: "Una tarde intensiva. Dejas de leer sobre AI y sales con tu primer agente funcionando y un plan de 30 días." },
     href: "#sessions",
   },
@@ -75,7 +75,7 @@ const PATHS: Array<{ tag: LT; name: LT; meta: LT; price: string; body: LT; href:
     tag: { es: "Para construir en serio" },
     name: { es: "El Bootcamp" },
     meta: { es: "8 semanas · en vivo · cohorte" },
-    price: "$1.500.000 COP",
+    price: "$400 USD",
     body: { es: "Ocho semanas para pasar de usar AI a construir con AI. Terminas con un proyecto real construido y lanzado." },
     href: "#bootcamp",
   },
@@ -271,8 +271,8 @@ const MonzaSessions = () => {
     description: "Formación de Monza Lab para construir con AI: una tarde presencial (Monza Sessions) y un bootcamp de 8 semanas (Monza Bootcamp).",
     provider: { "@type": "Organization", name: "Monza Lab", url: "https://monzalab.com" },
     hasCourseInstance: [
-      { "@type": "CourseInstance", name: "Monza Sessions — tarde presencial", courseMode: "onsite", offers: { "@type": "Offer", price: "450000", priceCurrency: "COP" } },
-      { "@type": "CourseInstance", name: "Monza Bootcamp — 8 semanas", courseMode: "online", offers: { "@type": "Offer", price: "1500000", priceCurrency: "COP" } },
+      { "@type": "CourseInstance", name: "Monza Sessions — tarde presencial", courseMode: "onsite", offers: { "@type": "Offer", price: "150", priceCurrency: "USD" } },
+      { "@type": "CourseInstance", name: "Monza Bootcamp — 8 semanas", courseMode: "online", offers: { "@type": "Offer", price: "400", priceCurrency: "USD" } },
     ],
   };
 
@@ -286,7 +286,7 @@ const MonzaSessions = () => {
           pt: "Monza Sessions — Aprende a construir com AI | Monza Lab",
         }}
         description={{
-          es: "La formación de Monza Lab. Una tarde presencial 2–6 p.m. con diagnóstico 1:1 ($450K) o un bootcamp de 8 semanas ($1.5M) para pasar de usar AI a construir con ella. Lo enseña Edgar Navarro.",
+          es: "La formación de Monza Lab. Una tarde presencial 2–6 p.m. con diagnóstico 1:1 ($150 USD) o un bootcamp de 8 semanas ($400 USD) para pasar de usar AI a construir con ella. Lo enseña Edgar Navarro.",
           en: "Monza Lab's training. A 4-hour onsite session or an 8-week bootcamp to go from using AI to building with it. Taught by Edgar Navarro.",
           de: "Die Ausbildung von Monza Lab. Eine Präsenz-Session oder ein 8-Wochen-Bootcamp, um mit AI zu bauen. Von Edgar Navarro.",
           pt: "A formação da Monza Lab. Uma tarde presencial ou um bootcamp de 8 semanas para construir com AI. Ensinado por Edgar Navarro.",
@@ -453,7 +453,7 @@ const MonzaSessions = () => {
         <div className="mx-auto max-w-[1100px]">
           <div className="max-w-[760px] mb-12 md:mb-16">
             <p className="font-clash text-[11px] tracking-[0.3em] uppercase mb-5" style={{ color: PINK_SOFT }}>
-              La tarde presencial · 2:00–6:00 p.m. · $450.000 COP
+              La tarde presencial · 2:00–6:00 p.m. · $150 USD
             </p>
             <h2 className="font-clash font-bold tracking-[-0.02em] mb-5" style={{ fontSize: "clamp(1.9rem, 4.4vw, 3.2rem)" }}>
               Una tarde. Sales con tu primer agente funcionando.
@@ -491,7 +491,7 @@ const MonzaSessions = () => {
               Reservar mi lugar
             </button>
             <span className="font-mono text-[13px]" style={{ color: CREAM_55 }}>
-              $450.000 COP · incluye diagnóstico 1:1
+              $150 USD · incluye diagnóstico 1:1
             </span>
           </div>
         </div>
@@ -539,7 +539,7 @@ const MonzaSessions = () => {
               ))}
             </ul>
             <div className="flex flex-col items-start md:items-end gap-4">
-              <span className="font-clash font-bold text-[38px] leading-none" style={{ color: PINK }}>$1.500.000 <span className="text-[16px]" style={{ color: CREAM_55 }}>COP</span></span>
+              <span className="font-clash font-bold text-[38px] leading-none" style={{ color: PINK }}>$400 <span className="text-[16px]" style={{ color: CREAM_55 }}>USD</span></span>
               <button
                 onClick={scrollToForm}
                 className="font-clash font-semibold tracking-wide rounded-full px-8 py-3.5 text-[15px] transition-transform duration-300 hover:scale-[1.04]"
@@ -634,7 +634,7 @@ const MonzaSessions = () => {
             <div className="rounded-3xl p-9" style={{ background: CARD, border: `1px solid ${CARD_BORDER}` }}>
               <h3 className="font-clash font-semibold text-[20px] mb-1">Monza Sessions</h3>
               <p className="text-[13px] mb-6" style={{ color: CREAM_55 }}>Tarde 2–6 p.m. + diagnóstico 1:1</p>
-              <p className="font-clash font-bold text-[32px] sm:text-[40px] leading-none mb-6" style={{ color: PINK }}>$450.000 <span className="text-[15px]" style={{ color: CREAM_55 }}>COP</span></p>
+              <p className="font-clash font-bold text-[32px] sm:text-[40px] leading-none mb-6" style={{ color: PINK }}>$150 <span className="text-[15px]" style={{ color: CREAM_55 }}>USD</span></p>
               <button onClick={scrollToForm} className="font-clash font-medium tracking-wide rounded-full px-7 py-3 text-[14px] transition-colors" style={{ border: "1px solid rgba(255,252,247,0.25)", color: CREAM }}>
                 Reservar lugar
               </button>
@@ -642,7 +642,7 @@ const MonzaSessions = () => {
             <div className="rounded-3xl p-9" style={{ background: "rgba(248,180,217,0.06)", border: "1px solid rgba(248,180,217,0.2)" }}>
               <h3 className="font-clash font-semibold text-[20px] mb-1">Monza Bootcamp</h3>
               <p className="text-[13px] mb-6" style={{ color: CREAM_55 }}>8 semanas · cohorte en vivo</p>
-              <p className="font-clash font-bold text-[32px] sm:text-[40px] leading-none mb-6" style={{ color: PINK }}>$1.500.000 <span className="text-[15px]" style={{ color: CREAM_55 }}>COP</span></p>
+              <p className="font-clash font-bold text-[32px] sm:text-[40px] leading-none mb-6" style={{ color: PINK }}>$400 <span className="text-[15px]" style={{ color: CREAM_55 }}>USD</span></p>
               <button onClick={scrollToForm} className="font-clash font-semibold tracking-wide rounded-full px-7 py-3 text-[14px] transition-transform duration-300 hover:scale-[1.04]" style={{ background: "#F8B4D9", color: "#0B0B10" }}>
                 Reservar cupo
               </button>
