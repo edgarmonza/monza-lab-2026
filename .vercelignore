@@ -1,0 +1,3 @@
+# Tests no deben desplegarse como funciones serverless
+**/*.test.ts
+**/*.test.tsx

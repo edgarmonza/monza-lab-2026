@@ -10,7 +10,9 @@ import type {
   AbrirWhatsappInput,
 } from "../src/lib/agent/types";
 
-export const config = { runtime: "edge" };
+// Runtime Node.js (NO edge): el SDK @anthropic-ai/sdk referencia node:fs/node:path,
+// que no existen en el Edge Runtime. En Node el SDK y el streaming SSE funcionan bien.
+export const config = { runtime: "nodejs" };
 
 const MAX_TURNS = 40;
 const MAX_LEN = 2000;

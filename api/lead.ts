@@ -34,6 +34,6 @@ export default async function handler(request: Request): Promise<Response> {
     return Response.json({ error: "Faltan datos" }, { status: 400 });
   }
 
-  const result = await sendLeadEmail(body);
+  const result = await sendLeadEmail({ ...body, name, email, brand });
   return Response.json(result);
 }
