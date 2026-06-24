@@ -25,7 +25,7 @@ const MonzaHaus = lazy(() => import("./pages/MonzaHaus"));
 const MonzaIndex = lazy(() => import("./pages/MonzaIndex"));
 const BavarianEcons = lazy(() => import("./pages/BavarianEcons"));
 const MonzaSessions = lazy(() => import("./pages/MonzaSessions"));
-import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import MonzaAgent from "./components/MonzaAgent";
 
 const queryClient = new QueryClient();
 
@@ -61,7 +61,7 @@ const AppContent = () => {
           <CustomCursor />
           <ScrollToTop />
           <Navbar />
-          <FloatingWhatsApp />
+          <MonzaAgent />
         </>
       )}
       <Suspense fallback={<RouteFallback />}>
