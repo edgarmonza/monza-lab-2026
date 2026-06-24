@@ -1,5 +1,5 @@
-import type { AgentLang } from "./types";
-import { buildKnowledge } from "./knowledge";
+import type { AgentLang } from "./types.js";
+import { buildKnowledge } from "./knowledge.js";
 
 const LANG_NAME: Record<AgentLang, string> = {
   es: "Spanish",

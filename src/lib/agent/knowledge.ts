@@ -1,4 +1,4 @@
-import type { AgentLang } from "./types";
+import type { AgentLang } from "./types.js";
 
 /* Conocimiento curado a mano: controla EXACTAMENTE qué expone el agente.
  * Los agentes a la medida se citan por vertical, nunca con el nombre del cliente. */

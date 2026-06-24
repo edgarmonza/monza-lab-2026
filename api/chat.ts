@@ -1,14 +1,14 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { buildSystemPrompt } from "../src/lib/agent/persona";
-import { AGENT_TOOLS } from "../src/lib/agent/tools";
-import { sendLeadEmail } from "./_shared/sendLead";
+import { buildSystemPrompt } from "../src/lib/agent/persona.js";
+import { AGENT_TOOLS } from "../src/lib/agent/tools.js";
+import { sendLeadEmail } from "./_shared/sendLead.js";
 import type {
   AgentLang,
   ChatMessage,
   SSEEvent,
   CapturarLeadInput,
   AbrirWhatsappInput,
-} from "../src/lib/agent/types";
+} from "../src/lib/agent/types.js";
 
 // Runtime Node.js (NO edge): el SDK @anthropic-ai/sdk referencia node:fs/node:path,
 // que no existen en el Edge Runtime. En Node el SDK y el streaming SSE funcionan bien.
@@ -38,10 +38,9 @@ export function sanitizeMessages(raw: unknown): ChatMessage[] {
 
 const LANGS: AgentLang[] = ["es", "en", "de", "pt"];
 
-export default async function handler(request: Request): Promise<Response> {
-  if (request.method !== "POST") {
-    return Response.json({ error: "Method not allowed" }, { status: 405 });
-  }
+// Vercel runtime Node: handler web por método (NO `export default`, que en Node
+// se interpreta como el formato clásico (req,res) y deja la respuesta colgada).
+export async function POST(request: Request): Promise<Response> {
   if (!process.env.ANTHROPIC_API_KEY) {
     return Response.json({ error: "no_agent", fallback: "whatsapp" }, { status: 503 });
   }
