@@ -9,6 +9,8 @@ export const WIDGET_COPY: Record<
     whatsappBtn: string;
     leadConfirmed: string;
     openLabel: string;
+    closeLabel: string;
+    sendLabel: string;
   }
 > = {
   es: {
@@ -18,6 +20,8 @@ export const WIDGET_COPY: Record<
     whatsappBtn: "Sigue por WhatsApp con Edgar",
     leadConfirmed: "Listo. Edgar te responde en menos de 24 horas.",
     openLabel: "Habla con el agente de Monza",
+    closeLabel: "Cerrar",
+    sendLabel: "Enviar",
   },
   en: {
     greeting: "Tell me what you're working on. Where do we start?",
@@ -26,6 +30,8 @@ export const WIDGET_COPY: Record<
     whatsappBtn: "Continue on WhatsApp with Edgar",
     leadConfirmed: "Done. Edgar replies within 24 hours.",
     openLabel: "Talk to Monza's agent",
+    closeLabel: "Close",
+    sendLabel: "Send",
   },
   de: {
     greeting: "Erzähl mir, woran du arbeitest. Wo fangen wir an?",
@@ -34,6 +40,8 @@ export const WIDGET_COPY: Record<
     whatsappBtn: "Weiter auf WhatsApp mit Edgar",
     leadConfirmed: "Fertig. Edgar antwortet innerhalb von 24 Stunden.",
     openLabel: "Sprich mit Monzas Agent",
+    closeLabel: "Schließen",
+    sendLabel: "Senden",
   },
   pt: {
     greeting: "Conta-me o que tens em mãos. Por onde começamos?",
@@ -42,6 +50,8 @@ export const WIDGET_COPY: Record<
     whatsappBtn: "Continua no WhatsApp com o Edgar",
     leadConfirmed: "Pronto. O Edgar responde em menos de 24 horas.",
     openLabel: "Fala com o agente da Monza",
+    closeLabel: "Fechar",
+    sendLabel: "Enviar",
   },
 };
 

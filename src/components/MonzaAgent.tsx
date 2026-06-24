@@ -3,6 +3,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { useAgentChat } from "@/hooks/useAgentChat";
 import { WIDGET_COPY, CHIP_LABELS } from "@/lib/agent/widgetCopy";
 import { USE_CASE_KEYS, type AgentLang } from "@/lib/agent/types";
+import { whatsAppUrl } from "@/lib/pixel";
 
 const PINK = "#F8B4D9";
 
@@ -70,7 +71,7 @@ const MonzaAgent = () => {
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: "1px solid rgba(248,180,217,0.18)" }}>
             <span style={{ color: "rgba(255,252,247,0.92)", fontSize: 14, fontWeight: 600 }}>Monza · Agente</span>
-            <button onClick={() => setOpen(false)} aria-label="Cerrar" style={{ color: "rgba(255,252,247,0.55)", fontSize: 20, lineHeight: 1 }}>
+            <button onClick={() => setOpen(false)} aria-label={copy.closeLabel} style={{ color: "rgba(255,252,247,0.55)", fontSize: 20, lineHeight: 1 }}>
               ✕
             </button>
           </div>
@@ -149,7 +150,25 @@ const MonzaAgent = () => {
             )}
 
             {status === "error" && (
-              <p style={{ fontSize: 13, color: "rgba(255,180,180,0.9)" }}>{copy.error}</p>
+              <>
+                <p style={{ fontSize: 13, color: "rgba(255,180,180,0.9)" }}>{copy.error}</p>
+                <a
+                  href={whatsAppUrl("Hola Edgar, vengo de monzalab.com")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    alignSelf: "flex-start",
+                    fontSize: 14,
+                    fontWeight: 600,
+                    padding: "10px 16px",
+                    borderRadius: 9999,
+                    background: PINK,
+                    color: "#0B0B10",
+                  }}
+                >
+                  {copy.whatsappBtn} →
+                </a>
+              </>
             )}
           </div>
 
@@ -175,7 +194,7 @@ const MonzaAgent = () => {
             <button
               type="submit"
               disabled={status === "streaming" || !input.trim()}
-              aria-label="Enviar"
+              aria-label={copy.sendLabel}
               style={{
                 background: PINK,
                 color: "#0B0B10",

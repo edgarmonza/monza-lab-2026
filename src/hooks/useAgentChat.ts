@@ -80,6 +80,7 @@ export function useAgentChat(lang: AgentLang) {
         historyRef.current = [...next, { role: "assistant", content: assistantText }];
         setStatus("idle");
       } catch {
+        historyRef.current = historyRef.current.slice(0, -1);
         setStatus("error");
       }
     },
