@@ -14,7 +14,7 @@ export const WIDGET_COPY: Record<
   }
 > = {
   es: {
-    greeting: "Cuéntame qué traes entre manos. ¿Por dónde vamos?",
+    greeting: "Dime qué quieres construir y te digo si Monza es para ti.",
     placeholder: "Escríbeme directo…",
     error: "Algo falló de mi lado. Sigue con Edgar por WhatsApp.",
     whatsappBtn: "Sigue por WhatsApp con Edgar",
@@ -24,7 +24,7 @@ export const WIDGET_COPY: Record<
     sendLabel: "Enviar",
   },
   en: {
-    greeting: "Tell me what you're working on. Where do we start?",
+    greeting: "Tell me what you want to build, and I'll tell you if Monza is for you.",
     placeholder: "Message me directly…",
     error: "Something failed on my end. Continue with Edgar on WhatsApp.",
     whatsappBtn: "Continue on WhatsApp with Edgar",
@@ -34,7 +34,7 @@ export const WIDGET_COPY: Record<
     sendLabel: "Send",
   },
   de: {
-    greeting: "Erzähl mir, woran du arbeitest. Wo fangen wir an?",
+    greeting: "Sag mir, was du bauen willst – und ich sage dir, ob Monza zu dir passt.",
     placeholder: "Schreib mir direkt…",
     error: "Etwas ist schiefgelaufen. Mach mit Edgar auf WhatsApp weiter.",
     whatsappBtn: "Weiter auf WhatsApp mit Edgar",
@@ -44,7 +44,7 @@ export const WIDGET_COPY: Record<
     sendLabel: "Senden",
   },
   pt: {
-    greeting: "Conta-me o que tens em mãos. Por onde começamos?",
+    greeting: "Diz-me o que queres construir e digo-te se a Monza é para ti.",
     placeholder: "Escreve-me diretamente…",
     error: "Algo falhou do meu lado. Continua com o Edgar no WhatsApp.",
     whatsappBtn: "Continua no WhatsApp com o Edgar",
