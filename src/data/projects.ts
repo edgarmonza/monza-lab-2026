@@ -21,11 +21,16 @@ export type ProjectVisual = {
   number: string;
 };
 
+export type ProjectCategory = "platform" | "venture" | "studio";
+
 export type Project = {
   id: string;
   slug: string;
   name: string;
   tag: string;
+  category: ProjectCategory;
+  /** Caso bajo NDA: sin nombre de cliente, sin url, sello de confidencialidad en la página. */
+  confidential?: boolean;
   desc: LangText;
   image: string | null;
   video: string | null;
@@ -55,6 +60,7 @@ export const PROJECTS: Project[] = [
     slug: "bavarian-econs",
     name: "Bavarian Econs",
     tag: "0→1 × LUXURY",
+    category: "venture",
     desc: {
       es: "Marca de lujo automotriz. Branding, web global y sistema de ventas. Featured in Forbes.",
       en: "Automotive luxury brand. Branding, global web & sales system. Featured in Forbes.",
@@ -114,6 +120,7 @@ export const PROJECTS: Project[] = [
     slug: "spectro",
     name: "Spectro",
     tag: "PARTNER × GLOBAL CONTENT",
+    category: "studio",
     desc: {
       es: "Plataforma global de entretenimiento deportivo. Socio en Spectro Legends — llevar el contenido audiovisual de Colombia al mundo.",
       en: "Global sports entertainment platform. Partner in Spectro Legends — taking Colombia's audiovisual content to the world.",
@@ -166,6 +173,7 @@ export const PROJECTS: Project[] = [
     slug: "pacho-alvarez",
     name: "Pacho Alvarez",
     tag: "STUDIO 1:1 × COMPANY BUILDER",
+    category: "studio",
     desc: {
       es: "Piloto del Dakar Rally. Web inmersiva, estructura de negocio, conferencias, pricing y go-to-market.",
       en: "Dakar Rally driver. Immersive web, business structure, conferences, pricing & go-to-market.",
@@ -194,6 +202,7 @@ export const PROJECTS: Project[] = [
     slug: "guardian-of-speed",
     name: "Guardian of Speed",
     tag: "0→1 × COMPANY BUILDER",
+    category: "venture",
     desc: {
       es: "Concierge automotriz y manejo de colecciones para coleccionistas en Europa. Experiencia digital hiperpersonalizada, pitch de inversión y go-to-market.",
       en: "Automotive concierge & collection management for collectors in Europe. Hyper-personalized digital experience, investment pitch & go-to-market.",
@@ -244,6 +253,7 @@ export const PROJECTS: Project[] = [
     slug: "monza-haus",
     name: "MonzaHaus",
     tag: "VENTURE × AI-NATIVE PLATFORM",
+    category: "venture",
     desc: {
       es: "La plataforma AI-native del ecosistema Porsche. Más de 35,000 Porsches agregados en tiempo real de Japón, la Unión Europea y Estados Unidos para que dealers, coleccionistas y compradores tomen decisiones informadas.",
       en: "The AI-native platform for the Porsche ecosystem. 35,000+ Porsches aggregated in real time from Japan, the EU and the United States so dealers, collectors and buyers can make informed decisions.",
@@ -298,6 +308,7 @@ export const PROJECTS: Project[] = [
     slug: "ia-index",
     name: "IA Index",
     tag: "VENTURE × MARKET INTELLIGENCE",
+    category: "venture",
     desc: {
       es: "El primer índice que mide la penetración real de la inteligencia artificial en empresas y personas. Co-creamos reportes con empresas líderes y generamos data de valor para todo el ecosistema.",
       en: "The first index measuring real AI penetration across companies and people. We co-create reports with leading companies and generate valuable data for the entire ecosystem.",
@@ -352,6 +363,7 @@ export const PROJECTS: Project[] = [
     slug: "eleonora-morales",
     name: "Eleonora Morales",
     tag: "STUDIO × DIGITAL ECOSYSTEM",
+    category: "studio",
     desc: {
       es: "Ecosistema digital 360° para una coleccionista de belleza con 350K seguidores en TikTok. Seis mundos bajo una sombrilla, e-commerce en vivo, pipeline de fotos con IA y growth multi-canal.",
       en: "360° digital ecosystem for a beauty collector with 350K TikTok followers. Six worlds under one umbrella, live e-commerce, AI-powered photo pipeline and multi-channel growth.",
@@ -395,6 +407,123 @@ export const PROJECTS: Project[] = [
       accent: "#f074aa",
       decorLine: false,
       number: "07",
+    },
+  },
+  {
+    id: "plataforma-ce",
+    slug: "plataforma-comercio-exterior",
+    name: "Comercio Exterior",
+    tag: "PLATAFORMA × AI-FIRST",
+    category: "platform",
+    confidential: true,
+    desc: {
+      es: "Plataforma AI-first para una importadora con operación en Colombia, Panamá y Estados Unidos: cinco herramientas de IA sobre su ERP real y una web nueva de posicionamiento. Proyecto en confidencialidad.",
+      en: "AI-first platform for an import company operating across Colombia, Panama and the US: five AI tools running on their live ERP plus a new positioning website. Project under NDA.",
+      de: "AI-First-Plattform für ein Importunternehmen mit Betrieb in Kolumbien, Panama und den USA: fünf KI-Tools auf dem echten ERP plus eine neue Positionierungs-Website. Projekt unter NDA.",
+      pt: "Plataforma AI-first para uma importadora com operação na Colômbia, Panamá e EUA: cinco ferramentas de IA sobre o ERP real e um novo site de posicionamento. Projeto em confidencialidade.",
+    },
+    image: "/images/projects/plataforma-comercio-exterior/cover-web-hero.jpg",
+    video: null,
+    mobileVideo: null,
+    color: "#7DD3C0",
+    url: null,
+    caseStudy: {
+      role: "AI Platform Builder",
+      location: "Colombia · Panamá · USA",
+      year: "2026",
+      headline: {
+        es: "Todo el ciclo de una importación — cotizar, validar, costear, contratar — en una sola plataforma.",
+        en: "The entire import cycle — quoting, vetting, costing, contracting — on a single platform.",
+        de: "Der gesamte Importzyklus — kalkulieren, prüfen, kosten, abschließen — auf einer Plattform.",
+        pt: "Todo o ciclo de uma importação — cotar, validar, custear, contratar — numa única plataforma.",
+      },
+      story: {
+        es: "Una importadora con más de una década operando entre Asia y Latinoamérica necesitaba pasar de operar en correos y hojas de cálculo a operar como plataforma. Construimos su ecosistema completo: un portal con cinco herramientas de IA que trabajan sobre su ERP real — ficha técnica automática de producto, comparador de proveedores, generador de contratos, costeo DDP y un coach del pipeline comercial — más la web pública que la posiciona como plataforma 360 de comercio exterior. Del kickoff al piloto en uso: semanas, no años. Hoy el equipo cotiza, valida proveedores y costea importaciones desde un solo lugar, con la IA haciendo el trabajo pesado.",
+        en: "An import company with over a decade operating between Asia and Latin America needed to stop running on email threads and spreadsheets and start running as a platform. We built their complete ecosystem: a portal with five AI tools working on their live ERP — automatic product spec sheets, supplier comparison, contract generation, DDP costing and a commercial pipeline coach — plus the public website positioning them as a 360 foreign-trade platform. Kickoff to pilot in use: weeks, not years. Today the team quotes, vets suppliers and costs imports from one place, with AI doing the heavy lifting.",
+        de: "Ein Importunternehmen mit über einem Jahrzehnt Erfahrung zwischen Asien und Lateinamerika musste weg von E-Mails und Tabellen — hin zu einer Plattform. Wir bauten das komplette Ökosystem: ein Portal mit fünf KI-Tools auf dem echten ERP — automatische Produktdatenblätter, Lieferantenvergleich, Vertragsgenerator, DDP-Kalkulation und ein Pipeline-Coach — plus die öffentliche Website, die das Unternehmen als 360-Grad-Außenhandelsplattform positioniert. Vom Kickoff zum genutzten Piloten: Wochen, nicht Jahre. Heute kalkuliert, prüft und kostet das Team von einem Ort aus — die KI macht die Schwerarbeit.",
+        pt: "Uma importadora com mais de uma década operando entre a Ásia e a América Latina precisava deixar de operar em e-mails e planilhas para operar como plataforma. Construímos o ecossistema completo: um portal com cinco ferramentas de IA sobre o ERP real — ficha técnica automática, comparador de fornecedores, gerador de contratos, custeio DDP e um coach do pipeline comercial — mais o site público que a posiciona como plataforma 360 de comércio exterior. Do kickoff ao piloto em uso: semanas, não anos. Hoje a equipe cota, valida fornecedores e custeia importações de um só lugar, com a IA fazendo o trabalho pesado.",
+      },
+      pillars: [
+        { label: "Product", detail: { es: "Portal con login y cinco herramientas de IA en uso real", en: "Portal with login and five AI tools in real use", de: "Portal mit Login und fünf KI-Tools im echten Einsatz", pt: "Portal com login e cinco ferramentas de IA em uso real" } },
+        { label: "AI", detail: { es: "IA sobre el ERP vivo de la empresa — no demos, operación", en: "AI on the company's live ERP — not demos, operations", de: "KI auf dem laufenden ERP — keine Demos, Betrieb", pt: "IA sobre o ERP vivo da empresa — não demos, operação" } },
+        { label: "Web", detail: { es: "Web pública nueva: de empresa de servicios a plataforma", en: "New public site: from service company to platform", de: "Neue öffentliche Website: vom Dienstleister zur Plattform", pt: "Novo site público: de empresa de serviços a plataforma" } },
+        { label: "Velocidad", detail: { es: "De cero a piloto en uso en semanas", en: "Zero to pilot in use in weeks", de: "Von null zum genutzten Piloten in Wochen", pt: "Do zero ao piloto em uso em semanas" } },
+      ],
+      press: [],
+    },
+    gallery: [
+      "/images/projects/plataforma-comercio-exterior/portal-herramientas.png",
+      "/images/projects/plataforma-comercio-exterior/web-asesor.png",
+      "/images/projects/plataforma-comercio-exterior/ficha-tecnica.png",
+    ],
+    gridClass: "md:col-span-1 md:row-span-1",
+    aspect: "aspect-[4/5] md:aspect-auto",
+    visual: {
+      gradient: "radial-gradient(circle at 25% 35%, #7DD3C018 0%, transparent 50%), radial-gradient(circle at 75% 75%, #7DD3C00C 0%, transparent 40%), linear-gradient(160deg, #0D1414 0%, #0D0D14 100%)",
+      letter: "°01",
+      letterSize: "clamp(60px, 12vw, 150px)",
+      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+      accent: "#7DD3C0",
+      decorLine: true,
+      number: "08",
+    },
+  },
+  {
+    id: "plataforma-tu",
+    slug: "plataforma-turismo",
+    name: "Turismo",
+    tag: "PLATAFORMA × AI-FIRST",
+    category: "platform",
+    confidential: true,
+    desc: {
+      es: "Plataforma AI-native de viajes para un DMC europeo con décadas de operación: AI Trip Planner sobre 751 experiencias reales. Proyecto en confidencialidad.",
+      en: "AI-native travel platform for a European DMC with decades of operation: an AI Trip Planner over 751 real experiences. Project under NDA.",
+      de: "AI-native Reiseplattform für einen europäischen DMC mit Jahrzehnten an Erfahrung: ein AI Trip Planner über 751 echte Erlebnisse. Projekt unter NDA.",
+      pt: "Plataforma AI-native de viagens para um DMC europeu com décadas de operação: AI Trip Planner sobre 751 experiências reais. Projeto em confidencialidade.",
+    },
+    image: "/images/projects/plataforma-turismo/cover-hero.jpg",
+    video: null,
+    mobileVideo: null,
+    color: "#E8927C",
+    url: null,
+    caseStudy: {
+      role: "AI Platform Builder",
+      location: "Europa",
+      year: "2026",
+      headline: {
+        es: "Décadas de conocimiento local, convertidas en un producto AI-native.",
+        en: "Decades of local knowledge, turned into an AI-native product.",
+        de: "Jahrzehnte an lokalem Wissen, verwandelt in ein AI-natives Produkt.",
+        pt: "Décadas de conhecimento local, convertidas num produto AI-native.",
+      },
+      story: {
+        es: "Un DMC europeo — una operadora de turismo receptivo con décadas en el mercado — quería convertir su conocimiento local en producto digital. Diseñamos y prototipamos su plataforma AI-native de viajes: un AI Trip Planner conversacional que arma el viaje ideal — hoteles, experiencias, lugares que solo conoce un local — sobre un catálogo de 751 experiencias reales integradas. El prototipo funcional se construyó end-to-end: marca, producto, data e inteligencia, listo para validar con usuarios reales. Y el modelo dice tanto como el producto: desarrollo por hitos con participación en el revenue — construimos la plataforma y ganamos cuando la plataforma gana.",
+        en: "A European DMC — an inbound tour operator with decades in the market — wanted to turn its local knowledge into a digital product. We designed and prototyped their AI-native travel platform: a conversational AI Trip Planner that builds the perfect trip — hotels, experiences, places only a local knows — over a catalog of 751 real, integrated experiences. The working prototype was built end-to-end: brand, product, data and intelligence, ready to validate with real users. And the model says as much as the product: milestone-based development with revenue share — we build the platform and win when the platform wins.",
+        de: "Ein europäischer DMC — ein Incoming-Reiseveranstalter mit Jahrzehnten im Markt — wollte sein lokales Wissen in ein digitales Produkt verwandeln. Wir entwarfen und prototypten die AI-native Reiseplattform: ein konversationeller AI Trip Planner, der die perfekte Reise zusammenstellt — Hotels, Erlebnisse, Orte, die nur Einheimische kennen — über einen Katalog von 751 echten, integrierten Erlebnissen. Der funktionierende Prototyp entstand end-to-end: Marke, Produkt, Daten und Intelligenz, bereit zur Validierung mit echten Nutzern. Und das Modell sagt so viel wie das Produkt: Entwicklung in Meilensteinen mit Revenue Share — wir bauen die Plattform und gewinnen, wenn die Plattform gewinnt.",
+        pt: "Um DMC europeu — uma operadora de turismo receptivo com décadas de mercado — queria converter o seu conhecimento local em produto digital. Desenhámos e prototipámos a sua plataforma AI-native de viagens: um AI Trip Planner conversacional que monta a viagem ideal — hotéis, experiências, lugares que só um local conhece — sobre um catálogo de 751 experiências reais integradas. O protótipo funcional foi construído end-to-end: marca, produto, dados e inteligência, pronto para validar com utilizadores reais. E o modelo diz tanto quanto o produto: desenvolvimento por marcos com participação no revenue — construímos a plataforma e ganhamos quando a plataforma ganha.",
+      },
+      pillars: [
+        { label: "Product", detail: { es: "Plataforma B2C de viajes, prototipo funcional end-to-end", en: "B2C travel platform, working end-to-end prototype", de: "B2C-Reiseplattform, funktionierender End-to-End-Prototyp", pt: "Plataforma B2C de viagens, protótipo funcional end-to-end" } },
+        { label: "AI", detail: { es: "Trip Planner conversacional que diseña el viaje completo", en: "Conversational Trip Planner that designs the full trip", de: "Konversationeller Trip Planner für die ganze Reise", pt: "Trip Planner conversacional que desenha a viagem completa" } },
+        { label: "Data", detail: { es: "751 experiencias reales integradas al producto", en: "751 real experiences integrated into the product", de: "751 echte Erlebnisse im Produkt integriert", pt: "751 experiências reais integradas no produto" } },
+        { label: "Partnership", detail: { es: "Desarrollo por hitos + participación en el revenue", en: "Milestone development + revenue share", de: "Meilenstein-Entwicklung + Revenue Share", pt: "Desenvolvimento por marcos + participação no revenue" } },
+      ],
+      press: [],
+    },
+    gallery: [
+      "/images/projects/plataforma-turismo/experiencias.jpg",
+      "/images/projects/plataforma-turismo/planner.png",
+    ],
+    gridClass: "md:col-span-1 md:row-span-1",
+    aspect: "aspect-[4/5] md:aspect-auto",
+    visual: {
+      gradient: "radial-gradient(circle at 30% 30%, #E8927C18 0%, transparent 50%), radial-gradient(circle at 70% 80%, #E8927C0C 0%, transparent 40%), linear-gradient(160deg, #16100D 0%, #0D0D14 100%)",
+      letter: "°02",
+      letterSize: "clamp(60px, 12vw, 150px)",
+      letterPos: "top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+      accent: "#E8927C",
+      decorLine: true,
+      number: "09",
     },
   },
 ];
