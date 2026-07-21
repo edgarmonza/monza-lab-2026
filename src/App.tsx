@@ -25,6 +25,7 @@ const MonzaHaus = lazy(() => import("./pages/MonzaHaus"));
 const MonzaIndex = lazy(() => import("./pages/MonzaIndex"));
 const BavarianEcons = lazy(() => import("./pages/BavarianEcons"));
 const MonzaSessions = lazy(() => import("./pages/MonzaSessions"));
+const Work = lazy(() => import("./pages/Work"));
 import MonzaAgent from "./components/MonzaAgent";
 
 const queryClient = new QueryClient();
@@ -72,6 +73,7 @@ const AppContent = () => {
           {/* Spanish routes (default - no prefix) */}
           <Route path="/" element={<Index />} />
           <Route path="/speaker" element={<Speaker />} />
+          <Route path="/work" element={<Work />} />
           <Route path="/work/:slug" element={<ProjectPage />} />
           <Route path="/monzastudio" element={<MonzaStudio />} />
           <Route path="/studio" element={<StudioLanding />} />
@@ -83,6 +85,7 @@ const AppContent = () => {
           {/* English routes (with /en prefix) */}
           <Route path="/en" element={<Index />} />
           <Route path="/en/speaker" element={<Speaker />} />
+          <Route path="/en/work" element={<Work />} />
           <Route path="/en/work/:slug" element={<ProjectPage />} />
           <Route path="/en/monzastudio" element={<MonzaStudio />} />
           <Route path="/en/studio" element={<StudioLanding />} />
@@ -94,6 +97,7 @@ const AppContent = () => {
           {/* German routes (with /de prefix) */}
           <Route path="/de" element={<Index />} />
           <Route path="/de/speaker" element={<Speaker />} />
+          <Route path="/de/work" element={<Work />} />
           <Route path="/de/work/:slug" element={<ProjectPage />} />
           <Route path="/de/monzastudio" element={<MonzaStudio />} />
           <Route path="/de/studio" element={<StudioLanding />} />
@@ -105,6 +109,7 @@ const AppContent = () => {
           {/* Portuguese routes (with /pt prefix) */}
           <Route path="/pt" element={<Index />} />
           <Route path="/pt/speaker" element={<Speaker />} />
+          <Route path="/pt/work" element={<Work />} />
           <Route path="/pt/work/:slug" element={<ProjectPage />} />
           <Route path="/pt/monzastudio" element={<MonzaStudio />} />
           <Route path="/pt/studio" element={<StudioLanding />} />

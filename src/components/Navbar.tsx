@@ -14,24 +14,32 @@ const LANGS: Lang[] = ["es", "en", "de", "pt"];
 
 const NAV_LINKS: Record<Lang, { label: string; href: string }[]> = {
   es: [
+    { label: "Plataformas", href: "/work?f=platform" },
+    { label: "Casos", href: "/work" },
     { label: "About", href: "#about" },
     { label: "Method", href: "#metodo" },
     { label: "Sessions", href: "/sessions" },
     { label: "Speaker", href: "/speaker" },
   ],
   en: [
+    { label: "Platforms", href: "/en/work?f=platform" },
+    { label: "Work", href: "/en/work" },
     { label: "About", href: "#about" },
     { label: "Approach", href: "#metodo" },
     { label: "Sessions", href: "/en/sessions" },
     { label: "Speaker", href: "/en/speaker" },
   ],
   de: [
+    { label: "Plattformen", href: "/de/work?f=platform" },
+    { label: "Cases", href: "/de/work" },
     { label: "Über uns", href: "#about" },
     { label: "Methode", href: "#metodo" },
     { label: "Sessions", href: "/de/sessions" },
     { label: "Speaker", href: "/de/speaker" },
   ],
   pt: [
+    { label: "Plataformas", href: "/pt/work?f=platform" },
+    { label: "Casos", href: "/pt/work" },
     { label: "Sobre", href: "#about" },
     { label: "Método", href: "#metodo" },
     { label: "Sessions", href: "/pt/sessions" },

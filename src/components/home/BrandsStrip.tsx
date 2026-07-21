@@ -110,10 +110,10 @@ const BrandsStrip = () => {
     pt: "Branding, build, conteúdo ou growth — o papel muda com cada marca.",
   };
   const seeAll: LT = {
-    es: "Ver Monza Studio",
-    en: "See Monza Studio",
-    de: "Monza Studio ansehen",
-    pt: "Ver Monza Studio",
+    es: "Ver todos los casos",
+    en: "See all work",
+    de: "Alle Cases ansehen",
+    pt: "Ver todos os casos",
   };
 
   return (
@@ -151,7 +151,7 @@ const BrandsStrip = () => {
             </p>
           </div>
           <Link
-            to={`${langPrefix}/monzastudio`}
+            to={`${langPrefix}/work`}
             className="font-clash text-[11px] tracking-[0.25em] uppercase font-medium transition-colors duration-300"
             style={{ color: "rgba(var(--text-rgb), 0.7)" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(var(--text-rgb), 1)")}
