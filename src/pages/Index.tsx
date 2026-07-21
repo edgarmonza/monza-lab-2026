@@ -1,6 +1,7 @@
 import HeroHome from "@/components/HeroHome";
 import ManifestoSection from "@/components/home/ManifestoSection";
 import VenturesGrid from "@/components/home/VenturesGrid";
+import PlatformsSection from "@/components/home/PlatformsSection";
 import BrandsStrip from "@/components/home/BrandsStrip";
 import OperationStrip from "@/components/home/OperationStrip";
 import AboutEdgarSection from "@/components/AboutEdgarSection";
@@ -33,6 +34,7 @@ const Index = () => {
         <HeroHome />
         <ManifestoSection />
         <VenturesGrid />
+        <PlatformsSection />
         <BrandsStrip />
         <OperationStrip />
         <MetodoMonzaSection />

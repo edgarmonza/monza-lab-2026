@@ -63,6 +63,13 @@ const MonzaAgent = () => {
   const copy = WIDGET_COPY[lang];
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
+
+  // Cualquier CTA de la página puede abrir el agente disparando este evento.
+  useEffect(() => {
+    const openAgent = () => setOpen(true);
+    window.addEventListener("monza:open-agent", openAgent);
+    return () => window.removeEventListener("monza:open-agent", openAgent);
+  }, []);
   const { messages, status, whatsappUrlValue, leadDone, send } = useAgentChat(lang);
   const scrollRef = useRef<HTMLDivElement>(null);
 
