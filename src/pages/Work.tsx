@@ -149,9 +149,9 @@ const Work = () => {
                   className="group relative block aspect-[4/3] rounded-2xl overflow-hidden"
                   style={{ border: "1px solid rgba(var(--text-rgb), 0.06)" }}
                 >
-                  {p.image ? (
+                  {p.image || p.gallery?.[0] ? (
                     <img
-                      src={p.image}
+                      src={p.image ?? p.gallery![0]}
                       alt={p.name}
                       loading="lazy"
                       className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"

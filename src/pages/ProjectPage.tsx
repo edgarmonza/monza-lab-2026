@@ -178,7 +178,7 @@ const ProjectPage = () => {
             <img
               src={project.image}
               alt={project.name}
-              className="w-full h-full object-cover"
+              className={`w-full h-full object-cover ${project.confidential ? "object-top" : ""}`}
             />
           ) : null}
           <div
