@@ -255,6 +255,9 @@ const ProjectPage = () => {
               ...(project.url
                 ? [{ label: { es: "Sitio", en: "Site", de: "Seite", pt: "Sitio" }, value: "__link__" }]
                 : []),
+              ...(project.confidential
+                ? [{ label: { es: "Estado", en: "Status", de: "Status", pt: "Estado" }, value: "__nda__" }]
+                : []),
             ].map((stat) => (
               <div key={t(stat.label as LangText)}>
                 <p className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase mb-1" style={{ color: textDim }}>
@@ -270,6 +273,11 @@ const ProjectPage = () => {
                   >
                     {project.url!.replace("https://www.", "")} ↗
                   </a>
+                ) : stat.value === "__nda__" ? (
+                  <span className="inline-flex items-center gap-2 font-clash text-xs md:text-sm font-medium" style={{ color: accent }}>
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: accent }} aria-hidden />
+                    {{ es: "En confidencialidad", en: "Under NDA", de: "Unter NDA", pt: "Em confidencialidade" }[language]}
+                  </span>
                 ) : (
                   <p className="font-clash text-xs md:text-sm font-medium" style={{ color: textMain }}>
                     {stat.value}
@@ -317,6 +325,15 @@ const ProjectPage = () => {
                   >
                     {{ es: "Ver sitio", en: "Visit site", de: "Seite besuchen", pt: "Ver sitio" }[language]} <span>↗</span>
                   </a>
+                )}
+                {project.confidential && (
+                  <span
+                    className="mt-6 inline-flex items-center gap-2 font-clash text-[11px] tracking-[0.25em] uppercase font-medium rounded-full px-4 py-2 self-start"
+                    style={{ color: accent, border: `1px solid ${accent}55`, background: `${accent}0d` }}
+                  >
+                    <span className="w-2 h-2 rounded-full" style={{ background: accent }} aria-hidden />
+                    {{ es: "Proyecto en confidencialidad", en: "Project under NDA", de: "Projekt unter NDA", pt: "Projeto em confidencialidade" }[language]}
+                  </span>
                 )}
               </div>
             </div>
