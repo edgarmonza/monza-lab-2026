@@ -261,6 +261,7 @@ const HeroHome = () => {
       { text: "BRAND · CODE · CONTENT" },
       { text: mobile ? "ONE-MAN STUDIO." : "ONE-MAN STUDIO. GLOBAL OUTPUT." },
       { text: mobile ? "COMPANY BUILDER" : "END-TO-END COMPANY BUILDER" },
+      { text: mobile ? "AI-FIRST PLATFORMS" : "AI-FIRST PLATFORMS FOR REAL INDUSTRIES" },
       { text: "BUILT WITH CRITERIA" },
     ],
     en: [
@@ -268,6 +269,7 @@ const HeroHome = () => {
       { text: "BRAND · CODE · CONTENT" },
       { text: mobile ? "ONE-MAN STUDIO." : "ONE-MAN STUDIO. GLOBAL OUTPUT." },
       { text: mobile ? "COMPANY BUILDER" : "END-TO-END COMPANY BUILDER" },
+      { text: mobile ? "AI-FIRST PLATFORMS" : "AI-FIRST PLATFORMS FOR REAL INDUSTRIES" },
       { text: "BUILT WITH CRITERIA" },
     ],
     de: [
@@ -275,6 +277,7 @@ const HeroHome = () => {
       { text: "BRAND · CODE · CONTENT" },
       { text: mobile ? "ONE-MAN STUDIO." : "ONE-MAN STUDIO. GLOBAL OUTPUT." },
       { text: mobile ? "COMPANY BUILDER" : "END-TO-END COMPANY BUILDER" },
+      { text: mobile ? "AI-FIRST PLATFORMS" : "AI-FIRST PLATFORMS FOR REAL INDUSTRIES" },
       { text: "BUILT WITH CRITERIA" },
     ],
     pt: [
@@ -282,6 +285,7 @@ const HeroHome = () => {
       { text: "BRAND · CODE · CONTENT" },
       { text: mobile ? "ONE-MAN STUDIO." : "ONE-MAN STUDIO. GLOBAL OUTPUT." },
       { text: mobile ? "COMPANY BUILDER" : "END-TO-END COMPANY BUILDER" },
+      { text: mobile ? "AI-FIRST PLATFORMS" : "AI-FIRST PLATFORMS FOR REAL INDUSTRIES" },
       { text: "BUILT WITH CRITERIA" },
     ],
   };
