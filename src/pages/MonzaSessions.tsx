@@ -132,7 +132,7 @@ const FOR_WHO: Array<{ n: string; title: LT; body: LT }> = [
 /* Credenciales Edgar */
 const CREDS: Array<{ lab: LT; val: LT }> = [
   { lab: { es: "Founder & Creative Director" }, val: { es: "Monza Lab — AI-Native Company Builder" } },
-  { lab: { es: "Ventures construidas con AI" }, val: { es: "MonzaHaus · Monza Index · Portimar" } },
+  { lab: { es: "Ventures construidas con AI" }, val: { es: "MonzaHaus · Monza Index · Bavarian Econs" } },
   { lab: { es: "Capacitaciones" }, val: { es: "ANDI · Andigraf · Turismo Portugal" } },
   { lab: { es: "Enfoque" }, val: { es: "Criterio sobre capital · Global desde día uno" } },
 ];
