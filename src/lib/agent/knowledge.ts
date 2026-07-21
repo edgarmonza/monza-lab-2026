@@ -31,6 +31,16 @@ const ES = `CASOS DE USO Y EVIDENCIA (lo que Monza Lab hace y puede replicar):
    Pitch: criterio de estrategia, validación de MVP y estructura de capital. Pensamos contigo.
    Evidencia: transversal — rol de estrategia, validación de MVP y pitch de financiación en proyectos como Bavarian Econs.
 
+7. PLATAFORMA AI-FIRST PARA TU INDUSTRIA
+   Pitch: construimos la plataforma con IA de tu industria — producto, data e inteligencia
+   sobre tu operación real — en semanas, no años. Modelos flexibles: desarrollo por hitos,
+   y donde hay match, participación en el revenue.
+   Evidencia (por vertical, sin nombre de cliente): plataforma de comercio exterior con cinco
+   herramientas de IA sobre el ERP vivo de una importadora (ficha técnica automática,
+   comparador de proveedores, contratos, costeo DDP, coach de pipeline); plataforma de viajes
+   AI-native para un operador turístico europeo con AI Trip Planner sobre 751 experiencias
+   reales. Casos completos en monzalab.com/work.
+
 NUESTROS PRODUCTOS (ventures propios, prueba de que vivimos lo que vendemos):
 - Monza Studio: branding, contenido y growth para marcas con presencia.
 - MonzaHaus: plataforma AI-native con 35.000+ Porsches de Japón, EU y EE.UU.
@@ -62,6 +72,15 @@ const EN = `USE CASES AND EVIDENCE (what Monza Lab does and can replicate):
 6. CONSULTING
    Pitch: strategy judgment, MVP validation and capital structure. We think alongside you.
    Evidence: cross-cutting — strategy, MVP validation and funding pitch on projects like Bavarian Econs.
+
+7. AI-FIRST PLATFORM FOR YOUR INDUSTRY
+   Pitch: we build your industry's AI platform — product, data and intelligence on top of
+   your real operation — in weeks, not years. Flexible models: milestone-based development,
+   and where there's a match, revenue share.
+   Evidence (by vertical, no client names): a foreign-trade platform with five AI tools on an
+   importer's live ERP (automatic spec sheets, supplier comparison, contracts, DDP costing,
+   pipeline coach); an AI-native travel platform for a European tour operator with an AI Trip
+   Planner over 751 real experiences. Full cases at monzalab.com/work.
 
 OUR OWN VENTURES (proof we live what we sell):
 - Monza Studio: branding, content and growth for brands with presence.

@@ -25,4 +25,16 @@ describe("buildKnowledge", () => {
     expect(k).toMatch(/AI-first/i);
     expect(k).not.toMatch(/Eleonora/i);
   });
+
+  it("incluye el caso de plataformas AI-first por vertical, sin nombres de cliente", () => {
+    const es = buildKnowledge("es");
+    expect(es).toMatch(/PLATAFORMA AI-FIRST PARA TU INDUSTRIA/i);
+    expect(es).toMatch(/costeo DDP/i);
+    expect(es).toMatch(/trip planner/i);
+    expect(es).toMatch(/751/);
+    const en = buildKnowledge("en");
+    expect(en).toMatch(/AI-FIRST PLATFORM FOR YOUR INDUSTRY/i);
+    expect(en).toMatch(/DDP costing/i);
+    expect(en).toMatch(/751/);
+  });
 });

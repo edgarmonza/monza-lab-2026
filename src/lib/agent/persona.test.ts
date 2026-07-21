@@ -16,6 +16,12 @@ describe("buildSystemPrompt", () => {
     expect(p).not.toMatch(/Eleonora/i); // nunca el nombre del cliente
   });
 
+  it("protege la identidad de los clientes de plataforma bajo NDA", () => {
+    const p = buildSystemPrompt("es");
+    expect(p).toMatch(/NUNCA reveles/i);
+    expect(p).toMatch(/confidencialidad/i);
+  });
+
   it("instruye responder en el idioma pedido", () => {
     expect(buildSystemPrompt("en")).toMatch(/English/);
     expect(buildSystemPrompt("de")).toMatch(/German|Deutsch/);
