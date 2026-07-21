@@ -7,7 +7,8 @@ import { useTheme } from "@/theme/ThemeContext";
 import { useLanguage } from "@/i18n/LanguageContext";
 import CTAButton from "./ui/CTAButton";
 
-type Lang = "es" | "en" | "de" | "pt";
+import { VENTURES } from "@/data/ventures";
+import type { Lang } from "@/i18n/types";
 
 const LANGS: Lang[] = ["es", "en", "de", "pt"];
 
@@ -38,59 +39,13 @@ const NAV_LINKS: Record<Lang, { label: string; href: string }[]> = {
   ],
 };
 
-type VentureNav = {
-  slug: string;
-  name: string;
-  accent: string;
-  oneLiner: { es: string; en: string; de: string; pt: string };
-};
-
-const VENTURE_NAV: VentureNav[] = [
-  {
-    slug: "monzastudio",
-    name: "Monza Studio",
-    accent: "#f074aa",
-    oneLiner: {
-      es: "Construyo y hago crecer marcas globales — branding, contenido, e-commerce, growth.",
-      en: "I build and grow global brands — branding, content, e-commerce, growth.",
-      de: "Ich baue und lasse globale Marken wachsen — Branding, Content, E-Commerce, Growth.",
-      pt: "Construo e faço crescer marcas globais — branding, conteúdo, e-commerce, growth.",
-    },
-  },
-  {
-    slug: "monzahaus",
-    name: "MonzaHaus",
-    accent: "#F8B4D9",
-    oneLiner: {
-      es: "Plataforma para comprar el Porsche correcto al precio justo.",
-      en: "Platform to buy the right Porsche at the right price.",
-      de: "Plattform, um den richtigen Porsche zum fairen Preis zu kaufen.",
-      pt: "Plataforma para comprar o Porsche certo ao preço justo.",
-    },
-  },
-  {
-    slug: "monzaindex",
-    name: "Monza Index",
-    accent: "#FFFCF7",
-    oneLiner: {
-      es: "Mide qué tan adoptada está la IA — país por país, empresa por empresa.",
-      en: "Measures real AI adoption — country by country, company by company.",
-      de: "Misst echte KI-Adoption — Land für Land, Unternehmen für Unternehmen.",
-      pt: "Mede o nível real de adoção da IA — país a país, empresa a empresa.",
-    },
-  },
-  {
-    slug: "bavarianecons",
-    name: "Bavarian Econs",
-    accent: "#A8A29E",
-    oneLiner: {
-      es: "Convertimos BMW clásicos de los 70 en autos eléctricos modernos. Hecho a mano en Munich.",
-      en: "We turn 70s classic BMWs into modern electric cars. Hand-built in Munich.",
-      de: "Wir verwandeln klassische BMWs der 70er in moderne Elektroautos. Handgefertigt in München.",
-      pt: "Convertemos BMWs clássicos dos anos 70 em carros elétricos modernos. Feito à mão em Munique.",
-    },
-  },
-];
+/* Ventures del dropdown — derivadas de la fuente única en data/ventures.ts. */
+const VENTURE_NAV = VENTURES.map((v) => ({
+  slug: v.slug,
+  name: v.name,
+  accent: v.navAccent,
+  oneLiner: v.navOneLiner,
+}));
 
 const VENTURES_LABEL: Record<Lang, string> = {
   es: "Ventures",

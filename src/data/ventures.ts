@@ -1,15 +1,25 @@
-export type LangText = { es: string; en: string; de: string };
+import type { LangText } from "@/i18n/types";
+
+/* Fuente ÚNICA de las ventures. La consumen VenturesGrid (home) y Navbar
+ * (dropdown). Un texto que cambie aquí cambia en todas partes. */
 
 export type Venture = {
   id: string;
   slug: string;
   name: string;
   shortName: string;
+  /** Orden editorial mostrado en la card ("01".."04") — no es el orden del array. */
+  number: string;
   url: string | null;
+  /** Color de acento en la grid de la home. */
   accent: string;
+  /** Color de acento en el dropdown del navbar (a veces difiere del de la grid). */
+  navAccent: string;
+  cover: string;
   tagline: LangText;
   oneLiner: LangText;
-  cover: string;
+  /** Descripción corta usada solo en el dropdown del navbar. */
+  navOneLiner: LangText;
 };
 
 export const VENTURES: Venture[] = [
@@ -18,57 +28,116 @@ export const VENTURES: Venture[] = [
     slug: "monzastudio",
     name: "Monza Studio",
     shortName: "Studio",
+    number: "03",
     url: null,
     accent: "#f074aa",
+    navAccent: "#f074aa",
+    cover: "/images/people/santi/santi-clubmaster.png",
     tagline: {
-      es: "Hacemos crecer marcas globales con IA.",
-      en: "We grow global brands with AI.",
-      de: "Wir lassen globale Marken mit KI wachsen.", pt: "Hacemos crecer marcas globales con IA.",
+      es: "Hago crecer marcas globales.",
+      en: "I grow global brands.",
+      de: "Ich lasse globale Marken wachsen.",
+      pt: "Faço crescer marcas globais.",
     },
     oneLiner: {
-      es: "Branding, contenido y growth para marcas con presencia.",
-      en: "Branding, content and growth for brands with presence.",
-      de: "Branding, Content und Growth für Marken mit Präsenz.", pt: "Branding, contenido y growth para marcas con presencia.",
+      es: "Identidad, contenido y growth — operados en loop.",
+      en: "Identity, content and growth — operated in loop.",
+      de: "Identität, Content und Growth — im Loop betrieben.",
+      pt: "Identidade, conteúdo e growth — operados em loop.",
     },
-    cover: "/images/brands/eleonora/eleonora-portrait.jpg",
+    navOneLiner: {
+      es: "Construyo y hago crecer marcas globales — branding, contenido, e-commerce, growth.",
+      en: "I build and grow global brands — branding, content, e-commerce, growth.",
+      de: "Ich baue und lasse globale Marken wachsen — Branding, Content, E-Commerce, Growth.",
+      pt: "Construo e faço crescer marcas globais — branding, conteúdo, e-commerce, growth.",
+    },
   },
   {
     id: "monzahaus",
     slug: "monzahaus",
     name: "MonzaHaus",
     shortName: "Haus",
+    number: "01",
     url: "https://www.monzahaus.com",
     accent: "#E1CCE5",
+    navAccent: "#F8B4D9",
+    cover: "/images/projects/monza-haus/917-rear-pure.png",
     tagline: {
-      es: "Decisiones inteligentes para el ecosistema Porsche.",
-      en: "Intelligent decisions for the Porsche ecosystem.",
-      de: "Intelligente Entscheidungen für das Porsche-Ökosystem.", pt: "Decisiones inteligentes para el ecosistema Porsche.",
+      es: "Compra el Porsche correcto, al precio justo.",
+      en: "Buy the right Porsche, at the right price.",
+      de: "Kauf den richtigen Porsche zum fairen Preis.",
+      pt: "Compra o Porsche certo, ao preço justo.",
     },
     oneLiner: {
-      es: "35.000+ Porsches de Japón, EU y EE.UU. en una sola plataforma AI-native.",
-      en: "35,000+ Porsches from Japan, EU and the US on a single AI-native platform.",
-      de: "35.000+ Porsche aus Japan, EU und den USA auf einer AI-nativen Plattform.", pt: "35.000+ Porsches de Japón, EU y EE.UU. en una sola plataforma AI-native.",
+      es: "Inteligencia de mercado de Porsche en una sola plataforma.",
+      en: "Porsche market intelligence on a single platform.",
+      de: "Porsche-Marktintelligenz auf einer Plattform.",
+      pt: "Inteligência de mercado de Porsche numa única plataforma.",
     },
-    cover: "/images/projects/monza-haus/917-rear-pure.png",
+    navOneLiner: {
+      es: "Plataforma para comprar el Porsche correcto al precio justo.",
+      en: "Platform to buy the right Porsche at the right price.",
+      de: "Plattform, um den richtigen Porsche zum fairen Preis zu kaufen.",
+      pt: "Plataforma para comprar o Porsche certo ao preço justo.",
+    },
   },
   {
     id: "monzaindex",
     slug: "monzaindex",
     name: "Monza Index",
     shortName: "Index",
+    number: "02",
     url: "https://www.monzaindex.ai",
-    accent: "#C4A35A",
+    accent: "#FFFCF7",
+    navAccent: "#FFFCF7",
+    cover: "/images/projects/ia-index-cover.jpg",
     tagline: {
-      es: "Medir la IA no basta. Hay que entenderla.",
-      en: "Measuring AI is not enough. You have to understand it.",
-      de: "KI zu messen reicht nicht. Man muss sie verstehen.", pt: "Medir la IA no basta. Hay que entenderla.",
+      es: "Mide qué tan adoptada está la IA.",
+      en: "Measures how adopted AI really is.",
+      de: "Misst, wie weit KI wirklich verbreitet ist.",
+      pt: "Mede o nível real de adoção da IA.",
     },
     oneLiner: {
-      es: "Mide cómo está LATAM frente al mundo en adopción de inteligencia artificial.",
-      en: "Measures how LATAM compares to the world in AI adoption.",
-      de: "Misst, wie LATAM weltweit bei der KI-Adoption abschneidet.", pt: "Mide cómo está LATAM frente al mundo en adopción de inteligencia artificial.",
+      es: "Compara países y empresas en adopción real de IA.",
+      en: "Compares countries and companies on real AI adoption.",
+      de: "Vergleicht Länder und Unternehmen bei echter KI-Adoption.",
+      pt: "Compara países e empresas na adoção real da IA.",
     },
-    cover: "/images/projects/ia-index-cover.jpg",
+    navOneLiner: {
+      es: "Mide qué tan adoptada está la IA — país por país, empresa por empresa.",
+      en: "Measures real AI adoption — country by country, company by company.",
+      de: "Misst echte KI-Adoption — Land für Land, Unternehmen für Unternehmen.",
+      pt: "Mede o nível real de adoção da IA — país a país, empresa a empresa.",
+    },
+  },
+  {
+    id: "bavarianecons",
+    slug: "bavarianecons",
+    name: "Bavarian Econs",
+    shortName: "Bavarian",
+    number: "04",
+    url: "https://www.bavarianecons.com",
+    accent: "#A8A29E",
+    navAccent: "#A8A29E",
+    cover: "/images/projects/bavarian-econs/coast-frontal.jpeg",
+    tagline: {
+      es: "BMW clásicos, ahora eléctricos.",
+      en: "Classic BMWs, now electric.",
+      de: "Klassische BMWs, jetzt elektrisch.",
+      pt: "BMWs clássicos, agora elétricos.",
+    },
+    oneLiner: {
+      es: "Convertimos íconos de los 70 en autos modernos. Hecho a mano en Munich.",
+      en: "We turn 70s icons into modern cars. Hand-built in Munich.",
+      de: "Wir verwandeln 70er-Ikonen in moderne Autos. Handgefertigt in München.",
+      pt: "Convertemos ícones dos anos 70 em carros modernos. Feito à mão em Munique.",
+    },
+    navOneLiner: {
+      es: "Convertimos BMW clásicos de los 70 en autos eléctricos modernos. Hecho a mano en Munich.",
+      en: "We turn 70s classic BMWs into modern electric cars. Hand-built in Munich.",
+      de: "Wir verwandeln klassische BMWs der 70er in moderne Elektroautos. Handgefertigt in München.",
+      pt: "Convertemos BMWs clássicos dos anos 70 em carros elétricos modernos. Feito à mão em Munique.",
+    },
   },
 ];
 

@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet";
 import { useLanguage } from "@/i18n/LanguageContext";
 
-export type TrilingualText = { es: string; en: string; de: string; pt: string };
+import type { LangText } from "@/i18n/types";
+export type TrilingualText = LangText;
 
 type SEOProps = {
   title: TrilingualText;

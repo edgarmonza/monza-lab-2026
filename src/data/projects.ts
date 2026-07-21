@@ -1,4 +1,5 @@
-export type LangText = { es: string; en: string; de: string };
+import type { LangText } from "@/i18n/types";
+export type { LangText };
 
 export type Layer = {
   label: string;

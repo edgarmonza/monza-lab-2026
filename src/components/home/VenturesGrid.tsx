@@ -2,100 +2,10 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { VENTURES } from "@/data/ventures";
+import type { Lang, LangText as LT } from "@/i18n/types";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-
-type Lang = "es" | "en" | "de" | "pt";
-type LT = { es: string; en: string; de: string; pt: string };
-
-type Venture = {
-  slug: string;
-  name: string;
-  number: string;
-  accent: string;
-  cover: string;
-  tagline: LT;
-  oneLiner: LT;
-};
-
-const VENTURES: Venture[] = [
-  {
-    slug: "monzastudio",
-    name: "Monza Studio",
-    number: "03",
-    accent: "#f074aa",
-    cover: "/images/people/santi/santi-clubmaster.png",
-    tagline: {
-      es: "Hago crecer marcas globales.",
-      en: "I grow global brands.",
-      de: "Ich lasse globale Marken wachsen.",
-      pt: "Faço crescer marcas globais.",
-    },
-    oneLiner: {
-      es: "Identidad, contenido y growth — operados en loop.",
-      en: "Identity, content and growth — operated in loop.",
-      de: "Identität, Content und Growth — im Loop betrieben.",
-      pt: "Identidade, conteúdo e growth — operados em loop.",
-    },
-  },
-  {
-    slug: "monzahaus",
-    name: "MonzaHaus",
-    number: "01",
-    accent: "#E1CCE5",
-    cover: "/images/projects/monza-haus/917-rear-pure.png",
-    tagline: {
-      es: "Compra el Porsche correcto, al precio justo.",
-      en: "Buy the right Porsche, at the right price.",
-      de: "Kauf den richtigen Porsche zum fairen Preis.",
-      pt: "Compra o Porsche certo, ao preço justo.",
-    },
-    oneLiner: {
-      es: "Inteligencia de mercado de Porsche en una sola plataforma.",
-      en: "Porsche market intelligence on a single platform.",
-      de: "Porsche-Marktintelligenz auf einer Plattform.",
-      pt: "Inteligência de mercado de Porsche numa única plataforma.",
-    },
-  },
-  {
-    slug: "monzaindex",
-    name: "Monza Index",
-    number: "02",
-    accent: "#FFFCF7",
-    cover: "/images/projects/ia-index-cover.jpg",
-    tagline: {
-      es: "Mide qué tan adoptada está la IA.",
-      en: "Measures how adopted AI really is.",
-      de: "Misst, wie weit KI wirklich verbreitet ist.",
-      pt: "Mede o nível real de adoção da IA.",
-    },
-    oneLiner: {
-      es: "Compara países y empresas en adopción real de IA.",
-      en: "Compares countries and companies on real AI adoption.",
-      de: "Vergleicht Länder und Unternehmen bei echter KI-Adoption.",
-      pt: "Compara países e empresas na adoção real de IA.",
-    },
-  },
-  {
-    slug: "bavarianecons",
-    name: "Bavarian Econs",
-    number: "04",
-    accent: "#A8A29E",
-    cover: "/images/projects/bavarian-econs/coast-frontal.jpeg",
-    tagline: {
-      es: "BMW clásicos, ahora eléctricos.",
-      en: "Classic BMWs, now electric.",
-      de: "Klassische BMWs, jetzt elektrisch.",
-      pt: "BMWs clássicos, agora elétricos.",
-    },
-    oneLiner: {
-      es: "Convertimos íconos de los 70 en autos modernos. Hecho a mano en Munich.",
-      en: "We turn 70s icons into modern cars. Hand-built in Munich.",
-      de: "Wir verwandeln 70er-Ikonen in moderne Autos. Handgefertigt in München.",
-      pt: "Convertemos ícones dos anos 70 em carros modernos. Feito à mão em Munique.",
-    },
-  },
-];
 
 const VenturesGrid = () => {
   const ref = useRef<HTMLElement>(null);
