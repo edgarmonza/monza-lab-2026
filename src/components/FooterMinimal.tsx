@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Link as RouterLink } from "react-router-dom";
 import HelmetIcon from "./HelmetIcon";
 import { useTheme } from "@/theme/ThemeContext";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -128,6 +129,26 @@ const FooterMinimal = () => {
             >
               © 2026 Monza Lab
             </span>
+          </div>
+
+          {/* Middle — internal pillars, discreet (SEO + navegación) */}
+          <div className="flex items-center gap-8">
+            {([
+              { to: "/shopify", label: { es: "Shopify con IA", en: "Shopify with AI", de: "Shopify mit KI", pt: "Shopify com IA" } },
+              { to: "/agentes", label: { es: "Agentes de IA", en: "AI Agents", de: "KI-Agenten", pt: "Agentes de IA" } },
+              { to: "/work", label: { es: "Casos", en: "Work", de: "Cases", pt: "Casos" } },
+            ] as const).map((l) => (
+              <RouterLink
+                key={l.to}
+                to={`${language === "es" ? "" : `/${language}`}${l.to}`}
+                className="font-clash text-[10px] tracking-[0.3em] uppercase transition-colors duration-300"
+                style={{ color: textSubtle }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = textMuted; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = textSubtle; }}
+              >
+                {l.label[language]}
+              </RouterLink>
+            ))}
           </div>
 
           {/* Right — socials, discreet */}

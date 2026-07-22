@@ -26,6 +26,7 @@ const MonzaIndex = lazy(() => import("./pages/MonzaIndex"));
 const BavarianEcons = lazy(() => import("./pages/BavarianEcons"));
 const MonzaSessions = lazy(() => import("./pages/MonzaSessions"));
 const Work = lazy(() => import("./pages/Work"));
+const Pillar = lazy(() => import("./pages/Pillar"));
 import MonzaAgent from "./components/MonzaAgent";
 
 const queryClient = new QueryClient();
@@ -75,6 +76,8 @@ const AppContent = () => {
           <Route path="/speaker" element={<Speaker />} />
           <Route path="/work" element={<Work />} />
           <Route path="/work/:slug" element={<ProjectPage />} />
+          <Route path="/shopify" element={<Pillar slug="shopify" />} />
+          <Route path="/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/monzastudio" element={<MonzaStudio />} />
           <Route path="/studio" element={<StudioLanding />} />
           <Route path="/monzahaus" element={<MonzaHaus />} />
@@ -87,6 +90,8 @@ const AppContent = () => {
           <Route path="/en/speaker" element={<Speaker />} />
           <Route path="/en/work" element={<Work />} />
           <Route path="/en/work/:slug" element={<ProjectPage />} />
+          <Route path="/en/shopify" element={<Pillar slug="shopify" />} />
+          <Route path="/en/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/en/monzastudio" element={<MonzaStudio />} />
           <Route path="/en/studio" element={<StudioLanding />} />
           <Route path="/en/monzahaus" element={<MonzaHaus />} />
@@ -99,6 +104,8 @@ const AppContent = () => {
           <Route path="/de/speaker" element={<Speaker />} />
           <Route path="/de/work" element={<Work />} />
           <Route path="/de/work/:slug" element={<ProjectPage />} />
+          <Route path="/de/shopify" element={<Pillar slug="shopify" />} />
+          <Route path="/de/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/de/monzastudio" element={<MonzaStudio />} />
           <Route path="/de/studio" element={<StudioLanding />} />
           <Route path="/de/monzahaus" element={<MonzaHaus />} />
@@ -111,6 +118,8 @@ const AppContent = () => {
           <Route path="/pt/speaker" element={<Speaker />} />
           <Route path="/pt/work" element={<Work />} />
           <Route path="/pt/work/:slug" element={<ProjectPage />} />
+          <Route path="/pt/shopify" element={<Pillar slug="shopify" />} />
+          <Route path="/pt/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/pt/monzastudio" element={<MonzaStudio />} />
           <Route path="/pt/studio" element={<StudioLanding />} />
           <Route path="/pt/monzahaus" element={<MonzaHaus />} />
