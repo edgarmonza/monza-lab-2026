@@ -1,184 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
-  <!-- HOME -->
-  <url>
-    <loc>https://monzalab.com/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://monzalab.com/" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/en</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/de</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/pt</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://monzalab.com/pt" />
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- STUDIO — landing de oferta (Shopify + contenido IA + agentes) -->
-  <url>
-    <loc>https://monzalab.com/studio</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/studio" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/studio" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de/studio" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://monzalab.com/pt/studio" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://monzalab.com/studio" />
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/en/studio</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/pt/studio</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- VENTURES -->
-  <url>
-    <loc>https://monzalab.com/monzastudio</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/monzastudio" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/monzastudio" />
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/monzahaus</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/monzaindex</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/bavarianecons</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- SPEAKER -->
-  <url>
-    <loc>https://monzalab.com/speaker</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/speaker" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de/speaker" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/en/speaker</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/de/speaker</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- WORK / PROJECTS -->
-  <url>
-    <loc>https://monzalab.com/work/bavarian-econs</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/work/bavarian-econs" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/work/bavarian-econs" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de/work/bavarian-econs" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/work/spectro</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/work/spectro" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/work/spectro" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de/work/spectro" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/work/pacho-alvarez</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/work/pacho-alvarez" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/work/pacho-alvarez" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de/work/pacho-alvarez" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/work/guardian-of-speed</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/work/guardian-of-speed" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/work/guardian-of-speed" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de/work/guardian-of-speed" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/work/monza-haus</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/work/monza-haus" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/work/monza-haus" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de/work/monza-haus" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/work/ia-index</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/work/ia-index" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/work/ia-index" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de/work/ia-index" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://monzalab.com/work/eleonora-morales</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://monzalab.com/work/eleonora-morales" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://monzalab.com/en/work/eleonora-morales" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://monzalab.com/de/work/eleonora-morales" />
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://monzalab.com/</loc><lastmod>2026-07-22</lastmod><priority>1.0</priority></url>
+  <url><loc>https://monzalab.com/work</loc><lastmod>2026-07-22</lastmod><priority>0.9</priority></url>
+  <url><loc>https://monzalab.com/shopify</loc><lastmod>2026-07-22</lastmod><priority>0.9</priority></url>
+  <url><loc>https://monzalab.com/agentes</loc><lastmod>2026-07-22</lastmod><priority>0.9</priority></url>
+  <url><loc>https://monzalab.com/studio</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/monzastudio</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/monzahaus</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/monzaindex</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/bavarianecons</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/sessions</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/speaker</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/work/bavarian-econs</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/work/spectro</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/work/pacho-alvarez</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/work/guardian-of-speed</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/work/monza-haus</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/work/ia-index</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/work/eleonora-morales</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/work/plataforma-comercio-exterior</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/work/plataforma-turismo</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/shopify</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/agentes</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/studio</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/monzastudio</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/monzahaus</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/monzaindex</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/bavarianecons</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/sessions</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/speaker</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work/bavarian-econs</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work/spectro</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work/pacho-alvarez</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work/guardian-of-speed</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work/monza-haus</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work/ia-index</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work/eleonora-morales</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work/plataforma-comercio-exterior</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/en/work/plataforma-turismo</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/shopify</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/agentes</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/studio</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/monzastudio</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/monzahaus</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/monzaindex</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/bavarianecons</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/sessions</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/speaker</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work/bavarian-econs</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work/spectro</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work/pacho-alvarez</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work/guardian-of-speed</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work/monza-haus</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work/ia-index</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work/eleonora-morales</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work/plataforma-comercio-exterior</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/de/work/plataforma-turismo</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/shopify</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/agentes</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/studio</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/monzastudio</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/monzahaus</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/monzaindex</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/bavarianecons</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/sessions</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/speaker</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work/bavarian-econs</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work/spectro</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work/pacho-alvarez</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work/guardian-of-speed</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work/monza-haus</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work/ia-index</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work/eleonora-morales</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work/plataforma-comercio-exterior</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://monzalab.com/pt/work/plataforma-turismo</loc><lastmod>2026-07-22</lastmod><priority>0.7</priority></url>
 </urlset>
