@@ -311,7 +311,10 @@ const ShopifyVertical = () => {
             </p>
 
             {/* Capturas: en móvil manda la captura móvil; el desktop se apila debajo. */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1.55fr_1fr] gap-5 md:gap-7 items-start">
+            {/* La captura móvil es ~3x más alta que la de escritorio. Se limita su ancho
+                en lg para que su altura natural quede cerca de la otra, y se centran:
+                sin eso queda un hueco muerto debajo de la de escritorio. */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1.75fr_1fr] gap-5 md:gap-7 items-start lg:items-center">
               <div
                 className="order-2 lg:order-1 rounded-2xl overflow-hidden"
                 style={{ border: "1px solid rgba(var(--text-rgb), 0.08)", boxShadow: "0 24px 48px -12px rgba(0,0,0,0.5)" }}
@@ -326,7 +329,7 @@ const ShopifyVertical = () => {
                 />
               </div>
               <div
-                className="order-1 lg:order-2 rounded-2xl overflow-hidden mx-auto w-full max-w-[300px] lg:max-w-none"
+                className="order-1 lg:order-2 rounded-2xl overflow-hidden mx-auto w-full max-w-[300px] lg:max-w-[252px]"
                 style={{ border: "1px solid rgba(var(--text-rgb), 0.08)", boxShadow: "0 24px 48px -12px rgba(0,0,0,0.5)" }}
               >
                 <img
