@@ -27,6 +27,9 @@ const BavarianEcons = lazy(() => import("./pages/BavarianEcons"));
 const MonzaSessions = lazy(() => import("./pages/MonzaSessions"));
 const Work = lazy(() => import("./pages/Work"));
 const Pillar = lazy(() => import("./pages/Pillar"));
+// /shopify tiene página propia (vertical e-commerce). Mantiene el mismo SEO y FAQ
+// que la pilar genérica: lee de src/data/pillars.ts para no perder lo ya indexado.
+const ShopifyVertical = lazy(() => import("./pages/ShopifyVertical"));
 import MonzaAgent from "./components/MonzaAgent";
 
 const queryClient = new QueryClient();
@@ -76,7 +79,7 @@ const AppContent = () => {
           <Route path="/speaker" element={<Speaker />} />
           <Route path="/work" element={<Work />} />
           <Route path="/work/:slug" element={<ProjectPage />} />
-          <Route path="/shopify" element={<Pillar slug="shopify" />} />
+          <Route path="/shopify" element={<ShopifyVertical />} />
           <Route path="/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/monzastudio" element={<MonzaStudio />} />
           <Route path="/studio" element={<StudioLanding />} />
@@ -90,7 +93,7 @@ const AppContent = () => {
           <Route path="/en/speaker" element={<Speaker />} />
           <Route path="/en/work" element={<Work />} />
           <Route path="/en/work/:slug" element={<ProjectPage />} />
-          <Route path="/en/shopify" element={<Pillar slug="shopify" />} />
+          <Route path="/en/shopify" element={<ShopifyVertical />} />
           <Route path="/en/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/en/monzastudio" element={<MonzaStudio />} />
           <Route path="/en/studio" element={<StudioLanding />} />
@@ -104,7 +107,7 @@ const AppContent = () => {
           <Route path="/de/speaker" element={<Speaker />} />
           <Route path="/de/work" element={<Work />} />
           <Route path="/de/work/:slug" element={<ProjectPage />} />
-          <Route path="/de/shopify" element={<Pillar slug="shopify" />} />
+          <Route path="/de/shopify" element={<ShopifyVertical />} />
           <Route path="/de/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/de/monzastudio" element={<MonzaStudio />} />
           <Route path="/de/studio" element={<StudioLanding />} />
@@ -118,7 +121,7 @@ const AppContent = () => {
           <Route path="/pt/speaker" element={<Speaker />} />
           <Route path="/pt/work" element={<Work />} />
           <Route path="/pt/work/:slug" element={<ProjectPage />} />
-          <Route path="/pt/shopify" element={<Pillar slug="shopify" />} />
+          <Route path="/pt/shopify" element={<ShopifyVertical />} />
           <Route path="/pt/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/pt/monzastudio" element={<MonzaStudio />} />
           <Route path="/pt/studio" element={<StudioLanding />} />
