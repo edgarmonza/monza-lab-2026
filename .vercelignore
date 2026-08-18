@@ -1,3 +1,11 @@
 # Tests no deben desplegarse como funciones serverless
 **/*.test.ts
 **/*.test.tsx
+
+# Artefactos de build local. Cuando existe .vercelignore, Vercel deja de
+# leer .gitignore — sin estas líneas el CLI intenta subir dist/ entero
+# (499 MB de video) y el deploy falla.
+dist
+dist-ssr
+node_modules
+.vite

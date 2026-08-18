@@ -5,11 +5,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import ScrollToTop from "./components/ScrollToTop";
+import RouteAnalytics from "./components/RouteAnalytics";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 import Navbar from "./components/Navbar";
 import CustomCursor from "./components/CustomCursor";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import { ThemeProvider } from "./theme/ThemeContext";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import Index from "./pages/Index";
 
@@ -55,6 +58,7 @@ const AppContent = () => {
 
   return (
     <LanguageProvider>
+      <RouteAnalytics />
       {!standalone && (
         <>
           {/* Skip link — WCAG 2.4.1 bypass blocks */}
@@ -148,6 +152,8 @@ const App = () => (
           <AppContent />
         </BrowserRouter>
         <Analytics />
+        <SpeedInsights />
+        <GoogleAnalytics />
       </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>

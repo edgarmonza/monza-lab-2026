@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { trackLead, trackContact, whatsAppUrl } from "@/lib/pixel";
+import { trackContact, trackRadiografia, whatsAppUrl } from "@/lib/pixel";
 
 type Lang = "es" | "en" | "de" | "pt";
 
@@ -147,7 +147,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
         setState("idle");
         return;
       }
-      trackLead("radiografia-shopify");
+      trackRadiografia("submit");
       setState("done");
     } catch {
       setError(T.errGeneric[lang]);
