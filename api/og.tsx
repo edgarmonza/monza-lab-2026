@@ -278,8 +278,13 @@ export default async function handler(req: Request) {
                 <div
                   key={v.name}
                   style={{
-                    width: 'calc(50% - 4px)',
-                    height: 'calc(50% - 4px)',
+                    /* Yoga (satori) no acepta calc() en width/height: con
+                       calc(50% - 4px) el render revienta a mitad del stream y
+                       la respuesta sale 200 con cuerpo vacío — LinkedIn/WhatsApp
+                       entonces toman cualquier <img> de la página. Columna
+                       derecha = 480px × 630px, padding 12, gap 8 → tiles fijos. */
+                    width: 224,
+                    height: 299,
                     position: 'relative',
                     borderRadius: 12,
                     overflow: 'hidden',
