@@ -31,7 +31,7 @@ describe("consultarCriterio", () => {
     for (const t of CRITERIO) {
       const out = consultarCriterio(t.key);
       expect(out.length).toBeLessThanOrEqual(CRITERIO_MAX_CHARS + 20);
-      expect(out).not.toMatch(/Eleonora|Swim|Irina|Skin V/i);
+      expect(out).not.toMatch(/Swim|Irina|Skin V/i); // prospectos en negociación: nunca
     }
   });
 });

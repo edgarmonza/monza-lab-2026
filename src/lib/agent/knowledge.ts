@@ -36,11 +36,12 @@ const ES = `CASOS DE USO Y EVIDENCIA (lo que Monza Lab hace y puede replicar):
    OBJECIÓN FRECUENTE — "ya probé un bot y alucinaba": tenía razón en apagarlo; un bot genérico
    sobre un catálogo alucina. El nuestro va conectado directo a la tienda, con la voz de la marca
    aprobada por la dueña, y dice lo que no sabe.
-   Evidencia (por vertical, sin nombre de cliente): una marca colombiana de moda circular y lujo
-   pre-owned — página propia sobre Shopify, 140+ piezas fotografiadas con el sistema de imagen y
-   agente de WhatsApp vivo en su número real (el caso completo, con nombre, está publicado en
-   monzalab.com/work y en monzalab.com/shopify — remite ahí). También Bavarian Econs (nuestra
-   propia marca: ahí corre primero lo que después se instala en clientes).
+   Evidencia PÚBLICA (caso publicado, SÍ se nombra — autorizado por Edgar): Eleonora Morales —
+   diseñadora y empresaria colombiana de moda circular y lujo pre-owned, 350K+ en TikTok, 6 marcas
+   en una sola tienda Shopify, página propia sobre Shopify, 140+ piezas fotografiadas con el sistema
+   de imagen y agente de WhatsApp vivo en su número real. Caso completo: monzalab.com/work/eleonora-morales
+   (solo los datos que están publicados ahí; nada de cifras de ventas ni de su operación interna).
+   También Bavarian Econs (nuestra propia marca: ahí corre primero lo que después se instala en clientes).
    PUERTA DE ENTRADA GRATIS: la "radiografía" en monzalab.com/shopify — mandan el link de UN
    producto de su tienda y les devolvemos esa página reconstruida, con un índice 0-100 y evidencia.
    Ofrécela cuando la marca ya vende en Shopify y está evaluando.
@@ -112,11 +113,12 @@ const EN = `USE CASES AND EVIDENCE (what Monza Lab does and can replicate):
    FREQUENT OBJECTION — "I tried a bot and it hallucinated": they were right to switch it off; a
    generic bot on a catalog hallucinates. Ours is wired straight into the store, with the brand's
    voice approved by the owner, and says what it doesn't know.
-   Evidence (by vertical, no client name): a Colombian circular-fashion / pre-owned luxury brand —
-   own page on Shopify, 140+ pieces photographed with the image system and a WhatsApp agent live
-   on her real number (the full case, with the name, is published at monzalab.com/work and
-   monzalab.com/shopify — point there). Also Bavarian Econs (our own brand: things run there
-   first, then get installed for clients).
+   PUBLIC evidence (published case, CAN be named — approved by Edgar): Eleonora Morales — Colombian
+   fashion designer and entrepreneur, circular fashion and pre-owned luxury, 350K+ on TikTok, 6 brands
+   in one Shopify store, own page on Shopify, 140+ pieces photographed with the image system and a
+   WhatsApp agent live on her real number. Full case: monzalab.com/work/eleonora-morales (only what is
+   published there; no sales figures or internal operations). Also Bavarian Econs (our own brand:
+   things run there first, then get installed for clients).
    FREE ENTRY POINT: the store "radiografía" at monzalab.com/shopify — they send the link of ONE
    product and get that page rebuilt, with a 0-100 index and evidence. Offer it when the brand
    already sells on Shopify and is evaluating.

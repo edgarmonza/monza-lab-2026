@@ -13,7 +13,7 @@ describe("buildSystemPrompt", () => {
     const p = buildSystemPrompt("es");
     expect(p).toMatch(/precio/i); // no cierra precios
     expect(p).toMatch(/sin emoji|no uses emoji/i);
-    expect(p).not.toMatch(/Eleonora/i); // nunca el nombre del cliente
+    expect(p).toMatch(/solo con lo que está publicado/i); // clientes: solo casos publicados
   });
 
   it("protege la identidad de los clientes de plataforma bajo NDA", () => {

@@ -14,12 +14,6 @@ const T: Record<string, Record<Lang, string>> = {
   needContent: { es: "Más y mejor contenido", en: "More and better content", de: "Mehr und besserer Content", pt: "Mais e melhor conteúdo" },
   needAgents: { es: "Agentes de IA (ventas / pauta)", en: "AI agents (sales / paid media)", de: "KI-Agenten (Vertrieb / Ads)", pt: "Agentes de IA (vendas / anúncios)" },
   needAll: { es: "Todo el sistema completo", en: "The full system", de: "Das komplette System", pt: "O sistema completo" },
-  budget: { es: "Presupuesto estimado", en: "Estimated budget", de: "Geschätztes Budget", pt: "Orçamento estimado" },
-  b1: { es: "Menos de $12M COP (~USD 3.000)", en: "Under USD 3,000", de: "Unter USD 3.000", pt: "Menos de USD 3.000" },
-  b2: { es: "$12M – $25M COP (USD 3.000–6.000)", en: "USD 3,000–6,000", de: "USD 3.000–6.000", pt: "USD 3.000–6.000" },
-  b3: { es: "$25M – $50M COP (USD 6.000–12.000)", en: "USD 6,000–12,000", de: "USD 6.000–12.000", pt: "USD 6.000–12.000" },
-  b4: { es: "Más de $50M COP (USD 12.000+)", en: "USD 12,000+", de: "USD 12.000+", pt: "USD 12.000+" },
-  b5: { es: "Aún no lo sé", en: "Not sure yet", de: "Noch unklar", pt: "Ainda não sei" },
   message: { es: "Cuéntanos de tu marca en una línea", en: "Tell us about your brand in one line", de: "Erzähl uns in einem Satz von deiner Marke", pt: "Fala-nos da tua marca numa linha" },
   submit: { es: "Enviar — Edgar te responde", en: "Send — Edgar replies personally", de: "Senden — Edgar antwortet persönlich", pt: "Enviar — o Edgar responde" },
   sending: { es: "Enviando…", en: "Sending…", de: "Senden…", pt: "A enviar…" },
@@ -52,13 +46,13 @@ const LeadForm = ({ source = "studio_landing" }: { source?: string }) => {
   const t = (k: keyof typeof T) => T[k][language];
 
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
-  const [form, setForm] = useState({ name: "", email: "", brand: "", handle: "", need: "", budget: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", brand: "", handle: "", need: "", message: "" });
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const waSummary = () =>
-    `Hola Edgar — soy ${form.name} de ${form.brand}. Necesito: ${form.need || "—"}. Presupuesto: ${form.budget || "—"}. ${form.message}`;
+    `Hola Edgar — soy ${form.name} de ${form.brand}. Necesito: ${form.need || "—"}. ${form.message}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -111,14 +105,6 @@ const LeadForm = ({ source = "studio_landing" }: { source?: string }) => {
         <option>{t("needContent")}</option>
         <option>{t("needAgents")}</option>
         <option>{t("needAll")}</option>
-      </select>
-      <select value={form.budget} onChange={set("budget")} style={{ ...inputStyle, appearance: "none" }} aria-label={t("budget")}>
-        <option value="" disabled>{t("budget")}</option>
-        <option>{t("b1")}</option>
-        <option>{t("b2")}</option>
-        <option>{t("b3")}</option>
-        <option>{t("b4")}</option>
-        <option>{t("b5")}</option>
       </select>
       <textarea
         placeholder={t("message")}

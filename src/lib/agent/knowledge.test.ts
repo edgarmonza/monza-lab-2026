@@ -13,17 +13,18 @@ describe("buildKnowledge", () => {
     expect(k).toMatch(/Forbes/);
   });
 
-  it("describe agentes por vertical SIN nombre propio de cliente", () => {
+  it("nombra el caso público de Eleonora (autorizado por Edgar 2026-08-18) y los de plataforma por vertical", () => {
     const k = buildKnowledge("es");
     expect(k).toMatch(/asesora de moda/i);
     expect(k).toMatch(/comercio exterior/i);
-    expect(k).not.toMatch(/Eleonora/i);
+    expect(k).toMatch(/Eleonora Morales/);
+    expect(k).toMatch(/work\/eleonora-morales/);
   });
 
   it("responde en inglés cuando lang=en", () => {
     const k = buildKnowledge("en");
     expect(k).toMatch(/AI-first/i);
-    expect(k).not.toMatch(/Eleonora/i);
+    expect(k).toMatch(/Eleonora Morales/);
   });
 
   it("incluye el caso de plataformas AI-first por vertical, sin nombres de cliente", () => {
