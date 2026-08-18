@@ -2,6 +2,15 @@ import { useState, useRef, useCallback } from "react";
 import { whatsAppUrl, trackContact, trackLead } from "@/lib/pixel";
 import type { AgentLang, ChatMessage, SSEEvent } from "@/lib/agent/types";
 
+/** Id de conversación del widget: aleatorio, solo letras/números/guiones. */
+export function newSessionId(): string {
+  const rnd =
+    typeof crypto !== "undefined" && "randomUUID" in crypto
+      ? crypto.randomUUID()
+      : Math.random().toString(36).slice(2) + Date.now().toString(36);
+  return `s-${rnd}`.replace(/[^a-zA-Z0-9-]/g, "").slice(0, 48);
+}
+
 export function parseSSE(
   chunk: string,
   buffer: string,
@@ -25,6 +34,7 @@ export function parseSSE(
 export function useAgentChat(lang: AgentLang) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [status, setStatus] = useState<"idle" | "streaming" | "error">("idle");
+  const sessionRef = useRef<string>(newSessionId());
   const [whatsappUrlValue, setWhatsappUrlValue] = useState<string | null>(null);
   const [leadDone, setLeadDone] = useState(false);
   const historyRef = useRef<ChatMessage[]>([]);
@@ -51,6 +61,8 @@ export function useAgentChat(lang: AgentLang) {
             lang,
             // Página donde está abierto el widget: el agente arranca por lo que le interesa.
             page: typeof window !== "undefined" ? window.location.pathname : undefined,
+            // Una conversación = una sesión: sirve para agrupar el registro en un hilo.
+            sessionId: sessionRef.current,
           }),
         });
         if (!res.ok || !res.body) throw new Error("no stream");

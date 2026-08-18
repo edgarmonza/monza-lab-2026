@@ -31,3 +31,13 @@ describe("sanitizeMessages", () => {
     expect(out[out.length - 1].content).toBe("m49");
   });
 });
+
+describe("sanitizeSessionId", () => {
+  it("acepta ids limpios y descarta basura", async () => {
+    const { sanitizeSessionId } = await import("./chat");
+    expect(sanitizeSessionId("s-abc12345-xyz")).toBe("s-abc12345-xyz");
+    expect(sanitizeSessionId("<script>alert(1)</script>")).toMatch(/^anon-|^scriptalert1script$/);
+    expect(sanitizeSessionId(undefined)).toMatch(/^anon-[a-z0-9]{8}$/);
+    expect(sanitizeSessionId("x".repeat(200)).length).toBeLessThanOrEqual(64);
+  });
+});

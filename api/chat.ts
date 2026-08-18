@@ -4,6 +4,7 @@ import { AGENT_TOOLS } from "../src/lib/agent/tools.js";
 import { consultarCriterio } from "../src/lib/agent/criterio.js";
 import { sendLeadEmail } from "./_shared/sendLead.js";
 import { leerSitio, describeSite } from "./_shared/leerSitio.js";
+import { sendAgentLog } from "./_shared/sendAgentLog.js";
 import type {
   AgentLang,
   ChatMessage,
@@ -52,8 +53,15 @@ const LANGS: AgentLang[] = ["es", "en", "de", "pt"];
 
 type ToolLog = { name: string; input: unknown; ok: boolean };
 
-/** Registro best-effort de la conversación (si hay webhook configurado). No bloquea ni rompe. */
+/** Id de sesión que manda el widget (uno por conversación). Se sanea; si no viene, se deriva del turno. */
+export function sanitizeSessionId(raw: unknown): string {
+  const s = typeof raw === "string" ? raw.replace(/[^a-zA-Z0-9-]/g, "").slice(0, 64) : "";
+  return s.length >= 8 ? s : `anon-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+/** Registro best-effort de la conversación: correo (un hilo por sesión) y/o webhook. Nunca rompe. */
 async function logConversation(payload: {
+  sessionId: string;
   lang: AgentLang;
   page?: string;
   messages: ChatMessage[];
@@ -61,21 +69,31 @@ async function logConversation(payload: {
   tools: ToolLog[];
   model: string;
 }) {
-  const url = process.env.AGENT_LOG_WEBHOOK;
-  if (!url) return;
-  try {
-    const ctrl = new AbortController();
-    const t = setTimeout(() => ctrl.abort(), 2500);
-    await fetch(url, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ ts: new Date().toISOString(), source: "monzalab.com/agente", ...payload }),
-      signal: ctrl.signal,
-    });
-    clearTimeout(t);
-  } catch {
-    /* best-effort */
+  const jobs: Promise<unknown>[] = [];
+  if (process.env.AGENT_LOG_EMAIL && process.env.RESEND_API_KEY) {
+    jobs.push(sendAgentLog(payload));
   }
+  const url = process.env.AGENT_LOG_WEBHOOK;
+  if (url) {
+    jobs.push(
+      (async () => {
+        try {
+          const ctrl = new AbortController();
+          const t = setTimeout(() => ctrl.abort(), 2500);
+          await fetch(url, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ ts: new Date().toISOString(), source: "monzalab.com/agente", ...payload }),
+            signal: ctrl.signal,
+          });
+          clearTimeout(t);
+        } catch {
+          /* best-effort */
+        }
+      })(),
+    );
+  }
+  if (jobs.length) await Promise.allSettled(jobs);
 }
 
 // Vercel runtime Node: handler web por método (NO `export default`, que en Node
@@ -85,7 +103,7 @@ export async function POST(request: Request): Promise<Response> {
     return Response.json({ error: "no_agent", fallback: "whatsapp" }, { status: 503 });
   }
 
-  let payload: { messages?: unknown; lang?: unknown; page?: unknown };
+  let payload: { messages?: unknown; lang?: unknown; page?: unknown; sessionId?: unknown };
   try {
     payload = (await request.json()) as typeof payload;
   } catch {
@@ -97,6 +115,7 @@ export async function POST(request: Request): Promise<Response> {
     ? (payload.lang as AgentLang)
     : "es";
   const page = typeof payload.page === "string" ? payload.page.slice(0, 120) : undefined;
+  const sessionId = sanitizeSessionId(payload.sessionId);
   if (messages.length === 0) {
     return Response.json({ error: "Sin mensajes" }, { status: 400 });
   }
@@ -241,7 +260,7 @@ export async function POST(request: Request): Promise<Response> {
         console.error("[agente] fallo", err instanceof Error ? err.message : err);
         send({ type: "error", message: "fallo del agente" });
       } finally {
-        await logConversation({ lang, page, messages, reply: replyText, tools: toolLog, model: servedBy });
+        await logConversation({ sessionId, lang, page, messages, reply: replyText, tools: toolLog, model: servedBy });
         controller.close();
       }
     },
