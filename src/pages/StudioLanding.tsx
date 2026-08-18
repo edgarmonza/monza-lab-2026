@@ -83,10 +83,10 @@ const COPY = {
   },
   investTitle: { es: "Inversión", en: "Investment", de: "Investition", pt: "Investimento" },
   investBody: {
-    es: "Programas desde $12M COP (≈ USD 3.000). El alcance exacto depende de tu marca — te lo decimos directo en la primera conversación, sin vueltas.",
-    en: "Programs from USD 3,000. Exact scope depends on your brand — we tell you straight in the first conversation.",
-    de: "Programme ab USD 3.000. Der genaue Umfang hängt von deiner Marke ab — wir sagen es dir direkt im ersten Gespräch.",
-    pt: "Programas desde USD 3.000. O alcance exato depende da tua marca — dizemos-te diretamente na primeira conversa.",
+    es: "Se paga en dos tiempos: la construcción, como trabajo con fecha de entrega; y la operación, mes a mes y sin permanencia, con parte de lo nuestro atado a lo que venda el sistema. El número exacto depende de tu marca — te lo decimos directo en la primera conversación, sin vueltas.",
+    en: "Paid in two stages: construction, as work with a delivery date; and operation, month to month with no lock-in, with part of our pay tied to what the system sells. The exact number depends on your brand — we tell you straight in the first conversation.",
+    de: "Bezahlt wird in zwei Schritten: der Aufbau als Arbeit mit Liefertermin; und der Betrieb monatlich, ohne Bindung, mit einem Teil unserer Vergütung gekoppelt an das, was das System verkauft. Die genaue Zahl hängt von deiner Marke ab — wir sagen sie dir direkt im ersten Gespräch.",
+    pt: "Paga-se em dois tempos: a construção, como trabalho com data de entrega; e a operação, mês a mês e sem permanência, com parte do nosso atada ao que o sistema vender. O número exato depende da tua marca — dizemos-te diretamente na primeira conversa.",
   },
   faqTitle: { es: "Preguntas directas", en: "Straight answers", de: "Klare Antworten", pt: "Respostas diretas" },
   formTitle: {
@@ -126,12 +126,12 @@ const PILLARS: Array<{ n: string; title: LT; body: LT }> = [
   },
   {
     n: "03",
-    title: { es: "Agentes de IA", en: "AI Agents", de: "KI-Agenten", pt: "Agentes de IA" },
+    title: { es: "La operación, con agentes de IA", en: "The operation, run by AI agents", de: "Der Betrieb, mit KI-Agenten", pt: "A operação, com agentes de IA" },
     body: {
-      es: "Un agente de WhatsApp que atiende y vende 24/7, y agentes de pauta que lanzan, miden y optimizan tus campañas en Meta con reglas probadas.",
-      en: "A WhatsApp agent that serves and sells 24/7, and paid-media agents that launch, measure and optimise your Meta campaigns with proven rules.",
-      de: "Ein WhatsApp-Agent, der 24/7 betreut und verkauft, und Ads-Agenten, die deine Meta-Kampagnen mit erprobten Regeln steuern.",
-      pt: "Um agente de WhatsApp que atende e vende 24/7, e agentes de anúncios que lançam, medem e otimizam as tuas campanhas na Meta.",
+      es: "Cuatro turnos cubiertos: quien contesta por WhatsApp 24/7 leyendo tu inventario, quien atiende las redes, quien corre la pauta con los números del negocio y quien mira qué se agota y qué dejó plata — el tablero, que abres tú. No vendemos una cantidad de agentes: montamos la operación completa y respondemos por el conjunto.",
+      en: "Four shifts covered: who answers on WhatsApp 24/7 reading your inventory, who tends social, who runs the ads on the business's numbers, and who watches what's running out and what made money — the dashboard, which you open. We don't sell a number of agents: we set up the whole operation and answer for the whole.",
+      de: "Vier Schichten abgedeckt: wer auf WhatsApp rund um die Uhr antwortet und deinen Bestand liest, wer die Social-Kanäle betreut, wer die Ads anhand der Geschäftszahlen fährt, und wer im Blick hat, was ausgeht und was Geld gebracht hat — das Dashboard, das du öffnest. Wir verkaufen keine Anzahl an Agenten: wir bauen den kompletten Betrieb auf und stehen für das Ganze gerade.",
+      pt: "Quatro turnos cobertos: quem responde no WhatsApp 24/7 a ler o teu stock, quem cuida das redes, quem corre os anúncios com os números do negócio e quem olha para o que se esgota e o que deixou dinheiro — o painel, que abres tu. Não vendemos uma quantidade de agentes: montamos a operação completa e respondemos pelo conjunto.",
     },
   },
 ];
@@ -139,7 +139,7 @@ const PILLARS: Array<{ n: string; title: LT; body: LT }> = [
 const CASE_STATS: Array<{ value: string; label: LT }> = [
   { value: "350K+", label: { es: "seguidores en TikTok", en: "TikTok followers", de: "TikTok-Follower", pt: "seguidores no TikTok" } },
   { value: "6", label: { es: "marcas en un solo ecosistema", en: "brands in one ecosystem", de: "Marken in einem Ökosystem", pt: "marcas num só ecossistema" } },
-  { value: "54", label: { es: "productos vivos en la tienda", en: "live products in the store", de: "Produkte live im Shop", pt: "produtos vivos na loja" } },
+  { value: "140+", label: { es: "productos vivos en la tienda", en: "live products in the store", de: "Produkte live im Shop", pt: "produtos vivos na loja" } },
   { value: "24/7", label: { es: "agente de WhatsApp vendiendo", en: "WhatsApp agent selling", de: "WhatsApp-Agent im Einsatz", pt: "agente de WhatsApp a vender" } },
 ];
 
@@ -199,10 +199,10 @@ const FAQS: Array<{ q: LT; a: LT }> = [
   {
     q: { es: "¿Cuánto cuesta?", en: "How much does it cost?", de: "Was kostet es?", pt: "Quanto custa?" },
     a: {
-      es: "Los programas de 12 semanas arrancan en $12M COP (≈ USD 3.000) y el Engine mensual se cotiza según alcance. Sin letra pequeña: en la primera conversación te decimos el número exacto para tu caso.",
-      en: "12-week programs start at USD 3,000 and the monthly Engine is quoted by scope. No fine print: in the first conversation we give you the exact number for your case.",
-      de: "12-Wochen-Programme starten bei USD 3.000, die monatliche Engine wird nach Umfang kalkuliert. Im ersten Gespräch nennen wir dir die genaue Zahl.",
-      pt: "Os programas de 12 semanas começam em USD 3.000 e o Engine mensal é cotado por alcance. Na primeira conversa dizemos-te o número exato.",
+      es: "Depende del alcance: cuántos productos, qué turnos hay que cubrir y desde cuándo. Se paga en dos tiempos — construcción con fecha de entrega y operación mes a mes, sin permanencia — y el número exacto se cierra con Edgar en la primera conversación. Sin letra pequeña.",
+      en: "It depends on scope: how many products, which shifts need covering and from when. It's paid in two stages — construction with a delivery date and month-to-month operation, no lock-in — and the exact number is settled with Edgar in the first conversation. No fine print.",
+      de: "Das hängt vom Umfang ab: wie viele Produkte, welche Schichten abzudecken sind und ab wann. Bezahlt wird in zwei Schritten — Aufbau mit Liefertermin und monatlicher Betrieb ohne Bindung — und die genaue Zahl wird mit Edgar im ersten Gespräch festgelegt. Ohne Kleingedrucktes.",
+      pt: "Depende do alcance: quantos produtos, que turnos há que cobrir e desde quando. Paga-se em dois tempos — construção com data de entrega e operação mês a mês, sem permanência — e o número exato fecha-se com o Edgar na primeira conversa. Sem letras pequenas.",
     },
   },
   {
@@ -279,8 +279,6 @@ const StudioLanding = () => {
     areaServed: ["Colombia", "Spain", "Portugal", "Germany", "United States"],
     offers: {
       "@type": "Offer",
-      priceCurrency: "USD",
-      price: "3000",
       description: "12-week program: Shopify store + AI content engine + AI agents (WhatsApp sales agent, paid-media agents). Monthly operating engine available after launch.",
     },
   };
@@ -295,8 +293,8 @@ const StudioLanding = () => {
           pt: "Monza Studio — A tua marca a vender em Shopify com conteúdo e agentes de IA",
         }}
         description={{
-          es: "Programa de 12 semanas: ecommerce Shopify + motor de contenido con IA + agentes de IA (ventas y pauta). Caso vivo: Eleonora Morales, 350K+ TikTok. Desde $12M COP.",
-          en: "12-week program: Shopify ecommerce + AI content engine + AI agents (sales and paid media). Live case: Eleonora Morales, 350K+ TikTok. From USD 3,000.",
+          es: "Programa de 12 semanas: ecommerce Shopify + motor de contenido con IA + agentes de IA (ventas y pauta). Caso vivo: Eleonora Morales, 350K+ TikTok.",
+          en: "12-week program: Shopify ecommerce + AI content engine + AI agents (sales and paid media). Live case: Eleonora Morales, 350K+ TikTok.",
           de: "12-Wochen-Programm: Shopify + KI-Content-Engine + KI-Agenten (Vertrieb und Ads). Live-Case: Eleonora Morales, 350K+ TikTok.",
           pt: "Programa de 12 semanas: Shopify + motor de conteúdo IA + agentes de IA (vendas e anúncios). Caso vivo: Eleonora Morales, 350K+ TikTok.",
         }}

@@ -136,35 +136,73 @@ const LAYERS: { t: L; b: L; who: L }[] = [
 ];
 
 const AGENTS_H2: L = {
-  es: "Siete agentes. Cada uno sirve solo.",
-  en: "Seven agents. Each one works on its own.",
-  de: "Sieben Agenten. Jeder funktioniert für sich.",
-  pt: "Sete agentes. Cada um serve sozinho.",
+  es: "Cuatro turnos cubiertos. Un solo responsable.",
+  en: "Four shifts covered. One person accountable.",
+  de: "Vier Schichten abgedeckt. Ein Verantwortlicher.",
+  pt: "Quatro turnos cobertos. Um só responsável.",
 };
 const AGENTS_SUB: L = {
-  es: "Empiezas por uno y sumas. No hay que comprar el sistema completo para que algo cambie.",
-  en: "Start with one and add. You don't have to buy the whole system for something to change.",
-  de: "Fang mit einem an und ergänze. Du musst nicht das ganze System kaufen, damit sich etwas ändert.",
-  pt: "Começas por um e somas. Não é preciso comprar o sistema todo para algo mudar.",
+  es: "Una tienda necesita a alguien contestando, a alguien atendiendo las redes, a alguien corriendo la pauta y a alguien mirando qué se agota y qué dejó plata. Son cuatro turnos — y casi siempre son dos personas, o una. No vendemos una cantidad de agentes: montamos la operación completa y respondemos por el conjunto.",
+  en: "A store needs someone answering, someone tending social, someone running the ads and someone watching what's running out and what made money. That's four shifts — and almost always two people, or one. We don't sell a number of agents: we set up the whole operation and answer for the whole.",
+  de: "Ein Shop braucht jemanden, der antwortet, jemanden, der die Social-Kanäle betreut, jemanden, der die Ads fährt, und jemanden, der im Blick hat, was ausgeht und was Geld gebracht hat. Das sind vier Schichten — und fast immer zwei Leute, oder eine. Wir verkaufen keine Anzahl an Agenten: wir bauen den kompletten Betrieb auf und stehen für das Ganze gerade.",
+  pt: "Uma loja precisa de alguém a responder, alguém a cuidar das redes, alguém a correr os anúncios e alguém a olhar para o que se esgota e o que deixou dinheiro. São quatro turnos — e quase sempre são duas pessoas, ou uma. Não vendemos uma quantidade de agentes: montamos a operação completa e respondemos pelo conjunto.",
 };
+/* Los turnos — se cuentan las sillas que quedan cubiertas, no los agentes. */
 const AGENTS: { t: L; b: L; tag?: L }[] = [
   {
-    t: { es: "Ventas por WhatsApp", en: "WhatsApp sales", de: "WhatsApp-Verkauf", pt: "Vendas por WhatsApp" },
+    t: { es: "Quien contesta", en: "Who answers", de: "Wer antwortet", pt: "Quem responde" },
     b: {
-      es: "Asesora, resuelve la talla, arma el carrito y cierra. Lee tu catálogo y tu inventario en vivo, así que nunca ofrece lo que no tienes.",
-      en: "Advises, resolves sizing, builds the cart and closes. Reads your catalog and inventory live, so it never offers what you don't have.",
-      de: "Berät, klärt die Größe, baut den Warenkorb und schließt ab. Liest Katalog und Bestand live — bietet nie an, was du nicht hast.",
-      pt: "Aconselha, resolve o tamanho, monta o carrinho e fecha. Lê o teu catálogo e stock em direto, por isso nunca oferece o que não tens.",
+      es: "WhatsApp con la voz de tu marca, leyendo tu catálogo y tu inventario en vivo: asesora, resuelve la talla, reconoce la prenda por foto, arma el carrito y cierra — y nunca ofrece lo que no tienes. Después de la compra: estado del pedido, guía, cambios y la reseña. Es el turno de la madrugada, el que hoy no existe.",
+      en: "WhatsApp in your brand's voice, reading your catalog and inventory live: advises, resolves sizing, recognises the piece from a photo, builds the cart and closes — and never offers what you don't have. After the purchase: order status, tracking, exchanges and the review. It's the 3 a.m. shift, the one that doesn't exist today.",
+      de: "WhatsApp mit der Stimme deiner Marke, mit Katalog und Bestand live: berät, klärt die Größe, erkennt das Teil vom Foto, baut den Warenkorb und schließt ab — und bietet nie an, was du nicht hast. Nach dem Kauf: Bestellstatus, Sendungsverfolgung, Umtausch und die Bewertung. Die Nachtschicht — die, die es heute nicht gibt.",
+      pt: "WhatsApp com a voz da tua marca, a ler o teu catálogo e stock em direto: aconselha, resolve o tamanho, reconhece a peça pela foto, monta o carrinho e fecha — e nunca oferece o que não tens. Depois da compra: estado da encomenda, guia, trocas e a avaliação. É o turno da madrugada, o que hoje não existe.",
     },
     tag: { es: "VIVO EN PRODUCCIÓN", en: "LIVE IN PRODUCTION", de: "LIVE IM EINSATZ", pt: "VIVO EM PRODUÇÃO" },
   },
   {
+    t: { es: "Quien atiende las redes", en: "Who tends social", de: "Wer die Social-Kanäle betreut", pt: "Quem cuida das redes" },
+    b: {
+      es: "Responde los comentarios de Instagram uno por uno y lleva la conversación al DM cuando toca. Un post se vuelve viral y no se queda ninguno sin la información. Corre en nuestra propia marca antes que en la tuya.",
+      en: "Replies to Instagram comments one by one and takes the conversation to DMs when it's time. A post goes viral and nobody is left without the info. It runs on our own brand before it runs on yours.",
+      de: "Beantwortet Instagram-Kommentare einzeln und zieht das Gespräch in die DMs, wenn es so weit ist. Ein Post geht viral, und niemand bleibt ohne Antwort. Läuft in unserer eigenen Marke, bevor es in deiner läuft.",
+      pt: "Responde aos comentários de Instagram um a um e leva a conversa para o DM quando é altura. Um post torna-se viral e ninguém fica sem a informação. Corre na nossa própria marca antes de correr na tua.",
+    },
+  },
+  {
+    t: { es: "Quien corre la pauta", en: "Who runs the ads", de: "Wer die Ads fährt", pt: "Quem corre os anúncios" },
+    b: {
+      es: "Lee tus campañas de Meta todos los días y dice qué escalar, qué pausar y qué creativo rotar — cruzado con lo que dejó plata, no con lo que tuvo más likes. Con el número de margen al lado, no a ciegas. La decisión la toma Edgar con eso en la mano.",
+      en: "Reads your Meta campaigns every day and says what to scale, what to pause and which creative to rotate — cross-checked against what made money, not what got the most likes. With the margin number beside it, not blind. Edgar makes the call with that in hand.",
+      de: "Liest deine Meta-Kampagnen jeden Tag und sagt, was skalieren, was pausieren und welches Creative rotieren — abgeglichen mit dem, was Geld gebracht hat, nicht mit dem, was die meisten Likes hatte. Mit der Margenzahl daneben, nicht blind. Die Entscheidung trifft Edgar mit dieser Zahl in der Hand.",
+      pt: "Lê as tuas campanhas de Meta todos os dias e diz o que escalar, o que pausar e que criativo rodar — cruzado com o que deixou dinheiro, não com o que teve mais likes. Com o número da margem ao lado, não às cegas. A decisão toma-a o Edgar com isso na mão.",
+    },
+  },
+  {
+    t: { es: "Quien mira los números", en: "Who watches the numbers", de: "Wer auf die Zahlen schaut", pt: "Quem olha para os números" },
+    b: {
+      es: "Costo por producto, margen real, cuánto te cuesta una clienta y cuánto vale con el tiempo. Qué talla se está agotando, qué prenda deja plata de verdad, cuáles clientas se están enfriando. Es el que produce el número que los otros tres necesitan — y ese turno es el tablero: lo abres tú, no nosotros.",
+      en: "Cost per product, real margin, what a customer costs you and what she's worth over time. Which size is running out, which piece really makes money, which customers are going cold. It produces the number the other three need — and that shift is the dashboard: you open it, not us.",
+      de: "Kosten pro Produkt, echte Marge, was eine Kundin kostet und über die Zeit wert ist. Welche Größe ausgeht, welches Teil wirklich Geld bringt, welche Kundinnen kalt werden. Sie liefert die Zahl, die die anderen drei brauchen — und diese Schicht ist das Dashboard: du öffnest es, nicht wir.",
+      pt: "Custo por produto, margem real, quanto te custa uma cliente e quanto vale ao longo do tempo. Que tamanho se está a esgotar, que peça deixa dinheiro a sério, que clientes estão a arrefecer. É o que produz o número que os outros três precisam — e esse turno é o painel: abres tu, não nós.",
+    },
+    tag: { es: "EL TABLERO", en: "THE DASHBOARD", de: "DAS DASHBOARD", pt: "O PAINEL" },
+  },
+];
+/* Lo que el sistema produce mientras los turnos corren. */
+const PRODUCES_H3: L = {
+  es: "Y lo que el sistema produce mientras los turnos corren",
+  en: "And what the system produces while the shifts run",
+  de: "Und was das System produziert, während die Schichten laufen",
+  pt: "E o que o sistema produz enquanto os turnos correm",
+};
+const PRODUCES: { t: L; b: L }[] = [
+  {
     t: { es: "Imagen", en: "Imagery", de: "Bild", pt: "Imagem" },
     b: {
-      es: "Foto cruda a set editorial completo. Cambiamos la escena — fondo, luz, contexto — nunca el producto: una foto que miente dispara las devoluciones.",
-      en: "Raw shot to a full editorial set. We change the scene — background, light, context — never the product: a photo that lies drives returns.",
-      de: "Vom Rohfoto zum kompletten Editorial-Set. Wir ändern die Szene — Hintergrund, Licht, Kontext — nie das Produkt: ein Foto, das lügt, treibt Retouren.",
-      pt: "Foto crua a set editorial completo. Mudamos a cena — fundo, luz, contexto — nunca o produto: uma foto que mente dispara devoluções.",
+      es: "De una foto real de cada prenda salen las escenas, los fondos y los formatos — de 100 fotos salen 300, sin sesión ni estudio. Cambiamos la escena, nunca el producto: una foto que miente dispara las devoluciones. Cada pieza se valida contra el original antes de publicarse.",
+      en: "From one real photo of each piece come the scenes, backgrounds and formats — 100 photos become 300, no shoot, no studio. We change the scene, never the product: a photo that lies drives returns. Every image is validated against the original before it's published.",
+      de: "Aus einem echten Foto jedes Teils entstehen Szenen, Hintergründe und Formate — aus 100 Fotos werden 300, ohne Shooting, ohne Studio. Wir ändern die Szene, nie das Produkt: ein Foto, das lügt, treibt Retouren. Jedes Bild wird vor der Veröffentlichung am Original geprüft.",
+      pt: "De uma foto real de cada peça saem as cenas, os fundos e os formatos — de 100 fotos saem 300, sem sessão nem estúdio. Mudamos a cena, nunca o produto: uma foto que mente dispara devoluções. Cada peça é validada contra o original antes de ser publicada.",
     },
   },
   {
@@ -177,41 +215,13 @@ const AGENTS: { t: L; b: L; tag?: L }[] = [
     },
   },
   {
-    t: { es: "Pauta", en: "Paid media", de: "Ads", pt: "Pauta" },
+    t: { es: "La base que se acuerda", en: "The base that remembers", de: "Die Basis, die sich erinnert", pt: "A base que se lembra" },
     b: {
-      es: "Lee tus campañas de Meta y dice qué escalar, qué pausar y qué creativo rotar. Con el número de margen al lado, no a ciegas.",
-      en: "Reads your Meta campaigns and says what to scale, pause and rotate. With the margin number beside it, not blind.",
-      de: "Liest deine Meta-Kampagnen und sagt, was zu skalieren, zu pausieren und zu rotieren ist. Mit der Margenzahl daneben, nicht blind.",
-      pt: "Lê as tuas campanhas de Meta e diz o que escalar, pausar e rodar. Com o número da margem ao lado, não às cegas.",
+      es: "Tus clientas ordenadas y segmentadas, con flujos que trabajan solos: carrito abandonado, bienvenida, post-compra, reactivación a los 90 días, cumpleaños y preventa a las de siempre. Casi siempre hay más plata en la lista vieja que en la pauta nueva.",
+      en: "Your customers cleaned and segmented, with flows that work on their own: abandoned cart, welcome, post-purchase, 90-day reactivation, birthday and pre-sale to the regulars. There's almost always more money in the old list than in new ads.",
+      de: "Deine Kundinnen geordnet und segmentiert, mit Flows, die von allein laufen: abgebrochener Warenkorb, Willkommen, Nachkauf, Reaktivierung nach 90 Tagen, Geburtstag und Vorverkauf an die Stammkundinnen. Fast immer steckt mehr Geld in der alten Liste als in neuen Ads.",
+      pt: "As tuas clientes ordenadas e segmentadas, com fluxos que trabalham sozinhos: carrinho abandonado, boas-vindas, pós-compra, reativação aos 90 dias, aniversário e pré-venda às de sempre. Quase sempre há mais dinheiro na lista antiga do que nos anúncios novos.",
     },
-  },
-  {
-    t: { es: "Retención", en: "Retention", de: "Retention", pt: "Retenção" },
-    b: {
-      es: "Carrito abandonado, post-compra y reactivación de la base que ya tienes. Casi siempre hay más plata en la lista vieja que en la pauta nueva.",
-      en: "Abandoned cart, post-purchase and reactivating the list you already have. There's almost always more money in the old list than in new ads.",
-      de: "Abgebrochener Warenkorb, Post-Purchase und Reaktivierung deiner bestehenden Liste. Fast immer steckt mehr Geld in der alten Liste als in neuen Ads.",
-      pt: "Carrinho abandonado, pós-compra e reativação da base que já tens. Quase sempre há mais dinheiro na lista antiga do que na pauta nova.",
-    },
-  },
-  {
-    t: { es: "Post-venta", en: "Post-purchase", de: "Nachkauf", pt: "Pós-venda" },
-    b: {
-      es: "Estado del pedido, guía, devoluciones y la reseña. Lo que hoy le come el día a alguien de tu equipo respondiendo lo mismo.",
-      en: "Order status, tracking, returns and the review. What currently eats someone's whole day answering the same thing.",
-      de: "Bestellstatus, Sendungsverfolgung, Retouren und die Bewertung. Das, was heute jemandem den Tag frisst.",
-      pt: "Estado da encomenda, guia, devoluções e a avaliação. O que hoje come o dia a alguém da tua equipa.",
-    },
-  },
-  {
-    t: { es: "Margen", en: "Margin", de: "Marge", pt: "Margem" },
-    b: {
-      es: "Costo por producto, margen real, cuánto te cuesta una clienta y cuánto vale con el tiempo. Es el único que produce el número que los otros seis necesitan.",
-      en: "Cost per product, real margin, what a customer costs you and what she's worth over time. The only one producing the number the other six need.",
-      de: "Kosten pro Produkt, echte Marge, was eine Kundin kostet und über die Zeit wert ist. Der Einzige, der die Zahl liefert, die die anderen sechs brauchen.",
-      pt: "Custo por produto, margem real, quanto te custa uma cliente e quanto vale ao longo do tempo. É o único que produz o número que os outros seis precisam.",
-    },
-    tag: { es: "LA PIEDRA ANGULAR", en: "THE KEYSTONE", de: "DER SCHLUSSSTEIN", pt: "A PEDRA ANGULAR" },
   },
 ];
 
@@ -409,7 +419,7 @@ const ShopifyVertical = () => {
           </div>
         </Section>
 
-        {/* Los 7 agentes */}
+        {/* Los cuatro turnos + lo que el sistema produce */}
         <Section>
           <div className="mx-auto max-w-[1200px] px-6 md:px-10">
             <h2
@@ -421,7 +431,7 @@ const ShopifyVertical = () => {
             <p className="font-clash text-[15px] md:text-lg max-w-2xl leading-relaxed mb-10 md:mb-14" style={{ color: "rgba(var(--text-rgb), 0.55)" }}>
               {AGENTS_SUB[lang]}
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {AGENTS.map((a, i) => (
                 <div
                   key={i}
@@ -447,6 +457,35 @@ const ShopifyVertical = () => {
                   >
                     {a.t[lang]}
                   </h3>
+                  <p className="font-clash text-[13px] md:text-sm leading-relaxed" style={{ color: "rgba(var(--text-rgb), 0.5)" }}>
+                    {a.b[lang]}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <h3
+              className="font-clash font-semibold mt-14 md:mt-16 mb-6 md:mb-8"
+              style={{ fontSize: "clamp(20px, 2.6vw, 28px)", letterSpacing: "-0.015em", color: "rgba(var(--text-rgb), 0.9)" }}
+            >
+              {PRODUCES_H3[lang]}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {PRODUCES.map((a, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl p-6 md:p-7 flex flex-col"
+                  style={{ border: "1px solid rgba(var(--text-rgb), 0.08)", background: "rgba(var(--text-rgb), 0.02)" }}
+                >
+                  <span className="font-mono text-[10px] tracking-[0.25em] mb-4" style={{ color: `${PINK}b0` }}>
+                    0{i + 1}
+                  </span>
+                  <h4
+                    className="font-clash font-semibold text-lg md:text-xl mb-3"
+                    style={{ letterSpacing: "-0.015em", color: "rgba(var(--text-rgb), 0.9)" }}
+                  >
+                    {a.t[lang]}
+                  </h4>
                   <p className="font-clash text-[13px] md:text-sm leading-relaxed" style={{ color: "rgba(var(--text-rgb), 0.5)" }}>
                     {a.b[lang]}
                   </p>
