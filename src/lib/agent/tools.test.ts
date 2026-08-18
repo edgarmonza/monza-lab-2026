@@ -2,9 +2,14 @@ import { describe, it, expect } from "vitest";
 import { AGENT_TOOLS } from "./tools";
 
 describe("AGENT_TOOLS", () => {
-  it("define capturar_lead y abrir_whatsapp", () => {
+  it("define las cuatro herramientas del vendedor", () => {
     const names = AGENT_TOOLS.map((t) => t.name).sort();
-    expect(names).toEqual(["abrir_whatsapp", "capturar_lead"]);
+    expect(names).toEqual(["abrir_whatsapp", "capturar_lead", "consultar_criterio", "leer_sitio"]);
+  });
+
+  it("consultar_criterio exige tema y leer_sitio exige url", () => {
+    expect(AGENT_TOOLS.find((t) => t.name === "consultar_criterio")!.input_schema.required).toContain("tema");
+    expect(AGENT_TOOLS.find((t) => t.name === "leer_sitio")!.input_schema.required).toContain("url");
   });
 
   it("capturar_lead exige nombre, email y marca", () => {

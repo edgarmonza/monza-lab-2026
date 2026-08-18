@@ -37,6 +37,15 @@ export interface AbrirWhatsappInput {
   caso: string;
 }
 
+export interface ConsultarCriterioInput {
+  tema: string;
+  pregunta?: string;
+}
+
+export interface LeerSitioInput {
+  url: string;
+}
+
 export type SSEEvent =
   | { type: "text"; value: string }
   | { type: "action"; action: "whatsapp"; resumen: string }

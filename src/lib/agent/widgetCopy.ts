@@ -14,7 +14,7 @@ export const WIDGET_COPY: Record<
   }
 > = {
   es: {
-    greeting: "Dime qué quieres construir y te digo si Monza es para ti.",
+    greeting: "Cuéntame de tu negocio: qué vendes, dónde y qué te está costando plata hoy. Si me pasas tu web, la miro y te digo qué veo.",
     placeholder: "Escríbeme directo…",
     error: "Algo falló de mi lado. Sigue con Edgar por WhatsApp.",
     whatsappBtn: "Sigue por WhatsApp con Edgar",
@@ -24,7 +24,7 @@ export const WIDGET_COPY: Record<
     sendLabel: "Enviar",
   },
   en: {
-    greeting: "Tell me what you want to build, and I'll tell you if Monza is for you.",
+    greeting: "Tell me about your business: what you sell, where, and what's costing you money today. Send me your website and I'll take a look and tell you what I see.",
     placeholder: "Message me directly…",
     error: "Something failed on my end. Continue with Edgar on WhatsApp.",
     whatsappBtn: "Continue on WhatsApp with Edgar",
@@ -34,7 +34,7 @@ export const WIDGET_COPY: Record<
     sendLabel: "Send",
   },
   de: {
-    greeting: "Sag mir, was du bauen willst – und ich sage dir, ob Monza zu dir passt.",
+    greeting: "Erzähl mir von deinem Geschäft: was du verkaufst, wo, und was dich heute Geld kostet. Schick mir deine Website – ich schaue sie an und sage dir, was ich sehe.",
     placeholder: "Schreib mir direkt…",
     error: "Etwas ist schiefgelaufen. Mach mit Edgar auf WhatsApp weiter.",
     whatsappBtn: "Weiter auf WhatsApp mit Edgar",
@@ -44,7 +44,7 @@ export const WIDGET_COPY: Record<
     sendLabel: "Senden",
   },
   pt: {
-    greeting: "Diz-me o que queres construir e digo-te se a Monza é para ti.",
+    greeting: "Conta-me do teu negócio: o que vendes, onde e o que te está a custar dinheiro hoje. Manda-me a tua web e digo-te o que vejo.",
     placeholder: "Escreve-me diretamente…",
     error: "Algo falhou do meu lado. Continua com o Edgar no WhatsApp.",
     whatsappBtn: "Continua no WhatsApp com o Edgar",

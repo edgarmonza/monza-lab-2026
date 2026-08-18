@@ -46,7 +46,12 @@ export function useAgentChat(lang: AgentLang) {
         const res = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: next, lang }),
+          body: JSON.stringify({
+            messages: next,
+            lang,
+            // Página donde está abierto el widget: el agente arranca por lo que le interesa.
+            page: typeof window !== "undefined" ? window.location.pathname : undefined,
+          }),
         });
         if (!res.ok || !res.body) throw new Error("no stream");
 
