@@ -139,11 +139,19 @@ export async function POST(request: Request): Promise<Response> {
             messages: apiMessages,
           });
 
+          let roundHasText = false;
           for await (const event of ms) {
             if (
               event.type === "content_block_delta" &&
               event.delta.type === "text_delta"
             ) {
+              // Entre rondas de herramientas ("Dame un segundo, la miro." → resultado)
+              // el texto llega en bloques distintos: separarlos para que no se peguen.
+              if (!roundHasText && replyText && !/\s$/.test(replyText)) {
+                replyText += "\n\n";
+                send({ type: "text", value: "\n\n" });
+              }
+              roundHasText = true;
               replyText += event.delta.text;
               send({ type: "text", value: event.delta.text });
             }
@@ -211,7 +219,9 @@ export async function POST(request: Request): Promise<Response> {
               toolResults.push({
                 type: "tool_result",
                 tool_use_id: block.id,
-                content: JSON.stringify(r),
+                content: r.ok
+                  ? "ok: lead registrado; Edgar recibió el aviso por correo. Confírmale que Edgar le responde en menos de 24 horas."
+                  : "NO se pudo registrar el correo (el aviso no salió). Al visitante ya se le mostró un botón de WhatsApp con tu resumen. NO digas que quedó registrado ni que Edgar le escribe: dile que le dejaste el botón para seguir con Edgar directo por WhatsApp, con todo el contexto ya resumido.",
               });
             } else {
               toolResults.push({
