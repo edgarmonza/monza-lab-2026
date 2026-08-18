@@ -22,6 +22,10 @@ type SEOProps = {
 };
 
 const SITE_URL = "https://monzalab.com";
+/* Versión de las imágenes OG dinámicas. LinkedIn (y otros) cachean la imagen por URL:
+ * cuando cambie el diseño o se arregle un render, subir este número para que
+ * las redes vuelvan a descargarla. v2 = 2026-08-17 (fix del mosaico de la home). */
+const OG_VERSION = "2";
 
 const LOCALE_MAP = {
   es: "es_ES",
@@ -51,8 +55,8 @@ const SEO = ({ title, description, path = "", image, ogPage, type = "website", j
   const ogImage = image
     ? (image.startsWith("http") ? image : `${SITE_URL}${image}`)
     : ogPage
-      ? `${SITE_URL}/api/og?page=${ogPage}`
-      : `${SITE_URL}/api/og?page=home`;
+      ? `${SITE_URL}/api/og?page=${ogPage}&v=${OG_VERSION}`
+      : `${SITE_URL}/api/og?page=home&v=${OG_VERSION}`;
 
   const hreflangs: Array<{ lang: "es" | "en" | "de" | "pt"; url: string }> = [
     { lang: "es", url: buildUrl("es", path) },
