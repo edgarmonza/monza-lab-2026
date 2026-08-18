@@ -725,7 +725,7 @@ const Operation = ({ lang }: { lang: Lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.55, delay: i * 0.06, ease: EASE }}
-                className="rounded-2xl p-6 md:p-7 flex flex-col justify-between min-h-[168px]"
+                className="rounded-2xl p-6 md:p-7 flex flex-col justify-between gap-5 md:gap-0 md:min-h-[168px]"
                 style={{ background: "rgba(var(--text-rgb), 0.025)", border: "1px solid rgba(var(--text-rgb), 0.07)" }}
               >
                 <span className="font-mono text-[10px] tracking-[0.2em]" style={{ color: `${ACCENT}80` }}>
