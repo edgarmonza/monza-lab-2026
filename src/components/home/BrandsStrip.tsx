@@ -40,17 +40,6 @@ const BRANDS: Brand[] = [
     },
   },
   {
-    name: "Spectro",
-    slug: "spectro",
-    cover: "/images/projects/spectro/andres-purple.png",
-    accent: "#8B5CF6",
-    desc: {
-      es: "Plataforma global de creadores y contenido deportivo.",
-      en: "Global platform for sports creators and content.",
-      de: "Globale Plattform für Sport-Creators und Content.", pt: "Plataforma global de creadores y contenido deportivo.",
-    },
-  },
-  {
     name: "Garage Advisory",
     slug: null,
     cover: "/images/brands/garage-advisory/aston-front.jpg",
@@ -161,7 +150,7 @@ const BrandsStrip = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
           {BRANDS.map((brand, i) => {
             const inner = (
               <motion.div

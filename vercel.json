@@ -1,7 +1,35 @@
 {
   "buildCommand": "npm run build && node scripts/prerender.mjs",
   "rewrites": [
-    { "source": "/monetizacion", "destination": "/monetizacion.html" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    {
+      "source": "/monetizacion",
+      "destination": "/monetizacion.html"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/work/spectro",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/en/work/spectro",
+      "destination": "/en/work",
+      "permanent": true
+    },
+    {
+      "source": "/de/work/spectro",
+      "destination": "/de/work",
+      "permanent": true
+    },
+    {
+      "source": "/pt/work/spectro",
+      "destination": "/pt/work",
+      "permanent": true
+    }
   ]
 }

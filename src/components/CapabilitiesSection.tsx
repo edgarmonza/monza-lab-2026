@@ -111,7 +111,6 @@ const CAPABILITIES: Capability[] = [
     experiences: [
       { name: "PACHO ALVAREZ", subtitle: { es: "Piloto Dakar · Experiencia inmersiva", en: "Dakar Driver · Immersive experience", de: "Dakar-Fahrer · Immersives Erlebnis", pt: "Piloto Dakar · Experiencia inmersiva" }, video: "/videos/pacho-alvarez-reel.mp4", accent: "#E8C547" },
       { name: "BAVARIAN ECONS", subtitle: { es: "BMW 2002te · The Classic of the Future", en: "BMW 2002te · The Classic of the Future", de: "BMW 2002te · The Classic of the Future", pt: "BMW 2002te · The Classic of the Future" }, video: "/videos/bavarian-econs-reel.mp4", accent: "#38BDF8" },
-      { name: "SPECTRO", subtitle: { es: "Gaming & Esports · Plataforma digital", en: "Gaming & Esports · Digital platform", de: "Gaming & Esports · Digitale Plattform", pt: "Gaming & Esports · Plataforma digital" }, video: "/videos/spectro-reel.mp4", accent: "#8B5CF6" },
     ],
     accent: "#38BDF8",
     tag: "EXPERIENCE × DIGITAL",

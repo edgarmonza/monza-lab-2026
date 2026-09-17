@@ -7,7 +7,7 @@ const ES = `CASOS DE USO Y EVIDENCIA (lo que Monza Lab hace y puede replicar):
 
 1. EMPRESA QUE QUIERE SER AI-FIRST
    Pitch: rediseñamos cómo opera tu empresa con IA en el centro — no IA encima de lo viejo.
-   Evidencia: Monza Index (mide adopción de IA en LATAM), IA-Index, Spectro (contenido a escala con IA).
+   Evidencia: Monza Index (mide adopción de IA en LATAM), IA-Index.
 
 2. MARCA DE MODA / BEAUTY QUE VENDE (o quiere vender) EN SHOPIFY — MONZA STUDIO
    Pitch: no vendemos piezas sueltas, instalamos EL SISTEMA con el que la marca vende — un circuito
@@ -84,7 +84,7 @@ const EN = `USE CASES AND EVIDENCE (what Monza Lab does and can replicate):
 
 1. COMPANY THAT WANTS TO BE AI-FIRST
    Pitch: we redesign how your company operates with AI at the core — not AI bolted onto old processes.
-   Evidence: Monza Index (measures AI adoption in LATAM), IA-Index, Spectro (content at scale with AI).
+   Evidence: Monza Index (measures AI adoption in LATAM), IA-Index.
 
 2. FASHION / BEAUTY BRAND SELLING (OR WANTING TO SELL) ON SHOPIFY — MONZA STUDIO
    Pitch: we don't sell loose pieces, we install THE SYSTEM the brand sells with — a closed circuit,
