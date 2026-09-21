@@ -136,7 +136,9 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
           io.disconnect();
         }
       },
-      { threshold: 0.5 },
+      // 0.3 y no 0.5: en un celular chico la caja mide más que la pantalla y
+      // la mitad de su área puede no caber nunca; con 0.5 el evento no saldría.
+      { threshold: 0.3 },
     );
     io.observe(el);
     return () => io.disconnect();
