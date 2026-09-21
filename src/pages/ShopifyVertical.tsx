@@ -92,6 +92,18 @@ const PROOF_STATS: { n: L; l: L }[] = [
     l: { es: "asesora de WhatsApp respondiendo", en: "WhatsApp advisor answering", de: "WhatsApp-Beraterin antwortet", pt: "assessora de WhatsApp a responder" },
   },
 ];
+// Segunda marca de la vertical. El contrato con soloio (cláusula 8.5, «Referencia
+// comercial», firmado el 8-sep-2026) autoriza a mencionar la relación y a mostrar
+// los desarrollos entregados. NO autoriza cifras, bases de datos ni información de
+// sus clientes, y sus fotos de producto no entran a portafolio sin permiso escrito
+// previo: por eso aquí va una línea y no un caso con capturas y números.
+const ALSO_EYEBROW: L = { es: "EN CONSTRUCCIÓN AHORA", en: "IN THE WORKS NOW", de: "GERADE IM AUFBAU", pt: "EM CONSTRUÇÃO AGORA" };
+const ALSO_BODY: L = {
+  es: "soloio. Lino estampado, cuatro tiendas propias y tienda en línea. Estamos montando su operación digital completa.",
+  en: "soloio. Printed linen, four stores of its own and an online shop. We are building its full digital operation.",
+  de: "soloio. Bedrucktes Leinen, vier eigene Läden und ein Onlineshop. Wir bauen den gesamten digitalen Betrieb auf.",
+  pt: "soloio. Linho estampado, quatro lojas próprias e loja online. Estamos a montar toda a sua operação digital.",
+};
 const PROOF_LINK: L = { es: "Ver el caso completo", en: "See the full case", de: "Ganzen Case ansehen", pt: "Ver o caso completo" };
 const SHOT_DESKTOP_ALT: L = {
   es: "Portada de la tienda Eleonora Morales en escritorio",
@@ -373,6 +385,15 @@ const ShopifyVertical = () => {
             >
               {PROOF_LINK[lang]} →
             </Link>
+
+            <div className="mt-10 md:mt-14 pt-6" style={{ borderTop: "1px solid rgba(var(--text-rgb), 0.08)" }}>
+              <p className="font-clash text-[10px] tracking-[0.35em] uppercase font-medium mb-3" style={{ color: `${PINK}c0` }}>
+                {ALSO_EYEBROW[lang]}
+              </p>
+              <p className="font-clash text-[15px] md:text-lg max-w-2xl leading-relaxed" style={{ color: "rgba(var(--text-rgb), 0.55)" }}>
+                {ALSO_BODY[lang]}
+              </p>
+            </div>
           </div>
         </Section>
 
