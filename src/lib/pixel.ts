@@ -57,11 +57,23 @@ export const trackViewContent = (contentName: string) => {
   toVercel("view_content", { content: contentName });
 };
 
-/** La Radiografía es el lead magnet — se mide aparte del contacto general. */
+/** La Radiografía es el lead magnet — se mide aparte del contacto general.
+ *
+ * El embudo que ve Meta: ViewContent (vio la oferta) → RadiografiaStart
+ * (empezó el formulario, evento propio: sirve para el público de «empezó y no
+ * envió») → Lead (envió). Hasta el 21-sep-2026 solo existía el último. */
+export const trackRadiografiaView = () => {
+  fbq()?.("track", "ViewContent", { content_name: "Radiografía Shopify" });
+  gtag()?.("event", "view_item", { item_name: "Radiografía Shopify" });
+  toVercel("radiografia_view");
+};
+
 export const trackRadiografia = (step: "start" | "submit") => {
   if (step === "submit") {
     fbq()?.("track", "Lead", { content_name: "Radiografía Shopify" });
     gtag()?.("event", "generate_lead", { content_name: "Radiografía Shopify" });
+  } else {
+    fbq()?.("trackCustom", "RadiografiaStart");
   }
   gtag()?.("event", step === "start" ? "form_start" : "form_submit", {
     form_name: "radiografia",

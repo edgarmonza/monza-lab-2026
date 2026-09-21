@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { trackContact, trackRadiografia, whatsAppUrl } from "@/lib/pixel";
+import { trackContact, trackRadiografia, trackRadiografiaView, whatsAppUrl } from "@/lib/pixel";
 
 type Lang = "es" | "en" | "de" | "pt";
 
@@ -121,6 +121,33 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
+  // El embudo completo: vio la oferta → empezó el formulario → envió.
+  // Cada paso se cuenta una sola vez por carga de página.
+  const boxRef = useRef<HTMLDivElement | null>(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = boxRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((en) => en.isIntersecting)) {
+          trackRadiografiaView();
+          io.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const onFirstFocus = () => {
+    if (started.current) return;
+    started.current = true;
+    trackRadiografia("start");
+  };
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -181,6 +208,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
   return (
     <div
       id={id}
+      ref={boxRef}
       className="rounded-3xl px-6 py-10 sm:px-9 sm:py-12 md:px-14 md:py-16 scroll-mt-28"
       style={{ border: `1px solid ${PINK}33`, background: `${PINK}08` }}
     >
@@ -205,7 +233,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
         {T.sub[lang]}
       </p>
 
-      <form onSubmit={submit} noValidate className="max-w-2xl">
+      <form onSubmit={submit} onFocusCapture={onFirstFocus} noValidate className="max-w-2xl">
         <label htmlFor="rx-url" className="sr-only">
           {T.url[lang]}
         </label>

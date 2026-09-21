@@ -118,8 +118,14 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '963412279468010');
-    fbq('track', 'PageView');
+    // Solo en producción. El desarrollo local (127.0.0.1) y los previews de
+    // Vercel le metían eventos falsos al conjunto de datos: 11 en 28 días al
+    // 21-sep-2026. fbq queda definido igual, así que pixel.ts no se rompe:
+    // sin init, los track no salen hacia Meta.
+    if (/(^|\.)monzalab\.com$/.test(location.hostname)) {
+      fbq('init', '963412279468010');
+      fbq('track', 'PageView');
+    }
     </script>
     <!-- End Meta Pixel Code -->
   </head>
