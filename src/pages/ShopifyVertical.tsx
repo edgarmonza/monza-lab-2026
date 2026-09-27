@@ -8,6 +8,10 @@ import PremiumBackground from "@/components/layout/PremiumBackground";
 import FooterMinimal from "@/components/FooterMinimal";
 import SEO from "@/components/SEO";
 import RadiografiaForm from "@/components/shopify/RadiografiaForm";
+import PantallaQueEscribe from "@/components/shopify/pantalla/PantallaQueEscribe";
+import Ecosistema from "@/components/shopify/ecosistema/Ecosistema";
+import AsesorWhatsApp from "@/components/shopify/asesor/AsesorWhatsApp";
+import EstelaContenido from "@/components/shopify/estela/EstelaContenido";
 import { whatsAppUrl } from "@/lib/pixel";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -46,10 +50,10 @@ const HERO_H1: L = {
   pt: "O problema quase nunca é o produto. É a loja que o trava.",
 };
 const HERO_SUB: L = {
-  es: "Construimos tu e-commerce sobre Shopify y le montamos encima el motor de agentes que opera el negocio: vende por WhatsApp, produce tu catálogo, lee tu pauta y calcula tu margen real.",
-  en: "We build your e-commerce on Shopify and layer on the agent engine that runs the business: sells over WhatsApp, produces your catalog, reads your ad spend and computes your real margin.",
-  de: "Wir bauen deinen E-Commerce auf Shopify und setzen die Agenten-Engine darauf, die das Geschäft betreibt: verkauft per WhatsApp, produziert deinen Katalog, liest deine Ads und berechnet deine echte Marge.",
-  pt: "Construímos o teu e-commerce sobre Shopify e montamos por cima o motor de agentes que opera o negócio: vende por WhatsApp, produz o teu catálogo, lê a tua pauta e calcula a tua margem real.",
+  es: "Conectamos tu tienda, tu pauta, tus clientas y tu WhatsApp en un solo sistema. Vendes más y lo operas más barato y con más eficiencia que con una agencia tradicional.",
+  en: "We connect your store, your ads, your customers and your WhatsApp into one system. You sell more, and it costs less and runs more efficiently than a traditional agency.",
+  de: "Wir verbinden deinen Store, deine Ads, deine Kundinnen und dein WhatsApp zu einem System. Du verkaufst mehr und betreibst es günstiger und effizienter als mit einer klassischen Agentur.",
+  pt: "Ligamos a tua loja, os teus anúncios, as tuas clientes e o teu WhatsApp num só sistema. Vendes mais e operas mais barato e com mais eficiência do que com uma agência tradicional.",
 };
 const CTA_PRIMARY: L = {
   es: "Ver mi tienda por dentro",
@@ -73,30 +77,46 @@ const PROOF_H2: L = {
   pt: "Isto construímos nós. Está a vender hoje.",
 };
 const PROOF_BODY: L = {
-  es: "Eleonora Morales — moda circular y lujo pre-owned. Shopify por debajo, storefront propio por encima, y una pasarela que sí cobra en Colombia, que es donde se cae la mayoría de las tiendas del país.",
-  en: "Eleonora Morales — circular fashion and pre-owned luxury. Shopify underneath, a custom storefront on top, and a checkout that actually charges in Colombia, which is where most stores here break.",
-  de: "Eleonora Morales — zirkuläre Mode und Pre-owned-Luxus. Shopify darunter, eigener Storefront darüber und ein Checkout, der in Kolumbien wirklich abrechnet — genau daran scheitern dort die meisten Stores.",
-  pt: "Eleonora Morales — moda circular e luxo pre-owned. Shopify por baixo, storefront próprio por cima, e uma gateway que cobra mesmo na Colômbia, que é onde a maioria das lojas do país cai.",
+  es: "Eleonora Morales, moda circular y lujo pre-owned. Tienda, catálogo, clientas y WhatsApp conectados en una sola operación: la asesora contesta a cualquier hora, cada pieza nueva sale publicada sin esperar una sesión de fotos y el equipo sabe qué se vende.",
+  en: "Eleonora Morales, circular fashion and pre-owned luxury. Store, catalog, customers and WhatsApp connected into one operation: the advisor answers at any hour, every new piece goes live without waiting for a shoot, and the team knows what's selling.",
+  de: "Eleonora Morales, zirkuläre Mode und Pre-owned-Luxus. Store, Katalog, Kundinnen und WhatsApp in einem Betrieb verbunden: Die Beraterin antwortet zu jeder Uhrzeit, jedes neue Teil geht ohne Shooting online, und das Team weiß, was sich verkauft.",
+  pt: "Eleonora Morales, moda circular e luxo pre-owned. Loja, catálogo, clientes e WhatsApp ligados numa só operação: a assessora responde a qualquer hora, cada peça nova é publicada sem esperar por uma sessão de fotos e a equipa sabe o que se vende.",
 };
 const PROOF_STATS: { n: L; l: L }[] = [
   {
-    n: { es: "143", en: "143", de: "143", pt: "143" },
-    l: { es: "piezas vivas en catálogo", en: "live catalog pieces", de: "Artikel im Live-Katalog", pt: "peças vivas em catálogo" },
-  },
-  {
-    n: { es: "100%", en: "100%", de: "100%", pt: "100%" },
-    l: { es: "del catálogo fotografiado con IA", en: "of the catalog shot with AI", de: "des Katalogs mit KI fotografiert", pt: "do catálogo fotografado com IA" },
-  },
-  {
     n: { es: "24/7", en: "24/7", de: "24/7", pt: "24/7" },
-    l: { es: "asesora de WhatsApp respondiendo", en: "WhatsApp advisor answering", de: "WhatsApp-Beraterin antwortet", pt: "assessora de WhatsApp a responder" },
+    l: {
+      es: "alguien contesta en WhatsApp, también de madrugada",
+      en: "someone answers on WhatsApp, even at dawn",
+      de: "jemand antwortet auf WhatsApp, auch mitten in der Nacht",
+      pt: "alguém responde no WhatsApp, até de madrugada",
+    },
+  },
+  {
+    n: { es: "0", en: "0", de: "0", pt: "0" },
+    l: {
+      es: "sesiones de estudio para publicar el catálogo",
+      en: "studio shoots to publish the catalog",
+      de: "Studio-Shootings, um den Katalog zu veröffentlichen",
+      pt: "sessões de estúdio para publicar o catálogo",
+    },
+  },
+  {
+    n: { es: "1", en: "1", de: "1", pt: "1" },
+    l: {
+      es: "equipo responde por toda la operación",
+      en: "team answers for the whole operation",
+      de: "Team steht für den ganzen Betrieb gerade",
+      pt: "equipa responde por toda a operação",
+    },
   },
 ];
 // Segunda marca de la vertical. El contrato con soloio (cláusula 8.5, «Referencia
 // comercial», firmado el 8-sep-2026) autoriza a mencionar la relación y a mostrar
 // los desarrollos entregados. NO autoriza cifras, bases de datos ni información de
 // sus clientes, y sus fotos de producto no entran a portafolio sin permiso escrito
-// previo: por eso aquí va una línea y no un caso con capturas y números.
+// previo. Ese permiso llegó el 26-sep-2026 (la web nueva en la pantalla del hero; la
+// campaña, en la estela de contenido); los números siguen fuera: aquí va una línea y no un caso.
 const ALSO_EYEBROW: L = { es: "EN CONSTRUCCIÓN AHORA", en: "IN THE WORKS NOW", de: "GERADE IM AUFBAU", pt: "EM CONSTRUÇÃO AGORA" };
 const ALSO_BODY: L = {
   es: "soloio. Lino estampado, cuatro tiendas propias y tienda en línea. Estamos montando su operación digital completa.",
@@ -118,35 +138,6 @@ const SHOT_MOBILE_ALT: L = {
   pt: "Catálogo da loja Eleonora Morales em telemóvel",
 };
 
-const LAYERS_H2: L = {
-  es: "Shopify corre la transacción. Nuestros agentes corren el negocio.",
-  en: "Shopify runs the transaction. Our agents run the business.",
-  de: "Shopify betreibt die Transaktion. Unsere Agenten betreiben das Geschäft.",
-  pt: "A Shopify corre a transação. Os nossos agentes correm o negócio.",
-};
-const LAYERS: { t: L; b: L; who: L }[] = [
-  {
-    t: { es: "La transacción", en: "The transaction", de: "Die Transaktion", pt: "A transação" },
-    b: {
-      es: "Catálogo, carrito, checkout, pagos, inventario, envíos. Es commodity y Shopify lo hace mejor que nadie. No la peleamos: montarle una capa encima para replicar lo que ya hace es trabajo que se paga dos veces y que además se rompe.",
-      en: "Catalog, cart, checkout, payments, inventory, shipping. It's commodity and Shopify does it better than anyone. We don't fight it: building a layer on top to replicate what it already does is work you pay for twice — and it breaks.",
-      de: "Katalog, Warenkorb, Checkout, Zahlungen, Bestand, Versand. Commodity — und Shopify kann das am besten. Wir kämpfen nicht dagegen: eine Schicht darüber zu bauen, die das Gleiche nachbaut, zahlst du doppelt — und sie geht kaputt.",
-      pt: "Catálogo, carrinho, checkout, pagamentos, stock, envios. É commodity e a Shopify fá-lo melhor que ninguém. Não a combatemos: montar uma camada por cima para replicar o que já faz é trabalho pago a dobrar — e que parte.",
-    },
-    who: { es: "SHOPIFY", en: "SHOPIFY", de: "SHOPIFY", pt: "SHOPIFY" },
-  },
-  {
-    t: { es: "La operación", en: "The operation", de: "Der Betrieb", pt: "A operação" },
-    b: {
-      es: "Vender, responder, catalogar, fotografiar, pautar, retener, medir margen. Eso nadie lo tiene resuelto y no se copia instalando un tema. Un tema de Shopify se reemplaza en una semana; la operación, no.",
-      en: "Selling, answering, cataloging, shooting, running ads, retaining, measuring margin. Nobody has that solved, and you can't copy it by installing a theme. A Shopify theme is replaced in a week; the operation isn't.",
-      de: "Verkaufen, antworten, katalogisieren, fotografieren, Ads fahren, binden, Marge messen. Das hat niemand gelöst, und man kopiert es nicht mit einem Theme. Ein Shopify-Theme ersetzt du in einer Woche; den Betrieb nicht.",
-      pt: "Vender, responder, catalogar, fotografar, pautar, reter, medir margem. Isso ninguém resolveu e não se copia instalando um tema. Um tema de Shopify substitui-se numa semana; a operação, não.",
-    },
-    who: { es: "MONZA", en: "MONZA", de: "MONZA", pt: "MONZA" },
-  },
-];
-
 const AGENTS_H2: L = {
   es: "Cuatro turnos cubiertos. Un solo responsable.",
   en: "Four shifts covered. One person accountable.",
@@ -154,89 +145,52 @@ const AGENTS_H2: L = {
   pt: "Quatro turnos cobertos. Um só responsável.",
 };
 const AGENTS_SUB: L = {
-  es: "Una tienda necesita a alguien contestando, a alguien atendiendo las redes, a alguien corriendo la pauta y a alguien mirando qué se agota y qué dejó plata. Son cuatro turnos — y casi siempre son dos personas, o una. No vendemos una cantidad de agentes: montamos la operación completa y respondemos por el conjunto.",
-  en: "A store needs someone answering, someone tending social, someone running the ads and someone watching what's running out and what made money. That's four shifts — and almost always two people, or one. We don't sell a number of agents: we set up the whole operation and answer for the whole.",
-  de: "Ein Shop braucht jemanden, der antwortet, jemanden, der die Social-Kanäle betreut, jemanden, der die Ads fährt, und jemanden, der im Blick hat, was ausgeht und was Geld gebracht hat. Das sind vier Schichten — und fast immer zwei Leute, oder eine. Wir verkaufen keine Anzahl an Agenten: wir bauen den kompletten Betrieb auf und stehen für das Ganze gerade.",
-  pt: "Uma loja precisa de alguém a responder, alguém a cuidar das redes, alguém a correr os anúncios e alguém a olhar para o que se esgota e o que deixou dinheiro. São quatro turnos — e quase sempre são duas pessoas, ou uma. Não vendemos uma quantidade de agentes: montamos a operação completa e respondemos pelo conjunto.",
+  es: "Una tienda necesita a alguien contestando, alguien en las redes, alguien corriendo la pauta y alguien mirando qué es rentable. Contratados por separado son cuatro personas o cuatro proveedores. Conectados en un sistema, los cuatro turnos quedan cubiertos por menos, y un solo equipo responde por el conjunto.",
+  en: "A store needs someone answering, someone on social, someone running the ads and someone watching what's profitable. Hired separately, that's four people or four vendors. Connected in one system, all four shifts are covered for less, and one team answers for the whole.",
+  de: "Ein Store braucht jemanden, der antwortet, jemanden für Social, jemanden für die Ads und jemanden, der im Blick hat, was sich rechnet. Einzeln eingekauft sind das vier Leute oder vier Dienstleister. In einem System verbunden sind alle vier Schichten günstiger abgedeckt, und ein Team steht für das Ganze gerade.",
+  pt: "Uma loja precisa de alguém a responder, alguém nas redes, alguém a correr os anúncios e alguém a ver o que é rentável. Contratados à parte, são quatro pessoas ou quatro fornecedores. Ligados num sistema, os quatro turnos ficam cobertos por menos, e uma só equipa responde pelo conjunto.",
 };
 /* Los turnos — se cuentan las sillas que quedan cubiertas, no los agentes. */
 const AGENTS: { t: L; b: L; tag?: L }[] = [
   {
     t: { es: "Quien contesta", en: "Who answers", de: "Wer antwortet", pt: "Quem responde" },
     b: {
-      es: "WhatsApp con la voz de tu marca, leyendo tu catálogo y tu inventario en vivo: asesora, resuelve la talla, reconoce la prenda por foto, arma el carrito y cierra — y nunca ofrece lo que no tienes. Después de la compra: estado del pedido, guía, cambios y la reseña. Es el turno de la madrugada, el que hoy no existe.",
-      en: "WhatsApp in your brand's voice, reading your catalog and inventory live: advises, resolves sizing, recognises the piece from a photo, builds the cart and closes — and never offers what you don't have. After the purchase: order status, tracking, exchanges and the review. It's the 3 a.m. shift, the one that doesn't exist today.",
-      de: "WhatsApp mit der Stimme deiner Marke, mit Katalog und Bestand live: berät, klärt die Größe, erkennt das Teil vom Foto, baut den Warenkorb und schließt ab — und bietet nie an, was du nicht hast. Nach dem Kauf: Bestellstatus, Sendungsverfolgung, Umtausch und die Bewertung. Die Nachtschicht — die, die es heute nicht gibt.",
-      pt: "WhatsApp com a voz da tua marca, a ler o teu catálogo e stock em direto: aconselha, resolve o tamanho, reconhece a peça pela foto, monta o carrinho e fecha — e nunca oferece o que não tens. Depois da compra: estado da encomenda, guia, trocas e a avaliação. É o turno da madrugada, o que hoje não existe.",
+      es: "Ninguna venta se enfría esperando. Asesora, resuelve la talla, arma el carrito y cierra por WhatsApp con la voz de tu marca, a cualquier hora. Después de la compra sigue: pedido, envío, cambios y reseña.",
+      en: "No sale goes cold while someone waits. It advises, sorts out the size, builds the cart and closes on WhatsApp in your brand's voice, at any hour. After the purchase it keeps going: order, shipping, exchanges and the review.",
+      de: "Kein Verkauf kühlt beim Warten ab. Berät, klärt die Größe, baut den Warenkorb und schließt per WhatsApp in der Stimme deiner Marke ab, zu jeder Uhrzeit. Nach dem Kauf geht es weiter: Bestellung, Versand, Umtausch und Bewertung.",
+      pt: "Nenhuma venda arrefece à espera. Aconselha, resolve o tamanho, monta o carrinho e fecha por WhatsApp com a voz da tua marca, a qualquer hora. Depois da compra continua: encomenda, envio, trocas e avaliação.",
     },
-    tag: { es: "VIVO EN PRODUCCIÓN", en: "LIVE IN PRODUCTION", de: "LIVE IM EINSATZ", pt: "VIVO EM PRODUÇÃO" },
+    tag: { es: "YA FUNCIONA", en: "ALREADY LIVE", de: "LÄUFT BEREITS", pt: "JÁ FUNCIONA" },
   },
   {
     t: { es: "Quien atiende las redes", en: "Who tends social", de: "Wer die Social-Kanäle betreut", pt: "Quem cuida das redes" },
     b: {
-      es: "Responde los comentarios de Instagram uno por uno y lleva la conversación al DM cuando toca. Un post se vuelve viral y no se queda ninguno sin la información. Corre en nuestra propia marca antes que en la tuya.",
-      en: "Replies to Instagram comments one by one and takes the conversation to DMs when it's time. A post goes viral and nobody is left without the info. It runs on our own brand before it runs on yours.",
-      de: "Beantwortet Instagram-Kommentare einzeln und zieht das Gespräch in die DMs, wenn es so weit ist. Ein Post geht viral, und niemand bleibt ohne Antwort. Läuft in unserer eigenen Marke, bevor es in deiner läuft.",
-      pt: "Responde aos comentários de Instagram um a um e leva a conversa para o DM quando é altura. Um post torna-se viral e ninguém fica sem a informação. Corre na nossa própria marca antes de correr na tua.",
+      es: "El interés de un post no se pierde. Cada comentario tiene respuesta y la conversación pasa al mensaje directo cuando toca. Lo probamos primero en nuestra propia marca.",
+      en: "The interest a post creates never slips away. Every comment gets an answer and the conversation moves to DMs when it's time. We run it on our own brand first.",
+      de: "Das Interesse an einem Post geht nicht verloren. Jeder Kommentar bekommt eine Antwort, und das Gespräch wandert in die DMs, wenn es so weit ist. Wir testen es zuerst an unserer eigenen Marke.",
+      pt: "O interesse de um post não se perde. Cada comentário tem resposta e a conversa passa para a mensagem direta quando é altura. Testamos primeiro na nossa própria marca.",
     },
   },
   {
     t: { es: "Quien corre la pauta", en: "Who runs the ads", de: "Wer die Ads fährt", pt: "Quem corre os anúncios" },
     b: {
-      es: "Lee tus campañas de Meta todos los días y dice qué escalar, qué pausar y qué creativo rotar — cruzado con lo que dejó plata, no con lo que tuvo más likes. Con el número de margen al lado, no a ciegas. La decisión la toma Edgar con eso en la mano.",
-      en: "Reads your Meta campaigns every day and says what to scale, what to pause and which creative to rotate — cross-checked against what made money, not what got the most likes. With the margin number beside it, not blind. Edgar makes the call with that in hand.",
-      de: "Liest deine Meta-Kampagnen jeden Tag und sagt, was skalieren, was pausieren und welches Creative rotieren — abgeglichen mit dem, was Geld gebracht hat, nicht mit dem, was die meisten Likes hatte. Mit der Margenzahl daneben, nicht blind. Die Entscheidung trifft Edgar mit dieser Zahl in der Hand.",
-      pt: "Lê as tuas campanhas de Meta todos os dias e diz o que escalar, o que pausar e que criativo rodar — cruzado com o que deixou dinheiro, não com o que teve mais likes. Com o número da margem ao lado, não às cegas. A decisão toma-a o Edgar com isso na mão.",
+      es: "El presupuesto de pauta va a lo que vende. Se revisa todos los días con las ventas reales y el margen al lado, no con los likes, y la decisión final la toma Edgar.",
+      en: "Your ad budget goes to what sells. It's reviewed every day against real sales with the margin beside it, not likes, and Edgar makes the final call.",
+      de: "Dein Werbebudget fließt in das, was verkauft. Es wird täglich mit echten Verkäufen und der Marge daneben geprüft, nicht mit Likes, und die letzte Entscheidung trifft Edgar.",
+      pt: "O orçamento dos anúncios vai para o que vende. É revisto todos os dias com as vendas reais e a margem ao lado, não com os likes, e a decisão final é do Edgar.",
     },
   },
   {
     t: { es: "Quien mira los números", en: "Who watches the numbers", de: "Wer auf die Zahlen schaut", pt: "Quem olha para os números" },
     b: {
-      es: "Costo por producto, margen real, cuánto te cuesta una clienta y cuánto vale con el tiempo. Qué talla se está agotando, qué prenda deja plata de verdad, cuáles clientas se están enfriando. Es el que produce el número que los otros tres necesitan — y ese turno es el tablero: lo abres tú, no nosotros.",
-      en: "Cost per product, real margin, what a customer costs you and what she's worth over time. Which size is running out, which piece really makes money, which customers are going cold. It produces the number the other three need — and that shift is the dashboard: you open it, not us.",
-      de: "Kosten pro Produkt, echte Marge, was eine Kundin kostet und über die Zeit wert ist. Welche Größe ausgeht, welches Teil wirklich Geld bringt, welche Kundinnen kalt werden. Sie liefert die Zahl, die die anderen drei brauchen — und diese Schicht ist das Dashboard: du öffnest es, nicht wir.",
-      pt: "Custo por produto, margem real, quanto te custa uma cliente e quanto vale ao longo do tempo. Que tamanho se está a esgotar, que peça deixa dinheiro a sério, que clientes estão a arrefecer. É o que produz o número que os outros três precisam — e esse turno é o painel: abres tu, não nós.",
+      es: "Sabes qué es rentable antes de fin de mes: margen real, qué se agota, qué cliente se enfría y cuánto vale con el tiempo. Es el tablero, y lo abres tú.",
+      en: "You know what's profitable before month-end: real margin, what's running out, which customers are going cold and what they're worth over time. It's the dashboard, and you open it.",
+      de: "Du weißt vor Monatsende, was sich rechnet: echte Marge, was ausgeht, welche Kunden abkühlen und was sie über die Zeit wert sind. Das ist das Dashboard, und du öffnest es.",
+      pt: "Sabes o que é rentável antes do fim do mês: margem real, o que se esgota, que clientes estão a arrefecer e quanto valem com o tempo. É o painel, e abres tu.",
     },
     tag: { es: "EL TABLERO", en: "THE DASHBOARD", de: "DAS DASHBOARD", pt: "O PAINEL" },
   },
 ];
-/* Lo que el sistema produce mientras los turnos corren. */
-const PRODUCES_H3: L = {
-  es: "Y lo que el sistema produce mientras los turnos corren",
-  en: "And what the system produces while the shifts run",
-  de: "Und was das System produziert, während die Schichten laufen",
-  pt: "E o que o sistema produz enquanto os turnos correm",
-};
-const PRODUCES: { t: L; b: L }[] = [
-  {
-    t: { es: "Imagen", en: "Imagery", de: "Bild", pt: "Imagem" },
-    b: {
-      es: "De una foto real de cada prenda salen las escenas, los fondos y los formatos — de 100 fotos salen 300, sin sesión ni estudio. Cambiamos la escena, nunca el producto: una foto que miente dispara las devoluciones. Cada pieza se valida contra el original antes de publicarse.",
-      en: "From one real photo of each piece come the scenes, backgrounds and formats — 100 photos become 300, no shoot, no studio. We change the scene, never the product: a photo that lies drives returns. Every image is validated against the original before it's published.",
-      de: "Aus einem echten Foto jedes Teils entstehen Szenen, Hintergründe und Formate — aus 100 Fotos werden 300, ohne Shooting, ohne Studio. Wir ändern die Szene, nie das Produkt: ein Foto, das lügt, treibt Retouren. Jedes Bild wird vor der Veröffentlichung am Original geprüft.",
-      pt: "De uma foto real de cada peça saem as cenas, os fundos e os formatos — de 100 fotos saem 300, sem sessão nem estúdio. Mudamos a cena, nunca o produto: uma foto que mente dispara devoluções. Cada peça é validada contra o original antes de ser publicada.",
-    },
-  },
-  {
-    t: { es: "Catálogo", en: "Catalog", de: "Katalog", pt: "Catálogo" },
-    b: {
-      es: "Del set de fotos a la ficha publicada: título, descripción, tags, variantes y el canal correcto. Es la tarea que más horas se come y la que menos criterio necesita.",
-      en: "From photo set to published page: title, description, tags, variants and the right channel. The task that eats the most hours and needs the least judgment.",
-      de: "Vom Foto-Set zur veröffentlichten Seite: Titel, Beschreibung, Tags, Varianten und der richtige Kanal. Die Aufgabe, die am meisten Zeit frisst und am wenigsten Urteil braucht.",
-      pt: "Do set de fotos à ficha publicada: título, descrição, tags, variantes e o canal certo. A tarefa que mais horas come e menos critério exige.",
-    },
-  },
-  {
-    t: { es: "La base que se acuerda", en: "The base that remembers", de: "Die Basis, die sich erinnert", pt: "A base que se lembra" },
-    b: {
-      es: "Tus clientas ordenadas y segmentadas, con flujos que trabajan solos: carrito abandonado, bienvenida, post-compra, reactivación a los 90 días, cumpleaños y preventa a las de siempre. Casi siempre hay más plata en la lista vieja que en la pauta nueva.",
-      en: "Your customers cleaned and segmented, with flows that work on their own: abandoned cart, welcome, post-purchase, 90-day reactivation, birthday and pre-sale to the regulars. There's almost always more money in the old list than in new ads.",
-      de: "Deine Kundinnen geordnet und segmentiert, mit Flows, die von allein laufen: abgebrochener Warenkorb, Willkommen, Nachkauf, Reaktivierung nach 90 Tagen, Geburtstag und Vorverkauf an die Stammkundinnen. Fast immer steckt mehr Geld in der alten Liste als in neuen Ads.",
-      pt: "As tuas clientes ordenadas e segmentadas, com fluxos que trabalham sozinhos: carrinho abandonado, boas-vindas, pós-compra, reativação aos 90 dias, aniversário e pré-venda às de sempre. Quase sempre há mais dinheiro na lista antiga do que nos anúncios novos.",
-    },
-  },
-];
-
 const CLOSING_H2: L = {
   es: "Empieza por ver tu tienda como la ve tu clienta.",
   en: "Start by seeing your store the way your customer sees it.",
@@ -279,42 +233,74 @@ const ShopifyVertical = () => {
     <PremiumBackground>
       <SEO path="/shopify" title={p.seoTitle} description={p.seoDescription} jsonLd={[serviceLd, faqLd]} />
       <main id="main" className="pt-32 md:pt-40">
-        {/* Hero */}
-        <section className="mx-auto max-w-[1100px] px-6 md:px-10 pb-2 md:pb-6">
-          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE }}>
-            <p className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-5" style={{ color: `${PINK}c0` }}>
-              {HERO_EYEBROW[lang]}
-            </p>
-            <h1
-              className="font-clash font-bold leading-[1.04] mb-6 max-w-[16ch]"
-              style={{ fontSize: "clamp(34px, 6.2vw, 74px)", letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.94)" }}
+        {/* Hero — en el celular: título, pantalla, párrafo y botón; desde xl, el texto a la
+            izquierda y la pantalla a la derecha. Un solo DOM con áreas de grilla. */}
+        <section className="mx-auto max-w-[1200px] px-6 md:px-10 pb-2 md:pb-6">
+          <div className="grid [grid-template-areas:'texto'_'pantalla'_'accion'] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] xl:[grid-template-areas:'texto_pantalla'_'accion_pantalla'] xl:gap-x-14 xl:items-center">
+            <motion.div
+              className="[grid-area:texto] xl:self-end"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: EASE }}
             >
-              {HERO_H1[lang]}
-            </h1>
-            <p className="font-clash text-base md:text-xl max-w-2xl leading-relaxed mb-10" style={{ color: "rgba(var(--text-rgb), 0.6)" }}>
-              {HERO_SUB[lang]}
-            </p>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-              <button
-                type="button"
-                onClick={scrollToForm}
-                className="font-clash text-[12px] tracking-[0.2em] uppercase font-semibold rounded-full px-8 py-4 transition-all duration-300 hover:scale-[1.03] w-full sm:w-auto"
-                style={{ background: PINK, color: "#0B0B10", boxShadow: `0 0 40px ${PINK}30` }}
+              <p className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-5" style={{ color: `${PINK}c0` }}>
+                {HERO_EYEBROW[lang]}
+              </p>
+              <h1
+                className="font-clash font-bold leading-[1.04] mb-8 xl:mb-6 max-w-[16ch] [text-wrap:balance] text-[length:clamp(34px,6.2vw,74px)] xl:text-[length:clamp(40px,3.8vw,58px)]"
+                style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.94)" }}
               >
-                {CTA_PRIMARY[lang]} →
-              </button>
-              <a
-                href={whatsAppUrl(WA_MSG[lang])}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-clash text-[12px] tracking-[0.2em] uppercase font-medium inline-flex items-center justify-center sm:justify-start min-h-[44px] px-2 -mx-2"
-                style={{ color: "rgba(var(--text-rgb), 0.55)" }}
-              >
-                {CTA_WA[lang]}
-              </a>
-            </div>
-          </motion.div>
+                {HERO_H1[lang]}
+              </h1>
+            </motion.div>
+            <motion.div
+              className="[grid-area:pantalla] w-full max-w-[760px] mb-10 xl:mb-0"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: EASE, delay: 0.12 }}
+            >
+              <PantallaQueEscribe lang={lang} onPedir={scrollToForm} />
+            </motion.div>
+            <motion.div
+              className="[grid-area:accion] xl:self-start"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
+            >
+              <p className="font-clash text-base md:text-xl xl:text-lg max-w-2xl leading-relaxed mb-10" style={{ color: "rgba(var(--text-rgb), 0.6)" }}>
+                {HERO_SUB[lang]}
+              </p>
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-x-6">
+                <button
+                  type="button"
+                  onClick={scrollToForm}
+                  className="font-clash text-[12px] tracking-[0.2em] uppercase font-semibold rounded-full px-8 py-4 transition-all duration-300 hover:scale-[1.03] w-full sm:w-auto"
+                  style={{ background: PINK, color: "#0B0B10", boxShadow: `0 0 40px ${PINK}30` }}
+                >
+                  {CTA_PRIMARY[lang]} →
+                </button>
+                <a
+                  href={whatsAppUrl(WA_MSG[lang])}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-clash text-[12px] tracking-[0.2em] uppercase font-medium inline-flex items-center justify-center sm:justify-start min-h-[44px] px-2 -mx-2"
+                  style={{ color: "rgba(var(--text-rgb), 0.55)" }}
+                >
+                  {CTA_WA[lang]}
+                </a>
+              </div>
+            </motion.div>
+          </div>
         </section>
+
+        {/* El ecosistema: la tienda en el centro y lo que gana con cada pieza */}
+        <Ecosistema lang={lang} />
+
+        {/* El asesor en WhatsApp: el video */}
+        <AsesorWhatsApp lang={lang} />
+
+        {/* Contenido: la estela, a todo el ancho (el efecto de la web de Eleonora) */}
+        <EstelaContenido lang={lang} />
 
         {/* Prueba — capturas de una tienda real */}
         <Section>
@@ -397,50 +383,7 @@ const ShopifyVertical = () => {
           </div>
         </Section>
 
-        {/* Reparto de capas */}
-        <Section>
-          <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-            <h2
-              className="font-clash font-bold mb-10 md:mb-14 max-w-[22ch]"
-              style={{ fontSize: "clamp(26px, 4.2vw, 46px)", letterSpacing: "-0.02em", lineHeight: 1.1, color: "rgba(var(--text-rgb), 0.93)" }}
-            >
-              {LAYERS_H2[lang]}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-              {LAYERS.map((l, i) => {
-                const ours = i === 1;
-                return (
-                  <div
-                    key={i}
-                    className="rounded-2xl p-7 md:p-10"
-                    style={{
-                      border: ours ? `1px solid ${PINK}44` : "1px solid rgba(var(--text-rgb), 0.08)",
-                      background: ours ? `${PINK}08` : "rgba(var(--text-rgb), 0.02)",
-                    }}
-                  >
-                    <span
-                      className="font-clash text-[10px] tracking-[0.3em] uppercase font-semibold block mb-5"
-                      style={{ color: ours ? PINK : "rgba(var(--text-rgb), 0.35)" }}
-                    >
-                      {l.who[lang]}
-                    </span>
-                    <h3
-                      className="font-clash font-bold text-xl md:text-2xl mb-4"
-                      style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.92)" }}
-                    >
-                      {l.t[lang]}
-                    </h3>
-                    <p className="font-clash text-sm md:text-[15px] leading-relaxed" style={{ color: "rgba(var(--text-rgb), 0.55)" }}>
-                      {l.b[lang]}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </Section>
-
-        {/* Los cuatro turnos + lo que el sistema produce */}
+        {/* Los cuatro turnos */}
         <Section>
           <div className="mx-auto max-w-[1200px] px-6 md:px-10">
             <h2
@@ -478,35 +421,6 @@ const ShopifyVertical = () => {
                   >
                     {a.t[lang]}
                   </h3>
-                  <p className="font-clash text-[13px] md:text-sm leading-relaxed" style={{ color: "rgba(var(--text-rgb), 0.5)" }}>
-                    {a.b[lang]}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <h3
-              className="font-clash font-semibold mt-14 md:mt-16 mb-6 md:mb-8"
-              style={{ fontSize: "clamp(20px, 2.6vw, 28px)", letterSpacing: "-0.015em", color: "rgba(var(--text-rgb), 0.9)" }}
-            >
-              {PRODUCES_H3[lang]}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {PRODUCES.map((a, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl p-6 md:p-7 flex flex-col"
-                  style={{ border: "1px solid rgba(var(--text-rgb), 0.08)", background: "rgba(var(--text-rgb), 0.02)" }}
-                >
-                  <span className="font-mono text-[10px] tracking-[0.25em] mb-4" style={{ color: `${PINK}b0` }}>
-                    0{i + 1}
-                  </span>
-                  <h4
-                    className="font-clash font-semibold text-lg md:text-xl mb-3"
-                    style={{ letterSpacing: "-0.015em", color: "rgba(var(--text-rgb), 0.9)" }}
-                  >
-                    {a.t[lang]}
-                  </h4>
                   <p className="font-clash text-[13px] md:text-sm leading-relaxed" style={{ color: "rgba(var(--text-rgb), 0.5)" }}>
                     {a.b[lang]}
                   </p>

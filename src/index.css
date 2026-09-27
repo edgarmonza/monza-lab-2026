@@ -519,3 +519,789 @@ All colors MUST be HSL.
     filter: grayscale(1) saturate(0) brightness(1.85) contrast(1.15);
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PANTALLA QUE ESCRIBE · hero de /shopify
+   Componente: src/components/shopify/pantalla/. La ventana es una pantalla:
+   oscura en los dos temas. Tamaños con cqw (relativos al ancho de la ventana),
+   cada uno con su respaldo en px para navegadores sin container queries.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.pantalla-marco {
+  container: pantalla / inline-size;
+  background: #121019;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 60px -20px rgba(6, 5, 10, 0.65);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.theme-modena .pantalla-marco {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 60px -24px rgba(43, 31, 31, 0.42);
+}
+.pantalla-barra {
+  background: linear-gradient(180deg, #1b1923 0%, #15131c 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.pantalla-direccion {
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.35s ease;
+}
+.pantalla-direccion.is-esperando {
+  box-shadow:
+    inset 0 0 0 1px rgba(248, 180, 217, 0.6),
+    0 0 0 4px rgba(248, 180, 217, 0.12);
+}
+.pantalla-url {
+  font-family: "Public Sans", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 252, 247, 0.9);
+  white-space: nowrap;
+}
+.pantalla-seleccion {
+  background: rgba(248, 180, 217, 0.34);
+  border-radius: 3px;
+}
+.pantalla-marcador {
+  margin-left: 3px;
+  color: rgba(255, 252, 247, 0.4);
+}
+.pantalla-cursor {
+  display: inline-block;
+  flex: none;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 1px;
+  border-radius: 1px;
+  background: #f8b4d9;
+  vertical-align: -0.15em;
+}
+.pantalla-cursor.is-parpadeo {
+  animation: pantalla-parpadeo 1.1s steps(1, end) infinite;
+}
+.pantalla-cursor--frase {
+  width: 0.08em;
+  min-width: 2px;
+  height: 0.92em;
+  margin-left: 0.05em;
+  vertical-align: -0.08em;
+}
+@keyframes pantalla-parpadeo {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+.pantalla-aviso {
+  padding: 3px 7px;
+  border-radius: 999px;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f8b4d9;
+  background: rgba(248, 180, 217, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(248, 180, 217, 0.3);
+}
+.pantalla-carga {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: #f8b4d9;
+  box-shadow: 0 0 10px rgba(248, 180, 217, 0.7);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+}
+.pantalla-giro {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.6px solid rgba(255, 252, 247, 0.18);
+  border-top-color: #f8b4d9;
+  animation: pantalla-gira 0.7s linear infinite;
+}
+@keyframes pantalla-gira {
+  to { transform: rotate(360deg); }
+}
+.pantalla-contenido {
+  aspect-ratio: 7 / 9;
+  background: #0b0b10;
+}
+/* Misma regla que MEDIA_ESCRITORIO en tiendas.ts: con ella el <picture> elige la captura. */
+@media (min-width: 528px) {
+  .pantalla-contenido { aspect-ratio: 16 / 10; }
+}
+
+/* Pestaña nueva: lo que hay antes de la primera tienda */
+.pantalla-nueva {
+  background:
+    radial-gradient(70% 55% at 50% 42%, rgba(248, 180, 217, 0.06), transparent 70%),
+    #0b0b10;
+}
+.pantalla-acceso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: "Public Sans", system-ui, sans-serif;
+  font-size: 10px;
+  font-size: clamp(9.5px, 2.6cqw, 11.5px);
+  font-weight: 500;
+  color: rgba(255, 252, 247, 0.4);
+  transition: color 0.3s ease;
+}
+.pantalla-acceso-icono {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  width: clamp(38px, 11cqw, 52px);
+  height: clamp(38px, 11cqw, 52px);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  color: rgba(255, 252, 247, 0.55);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+.pantalla-acceso-icono img,
+.pantalla-acceso-icono svg {
+  width: 42%;
+  height: 42%;
+  border-radius: 4px;
+}
+.pantalla-acceso.is-on {
+  color: rgba(255, 252, 247, 0.9);
+}
+.pantalla-acceso.is-on .pantalla-acceso-icono {
+  background: rgba(248, 180, 217, 0.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(248, 180, 217, 0.55),
+    0 0 20px rgba(248, 180, 217, 0.2);
+}
+
+/* El sistema, como lo estamos montando en soloio */
+.pantalla-fantasma {
+  position: absolute;
+  right: -2cqw;
+  bottom: -5cqw;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 34cqw;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: rgba(255, 252, 247, 0.035);
+  pointer-events: none;
+  user-select: none;
+  z-index: -1; /* detrás del texto, dentro de la capa del sistema */
+}
+.pantalla-sistema {
+  padding: 24px 22px;
+  padding: 7cqw 6.5cqw;
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgba(248, 180, 217, 0.11), transparent 60%),
+    radial-gradient(rgba(255, 252, 247, 0.05) 1px, transparent 1.3px) 0 0 / 18px 18px,
+    #0b0b10;
+}
+@media (min-width: 528px) {
+  .pantalla-sistema { padding: 4.4cqw 5.5cqw; }
+}
+.pantalla-antetitulo {
+  margin-bottom: 14px;
+  margin-bottom: clamp(12px, 3.6cqw, 18px);
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 9px;
+  font-size: clamp(8.5px, 2.4cqw, 11px);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(248, 180, 217, 0.88);
+}
+.pantalla-linea {
+  margin-bottom: 14px;
+  margin-bottom: clamp(12px, 3cqw, 16px);
+}
+.pantalla-frase {
+  min-height: 1.12em;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 21px;
+  font-size: clamp(20px, 6.2cqw, 27px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: rgba(255, 252, 247, 0.95);
+}
+.pantalla-frase--cierre {
+  margin-top: 2px;
+}
+.pantalla-chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px 8px;
+  margin-top: 8px;
+  margin-top: clamp(7px, 2cqw, 10px);
+}
+.pantalla-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 24px;
+  height: clamp(22px, 7cqw, 27px);
+  padding: 0 8px 0 6px;
+  border-radius: 999px;
+  font-family: "Public Sans", system-ui, sans-serif;
+  font-size: 10.5px;
+  font-size: clamp(10px, 3.1cqw, 12px);
+  font-weight: 500;
+  white-space: nowrap;
+  color: rgba(255, 252, 247, 0.86);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(5px) scale(0.96);
+  transition:
+    opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+.pantalla-chip.is-on {
+  opacity: 1;
+  transform: none;
+}
+.pantalla-chip-icono {
+  display: grid;
+  place-items: center;
+  width: 1.15em;
+  height: 1.15em;
+  color: rgba(255, 252, 247, 0.62);
+  transition: color 0.45s ease;
+}
+.pantalla-chip-icono svg {
+  width: 100%;
+  height: 100%;
+}
+/* El cable entre una pieza y la siguiente */
+.pantalla-chip + .pantalla-chip::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: rgba(248, 180, 217, 0.28);
+}
+.pantalla-chip[data-fila="nueva"]::before {
+  display: none;
+}
+/* Frase completa y todo conectado: la luz corre por los cables y las piezas laten en orden */
+.pantalla-linea.is-vivo .pantalla-chip {
+  box-shadow: inset 0 0 0 1px rgba(248, 180, 217, 0.4);
+  animation: pantalla-latido 2.6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.22s);
+}
+.pantalla-linea.is-vivo .pantalla-chip-icono {
+  color: #f8b4d9;
+}
+.pantalla-linea.is-vivo .pantalla-chip + .pantalla-chip::before {
+  background: linear-gradient(90deg, rgba(248, 180, 217, 0.18) 0%, #f8b4d9 50%, rgba(248, 180, 217, 0.18) 100%);
+  background-size: 300% 100%;
+  animation: pantalla-flujo 2.6s linear infinite;
+  animation-delay: calc(var(--i) * 0.22s - 0.3s);
+}
+@keyframes pantalla-latido {
+  0%, 100% { box-shadow: inset 0 0 0 1px rgba(248, 180, 217, 0.4), 0 0 0 0 rgba(248, 180, 217, 0); }
+  30% { box-shadow: inset 0 0 0 1px rgba(248, 180, 217, 0.8), 0 0 16px rgba(248, 180, 217, 0.32); }
+}
+@keyframes pantalla-flujo {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0% 0; }
+}
+
+/* Controles */
+.pantalla-capitulo {
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(var(--text-rgb), 0.42);
+  transition: color 0.3s ease;
+}
+.pantalla-capitulo.is-actual,
+.pantalla-capitulo:hover {
+  color: rgba(var(--text-rgb), 0.92);
+}
+.pantalla-barrita {
+  display: block;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(var(--text-rgb), 0.12);
+}
+.pantalla-barrita > span {
+  display: block;
+  height: 100%;
+  background: #f8b4d9;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.pantalla-pausa {
+  color: rgba(var(--text-rgb), 0.7);
+  box-shadow: inset 0 0 0 1px rgba(var(--text-rgb), 0.14);
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+.pantalla-pausa:hover {
+  color: rgba(var(--text-rgb), 0.95);
+  box-shadow: inset 0 0 0 1px rgba(248, 180, 217, 0.6);
+}
+.pantalla-capitulo:focus-visible,
+.pantalla-pausa:focus-visible {
+  outline: 2px solid #f8b4d9;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+.pantalla-pausa:focus-visible {
+  border-radius: 999px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pantalla-marco { transform: none !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ECOSISTEMA · /shopify (src/components/shopify/ecosistema/)
+   Primero el celular: la órbita llena el ancho; tamaños en cqw de la órbita.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.eco-orbita {
+  container-type: inline-size;
+}
+.eco-anillo {
+  fill: none;
+  stroke: rgba(var(--text-rgb), 0.1);
+  stroke-width: 0.25;
+  stroke-dasharray: 0.6 1.3;
+}
+.eco-cable {
+  stroke: rgba(var(--accent-rgb), 0.2);
+  stroke-width: 0.3;
+  transition: stroke 0.45s ease, stroke-width 0.45s ease;
+}
+.eco-cable.is-on {
+  stroke: rgba(var(--accent-rgb), 0.85);
+  stroke-width: 0.5;
+}
+.eco-pulso {
+  fill: #f8b4d9;
+}
+.eco-pulso--vuelta {
+  fill: rgba(var(--text-rgb), 0.6);
+}
+.eco-centro {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 27%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(248, 180, 217, 0.26), rgba(248, 180, 217, 0.07) 62%, transparent 74%),
+    rgba(var(--text-rgb), 0.03);
+  box-shadow:
+    inset 0 0 0 1px rgba(248, 180, 217, 0.45),
+    0 0 44px rgba(248, 180, 217, 0.16);
+  color: rgba(var(--text-rgb), 0.92);
+}
+.eco-centro-icono {
+  width: 30%;
+  aspect-ratio: 1;
+  color: #f8b4d9;
+}
+.eco-centro-icono svg {
+  width: 100%;
+  height: 100%;
+}
+.eco-centro-nombre {
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 10px;
+  font-size: clamp(9.5px, 2.7cqw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.eco-pieza {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 44px;
+  padding: 2px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  color: rgba(var(--text-rgb), 0.6);
+  -webkit-tap-highlight-color: transparent;
+}
+.eco-pieza-icono {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  width: clamp(42px, 13cqw, 58px);
+  height: clamp(42px, 13cqw, 58px);
+  border-radius: 50%;
+  background: rgba(var(--text-rgb), 0.05);
+  box-shadow: inset 0 0 0 1px rgba(var(--text-rgb), 0.13);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, background 0.35s ease, color 0.35s ease;
+}
+.eco-pieza-icono svg {
+  width: 44%;
+  height: 44%;
+}
+.eco-pieza-nombre {
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 10px;
+  font-size: clamp(9.5px, 2.6cqw, 11.5px);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.35s ease;
+}
+.eco-pieza:hover .eco-pieza-icono {
+  box-shadow: inset 0 0 0 1px rgba(248, 180, 217, 0.55);
+}
+.eco-pieza.is-on {
+  color: rgba(var(--text-rgb), 0.95);
+}
+.eco-pieza.is-on .eco-pieza-icono {
+  transform: scale(1.1);
+  color: #f8b4d9;
+  background: rgba(248, 180, 217, 0.12);
+  box-shadow:
+    inset 0 0 0 1.5px #f8b4d9,
+    0 0 26px rgba(248, 180, 217, 0.35);
+}
+.eco-pieza:focus-visible {
+  outline: 2px solid #f8b4d9;
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+.eco-relato {
+  min-height: 200px;
+}
+.eco-kicker {
+  margin-bottom: 14px;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(248, 180, 217, 0.85);
+}
+.eco-titulo {
+  margin-bottom: 12px;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: clamp(26px, 6.4vw, 40px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: rgba(var(--text-rgb), 0.95);
+  text-wrap: balance;
+}
+.eco-texto {
+  max-width: 34rem;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(var(--text-rgb), 0.62);
+}
+.eco-entra {
+  animation: eco-entra 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes eco-entra {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.eco-segmentos {
+  display: flex;
+  flex: 1;
+  gap: 5px;
+  max-width: 320px;
+}
+.eco-segmentos > span {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgba(var(--text-rgb), 0.12);
+}
+.eco-segmentos > span.is-lleno {
+  background: rgba(248, 180, 217, 0.75);
+}
+.eco-segmentos > span > i {
+  position: absolute;
+  inset: 0;
+  background: #f8b4d9;
+  transform-origin: left center;
+  animation: eco-llenar linear forwards;
+}
+.eco-segmentos > span > i.is-quieto {
+  animation-play-state: paused;
+}
+@keyframes eco-llenar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ASESOR EN WHATSAPP · /shopify (src/components/shopify/asesor/)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.asesor-video {
+  overflow: hidden;
+  border-radius: 22px;
+  aspect-ratio: 4 / 5;
+  background: #fbf8f3;
+  box-shadow:
+    0 30px 60px -22px rgba(6, 5, 10, 0.6),
+    0 0 60px rgba(248, 180, 217, 0.14);
+}
+.theme-modena .asesor-video {
+  box-shadow:
+    0 30px 60px -26px rgba(43, 31, 31, 0.4),
+    0 0 0 1px rgba(11, 11, 16, 0.06);
+}
+.asesor-pausa {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #0b0b10;
+  background: rgba(251, 248, 243, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(11, 11, 16, 0.12);
+  opacity: 0.8;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.asesor-pausa:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.asesor-pausa:focus-visible {
+  outline: 2px solid #f8b4d9;
+  outline-offset: 2px;
+}
+.asesor-check {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border-radius: 50%;
+  color: #0b0b10;
+  background: #f8b4d9;
+}
+.asesor-check svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ESTELA DE CONTENIDO · /shopify (src/components/shopify/estela/)
+   El efecto de la sección «AI Atelier» de la web de Eleonora, en Monza.
+   La sala es oscura en los dos temas (como la de Eleonora).
+   ═══════════════════════════════════════════════════════════════════════════ */
+.estela {
+  --estela-marca: clamp(92px, 29vw, 360px);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 90vh;
+  min-height: 90svh;
+  padding: 24px 24px 0;
+  background: #0b0b10;
+  color: #fffcf7;
+}
+@media (min-width: 768px) {
+  .estela { padding: 40px 40px 0; }
+}
+@media (pointer: fine) {
+  .estela { cursor: crosshair; }
+}
+.estela-fondo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 45% at 50% 32%, rgba(248, 180, 217, 0.1), transparent 70%),
+    radial-gradient(90% 55% at 50% 112%, rgba(248, 180, 217, 0.14), transparent 62%);
+}
+.estela-fondo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.estela-marca {
+  position: absolute;
+  left: 50%;
+  bottom: -0.1em;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  transform: translateX(-50%);
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: var(--estela-marca);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: #f8b4d9;
+  text-shadow: 0 2px 50px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  user-select: none;
+}
+.estela-marca-casco {
+  height: calc(1em * var(--logo-cap-ratio, 0.705));
+  width: auto;
+  margin: 0 0.01em;
+  transform: translateY(var(--logo-helmet-y-offset, -0.0543em));
+}
+.estela-pista {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.estela-carta {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;
+  width: clamp(140px, 40vw, 250px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 252, 247, 0.14);
+  background: #1a1a22;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.estela-carta.is-quieta {
+  opacity: 1;
+}
+.estela-carta img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.estela-pie {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255, 252, 247, 0.92);
+  background: rgba(11, 11, 16, 0.66);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.estela-pista-texto {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 252, 247, 0.55);
+  pointer-events: none;
+}
+.estela-pista-texto i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f8b4d9;
+  animation: estela-latido 1.8s ease-in-out infinite;
+}
+@keyframes estela-latido {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(248, 180, 217, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(248, 180, 217, 0); }
+}
+.estela-contenido {
+  position: relative;
+  z-index: 3;
+  max-width: 40rem;
+  padding-bottom: calc(var(--estela-marca) * 0.66 + 18px);
+}
+.estela-antetitulo {
+  margin-bottom: 12px;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 252, 247, 0.62);
+}
+.estela-titulo {
+  max-width: 16ch;
+  margin-bottom: 12px;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: clamp(28px, 7vw, 56px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: #fffcf7;
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.6);
+}
+.estela-sub {
+  max-width: 34rem;
+  font-family: "Clash Display", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 252, 247, 0.74);
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.7);
+}
+@media (min-width: 768px) {
+  .estela-sub { font-size: 17px; }
+}
