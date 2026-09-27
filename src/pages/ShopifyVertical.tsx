@@ -93,12 +93,12 @@ const PROOF_STATS: { n: L; l: L }[] = [
     },
   },
   {
-    n: { es: "0", en: "0", de: "0", pt: "0" },
+    n: { es: "4–5", en: "4–5", de: "4–5", pt: "4–5" },
     l: {
-      es: "sesiones de estudio para publicar el catálogo",
-      en: "studio shoots to publish the catalog",
-      de: "Studio-Shootings, um den Katalog zu veröffentlichen",
-      pt: "sessões de estúdio para publicar o catálogo",
+      es: "personas: el trabajo que hacía un equipo así, hoy lo hacen los agentes, y con más eficiencia",
+      en: "people: the work a team like that used to do, the agents now do, and more efficiently",
+      de: "Personen: Die Arbeit, die so ein Team gemacht hat, erledigen heute die Agenten, und effizienter",
+      pt: "pessoas: o trabalho que fazia uma equipa assim, hoje fazem-no os agentes, e com mais eficiência",
     },
   },
   {

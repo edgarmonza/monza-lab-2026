@@ -25,3 +25,12 @@ describe("el copy de /shopify habla de resultados", () => {
     expect(textos("es").join(" ")).toMatch(/más barato y con más eficiencia que con una agencia tradicional/);
   });
 });
+
+describe("la página compila", () => {
+  // Las pruebas de copy leen el archivo como texto: una llave de más pasaría sin ruido (pasó el
+  // 27-sep al cambiar un dato). Importarla obliga a que el archivo sea TSX válido.
+  it("se puede importar", async () => {
+    const m = await import("./ShopifyVertical");
+    expect(typeof m.default).toBe("function");
+  });
+});
