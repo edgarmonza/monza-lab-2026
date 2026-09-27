@@ -11,55 +11,30 @@ import { useEffect, useRef, useState } from "react";
 import HelmetIcon from "@/components/HelmetIcon";
 import type { Lang } from "@/i18n/types";
 import { COPY_ESTELA, FOTOS, PIE } from "./fotos";
+import { encuadrar, patronPara, quietasPara } from "./colocar";
 
 const VIDA = 1600; // ms de cada foto en pantalla
 const PASO_MOUSE = 110; // px que hay que mover el mouse para que salga otra
 const PASO_DEDO = 80;
 
-/** El collage de quien pide menos movimiento: índice de la foto, posición en % y giro. */
-const QUIETAS = [
-  { i: 0, x: 20, y: 24, r: -5 },
-  { i: 1, x: 50, y: 16, r: 3 },
-  { i: 2, x: 80, y: 27, r: -3 },
-  { i: 5, x: 34, y: 42, r: 4 },
-  { i: 4, x: 66, y: 44, r: -4 },
-];
-
-/** La ráfaga con que se enciende la sala al entrar, en fracciones del ancho y del alto. Las tres
- *  últimas se quedan quietas: sin foto de fondo (la de Eleonora sí la tiene), la sala se vería
- *  vacía cuando nadie la toca. */
-type Punto = { x: number; y: number; queda?: boolean };
-/** Celular: el texto ocupa todo el ancho, así que el collage queda en la franja de arriba. */
-const RAFAGA_ANGOSTA: Punto[] = [
-  { x: 0.3, y: 0.3 },
-  { x: 0.72, y: 0.24 },
-  { x: 0.5, y: 0.4 },
-  { x: 0.2, y: 0.24, queda: true },
-  { x: 0.52, y: 0.17, queda: true },
-  { x: 0.82, y: 0.3, queda: true },
-];
-/** Escritorio: el texto va a la izquierda, así que el collage queda en la mitad derecha. */
-const RAFAGA_ANCHA: Punto[] = [
-  { x: 0.34, y: 0.22 },
-  { x: 0.7, y: 0.5 },
-  { x: 0.5, y: 0.3 },
-  { x: 0.6, y: 0.3, queda: true },
-  { x: 0.76, y: 0.2, queda: true },
-  { x: 0.9, y: 0.38, queda: true },
-];
-
 const prefiereQuieto = () => typeof window !== "undefined" && !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 const conMouse = () => typeof window !== "undefined" && !!window.matchMedia?.("(pointer: fine)").matches;
+/** Desde 1024 px el collage va sobre toda la sala, a la derecha del texto (misma regla que index.css). */
+const esAncha = () => typeof window !== "undefined" && !!window.matchMedia?.("(min-width: 1024px)").matches;
 
 const EstelaContenido = ({ lang }: { lang: Lang }) => {
   const [quieto] = useState(prefiereQuieto);
   const [mouse] = useState(conMouse);
+  const [ancha] = useState(esAncha);
+  const [quietas] = useState(() => quietasPara(ancha, typeof window !== "undefined" ? window.innerWidth : 1440));
   const seccion = useRef<HTMLElement>(null);
+  const pista = useRef<HTMLDivElement>(null);
   const cartas = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const sec = seccion.current;
-    if (quieto || !sec) return;
+    const franja = pista.current;
+    if (quieto || !sec || !franja) return;
     let idx = 0;
     let z = 10;
     let ultimo: { x: number; y: number } | null = null;
@@ -70,8 +45,10 @@ const EstelaContenido = ({ lang }: { lang: Lang }) => {
       idx++;
       if (!el || typeof el.animate !== "function") return;
       const giro = (Math.random() * 8 - 4).toFixed(1);
-      el.style.left = `${x}px`;
-      el.style.top = `${y}px`;
+      // Las que se quedan, enteras dentro de su franja: ni cortadas por el borde ni encima del texto.
+      const p = queda ? encuadrar(x, y, franja.offsetWidth, franja.offsetHeight, el.offsetWidth, el.offsetHeight) : { x, y };
+      el.style.left = `${p.x}px`;
+      el.style.top = `${p.y}px`;
       el.style.zIndex = String(++z);
       el.getAnimations().forEach((a) => a.cancel());
       const entra = { opacity: 0, transform: `translate(-50%, -50%) scale(0.62) rotate(${giro}deg)` };
@@ -83,8 +60,9 @@ const EstelaContenido = ({ lang }: { lang: Lang }) => {
         { duration: queda ? 900 : VIDA, easing: "cubic-bezier(0.22, 0.61, 0.36, 1)", fill: "forwards" },
       );
     };
+    // Las fotos se ubican dentro de la franja, así que el dedo se mide contra ella.
     const aLocal = (cx: number, cy: number) => {
-      const r = sec.getBoundingClientRect();
+      const r = franja.getBoundingClientRect();
       return { x: cx - r.left, y: cy - r.top };
     };
     const seguir = (p: { x: number; y: number }, paso: number) => {
@@ -101,10 +79,15 @@ const EstelaContenido = ({ lang }: { lang: Lang }) => {
       if (t) seguir(aLocal(t.clientX, t.clientY), PASO_DEDO);
     };
     const rafaga = () => {
-      const w = sec.offsetWidth;
-      const h = sec.offsetHeight;
-      (w >= 768 ? RAFAGA_ANCHA : RAFAGA_ANGOSTA).forEach((p, i) => {
-        timers.push(window.setTimeout(() => soltar(w * p.x + (Math.random() * 30 - 15), h * p.y + (Math.random() * 24 - 12), p.queda), i * 650));
+      const w = franja.offsetWidth;
+      const h = franja.offsetHeight;
+      patronPara(ancha, w).forEach((p, i) => {
+        // Las que se quedan se mueven poco al azar: la cascada del celular está medida para que se
+        // lean las tres etiquetas (colocar.test.ts).
+        const azar = p.queda ? 6 : 15;
+        timers.push(
+          window.setTimeout(() => soltar(w * p.x + (Math.random() * 2 - 1) * azar, h * p.y + (Math.random() * 2 - 1) * azar, p.queda), i * 650),
+        );
       });
     };
 
@@ -134,7 +117,7 @@ const EstelaContenido = ({ lang }: { lang: Lang }) => {
       sec.removeEventListener("touchmove", alTocar);
       timers.forEach(clearTimeout);
     };
-  }, [quieto]);
+  }, [quieto, ancha]);
 
   return (
     <section ref={seccion} className="estela" aria-labelledby="estela-titulo">
@@ -146,9 +129,9 @@ const EstelaContenido = ({ lang }: { lang: Lang }) => {
         NZA
       </p>
 
-      <div className="estela-pista" aria-hidden="true">
+      <div ref={pista} className="estela-pista" aria-hidden="true">
         {FOTOS.map((f, i) => {
-          const q = quieto ? QUIETAS.find((c) => c.i === i) : undefined;
+          const q = quieto ? quietas.find((c) => c.i === i) : undefined;
           return (
             <div
               key={f.id}

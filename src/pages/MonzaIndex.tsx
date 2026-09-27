@@ -955,7 +955,7 @@ const MonzaIndex = () => {
           creator: {
             "@type": "Organization",
             name: "Monza Lab",
-            url: "https://monzalab.com",
+            url: "https://www.monzalab.com",
           },
         }}
       />

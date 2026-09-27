@@ -69,6 +69,17 @@ async function launchBrowser() {
   return puppeteer.launch({ headless: true, executablePath, args });
 }
 
+/* Las animaciones (framer-motion) avanzan con requestAnimationFrame, y una pestaña en segundo
+ * plano no lo corre: con cuatro a la vez, en Chrome local 60 de 76 páginas salían con el título a
+ * opacidad 0 (27-sep-2026; el Chromium de Vercel no frena las pestañas de atrás, por eso en
+ * producción no se veía). Cada página se trae al frente para su recta final, de a una. */
+let turno = Promise.resolve();
+const enTurno = (fn) => {
+  const r = turno.then(fn, fn);
+  turno = r.catch(() => {});
+  return r;
+};
+
 async function capture(browser, route) {
   const page = await browser.newPage();
   try {
@@ -77,25 +88,55 @@ async function capture(browser, route) {
      * así la raíz se prerenderiza en español y los prefijos /en /de /pt mandan. */
     await page.evaluateOnNewDocument(() => {
       try { localStorage.setItem("monza-lang", "es"); } catch { /* ignore */ }
+      /* Las animaciones que lo consultan (la pantalla de /shopify) se congelan en un cuadro fijo:
+       * así el HTML guarda siempre el mismo y el navegador sigue desde ahí (lib/prerender.ts). */
+      window.__PRERENDER__ = true;
     });
     await page.goto(`http://localhost:${PORT}${route}`, { waitUntil: "networkidle0", timeout: 45000 });
+    /* networkidle0 no garantiza que la ruta perezosa ya esté pintada: con cuatro pestañas a la vez,
+     * /pt/speaker salió vacía y con la canónica de la portada (27-sep-2026). Se espera a que la
+     * página escriba SU canónica y tenga texto. Si no llega, se captura igual y se avisa abajo. */
+    const esperadaAntes = `https://www.monzalab.com${route === "/" ? "" : route}`;
+    await page
+      .waitForFunction(
+        (esperada) => {
+          const c = document.querySelector('link[rel="canonical"]')?.getAttribute("href") || "";
+          return c.replace(/\/$/, "") === esperada && (document.body.innerText || "").length > 200;
+        },
+        { polling: 100, timeout: 20000 },
+        esperadaAntes,
+      )
+      .catch(() => {});
     /* Scroll a fondo y de vuelta: dispara las animaciones whileInView para que
-     * el contenido no quede con opacity 0 inline. */
-    await page.evaluate(async () => {
-      await new Promise((resolve) => {
-        let y = 0;
-        const step = () => {
-          y += 1200;
-          window.scrollTo(0, y);
-          if (y < document.body.scrollHeight) setTimeout(step, 90);
-          else { window.scrollTo(0, 0); setTimeout(resolve, 400); }
-        };
-        step();
+     * el contenido no quede con opacity 0 inline. Al frente y de a una (ver enTurno). */
+    return await enTurno(async () => {
+      await page.bringToFront();
+      await page.evaluate(async () => {
+        await new Promise((resolve) => {
+          let y = 0;
+          const step = () => {
+            y += 1200;
+            window.scrollTo(0, y);
+            if (y < document.body.scrollHeight) setTimeout(step, 90);
+            else { window.scrollTo(0, 0); setTimeout(resolve, 400); }
+          };
+          step();
+        });
       });
+      // Lo que entró al final del recorrido termina de animar (las entradas duran ≤ 1 s).
+      await new Promise((r) => setTimeout(r, 900));
+      let html = await page.content();
+      html = html.replace("<head>", '<head><meta name="x-prerendered" content="true">');
+      /* Cada página tiene que salir con SU canónica. Si sale con la de la portada, Google la
+       * trata como copia de la home (pasó con 9 de 76 hasta el 27-sep-2026). No rompe el build:
+       * lo deja escrito en el log de Vercel. */
+      const canonicas = [...html.matchAll(/<link[^>]+rel="canonical"[^>]*href="([^"]*)"/g)].map((m) => m[1]);
+      const esperada = `https://www.monzalab.com${route === "/" ? "" : route}`;
+      if (canonicas.length !== 1 || canonicas[0].replace(/\/$/, "") !== esperada) {
+        console.warn(`[prerender] ⚠️ ${route}: canónica ${JSON.stringify(canonicas)}, se esperaba ${esperada}`);
+      }
+      return html;
     });
-    let html = await page.content();
-    html = html.replace("<head>", '<head><meta name="x-prerendered" content="true">');
-    return html;
   } finally {
     await page.close();
   }
@@ -111,7 +152,7 @@ async function main() {
   }
   console.log(`[prerender] ${routes.length} rutas…`);
   const results = new Map();
-  let failed = 0;
+  const fallidas = [];
   const queue = [...routes];
   await Promise.all(
     Array.from({ length: CONCURRENCY }, async () => {
@@ -120,12 +161,24 @@ async function main() {
         try {
           results.set(route, await capture(browser, route));
         } catch (err) {
-          failed++;
+          fallidas.push(route);
           console.warn(`[prerender] falló ${route}: ${String(err).slice(0, 120)}`);
         }
       }
     }),
   );
+  /* Una segunda vuelta, de a una: con cuatro pestañas a la vez alguna ruta se pasa de los 45 s
+   * (/en y /de/work/pacho-alvarez el 27-sep-2026) y quedaba servida como la portada vacía. */
+  let failed = 0;
+  for (const route of fallidas) {
+    try {
+      results.set(route, await capture(browser, route));
+      console.log(`[prerender] ${route}: lista en la segunda vuelta`);
+    } catch (err) {
+      failed++;
+      console.warn(`[prerender] falló otra vez ${route}: ${String(err).slice(0, 120)}`);
+    }
+  }
   await browser.close();
   server.close();
 

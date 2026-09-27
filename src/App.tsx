@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import RouteAnalytics from "./components/RouteAnalytics";
 import GoogleAnalytics from "./components/GoogleAnalytics";
@@ -16,23 +16,22 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import Index from "./pages/Index";
 
-/* Code-split — venture pages, speaker, project, upload load on demand.
-   This shrinks the initial JS bundle so the home renders fast on mobile. */
-const Speaker = lazy(() => import("./pages/Speaker"));
-const ProjectPage = lazy(() => import("./pages/ProjectPage"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const Upload = lazy(() => import("./pages/Upload"));
-const MonzaStudio = lazy(() => import("./pages/MonzaStudio"));
-const StudioLanding = lazy(() => import("./pages/StudioLanding"));
-const MonzaHaus = lazy(() => import("./pages/MonzaHaus"));
-const MonzaIndex = lazy(() => import("./pages/MonzaIndex"));
-const BavarianEcons = lazy(() => import("./pages/BavarianEcons"));
-const MonzaSessions = lazy(() => import("./pages/MonzaSessions"));
-const Work = lazy(() => import("./pages/Work"));
-const Pillar = lazy(() => import("./pages/Pillar"));
-// /shopify tiene página propia (vertical e-commerce). Mantiene el mismo SEO y FAQ
-// que la pilar genérica: lee de src/data/pillars.ts para no perder lo ya indexado.
-const ShopifyVertical = lazy(() => import("./pages/ShopifyVertical"));
+/* Las páginas que se bajan cuando se necesitan viven en rutas.tsx, precargables (ver main.tsx). */
+import {
+  Speaker,
+  ProjectPage,
+  NotFound,
+  Upload,
+  MonzaStudio,
+  StudioLanding,
+  MonzaHaus,
+  MonzaIndex,
+  BavarianEcons,
+  MonzaSessions,
+  Work,
+  Pillar,
+  ShopifyVertical,
+} from "./rutas";
 import MonzaAgent from "./components/MonzaAgent";
 
 const queryClient = new QueryClient();

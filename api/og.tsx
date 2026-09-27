@@ -2,7 +2,7 @@ import { ImageResponse } from '@vercel/og';
 
 export const config = { runtime: 'edge' };
 
-const SITE_URL = 'https://monzalab.com';
+const SITE_URL = 'https://www.monzalab.com';
 
 /* ──────────────────────────────────────────
    PER-PAGE OG CONFIG

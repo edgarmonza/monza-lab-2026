@@ -15,7 +15,8 @@ import { Globe, Pause, Play, Search } from "lucide-react";
 import HelmetIcon from "@/components/HelmetIcon";
 import type { Lang } from "@/i18n/types";
 import { trackCta } from "@/lib/pixel";
-import { armarGuion, cuadroEn, cuadroQuieto, inicioCapitulo, type Cuadro } from "./guion";
+import { armarGuion, cuadroEn, cuadroQuieto, inicioCapitulo, portadaInicial, type Cuadro } from "./guion";
+import { enPrerender } from "@/lib/prerender";
 import { COPY, MEDIA_ESCRITORIO, SISTEMA, TIENDAS, escenasPara, type Formato } from "./tiendas";
 import { IconoChip } from "./iconos";
 
@@ -23,6 +24,9 @@ interface Props {
   lang: Lang;
   /** Lleva al formulario de la Radiografía (el cierre de la pantalla lo pide). */
   onPedir: () => void;
+  /** La página llegó con el HTML prerenderizado en pantalla: se sigue desde el cuadro que ese
+   *  HTML ya muestra (la portada de la primera tienda) en vez de rebobinar a la barra vacía. */
+  continuar?: boolean;
 }
 
 const PINK = "#F8B4D9";
@@ -51,19 +55,23 @@ const firma = (c: Cuadro) =>
     c.cierre ? `${c.cierre.escrito}:${c.cierre.foco ? 1 : 0}` : "-",
   ].join("|");
 
-const PantallaQueEscribe = ({ lang, onPedir }: Props) => {
+const PantallaQueEscribe = ({ lang, onPedir, continuar = false }: Props) => {
   const guion = useMemo(() => armarGuion(escenasPara(lang)), [lang]);
+  // Dentro del prerender la pantalla se congela en la portada de la primera tienda: así el HTML
+  // muestra siempre ese cuadro, y quien llega con ese HTML en pantalla sigue desde ahí.
+  const [congelada] = useState(enPrerender);
+  const [inicio] = useState(() => (congelada || continuar ? portadaInicial(guion) : 0));
 
   const [quieto, setQuieto] = useState(prefiereQuieto);
   const [pausa, setPausa] = useState(false);
   const [enVista, setEnVista] = useState(true);
   const [capituloQuieto, setCapituloQuieto] = useState(0);
   const [formato, setFormato] = useState<Formato>(formatoActual);
-  const [cuadroVivo, setCuadroVivo] = useState<Cuadro>(() => cuadroEn(guion, 0));
+  const [cuadroVivo, setCuadroVivo] = useState<Cuadro>(() => cuadroEn(guion, inicio));
 
   const cuadro = quieto ? cuadroQuieto(guion, capituloQuieto) : cuadroVivo;
 
-  const reloj = useRef(0);
+  const reloj = useRef(inicio);
   const ultimaFirma = useRef("");
   const ultimoCuadro = useRef<Cuadro>(cuadro);
   const figura = useRef<HTMLDivElement>(null);
@@ -133,7 +141,7 @@ const PantallaQueEscribe = ({ lang, onPedir }: Props) => {
   });
 
   /* ── el reloj ── */
-  const corriendo = !quieto && !pausa && enVista;
+  const corriendo = !quieto && !pausa && enVista && !congelada;
   useEffect(() => {
     if (!corriendo || typeof requestAnimationFrame !== "function") return;
     let raf = 0;
@@ -320,7 +328,8 @@ const PantallaQueEscribe = ({ lang, onPedir }: Props) => {
         <div ref={marco} data-pantalla aria-hidden="true" className="pantalla-marco relative rounded-[18px] overflow-hidden">
           {/* Barra del navegador */}
           <div className="pantalla-barra flex items-center gap-2.5 px-3 md:px-3.5 h-11">
-            <span className="flex gap-1.5 shrink-0" aria-hidden="true">
+            {/* Por debajo de 360 px los tres puntos ceden su lugar a la dirección, que si no se corta. */}
+            <span className="hidden min-[360px]:flex gap-1.5 shrink-0" aria-hidden="true">
               {[0, 1, 2].map((i) => (
                 <i key={i} className="block w-[9px] h-[9px] rounded-full" style={{ background: "rgba(255,252,247,0.14)" }} />
               ))}

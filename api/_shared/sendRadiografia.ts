@@ -157,7 +157,7 @@ export async function sendRadiografia(
           <p style="margin:0 0 30px 0;font-size:14px;color:#6b6b6b;">${c.p3}</p>
           <p style="font-size:14px;margin:0 0 4px 0;">Edgar Navarro</p>
           <p style="font-size:13px;color:#9b8b80;margin:0;">Founder &amp; Creative Director · Monza Lab<br>
-            <a href="https://monzalab.com" style="color:#9b8b80;">monzalab.com</a></p>
+            <a href="https://www.monzalab.com" style="color:#9b8b80;">monzalab.com</a></p>
         </div>`,
     });
   } catch {

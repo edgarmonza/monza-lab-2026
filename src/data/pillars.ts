@@ -41,17 +41,19 @@ export const PILLARS: Pillar[] = [
   {
     slug: "shopify",
     accent: "#F8B4D9",
+    /* 27-sep-2026 · Edgar: que /shopify aparezca a «toda la gente que esté buscando agencias de
+     * marketing». Título ≤ 60 y descripción ≤ 160 caracteres (lo protege ShopifyVertical.copy.test.ts). */
     seoTitle: {
-      es: "Tiendas Shopify con IA — Monza Lab · Agencia Shopify Colombia y LATAM",
-      en: "Shopify Stores with AI — Monza Lab · AI-first Shopify agency",
-      de: "Shopify-Stores mit KI — Monza Lab · AI-first Shopify-Agentur",
-      pt: "Lojas Shopify com IA — Monza Lab · Agência Shopify com IA",
+      es: "Agencia de marketing para tiendas Shopify | Monza Lab",
+      en: "Shopify Marketing Agency for Fashion & Beauty | Monza Lab",
+      de: "Shopify-Marketingagentur für Mode & Beauty | Monza Lab",
+      pt: "Agência de marketing para lojas Shopify | Monza Lab",
     },
     seoDescription: {
-      es: "Construimos tu tienda Shopify operada con IA: catálogo con fotos editoriales generadas con IA, agente de ventas por WhatsApp y pauta. De la idea a vender en 12 semanas. Colombia, España, Europa y USA.",
-      en: "We build your Shopify store operated with AI: AI-photographed editorial catalog, WhatsApp sales agent and paid media. From idea to selling in 12 weeks. LATAM, Spain, Europe and the US.",
-      de: "Wir bauen deinen Shopify-Store, betrieben mit KI: Editorial-Katalog mit KI-Fotos, WhatsApp-Verkaufsagent und Paid Media. Von der Idee zum Verkauf in 12 Wochen.",
-      pt: "Construímos a tua loja Shopify operada com IA: catálogo editorial com fotos de IA, agente de vendas no WhatsApp e paid media. Da ideia à venda em 12 semanas.",
+      es: "Conectamos tu tienda Shopify, tu pauta, tu CRM y un asesor de WhatsApp en un solo sistema. Vendes más y lo operas por menos que con una agencia tradicional.",
+      en: "We connect your Shopify store, ads, CRM and a WhatsApp advisor into one system. You sell more and run it for less than with a traditional agency.",
+      de: "Wir verbinden Shopify-Store, Ads, CRM und einen WhatsApp-Berater zu einem System. Du verkaufst mehr und zahlst weniger als bei einer klassischen Agentur.",
+      pt: "Ligamos a tua loja Shopify, os anúncios, o CRM e um assessor de WhatsApp num só sistema. Vendes mais e operas por menos do que com uma agência tradicional.",
     },
     eyebrow: { es: "SHOPIFY CON IA", en: "SHOPIFY WITH AI", de: "SHOPIFY MIT KI", pt: "SHOPIFY COM IA" },
     h1: {
@@ -173,59 +175,121 @@ export const PILLARS: Pillar[] = [
       },
     ],
     faqHeading: { es: "Preguntas frecuentes", en: "Frequently asked questions", de: "Häufige Fragen", pt: "Perguntas frequentes" },
+    /* Las preguntas que hace quien busca una agencia de marketing, contestadas con lo que gana la
+     * tienda (Edgar, 26-sep: «muy orientados a los beneficios»). La primera frase de cada respuesta
+     * contesta sola: es la que citan Google y los asistentes. Sin cifras de precio (PRICING.md manda):
+     * «varios miles de dólares» es la misma referencia que ya publicaba esta página. */
     faq: [
       {
-        q: { es: "¿Cuánto cuesta una tienda Shopify con IA?", en: "How much does a Shopify store with AI cost?", de: "Was kostet ein Shopify-Store mit KI?", pt: "Quanto custa uma loja Shopify com IA?" },
+        q: {
+          es: "¿Qué hace una agencia de marketing para tiendas Shopify?",
+          en: "What does a Shopify marketing agency do?",
+          de: "Was macht eine Marketingagentur für Shopify-Stores?",
+          pt: "O que faz uma agência de marketing para lojas Shopify?",
+        },
         a: {
-          es: "Depende del alcance: número de productos, mercados y qué tanto motor de operación quieres desde el día uno. Los proyectos serios arrancan en varios miles de dólares y el número fino se cierra con Edgar según tu caso. Lo que sí cambia con IA: el catálogo editorial y la operación cuestan una fracción de lo tradicional.",
-          en: "It depends on scope: number of products, markets, and how much operating engine you want from day one. Serious projects start in the thousands of dollars; the exact number is closed with Edgar for your case. What changes with AI: the editorial catalog and the operation cost a fraction of the traditional way.",
-          de: "Das hängt vom Umfang ab: Produkte, Märkte, und wie viel Betriebs-Motor du ab Tag eins willst. Ernsthafte Projekte starten im Bereich mehrerer tausend Dollar; die genaue Zahl klärst du mit Edgar. Mit KI kosten Katalog und Betrieb einen Bruchteil des Traditionellen.",
-          pt: "Depende do alcance: número de produtos, mercados e quanto motor de operação queres desde o dia um. Projetos sérios começam em vários milhares de dólares; o número exato fecha-se com o Edgar. Com IA, o catálogo e a operação custam uma fração do tradicional.",
+          es: "Hace que la tienda venda más. En Monza Lab eso quiere decir conectar todo lo que mueve una venta: tu tienda Shopify, la pauta en Meta y Google, tu base de clientas, el catálogo y un asesor de WhatsApp que contesta a cualquier hora. Lo operamos como un solo sistema, mes a mes, y respondemos por el resultado.",
+          en: "It makes the store sell more. At Monza Lab that means connecting everything that moves a sale: your Shopify store, ads on Meta and Google, your customer base, the catalog and a WhatsApp advisor that answers at any hour. We run it as one system, month to month, and we answer for the result.",
+          de: "Sie sorgt dafür, dass der Store mehr verkauft. Bei Monza Lab heißt das: alles verbinden, was einen Verkauf bewegt, also deinen Shopify-Store, die Ads auf Meta und Google, deine Kundenbasis, den Katalog und einen WhatsApp-Berater, der zu jeder Uhrzeit antwortet. Wir betreiben das als ein System, Monat für Monat, und stehen für das Ergebnis gerade.",
+          pt: "Faz a loja vender mais. Na Monza Lab, isso quer dizer ligar tudo o que move uma venda: a tua loja Shopify, os anúncios na Meta e no Google, a tua base de clientes, o catálogo e um assessor de WhatsApp que responde a qualquer hora. Operamos tudo como um só sistema, mês a mês, e respondemos pelo resultado.",
         },
       },
       {
-        q: { es: "¿Cuánto tarda?", en: "How long does it take?", de: "Wie lange dauert es?", pt: "Quanto tempo demora?" },
+        q: {
+          es: "¿En qué se diferencia de una agencia de marketing tradicional?",
+          en: "How is it different from a traditional marketing agency?",
+          de: "Was ist anders als bei einer klassischen Marketingagentur?",
+          pt: "Em que é diferente de uma agência de marketing tradicional?",
+        },
         a: {
-          es: "Doce semanas de la idea a vender: criterio, build, lanzamiento. Después, el motor mensual mantiene la marca corriendo.",
-          en: "Twelve weeks from idea to selling: judgment, build, launch. Then the monthly engine keeps the brand running.",
-          de: "Zwölf Wochen von der Idee zum Verkauf: Kriterium, Build, Launch. Danach hält der monatliche Motor die Marke am Laufen.",
-          pt: "Doze semanas da ideia à venda: critério, build, lançamento. Depois, o motor mensal mantém a marca a correr.",
+          es: "En que todo trabaja conectado. Una agencia tradicional suele entregar por separado los posts, las campañas y los informes. Aquí tu tienda, tu pauta, tus clientas y tu WhatsApp se hablan entre sí, y los agentes hacen el trabajo que antes pedía un equipo de cuatro o cinco personas. Por eso vendes más y lo operas por menos.",
+          en: "Everything works connected. A traditional agency usually delivers posts, campaigns and reports separately. Here your store, your ads, your customers and your WhatsApp talk to each other, and the agents do the work that used to take a team of four or five people. That's why you sell more and it costs less to run.",
+          de: "Alles arbeitet verbunden. Eine klassische Agentur liefert Posts, Kampagnen und Reports meist getrennt. Hier sprechen Store, Ads, Kundinnen und WhatsApp miteinander, und die Agenten erledigen die Arbeit, für die früher ein Team von vier oder fünf Leuten nötig war. Deshalb verkaufst du mehr und zahlst weniger für den Betrieb.",
+          pt: "Em que tudo trabalha ligado. Uma agência tradicional costuma entregar em separado os posts, as campanhas e os relatórios. Aqui a tua loja, os teus anúncios, as tuas clientes e o teu WhatsApp falam entre si, e os agentes fazem o trabalho que antes pedia uma equipa de quatro ou cinco pessoas. Por isso vendes mais e operas por menos.",
         },
       },
       {
-        q: { es: "¿Qué son las fotos de producto con IA?", en: "What is AI product photography?", de: "Was ist KI-Produktfotografie?", pt: "O que são fotos de produto com IA?" },
+        q: {
+          es: "¿Cuánto cuesta una agencia de marketing para Shopify?",
+          en: "How much does a Shopify marketing agency cost?",
+          de: "Was kostet eine Marketingagentur für Shopify?",
+          pt: "Quanto custa uma agência de marketing para Shopify?",
+        },
         a: {
-          es: "Tu producto real, fotografiado digitalmente con dirección editorial: luz, escenario y calidad de revista, generados con IA a partir de tus prendas. Sin estudio ni logística de shooting — y el catálogo completo mantiene una sola estética.",
-          en: "Your real product, digitally photographed with editorial direction: light, set and magazine quality, AI-generated from your garments. No studio, no shoot logistics — and the entire catalog keeps one aesthetic.",
-          de: "Dein echtes Produkt, digital fotografiert mit redaktioneller Direktion: Licht, Set und Magazin-Qualität, KI-generiert aus deinen Teilen. Ohne Studio — und der ganze Katalog behält eine Ästhetik.",
-          pt: "O teu produto real, fotografado digitalmente com direção editorial: luz, cenário e qualidade de revista, gerados com IA a partir das tuas peças. Sem estúdio — e o catálogo inteiro mantém uma só estética.",
+          es: "Depende de lo que haya que conectar: cuántos productos tienes, en qué mercados vendes y qué ya funciona. Hay un montaje con fecha de entrega y después una operación mes a mes, sin permanencia, con una parte atada a lo que vende el sistema. Como referencia, los proyectos arrancan en varios miles de dólares; el número lo cierras con Edgar después de ver tu tienda.",
+          en: "It depends on what needs connecting: how many products you have, which markets you sell in and what already works. There's a build with a delivery date, then month-to-month operation with no lock-in, with part of the fee tied to what the system sells. As a reference, projects start in the thousands of dollars; you settle the number with Edgar after we see your store.",
+          de: "Das hängt davon ab, was verbunden werden muss: wie viele Produkte du hast, in welchen Märkten du verkaufst und was schon funktioniert. Es gibt einen Aufbau mit festem Liefertermin und danach den Betrieb Monat für Monat, ohne Mindestlaufzeit, mit einem Teil, der an die Verkäufe des Systems gekoppelt ist. Als Richtwert starten Projekte bei einigen tausend Dollar; die genaue Zahl klärst du mit Edgar, nachdem wir deinen Store gesehen haben.",
+          pt: "Depende do que for preciso ligar: quantos produtos tens, em que mercados vendes e o que já funciona. Há uma montagem com data de entrega e depois uma operação mês a mês, sem fidelização, com uma parte ligada ao que o sistema vende. Como referência, os projetos começam em vários milhares de dólares; o número fechas com o Edgar depois de vermos a tua loja.",
         },
       },
       {
-        q: { es: "¿El agente de WhatsApp reemplaza a mi equipo?", en: "Does the WhatsApp agent replace my team?", de: "Ersetzt der WhatsApp-Agent mein Team?", pt: "O agente de WhatsApp substitui a minha equipa?" },
+        q: {
+          es: "¿Cuánto tarda en estar funcionando?",
+          en: "How long until it's up and running?",
+          de: "Wie lange dauert es, bis alles läuft?",
+          pt: "Quanto tempo demora até estar a funcionar?",
+        },
         a: {
-          es: "Lo multiplica. El agente atiende, asesora y cierra 24/7 con el criterio de tu marca; tu equipo entra en las conversaciones donde una persona de verdad aporta. Nadie pierde tiempo en preguntas repetidas.",
-          en: "It multiplies it. The agent serves, advises and closes 24/7 with your brand's judgment; your team steps into the conversations where a person truly adds value. Nobody wastes time on repeated questions.",
-          de: "Er multipliziert es. Der Agent bedient und verkauft 24/7 mit dem Urteil deiner Marke; dein Team übernimmt, wo ein Mensch wirklich zählt.",
-          pt: "Multiplica-a. O agente atende e fecha 24/7 com o critério da tua marca; a tua equipa entra nas conversas onde uma pessoa realmente soma.",
+          es: "El montaje completo toma doce semanas y tiene fecha de entrega desde el primer día. Empezamos por el asesor de WhatsApp y tu base de clientas, que son lo que antes devuelve la inversión; después vienen la tienda, el catálogo y la pauta.",
+          en: "The full build takes twelve weeks and has a delivery date from day one. We start with the WhatsApp advisor and your customer base, which pay back fastest; then come the store, the catalog and the ads.",
+          de: "Der komplette Aufbau dauert zwölf Wochen und hat vom ersten Tag an einen Liefertermin. Wir beginnen mit dem WhatsApp-Berater und deiner Kundenbasis, weil sie sich am schnellsten auszahlen; danach kommen Store, Katalog und Ads.",
+          pt: "A montagem completa leva doze semanas e tem data de entrega desde o primeiro dia. Começamos pelo assessor de WhatsApp e pela tua base de clientes, que são o que primeiro devolve o investimento; depois vêm a loja, o catálogo e os anúncios.",
         },
       },
       {
-        q: { es: "¿Trabajan fuera de Colombia?", en: "Do you work outside Colombia?", de: "Arbeitet ihr außerhalb Kolumbiens?", pt: "Trabalham fora da Colômbia?" },
+        q: {
+          es: "¿Pueden atender a mis clientas por WhatsApp a cualquier hora?",
+          en: "Can you answer my customers on WhatsApp at any hour?",
+          de: "Könnt ihr meine Kundinnen zu jeder Uhrzeit per WhatsApp betreuen?",
+          pt: "Podem atender as minhas clientes no WhatsApp a qualquer hora?",
+        },
         a: {
-          es: "Sí. Clientes en Colombia, España, Portugal, Alemania y Estados Unidos. Las marcas se construyen globales desde el día uno — la web que estás leyendo corre en cuatro idiomas.",
-          en: "Yes. Clients in Colombia, Spain, Portugal, Germany and the United States. Brands are built global from day one — this very site runs in four languages.",
-          de: "Ja. Kunden in Kolumbien, Spanien, Portugal, Deutschland und den USA. Marken werden ab Tag eins global gebaut.",
-          pt: "Sim. Clientes na Colômbia, Espanha, Portugal, Alemanha e Estados Unidos. As marcas constroem-se globais desde o dia um.",
+          es: "Sí. El asesor contesta con la voz de tu marca, resuelve la talla, arma el carrito y cierra la venta, también de madrugada. Lee tu inventario en vivo, así que nunca vende lo que no tienes. Después de la compra sigue con el pedido, el envío y los cambios. Cuando una conversación necesita a una persona, la toma tu equipo.",
+          en: "Yes. The advisor answers in your brand's voice, sorts out the size, builds the cart and closes the sale, even at dawn. It reads your live inventory, so it never sells what you don't have. After the purchase it follows up on the order, shipping and exchanges. When a conversation needs a person, your team takes it.",
+          de: "Ja. Der Berater antwortet in der Stimme deiner Marke, klärt die Größe, baut den Warenkorb und schließt den Verkauf ab, auch mitten in der Nacht. Er liest dein Lager live und verkauft nie, was du nicht hast. Nach dem Kauf kümmert er sich um Bestellung, Versand und Umtausch. Braucht ein Gespräch einen Menschen, übernimmt dein Team.",
+          pt: "Sim. O assessor responde com a voz da tua marca, resolve o tamanho, monta o carrinho e fecha a venda, até de madrugada. Lê o teu inventário em tempo real, por isso nunca vende o que não tens. Depois da compra, acompanha a encomenda, o envio e as trocas. Quando uma conversa precisa de uma pessoa, a tua equipa assume-a.",
         },
       },
       {
-        q: { es: "¿Qué pasa después del lanzamiento?", en: "What happens after launch?", de: "Was passiert nach dem Launch?", pt: "O que acontece depois do lançamento?" },
+        q: {
+          es: "¿Necesito tener mi tienda en Shopify?",
+          en: "Do I need my store on Shopify?",
+          de: "Muss mein Store auf Shopify laufen?",
+          pt: "Preciso de ter a loja na Shopify?",
+        },
         a: {
-          es: "El motor mensual: contenido editorial, agentes afinándose con data real y pauta operada. Una tienda sin operación es una tienda muerta — por eso no entregamos y desaparecemos.",
-          en: "The monthly engine: editorial content, agents tuning with real data and operated ads. A store without operation is a dead store — that's why we don't deliver and disappear.",
-          de: "Der monatliche Motor: Editorial-Content, Agenten, die mit echten Daten besser werden, und betriebene Ads. Ein Store ohne Betrieb ist ein toter Store.",
-          pt: "O motor mensal: conteúdo editorial, agentes a afinar com dados reais e ads operados. Uma loja sem operação é uma loja morta.",
+          es: "Trabajamos sobre Shopify. Si ya vendes ahí, conectamos lo que tienes sin tocar tus pedidos, tu inventario ni tus pagos. Si todavía no, montamos la tienda como parte del sistema.",
+          en: "We work on Shopify. If you already sell there, we connect what you have without touching your orders, inventory or payments. If not yet, we build the store as part of the system.",
+          de: "Wir arbeiten mit Shopify. Wenn du dort schon verkaufst, verbinden wir, was du hast, ohne Bestellungen, Lager oder Zahlungen anzufassen. Wenn noch nicht, bauen wir den Store als Teil des Systems.",
+          pt: "Trabalhamos sobre a Shopify. Se já vendes lá, ligamos o que tens sem mexer nas encomendas, no inventário nem nos pagamentos. Se ainda não, montamos a loja como parte do sistema.",
+        },
+      },
+      {
+        q: {
+          es: "¿Trabajan con marcas fuera de Colombia?",
+          en: "Do you work with brands outside Colombia?",
+          de: "Arbeitet ihr mit Marken außerhalb Kolumbiens?",
+          pt: "Trabalham com marcas fora da Colômbia?",
+        },
+        a: {
+          es: "Sí. Tenemos clientes en Colombia, España, Portugal, Alemania y Estados Unidos, y el sistema funciona igual en cualquier mercado. Esta web está en cuatro idiomas.",
+          en: "Yes. We have clients in Colombia, Spain, Portugal, Germany and the United States, and the system works the same in any market. This site runs in four languages.",
+          de: "Ja. Wir haben Kunden in Kolumbien, Spanien, Portugal, Deutschland und den USA, und das System funktioniert in jedem Markt gleich. Diese Website läuft in vier Sprachen.",
+          pt: "Sim. Temos clientes na Colômbia, Espanha, Portugal, Alemanha e Estados Unidos, e o sistema funciona igual em qualquer mercado. Este site está em quatro línguas.",
+        },
+      },
+      {
+        q: {
+          es: "¿Usan inteligencia artificial?",
+          en: "Do you use artificial intelligence?",
+          de: "Nutzt ihr künstliche Intelligenz?",
+          pt: "Usam inteligência artificial?",
+        },
+        a: {
+          es: "Sí, donde abarata y acelera: el asesor de WhatsApp, las fotos del catálogo y la lectura diaria de la pauta. Lo que te llevas es el resultado, no la herramienta: las decisiones de marca y de presupuesto las revisa una persona, y la última la toma Edgar.",
+          en: "Yes, where it makes things cheaper and faster: the WhatsApp advisor, the catalog photos and the daily read of the ads. What you get is the result, not the tool: brand and budget decisions are reviewed by a person, and Edgar makes the final call.",
+          de: "Ja, dort, wo sie günstiger und schneller macht: beim WhatsApp-Berater, bei den Katalogfotos und beim täglichen Blick auf die Ads. Was du bekommst, ist das Ergebnis, nicht das Werkzeug: Entscheidungen über Marke und Budget prüft ein Mensch, und die letzte trifft Edgar.",
+          pt: "Sim, onde torna tudo mais barato e mais rápido: o assessor de WhatsApp, as fotos do catálogo e a leitura diária dos anúncios. O que levas é o resultado, não a ferramenta: as decisões de marca e de orçamento são revistas por uma pessoa, e a última é do Edgar.",
         },
       },
     ],

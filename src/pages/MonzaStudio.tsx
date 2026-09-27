@@ -2191,7 +2191,7 @@ const MonzaStudio = () => {
           provider: {
             "@type": "Organization",
             name: "Monza Lab",
-            url: "https://monzalab.com",
+            url: "https://www.monzalab.com",
           },
           serviceType: "E-commerce operating system on Shopify: storefront, WhatsApp sales agent, CRM flows, AI product imagery, paid media and dashboard — built and operated",
           areaServed: "Global",

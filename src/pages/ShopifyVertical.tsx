@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { getPillarBySlug } from "@/data/pillars";
 import type { Lang } from "@/i18n/types";
@@ -12,7 +12,8 @@ import PantallaQueEscribe from "@/components/shopify/pantalla/PantallaQueEscribe
 import Ecosistema from "@/components/shopify/ecosistema/Ecosistema";
 import AsesorWhatsApp from "@/components/shopify/asesor/AsesorWhatsApp";
 import EstelaContenido from "@/components/shopify/estela/EstelaContenido";
-import { whatsAppUrl } from "@/lib/pixel";
+import { trackContact, trackCta, whatsAppUrl } from "@/lib/pixel";
+import { enPrerender, llegoPrerenderizada } from "@/lib/prerender";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const PINK = "#F8B4D9";
@@ -37,11 +38,13 @@ const Section = ({ children, className = "" }: { children: React.ReactNode; clas
 
 /* ─────────────────────────── copy ─────────────────────────── */
 
+// La etiqueta va dentro del H1: es lo que escribe quien busca (Edgar, 27-sep-2026: «toda la gente
+// que esté buscando agencias de marketing»). Se escribe en minúsculas y la pone en mayúsculas el CSS.
 const HERO_EYEBROW: L = {
-  es: "SHOPIFY · MODA Y BEAUTY",
-  en: "SHOPIFY · FASHION & BEAUTY",
-  de: "SHOPIFY · MODE & BEAUTY",
-  pt: "SHOPIFY · MODA E BEAUTY",
+  es: "Agencia de marketing para Shopify",
+  en: "Shopify marketing agency",
+  de: "Shopify-Marketingagentur",
+  pt: "Agência de marketing para Shopify",
 };
 const HERO_H1: L = {
   es: "El problema casi nunca es el producto. Es la tienda que lo frena.",
@@ -50,10 +53,10 @@ const HERO_H1: L = {
   pt: "O problema quase nunca é o produto. É a loja que o trava.",
 };
 const HERO_SUB: L = {
-  es: "Conectamos tu tienda, tu pauta, tus clientas y tu WhatsApp en un solo sistema. Vendes más y lo operas más barato y con más eficiencia que con una agencia tradicional.",
-  en: "We connect your store, your ads, your customers and your WhatsApp into one system. You sell more, and it costs less and runs more efficiently than a traditional agency.",
-  de: "Wir verbinden deinen Store, deine Ads, deine Kundinnen und dein WhatsApp zu einem System. Du verkaufst mehr und betreibst es günstiger und effizienter als mit einer klassischen Agentur.",
-  pt: "Ligamos a tua loja, os teus anúncios, as tuas clientes e o teu WhatsApp num só sistema. Vendes mais e operas mais barato e com mais eficiência do que com uma agência tradicional.",
+  es: "Conectamos tu tienda Shopify, tu pauta, tus clientas y tu WhatsApp en un solo sistema. Vendes más y lo operas más barato y con más eficiencia que con una agencia de marketing tradicional.",
+  en: "We connect your Shopify store, your ads, your customers and your WhatsApp into one system. You sell more, and it costs less and runs more efficiently than a traditional marketing agency.",
+  de: "Wir verbinden deinen Shopify-Store, deine Ads, deine Kundinnen und dein WhatsApp zu einem System. Du verkaufst mehr und betreibst es günstiger und effizienter als mit einer klassischen Marketingagentur.",
+  pt: "Ligamos a tua loja Shopify, os teus anúncios, as tuas clientes e o teu WhatsApp num só sistema. Vendes mais e operas mais barato e com mais eficiência do que com uma agência de marketing tradicional.",
 };
 const CTA_PRIMARY: L = {
   es: "Ver mi tienda por dentro",
@@ -191,6 +194,27 @@ const AGENTS: { t: L; b: L; tag?: L }[] = [
     tag: { es: "EL TABLERO", en: "THE DASHBOARD", de: "DAS DASHBOARD", pt: "O PAINEL" },
   },
 ];
+/* La ficha del servicio para buscadores y asistentes (Service + BreadcrumbList). */
+const SERVICIO_NOMBRE: L = {
+  es: "Agencia de marketing para tiendas Shopify",
+  en: "Shopify marketing agency",
+  de: "Shopify-Marketingagentur",
+  pt: "Agência de marketing para lojas Shopify",
+};
+const SERVICIO_TIPOS: Record<Lang, string[]> = {
+  es: ["Marketing para tiendas Shopify", "Asesor de ventas por WhatsApp", "CRM para e-commerce", "Pauta en Meta y Google"],
+  en: ["Shopify marketing", "WhatsApp sales advisor", "E-commerce CRM", "Meta and Google ads"],
+  de: ["Shopify-Marketing", "WhatsApp-Verkaufsberater", "E-Commerce-CRM", "Ads auf Meta und Google"],
+  pt: ["Marketing para lojas Shopify", "Assessor de vendas no WhatsApp", "CRM para e-commerce", "Anúncios na Meta e no Google"],
+};
+const SERVICIO_PUBLICO: L = {
+  es: "Marcas de moda y belleza que venden en Shopify",
+  en: "Fashion and beauty brands selling on Shopify",
+  de: "Mode- und Beauty-Marken, die auf Shopify verkaufen",
+  pt: "Marcas de moda e beleza que vendem na Shopify",
+};
+const SITIO = "https://www.monzalab.com";
+
 const CLOSING_H2: L = {
   es: "Empieza por ver tu tienda como la ve tu clienta.",
   en: "Start by seeing your store the way your customer sees it.",
@@ -205,15 +229,36 @@ const ShopifyVertical = () => {
   const lang = (language as Lang) || "es";
   const langPrefix = lang === "es" ? "" : `/${lang}`;
   const p = getPillarBySlug("shopify")!;
+  const { pathname } = useLocation();
+  // Si la visita llegó con el HTML prerenderizado en pantalla, el hero ya se ve: no se esconde
+  // para entrar otra vez y la pantalla sigue desde el cuadro que ese HTML muestra.
+  const [desdeHTML] = useState(() => llegoPrerenderizada(pathname));
+  // En el prerender el hero se escribe ya visible: ese HTML es lo primero que pinta el celular.
+  const [enElPrerender] = useState(enPrerender);
+  const entrada = desdeHTML || enElPrerender ? false : { opacity: 0, y: 24 };
 
-  // Mismo contrato de schema que la página pilar: no se pierde el SEO ya indexado.
+  // El servicio queda atado a la organización de index.html por su @id: buscadores y
+  // asistentes leen que Monza Lab es quien lo presta, no solo el nombre suelto.
+  const url = `${SITIO}${langPrefix}/shopify`;
   const serviceLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: p.h1[lang],
+    "@id": `${url}#servicio`,
+    name: SERVICIO_NOMBRE[lang],
+    serviceType: SERVICIO_TIPOS[lang],
     description: p.seoDescription[lang],
-    provider: { "@type": "Organization", name: "Monza Lab", url: "https://monzalab.com" },
+    url,
+    provider: { "@type": "Organization", "@id": `${SITIO}/#organization`, name: "Monza Lab", url: SITIO },
+    audience: { "@type": "BusinessAudience", audienceType: SERVICIO_PUBLICO[lang] },
     areaServed: ["Latin America", "Colombia", "Spain", "Europe", "United States"],
+  };
+  const migasLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Monza Lab", item: `${SITIO}${langPrefix || "/"}` },
+      { "@type": "ListItem", position: 2, name: SERVICIO_NOMBRE[lang], item: url },
+    ],
   };
   const faqLd = {
     "@context": "https://schema.org",
@@ -228,42 +273,52 @@ const ShopifyVertical = () => {
   const scrollToForm = () => {
     document.getElementById("radiografia")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
+  // Los botones de la página llevan a la radiografía: cada uno se mide con su lugar.
+  const irALaRadiografia = (lugar: "shopify_hero" | "shopify_cierre") => () => {
+    trackCta("radiografia", lugar);
+    scrollToForm();
+  };
 
   return (
     <PremiumBackground>
-      <SEO path="/shopify" title={p.seoTitle} description={p.seoDescription} jsonLd={[serviceLd, faqLd]} />
+      <SEO path="/shopify" title={p.seoTitle} description={p.seoDescription} jsonLd={[serviceLd, faqLd, migasLd]} />
       <main id="main" className="pt-32 md:pt-40">
         {/* Hero — en el celular: título, pantalla, párrafo y botón; desde xl, el texto a la
             izquierda y la pantalla a la derecha. Un solo DOM con áreas de grilla. */}
         <section className="mx-auto max-w-[1200px] px-6 md:px-10 pb-2 md:pb-6">
-          <div className="grid [grid-template-areas:'texto'_'pantalla'_'accion'] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] xl:[grid-template-areas:'texto_pantalla'_'accion_pantalla'] xl:gap-x-14 xl:items-center">
+          <div className="grid grid-cols-[minmax(0,1fr)] [grid-template-areas:'texto'_'pantalla'_'accion'] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] xl:[grid-template-areas:'texto_pantalla'_'accion_pantalla'] xl:gap-x-14 xl:items-center">
             <motion.div
-              className="[grid-area:texto] xl:self-end"
-              initial={{ opacity: 0, y: 24 }}
+              className="[grid-area:texto] min-w-0 xl:self-end"
+              initial={entrada}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: EASE }}
             >
-              <p className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-5" style={{ color: `${PINK}c0` }}>
-                {HERO_EYEBROW[lang]}
-              </p>
-              <h1
-                className="font-clash font-bold leading-[1.04] mb-8 xl:mb-6 max-w-[16ch] [text-wrap:balance] text-[length:clamp(34px,6.2vw,74px)] xl:text-[length:clamp(40px,3.8vw,58px)]"
-                style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.94)" }}
-              >
-                {HERO_H1[lang]}
+              <h1 className="font-clash mb-8 xl:mb-6">
+                <span
+                  className="block text-[11px] tracking-[0.2em] sm:tracking-[0.4em] uppercase font-medium mb-5"
+                  style={{ color: `${PINK}c0` }}
+                >
+                  {HERO_EYEBROW[lang]}
+                </span>
+                <span
+                  className="block font-bold leading-[1.04] max-w-[16ch] [text-wrap:balance] text-[length:clamp(34px,6.2vw,74px)] xl:text-[length:clamp(40px,3.8vw,58px)]"
+                  style={{ letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.94)" }}
+                >
+                  {HERO_H1[lang]}
+                </span>
               </h1>
             </motion.div>
             <motion.div
-              className="[grid-area:pantalla] w-full max-w-[760px] mb-10 xl:mb-0"
-              initial={{ opacity: 0, y: 24 }}
+              className="[grid-area:pantalla] min-w-0 w-full max-w-[760px] mb-10 xl:mb-0"
+              initial={entrada}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: EASE, delay: 0.12 }}
             >
-              <PantallaQueEscribe lang={lang} onPedir={scrollToForm} />
+              <PantallaQueEscribe lang={lang} onPedir={scrollToForm} continuar={desdeHTML} />
             </motion.div>
             <motion.div
-              className="[grid-area:accion] xl:self-start"
-              initial={{ opacity: 0, y: 24 }}
+              className="[grid-area:accion] min-w-0 xl:self-start"
+              initial={entrada}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
             >
@@ -273,7 +328,7 @@ const ShopifyVertical = () => {
               <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-x-6">
                 <button
                   type="button"
-                  onClick={scrollToForm}
+                  onClick={irALaRadiografia("shopify_hero")}
                   className="font-clash text-[12px] tracking-[0.2em] uppercase font-semibold rounded-full px-8 py-4 transition-all duration-300 hover:scale-[1.03] w-full sm:w-auto"
                   style={{ background: PINK, color: "#0B0B10", boxShadow: `0 0 40px ${PINK}30` }}
                 >
@@ -283,6 +338,7 @@ const ShopifyVertical = () => {
                   href={whatsAppUrl(WA_MSG[lang])}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackContact("whatsapp", "shopify_hero")}
                   className="font-clash text-[12px] tracking-[0.2em] uppercase font-medium inline-flex items-center justify-center sm:justify-start min-h-[44px] px-2 -mx-2"
                   style={{ color: "rgba(var(--text-rgb), 0.55)" }}
                 >
@@ -305,7 +361,7 @@ const ShopifyVertical = () => {
         {/* Prueba — capturas de una tienda real */}
         <Section>
           <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-            <p className="font-clash text-[10px] tracking-[0.35em] uppercase font-medium mb-4" style={{ color: `${PINK}c0` }}>
+            <p className="font-clash text-[11px] tracking-[0.35em] uppercase font-medium mb-4" style={{ color: `${PINK}c0` }}>
               {PROOF_EYEBROW[lang]}
             </p>
             <h2
@@ -357,7 +413,7 @@ const ShopifyVertical = () => {
                   <p className="font-clash font-bold mb-1.5" style={{ fontSize: "clamp(30px, 3.4vw, 44px)", letterSpacing: "-0.02em", color: PINK }}>
                     {s.n[lang]}
                   </p>
-                  <p className="font-clash text-[13px] md:text-sm leading-snug" style={{ color: "rgba(var(--text-rgb), 0.5)" }}>
+                  <p className="font-clash text-[13px] md:text-sm leading-snug" style={{ color: "rgba(var(--text-rgb), 0.62)" }}>
                     {s.l[lang]}
                   </p>
                 </div>
@@ -373,7 +429,7 @@ const ShopifyVertical = () => {
             </Link>
 
             <div className="mt-10 md:mt-14 pt-6" style={{ borderTop: "1px solid rgba(var(--text-rgb), 0.08)" }}>
-              <p className="font-clash text-[10px] tracking-[0.35em] uppercase font-medium mb-3" style={{ color: `${PINK}c0` }}>
+              <p className="font-clash text-[11px] tracking-[0.35em] uppercase font-medium mb-3" style={{ color: `${PINK}c0` }}>
                 {ALSO_EYEBROW[lang]}
               </p>
               <p className="font-clash text-[15px] md:text-lg max-w-2xl leading-relaxed" style={{ color: "rgba(var(--text-rgb), 0.55)" }}>
@@ -406,11 +462,11 @@ const ShopifyVertical = () => {
                   }}
                 >
                   <div className="flex items-baseline justify-between gap-3 mb-4">
-                    <span className="font-mono text-[10px] tracking-[0.25em]" style={{ color: `${PINK}b0` }}>
+                    <span className="font-mono text-[11px] tracking-[0.25em]" style={{ color: `${PINK}b0` }}>
                       0{i + 1}
                     </span>
                     {a.tag && (
-                      <span className="font-clash text-[9px] tracking-[0.2em] uppercase font-semibold text-right" style={{ color: PINK }}>
+                      <span className="font-clash text-[10.5px] tracking-[0.18em] uppercase font-semibold text-right" style={{ color: PINK }}>
                         {a.tag[lang]}
                       </span>
                     )}
@@ -421,7 +477,7 @@ const ShopifyVertical = () => {
                   >
                     {a.t[lang]}
                   </h3>
-                  <p className="font-clash text-[13px] md:text-sm leading-relaxed" style={{ color: "rgba(var(--text-rgb), 0.5)" }}>
+                  <p className="font-clash text-[13px] md:text-sm leading-relaxed" style={{ color: "rgba(var(--text-rgb), 0.62)" }}>
                     {a.b[lang]}
                   </p>
                 </div>
@@ -465,7 +521,7 @@ const ShopifyVertical = () => {
         </Section>
 
         {/* Cierre */}
-        <Section className="pb-28 md:pb-36">
+        <Section className="pb-16 md:pb-36">
           <div className="mx-auto max-w-[900px] px-6 md:px-10 text-center">
             <h2
               className="font-clash font-bold leading-[1.05] mb-9"
@@ -475,7 +531,7 @@ const ShopifyVertical = () => {
             </h2>
             <button
               type="button"
-              onClick={scrollToForm}
+              onClick={irALaRadiografia("shopify_cierre")}
               className="font-clash text-[12px] tracking-[0.2em] uppercase font-semibold rounded-full px-8 py-4 transition-all duration-300 hover:scale-[1.03]"
               style={{ background: PINK, color: "#0B0B10", boxShadow: `0 0 40px ${PINK}30` }}
             >

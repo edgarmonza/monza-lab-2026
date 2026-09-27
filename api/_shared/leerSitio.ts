@@ -29,7 +29,7 @@ export type SiteFacts = {
 
 export type SiteError = { ok: false; error: string; url?: string };
 
-const UA = "MonzaLabAgent/1.0 (+https://monzalab.com; agente comercial)";
+const UA = "MonzaLabAgent/1.0 (+https://www.monzalab.com; agente comercial)";
 const MAX_BYTES = 400_000;
 const TIMEOUT_MS = 8_000;
 

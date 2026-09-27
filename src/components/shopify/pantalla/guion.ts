@@ -270,6 +270,11 @@ export const cuadroEn = (g: Guion, tiempo: number): Cuadro => {
   return cuadro;
 };
 
+/** La primera tienda cargada y quieta en su portada. Es el cuadro que queda escrito en el HTML
+ *  prerenderizado y desde donde sigue el navegador, para que la pantalla no se rebobine delante de
+ *  quien acaba de llegar (auditoría móvil, 27-sep-2026). */
+export const portadaInicial = (g: Guion) => g.tramos.find((tr) => tr.escena.tipo === "tienda")?.marcas.portada ?? 0;
+
 /** Para quien pide menos movimiento: cada capítulo como una foto. La tienda, cargada y en
  *  su portada; el sistema, completo y con el cierre escrito. */
 export const cuadroQuieto = (g: Guion, k: number): Cuadro => {

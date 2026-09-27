@@ -101,3 +101,32 @@ describe("PantallaQueEscribe", () => {
     expect(container.textContent).toContain("How we're building it at soloio");
   });
 });
+
+describe("PantallaQueEscribe con el HTML prerenderizado", () => {
+  type ConPrerender = Window & { __PRERENDER__?: boolean };
+  afterEach(() => {
+    delete (window as ConPrerender).__PRERENDER__;
+  });
+
+  it("sin HTML previo arranca con la barra vacía, lista para escribir", () => {
+    conMovimientoReducido(false);
+    const { container } = render(<PantallaQueEscribe lang="es" onPedir={() => {}} />);
+    expect(barra(container)).toBe("");
+  });
+
+  it("si la página llegó prerenderizada, sigue desde la portada de soloio en vez de rebobinar", () => {
+    conMovimientoReducido(false);
+    const { container } = render(<PantallaQueEscribe lang="es" onPedir={() => {}} continuar />);
+    expect(barra(container)).toBe("soloio.com");
+  });
+
+  it("dentro del prerender se queda quieta en esa portada: el HTML muestra siempre el mismo cuadro", () => {
+    conMovimientoReducido(false);
+    (window as ConPrerender).__PRERENDER__ = true;
+    const raf = vi.fn(() => 0);
+    vi.stubGlobal("requestAnimationFrame", raf);
+    const { container } = render(<PantallaQueEscribe lang="es" onPedir={() => {}} />);
+    expect(barra(container)).toBe("soloio.com");
+    expect(raf).not.toHaveBeenCalled();
+  });
+});

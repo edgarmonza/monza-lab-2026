@@ -274,7 +274,7 @@ const StudioLanding = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     name: "Monza Studio — Shopify + AI Content + AI Agents",
-    provider: { "@type": "Organization", name: "Monza Lab", url: "https://monzalab.com" },
+    provider: { "@type": "Organization", name: "Monza Lab", url: "https://www.monzalab.com" },
     serviceType: ["Shopify Ecommerce Development", "AI Content Production", "AI Agents", "Paid Media Management"],
     areaServed: ["Colombia", "Spain", "Portugal", "Germany", "United States"],
     offers: {

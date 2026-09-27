@@ -269,7 +269,7 @@ const MonzaSessions = () => {
     "@type": "Course",
     name: "Monza Sessions — Educación AI-native",
     description: "Formación de Monza Lab para construir con AI: una tarde presencial (Monza Sessions) y un bootcamp de 8 semanas (Monza Bootcamp).",
-    provider: { "@type": "Organization", name: "Monza Lab", url: "https://monzalab.com" },
+    provider: { "@type": "Organization", name: "Monza Lab", url: "https://www.monzalab.com" },
     hasCourseInstance: [
       { "@type": "CourseInstance", name: "Monza Sessions — tarde presencial", courseMode: "onsite", offers: { "@type": "Offer", price: "150", priceCurrency: "USD" } },
       { "@type": "CourseInstance", name: "Monza Bootcamp — 8 semanas", courseMode: "online", offers: { "@type": "Offer", price: "400", priceCurrency: "USD" } },

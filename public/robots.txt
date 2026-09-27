@@ -57,7 +57,7 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://monzalab.com/sitemap.xml
+Sitemap: https://www.monzalab.com/sitemap.xml
 
 # LLM-readable summary of this site
-# https://monzalab.com/llms.txt
+# https://www.monzalab.com/llms.txt

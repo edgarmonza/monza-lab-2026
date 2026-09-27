@@ -157,7 +157,7 @@ const Navbar = () => {
           >
 
             {/* Logo — MONZA wordmark with helmet */}
-            <Link to="/" className="flex items-center gap-0 select-none group">
+            <Link to="/" className="flex items-center gap-0 min-h-[44px] select-none group">
               <span
                 className="font-clash font-bold transition-all duration-500"
                 style={{
@@ -195,8 +195,9 @@ const Navbar = () => {
               </span>
             </Link>
 
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-7">
+            {/* Desktop nav — desde 1180 px: entre 768 y 1179 el menú completo no cabía y se
+                salían el tema, el idioma y «Construyamos» (auditoría móvil, 27-sep-2026). */}
+            <div className="hidden min-[1180px]:flex items-center gap-7">
               {/* Ventures dropdown */}
               <div
                 className="relative"
@@ -445,7 +446,7 @@ const Navbar = () => {
             {/* Mobile hamburger */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-[5px]"
+              className="min-[1180px]:hidden relative w-11 h-11 -mr-1.5 flex flex-col items-center justify-center gap-[5px]"
               aria-label="Toggle menu"
             >
               <span
@@ -475,7 +476,7 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 md:hidden flex flex-col items-center justify-center"
+            className="fixed inset-0 z-40 min-[1180px]:hidden flex flex-col items-center justify-center"
             style={{
               background: 'var(--surface-overlay)',
               backdropFilter: 'blur(30px)',

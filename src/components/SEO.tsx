@@ -21,7 +21,7 @@ type SEOProps = {
   noindex?: boolean;
 };
 
-const SITE_URL = "https://monzalab.com";
+const SITE_URL = "https://www.monzalab.com";
 /* Versión de las imágenes OG dinámicas. LinkedIn (y otros) cachean la imagen por URL:
  * cuando cambie el diseño o se arregle un render, subir este número para que
  * las redes vuelvan a descargarla. v2 = 2026-08-17 (fix del mosaico de la home). */
@@ -65,8 +65,11 @@ const SEO = ({ title, description, path = "", image, ogPage, type = "website", j
     { lang: "pt", url: buildUrl("pt", path) },
   ];
 
+  /* defer={false}: react-helmet espera un requestAnimationFrame para escribir la cabecera, y
+   * el prerender captura pestañas en segundo plano donde ese cuadro no llega. Con la espera,
+   * 9 de 76 páginas salían con la canónica de la portada (27-sep-2026). */
   return (
-    <Helmet>
+    <Helmet defer={false}>
       <html lang={language} />
       <title>{currentTitle}</title>
       <meta name="description" content={currentDescription} />

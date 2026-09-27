@@ -37,8 +37,10 @@ const FooterMinimal = () => {
   const { language } = useLanguage();
 
   const textPrimary = isModena ? "rgba(11,11,16,0.92)" : "rgba(255,252,247,0.92)";
-  const textMuted = isModena ? "rgba(11,11,16,0.35)" : "rgba(255,252,247,0.35)";
-  const textSubtle = isModena ? "rgba(11,11,16,0.20)" : "rgba(255,252,247,0.20)";
+  // Auditoría móvil, 27-sep-2026: a 0,20 y 0,35 los enlaces del pie no llegaban al contraste
+  // mínimo (1,9:1) y en el celular casi no se leían. Ahora pasan AA en los dos temas.
+  const textMuted = isModena ? "rgba(11,11,16,0.6)" : "rgba(255,252,247,0.58)";
+  const textSubtle = isModena ? "rgba(11,11,16,0.5)" : "rgba(255,252,247,0.48)";
   const borderSubtle = isModena ? "rgba(11,11,16,0.08)" : "rgba(255,252,247,0.06)";
 
   return (
@@ -73,7 +75,7 @@ const FooterMinimal = () => {
             <a
               href={`mailto:${content.email}`}
               onClick={() => trackContact("email", "footer")}
-              className="group inline-flex items-center gap-3 font-clash text-[13px] md:text-[15px] tracking-[0.05em] transition-colors duration-400"
+              className="group inline-flex items-center gap-3 min-h-[44px] font-clash text-[13px] md:text-[15px] tracking-[0.05em] transition-colors duration-400"
               style={{ color: textMuted }}
               onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(248,180,217,0.95)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.color = textMuted; }}
@@ -89,7 +91,7 @@ const FooterMinimal = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackContact("whatsapp", "footer")}
-              className="group inline-flex items-center gap-3 font-clash text-[13px] md:text-[15px] tracking-[0.05em] transition-colors duration-400"
+              className="group inline-flex items-center gap-3 min-h-[44px] font-clash text-[13px] md:text-[15px] tracking-[0.05em] transition-colors duration-400"
               style={{ color: textMuted }}
               onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(37,211,102,0.95)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.color = textMuted; }}
@@ -124,7 +126,7 @@ const FooterMinimal = () => {
               />
             </div>
             <span
-              className="font-clash text-[10px] tracking-[0.3em] uppercase"
+              className="font-clash text-[11px] tracking-[0.26em] uppercase"
               style={{ color: textSubtle }}
             >
               © 2026 Monza Lab
@@ -132,16 +134,17 @@ const FooterMinimal = () => {
           </div>
 
           {/* Middle — internal pillars, discreet (SEO + navegación) */}
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-7">
             {([
-              { to: "/shopify", label: { es: "Shopify con IA", en: "Shopify with AI", de: "Shopify mit KI", pt: "Shopify com IA" } },
+              // El texto del enlace también cuenta para Google: dice lo que la gente busca (27-sep-2026).
+              { to: "/shopify", label: { es: "Marketing para Shopify", en: "Shopify marketing", de: "Shopify-Marketing", pt: "Marketing para Shopify" } },
               { to: "/agentes", label: { es: "Agentes de IA", en: "AI Agents", de: "KI-Agenten", pt: "Agentes de IA" } },
               { to: "/work", label: { es: "Casos", en: "Work", de: "Cases", pt: "Casos" } },
             ] as const).map((l) => (
               <RouterLink
                 key={l.to}
                 to={`${language === "es" ? "" : `/${language}`}${l.to}`}
-                className="font-clash text-[10px] tracking-[0.3em] uppercase transition-colors duration-300"
+                className="font-clash text-[11px] tracking-[0.26em] uppercase whitespace-nowrap inline-flex items-center min-h-[44px] transition-colors duration-300"
                 style={{ color: textSubtle }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = textMuted; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = textSubtle; }}
@@ -152,13 +155,13 @@ const FooterMinimal = () => {
           </div>
 
           {/* Right — socials, discreet */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-7">
             <a
               href="https://www.instagram.com/monza.lab/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram — @monza.lab"
-              className="font-clash text-[10px] tracking-[0.3em] uppercase transition-colors duration-300"
+              className="font-clash text-[11px] tracking-[0.26em] uppercase whitespace-nowrap inline-flex items-center min-h-[44px] transition-colors duration-300"
               style={{ color: textSubtle }}
               onMouseEnter={(e) => { e.currentTarget.style.color = textMuted; }}
               onMouseLeave={(e) => { e.currentTarget.style.color = textSubtle; }}
@@ -170,7 +173,7 @@ const FooterMinimal = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn — Edgar Navarro"
-              className="font-clash text-[10px] tracking-[0.3em] uppercase transition-colors duration-300"
+              className="font-clash text-[11px] tracking-[0.26em] uppercase whitespace-nowrap inline-flex items-center min-h-[44px] transition-colors duration-300"
               style={{ color: textSubtle }}
               onMouseEnter={(e) => { e.currentTarget.style.color = textMuted; }}
               onMouseLeave={(e) => { e.currentTarget.style.color = textSubtle; }}

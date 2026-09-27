@@ -49,9 +49,12 @@ describe("EstelaContenido", () => {
     expect(screen.getByText(/campañas de soloio/)).toBeTruthy();
   });
 
-  it("con movimiento reducido deja un collage quieto a la vista", () => {
+  it("con movimiento reducido deja un collage quieto a la vista (en el celular)", () => {
     movimiento(true);
+    const antes = window.innerWidth;
+    Object.defineProperty(window, "innerWidth", { value: 390, configurable: true });
     const { container } = render(<EstelaContenido lang="es" />);
+    Object.defineProperty(window, "innerWidth", { value: antes, configurable: true });
     expect(container.querySelectorAll(".estela-carta.is-quieta").length).toBeGreaterThanOrEqual(4);
   });
 });

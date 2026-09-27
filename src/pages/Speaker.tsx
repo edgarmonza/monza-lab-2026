@@ -274,6 +274,93 @@ const content = {
       button: "Per WhatsApp kontaktieren",
     },
   },
+  /* Portugués de Portugal, con «tu» como el resto del sitio. Hasta el 27-sep-2026 no existía y
+   * /pt/speaker se caía en blanco. */
+  pt: {
+    hero: {
+      eyebrow: "Edgar Navarro · Speaker",
+      headline1: "Não fala de IA.",
+      headlineAccent: "Usa-a.",
+      cta: "Leva o Edgar ao teu evento",
+      readMore: "Ler mais ↓",
+    },
+    numbers: [
+      { n: "15+", label: "anos a construir" },
+      { n: "6", label: "anos na KPMG" },
+      { n: "1.200+", label: "em palco" },
+      { n: "2", label: "empresas fundadas" },
+    ],
+    who: {
+      eyebrow: "O speaker",
+      headline1: "Não vem falar",
+      headline2: "do que estudou.",
+      headlineAccent1: "Vem mostrar",
+      headlineAccent2: "o que faz.",
+      bio: "Consultor de Big Four. Fundador de várias ventures em paralelo. Constrói com IA desde o primeiro dia, não como ferramenta, mas como sistema operativo. Não fala a partir da teoria. Fala a partir da obra que está a correr hoje.",
+    },
+    ventures: [
+      { name: "Monza Lab",      href: null,                              desc: "AI-native company builder · Colômbia" },
+      { name: "Monza Haus",     href: null,                              desc: "Plataforma · US/UK/EU/Japão" },
+      { name: "Bavarian Econs", href: "https://www.bavarianecons.com/",  desc: "Eletrificação de BMW clássicos" },
+      { name: "Guardian Speed", href: "https://www.guardianofspeed.de",  desc: "Logística · Munique" },
+    ],
+    statement: {
+      part1: "“Nunca dá a mesma palestra duas vezes. ",
+      accent: "Desenha cada conferência como uma experiência",
+      part2: " e cruza mundos que mais ninguém junta.”",
+    },
+    pastTalks: {
+      eyebrow: "Palestras anteriores",
+      headline: "O que já está em palco.",
+      items: [
+        {
+          venue: "Andigraf · Barranquilla",
+          meta: "2026 · ES",
+          topic: "IA para a indústria gráfica",
+          format: "Keynote · apresentada pela Heidelberg",
+          href: "https://andigraf.monzalab.com",
+        },
+      ],
+    },
+    themes: {
+      eyebrow: "Como funciona",
+      headline1: "Cada palco é diferente.",
+      headline2: "Cada conferência também.",
+      description: "Não repito palestras. Desenho cada experiência segundo o teu público, a tua indústria e o que precisam de levar. Cruzo mundos que normalmente não se tocam, e é daí que construo o ângulo.",
+      cards: [
+        {
+          lente: "IA × Empresa",
+          titulo: "A empresa que se compila.",
+          sub: "Construir um negócio onde a IA não é um departamento: é o sistema operativo. Como avançar mais depressa, contratar menos e produzir à escala de uma equipa grande com uma equipa pequena.",
+          para: "CEOs · Founders · Conselhos de administração",
+        },
+        {
+          lente: "IA × Velocidade",
+          titulo: "Andar depressa sem partir nada.",
+          sub: "O paradoxo de quem constrói hoje: velocidade de startup sem perder a qualidade que constrói marca. Do automobilismo à escala de ventures em paralelo: como executar a outro ritmo sem sacrificar o que importa.",
+          para: "Empreendedores · Equipas de alto desempenho",
+        },
+        {
+          lente: "IA × Experiência",
+          titulo: "Cada ponto de contacto conta.",
+          sub: "Não é só o logótipo: é toda a experiência digital, desde que alguém te vê nas redes até navegar no teu site. As empresas que vão dominar vão ganhar porque cada interação faz sentir alguma coisa. A IA como amplificador dessa visão completa.",
+          para: "CMOs · Brand leaders · Fundadores de marca",
+        },
+        {
+          lente: "IA × Construção",
+          titulo: "Do zero a marca global.",
+          sub: "Como levar um projeto da ideia a produto real com estética global a partir da América Latina. O processo completo: validação, marca, tecnologia, go-to-market, tudo com IA integrada desde o primeiro dia.",
+          para: "Founders · Product leaders · Inovação",
+        },
+      ],
+      note: "Estes são os mundos que cruzo, não temas fixos. Cada conferência é desenhada do zero para o teu público. O formato, a língua e o ângulo definem-se em conjunto.",
+    },
+    cta: {
+      headline1: "Queres trazer",
+      headlineAccent: "a Monza?",
+      button: "Falemos por WhatsApp",
+    },
+  },
 };
 
 const Speaker = () => {
@@ -309,7 +396,7 @@ const Speaker = () => {
         description={{
           es: "Keynote speaker sobre inteligencia artificial, innovación y company building. Ex-Director de Innovación KPMG. Conferencias para empresas, universidades y eventos en LATAM, Europa y USA.",
           en: "Keynote speaker on artificial intelligence, innovation and company building. Former KPMG Innovation Director. Talks for companies, universities and events across LATAM, Europe and the US.",
-          de: "Keynote Speaker für Künstliche Intelligenz, Innovation und Company Building. Ehem. KPMG-Innovationsdirektor. Vorträge für Unternehmen, Universitäten und Events in LATAM, Europa und USA.", pt: "Keynote speaker sobre inteligencia artificial, innovación y company building. Ex-Director de Innovación KPMG. Conferencias para empresas, universidades y eventos en LATAM, Europa y USA.",
+          de: "Keynote Speaker für Künstliche Intelligenz, Innovation und Company Building. Ehem. KPMG-Innovationsdirektor. Vorträge für Unternehmen, Universitäten und Events in LATAM, Europa und USA.", pt: "Keynote speaker sobre inteligência artificial, inovação e company building. Ex-diretor de Inovação da KPMG. Conferências para empresas, universidades e eventos na América Latina, Europa e EUA.",
         }}
         jsonLd={{
           "@context": "https://schema.org",
@@ -317,8 +404,8 @@ const Speaker = () => {
           name: "Edgar Navarro",
           jobTitle: "AI Keynote Speaker & Founder",
           worksFor: { "@type": "Organization", name: "Monza Lab" },
-          url: "https://monzalab.com/speaker",
-          image: "https://monzalab.com/images/Speaker/15474a8a-40f8-4533-b39d-20a91fb73992.jpg",
+          url: "https://www.monzalab.com/speaker",
+          image: "https://www.monzalab.com/images/Speaker/15474a8a-40f8-4533-b39d-20a91fb73992.jpg",
           sameAs: [
             "https://www.linkedin.com/in/edgarnavarrosoto/",
             "https://www.instagram.com/monza.lab/",

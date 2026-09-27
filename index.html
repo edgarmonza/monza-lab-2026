@@ -4,60 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href="https://monzalab.com/" />
+    <link rel="canonical" href="https://www.monzalab.com/" data-react-helmet="true" />
 
-    <!-- hreflang: default + 4 idiomas (es, en, de, pt-PT) -->
-    <link rel="alternate" hreflang="es" href="https://monzalab.com/" />
-    <link rel="alternate" hreflang="en" href="https://monzalab.com/en" />
-    <link rel="alternate" hreflang="de" href="https://monzalab.com/de" />
-    <link rel="alternate" hreflang="pt-PT" href="https://monzalab.com/pt" />
-    <link rel="alternate" hreflang="pt" href="https://monzalab.com/pt" />
-    <link rel="alternate" hreflang="x-default" href="https://monzalab.com/" />
+    <!-- Respaldo SEO de la portada. Cada página las reemplaza con las suyas (react-helmet solo
+         reemplaza las que llevan data-react-helmet; sin la marca salían duplicadas). -->
+    <link rel="alternate" hreflang="es" href="https://www.monzalab.com/" data-react-helmet="true" />
+    <link rel="alternate" hreflang="en" href="https://www.monzalab.com/en" data-react-helmet="true" />
+    <link rel="alternate" hreflang="de" href="https://www.monzalab.com/de" data-react-helmet="true" />
+    <link rel="alternate" hreflang="pt" href="https://www.monzalab.com/pt" data-react-helmet="true" />
+    <link rel="alternate" hreflang="x-default" href="https://www.monzalab.com/" data-react-helmet="true" />
 
     <title>Monza Lab — AI-Native Company Builder · 4 Ventures, 1 Founder</title>
-    <meta name="description" content="Construyo y opero empresas globales con IA como palanca. Cuatro ventures activas: MonzaHaus, Monza Index, Monza Studio, Bavarian Econs. Un founder, criterio editorial. Fundado por Edgar Navarro." />
+    <meta name="description" content="Construyo y opero empresas globales con IA como palanca. Cuatro ventures activas: MonzaHaus, Monza Index, Monza Studio, Bavarian Econs. Un founder, criterio editorial. Fundado por Edgar Navarro." data-react-helmet="true" />
     <meta name="keywords" content="company builder, AI-native, MonzaHaus, Monza Index, Monza Studio, Bavarian Econs, Porsche intelligence, AI adoption, branding luxury, e-commerce de lujo, Shopify Storefront API, contenido con IA, growth multi-canal, founder Edgar Navarro" />
     <meta name="author" content="Edgar Navarro — Monza Lab" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" data-react-helmet="true" />
 
-    <!-- Fonts — only the 3 actually used. Preconnect both font CDNs. -->
+    <!-- Fuentes: Public Sans desde Google; Clash Display desde el propio sitio (index.css), con la de 700 precargada. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&display=swap" rel="stylesheet" />
+    <link rel="preload" href="/fonts/clash-display-700.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://monzalab.com/" />
-    <meta property="og:site_name" content="Monza Lab" />
-    <meta property="og:locale" content="es_ES" />
-    <meta property="og:locale:alternate" content="en_US" />
-    <meta property="og:locale:alternate" content="de_DE" />
-    <meta property="og:image" content="https://monzalab.com/api/og?page=home&amp;v=2" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Monza Lab — AI-Native Company Builder · Ventures y Plataformas AI-First" />
-    <meta property="og:title" content="Monza Lab — AI-Native Company Builder · Ventures y Plataformas AI-First" />
-    <meta property="og:description" content="Construyo y opero empresas globales con IA como palanca. Ventures propias, plataformas AI-first para clientes, tiendas Shopify operadas con IA y agentes de IA." />
+    <meta property="og:type" content="website" data-react-helmet="true" />
+    <meta property="og:url" content="https://www.monzalab.com/" data-react-helmet="true" />
+    <meta property="og:site_name" content="Monza Lab" data-react-helmet="true" />
+    <meta property="og:locale" content="es_ES" data-react-helmet="true" />
+    <meta property="og:locale:alternate" content="en_US" data-react-helmet="true" />
+    <meta property="og:locale:alternate" content="de_DE" data-react-helmet="true" />
+    <meta property="og:image" content="https://www.monzalab.com/api/og?page=home&amp;v=2" data-react-helmet="true" />
+    <meta property="og:image:width" content="1200" data-react-helmet="true" />
+    <meta property="og:image:height" content="630" data-react-helmet="true" />
+    <meta property="og:image:alt" content="Monza Lab — AI-Native Company Builder · Ventures y Plataformas AI-First" data-react-helmet="true" />
+    <meta property="og:title" content="Monza Lab — AI-Native Company Builder · Ventures y Plataformas AI-First" data-react-helmet="true" />
+    <meta property="og:description" content="Construyo y opero empresas globales con IA como palanca. Ventures propias, plataformas AI-first para clientes, tiendas Shopify operadas con IA y agentes de IA." data-react-helmet="true" />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@MonzaLab" />
-    <meta name="twitter:creator" content="@edgarnavarro" />
-    <meta name="twitter:image" content="https://monzalab.com/api/og?page=home&amp;v=2" />
-    <meta name="twitter:title" content="Monza Lab — AI-Native Company Builder · Ventures y Plataformas AI-First" />
-    <meta name="twitter:description" content="Construyo y opero empresas globales con IA como palanca. Ventures propias, plataformas AI-first, Shopify con IA y agentes de IA." />
+    <meta name="twitter:card" content="summary_large_image" data-react-helmet="true" />
+    <meta name="twitter:site" content="@MonzaLab" data-react-helmet="true" />
+    <meta name="twitter:creator" content="@edgarnavarro" data-react-helmet="true" />
+    <meta name="twitter:image" content="https://www.monzalab.com/api/og?page=home&amp;v=2" data-react-helmet="true" />
+    <meta name="twitter:title" content="Monza Lab — AI-Native Company Builder · Ventures y Plataformas AI-First" data-react-helmet="true" />
+    <meta name="twitter:description" content="Construyo y opero empresas globales con IA como palanca. Ventures propias, plataformas AI-first, Shopify con IA y agentes de IA." data-react-helmet="true" />
 
     <!-- Structured Data — Organization -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://www.monzalab.com/#organization",
       "name": "Monza Lab",
-      "url": "https://monzalab.com",
-      "logo": "https://monzalab.com/favicon.svg",
+      "url": "https://www.monzalab.com",
+      "sameAs": ["https://www.instagram.com/monza.lab/"],
+      "logo": "https://www.monzalab.com/favicon.svg",
       "description": "AI-native company builder. Plataformas AI-first para industrias reales, tiendas Shopify operadas con IA, agentes de IA (ventas por WhatsApp, asesores sobre ERP), contenido con IA, growth multi-canal y market intelligence.",
       "founder": {
         "@type": "Person",
@@ -65,7 +65,7 @@
         "jobTitle": "Founder & Creative Director",
         "knowsAbout": ["Branding", "Artificial Intelligence", "Innovation", "Public Speaking", "Luxury Marketing", "Tech Development", "Company Building"],
         "sameAs": [
-          "https://www.linkedin.com/in/edgarnavarro",
+          "https://www.linkedin.com/in/edgarnavarrosoto/",
           "https://www.instagram.com/monza.lab/"
         ]
       },
@@ -76,6 +76,18 @@
     }
     </script>
 
+    <!-- Structured Data — WebSite (el nombre del sitio en Google), atado a la organización -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://www.monzalab.com/#website",
+      "url": "https://www.monzalab.com",
+      "name": "Monza Lab",
+      "inLanguage": ["es", "en", "de", "pt"],
+      "publisher": { "@id": "https://www.monzalab.com/#organization" }
+    }
+    </script>
     <!-- Structured Data — Person (Speaker/Expert) -->
     <script type="application/ld+json">
     {

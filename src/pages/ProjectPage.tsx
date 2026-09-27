@@ -148,17 +148,17 @@ const ProjectPage = () => {
           name: project.name,
           headline: cs ? cs.headline[language] : project.name,
           description: project.desc[language],
-          url: `https://monzalab.com${langPrefix}/work/${project.slug}`,
-          image: project.image ? `https://monzalab.com${project.image}` : undefined,
+          url: `https://www.monzalab.com${langPrefix}/work/${project.slug}`,
+          image: project.image ? `https://www.monzalab.com${project.image}` : undefined,
           author: {
             "@type": "Organization",
             name: "Monza Lab",
-            url: "https://monzalab.com",
+            url: "https://www.monzalab.com",
           },
           creator: {
             "@type": "Person",
             name: "Edgar Navarro",
-            url: "https://monzalab.com/speaker",
+            url: "https://www.monzalab.com/speaker",
           },
           ...(cs && {
             keywords: cs.pillars.map((p) => p.label).join(", "),

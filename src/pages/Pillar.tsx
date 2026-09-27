@@ -71,7 +71,7 @@ const Pillar = ({ slug }: { slug: "shopify" | "agentes" }) => {
     "@type": "Service",
     name: p.h1[lang],
     description: p.seoDescription[lang],
-    provider: { "@type": "Organization", name: "Monza Lab", url: "https://monzalab.com" },
+    provider: { "@type": "Organization", name: "Monza Lab", url: "https://www.monzalab.com" },
     areaServed: ["Latin America", "Colombia", "Spain", "Europe", "United States"],
   };
   const faqLd = {

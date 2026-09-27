@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { trackContact, trackRadiografia, trackRadiografiaView, whatsAppUrl } from "@/lib/pixel";
 
@@ -37,6 +38,9 @@ const T = {
     de: "Link zu einem Produkt in deinem Store",
     pt: "Link de um produto da tua loja",
   },
+  /* Lo que se ve dentro del campo: corto, para que quepa entero a 360 px. La etiqueta completa
+   * queda para lectores de pantalla. */
+  urlCorto: { es: "Link de un producto tuyo", en: "Your product link", de: "Link zu einem Produkt", pt: "Link de um produto teu" },
   email: { es: "Tu correo", en: "Your email", de: "Deine E-Mail", pt: "O teu email" },
   whatsapp: { es: "Tu WhatsApp", en: "Your WhatsApp", de: "Dein WhatsApp", pt: "O teu WhatsApp" },
   revenue: {
@@ -44,6 +48,12 @@ const T = {
     en: "Monthly revenue (optional)",
     de: "Monatsumsatz (optional)",
     pt: "Faturação mensal (opcional)",
+  },
+  revenueCorto: {
+    es: "Ventas al mes (opcional)",
+    en: "Monthly sales (optional)",
+    de: "Monatsumsatz (optional)",
+    pt: "Vendas por mês (opcional)",
   },
   revenueHelp: {
     es: "Si nos lo dices, calculamos qué vale cada fricción en tu caso. Si no, usamos referencias de tu categoría y lo decimos.",
@@ -109,7 +119,8 @@ const WA_MSG: Record<Lang, string> = {
 };
 
 const inputBase =
-  "w-full rounded-xl px-5 py-4 text-[15px] font-clash outline-none transition-colors duration-300";
+  // 16 px siempre: con menos, el iPhone hace zoom al tocar el campo (también acostado, a 844 px).
+  "w-full rounded-xl px-4 sm:px-5 py-4 text-base font-clash outline-none transition-colors duration-300";
 
 const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
   const { language } = useLanguage();
@@ -215,7 +226,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
       style={{ border: `1px solid ${PINK}33`, background: `${PINK}08` }}
     >
       <p
-        className="font-clash text-[10px] md:text-[11px] tracking-[0.32em] uppercase font-semibold mb-5"
+        className="font-clash text-[11px] tracking-[0.32em] uppercase font-semibold mb-5"
         style={{ color: `${PINK}dd` }}
       >
         {T.eyebrow[lang]}
@@ -245,7 +256,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
           inputMode="url"
           autoComplete="url"
           required
-          placeholder={T.url[lang]}
+          placeholder={T.urlCorto[lang]}
           value={form.productUrl}
           onChange={set("productUrl")}
           className={`${inputBase} mb-3`}
@@ -303,26 +314,34 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
         <label htmlFor="rx-rev" className="sr-only">
           {T.revenue[lang]}
         </label>
-        <select
-          id="rx-rev"
-          value={form.revenue}
-          onChange={set("revenue")}
-          className={`${inputBase} appearance-none cursor-pointer`}
-          style={{
-            background: "rgba(var(--text-rgb), 0.04)",
-            border: "1px solid rgba(var(--text-rgb), 0.14)",
-            color: form.revenue ? "rgba(var(--text-rgb), 0.95)" : "rgba(var(--text-rgb), 0.45)",
-          }}
-        >
-          <option value="" disabled>
-            {T.revenue[lang]}
-          </option>
-          {REVENUE_OPTIONS.map((o) => (
-            <option key={o.value || "none"} value={o.value} style={{ color: "#0B0B10" }}>
-              {o.label[lang]}
+        <div className="relative">
+          <select
+            id="rx-rev"
+            value={form.revenue}
+            onChange={set("revenue")}
+            className={`${inputBase} appearance-none cursor-pointer pr-11`}
+            style={{
+              background: "rgba(var(--text-rgb), 0.04)",
+              border: "1px solid rgba(var(--text-rgb), 0.14)",
+              color: form.revenue ? "rgba(var(--text-rgb), 0.95)" : "rgba(var(--text-rgb), 0.45)",
+            }}
+          >
+            <option value="" disabled>
+              {T.revenueCorto[lang]}
             </option>
-          ))}
-        </select>
+            {REVENUE_OPTIONS.map((o) => (
+              <option key={o.value || "none"} value={o.value} style={{ color: "#0B0B10" }}>
+                {o.label[lang]}
+              </option>
+            ))}
+          </select>
+          {/* Sin la flecha, el menú parece un campo de texto (appearance-none le quita la del sistema). */}
+          <ChevronDown
+            aria-hidden="true"
+            className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4"
+            style={{ color: "rgba(var(--text-rgb), 0.5)" }}
+          />
+        </div>
         <p className="font-clash text-[12px] leading-relaxed mt-2.5 mb-7" style={{ color: "rgba(var(--text-rgb), 0.42)" }}>
           {T.revenueHelp[lang]}
         </p>
@@ -337,7 +356,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
           <button
             type="submit"
             disabled={state === "sending"}
-            className="font-clash text-[12px] tracking-[0.2em] uppercase font-semibold rounded-full px-8 py-4 transition-all duration-300 hover:scale-[1.03] disabled:opacity-60 disabled:hover:scale-100 w-full sm:w-auto"
+            className="font-clash text-[12px] tracking-[0.14em] min-[380px]:tracking-[0.2em] uppercase font-semibold whitespace-nowrap rounded-full px-6 sm:px-8 py-4 transition-all duration-300 hover:scale-[1.03] disabled:opacity-60 disabled:hover:scale-100 w-full sm:w-auto"
             style={{ background: PINK, color: "#0B0B10", boxShadow: `0 0 40px ${PINK}30` }}
           >
             {state === "sending" ? T.sending[lang] : `${T.submit[lang]} →`}

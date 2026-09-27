@@ -94,7 +94,7 @@ const AsesorWhatsApp = ({ lang }: { lang: Lang }) => {
     <section className="relative py-16 md:py-28" aria-labelledby="asesor-titulo">
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] gap-10 lg:gap-16 items-center">
         <div>
-          <p className="font-clash text-[10px] md:text-[11px] tracking-[0.35em] uppercase font-medium mb-4" style={{ color: "#F8B4D9c0" }}>
+          <p className="font-clash text-[11px] tracking-[0.35em] uppercase font-medium mb-4" style={{ color: "#F8B4D9c0" }}>
             {COPY.antetitulo[lang]}
           </p>
           <h2

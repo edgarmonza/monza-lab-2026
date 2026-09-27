@@ -70,9 +70,9 @@ const Ecosistema = ({ lang }: { lang: Lang }) => {
   const pieza = PIEZAS[activa];
 
   return (
-    <section ref={seccion} className="relative py-16 md:py-28" aria-labelledby="eco-titulo">
+    <section ref={seccion} className="relative pt-16 pb-6 md:py-28" aria-labelledby="eco-titulo">
       <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-        <p className="font-clash text-[10px] md:text-[11px] tracking-[0.35em] uppercase font-medium mb-4" style={{ color: "#F8B4D9c0" }}>
+        <p className="font-clash text-[11px] tracking-[0.35em] uppercase font-medium mb-4" style={{ color: "#F8B4D9c0" }}>
           {COPY_ECO.antetitulo[lang]}
         </p>
         <h2

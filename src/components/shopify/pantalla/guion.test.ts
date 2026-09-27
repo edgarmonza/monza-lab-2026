@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { armarGuion, cuadroEn, cuadroQuieto, inicioCapitulo, tecleo, RITMO, type Escena } from "./guion";
+import { armarGuion, cuadroEn, cuadroQuieto, inicioCapitulo, portadaInicial, tecleo, RITMO, type Escena } from "./guion";
 
 const ESCENAS: Escena[] = [
   { tipo: "tienda", id: "soloio", url: "soloio.com" },
@@ -169,5 +169,18 @@ describe("capítulos, bucle y versión quieta", () => {
     expect(sistema.sistema!.visible).toBe(1);
     expect(sistema.sistema!.lineas.every((l) => l.chips === 1)).toBe(true);
     expect(sistema.cierre).toEqual({ escrito: "¿Y la tuya?".length, foco: true });
+  });
+});
+
+describe("portadaInicial", () => {
+  // Es el cuadro que queda escrito en el HTML prerenderizado y desde donde sigue el navegador:
+  // la primera tienda entera, arriba, con su dirección escrita (auditoría móvil, 27-sep-2026).
+  it("es la primera tienda cargada y quieta en su portada", () => {
+    const t = portadaInicial(guion);
+    expect(t).toBe(tramo(0).marcas.portada);
+    const c = cuadroEn(guion, t);
+    expect(c.pagina).toEqual({ id: "soloio", opacidad: 1, bajada: 0 });
+    expect(c.barra.texto).toBe("soloio.com");
+    expect(c.carga).toBeNull();
   });
 });
