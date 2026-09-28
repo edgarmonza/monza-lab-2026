@@ -5,34 +5,23 @@ import { perezosa } from "@/lib/perezosa";
  * precargar la página de la ruta de entrada antes del primer render (ver lib/perezosa.tsx). La
  * portada (Index) va en el paquete principal y no se precarga. */
 export const Speaker = perezosa(() => import("./pages/Speaker"));
-export const ProjectPage = perezosa(() => import("./pages/ProjectPage"));
 export const NotFound = perezosa(() => import("./pages/NotFound"));
 export const Upload = perezosa(() => import("./pages/Upload"));
-export const MonzaStudio = perezosa(() => import("./pages/MonzaStudio"));
-export const StudioLanding = perezosa(() => import("./pages/StudioLanding"));
-export const MonzaHaus = perezosa(() => import("./pages/MonzaHaus"));
-export const MonzaIndex = perezosa(() => import("./pages/MonzaIndex"));
-export const BavarianEcons = perezosa(() => import("./pages/BavarianEcons"));
 export const MonzaSessions = perezosa(() => import("./pages/MonzaSessions"));
 export const Work = perezosa(() => import("./pages/Work"));
-export const Pillar = perezosa(() => import("./pages/Pillar"));
 // /shopify tiene página propia (vertical e-commerce). Mantiene el mismo SEO y FAQ
 // que la pilar genérica: lee de src/data/pillars.ts para no perder lo ya indexado.
 export const ShopifyVertical = perezosa(() => import("./pages/ShopifyVertical"));
-// /work/<slug>: el caso v2 si existe en src/data/casos; si no, la ProjectPage vieja (ver CasoRuta).
+// /work/<slug>: el caso v2 si existe en src/data/casos; si no, «no encontrada» (ver CasoRuta).
 export const CasoRuta = perezosa(() => import("./pages/CasoRuta"));
+export const Plataformas = perezosa(() => import("./pages/Plataformas"));
 
 const POR_RUTA: Record<string, { precargar: () => Promise<void> }> = {
   "/speaker": Speaker,
   "/work": Work,
   "/shopify": ShopifyVertical,
-  "/agentes": Pillar,
-  "/monzastudio": MonzaStudio,
-  "/studio": StudioLanding,
-  "/monzahaus": MonzaHaus,
-  "/monzaindex": MonzaIndex,
-  "/bavarianecons": BavarianEcons,
   "/sessions": MonzaSessions,
+  "/plataformas": Plataformas,
   "/upload": Upload,
 };
 

@@ -25,8 +25,7 @@ const COLUMNAS: { titulo: LangText; items: Item[] }[] = [
     titulo: L("Trabajar juntos", "Work together", "Zusammenarbeiten", "Trabalhar juntos"),
     items: [
       { t: L("Studio · e-commerce"), to: "/shopify" },
-      { t: L("Plataformas", "Platforms", "Plattformen", "Plataformas"), to: "/#plataformas" },
-      { t: L("Agentes de IA", "AI agents", "KI-Agenten", "Agentes de IA"), to: "/agentes" },
+      { t: L("Plataformas y agentes", "Platforms and agents", "Plattformen und Agenten", "Plataformas e agentes"), to: "/plataformas" },
       { t: L("Monza Sessions"), to: "/sessions" },
     ],
   },

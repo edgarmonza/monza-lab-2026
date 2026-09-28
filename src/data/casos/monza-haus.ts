@@ -610,7 +610,7 @@ export const caso: Caso = {
       "Erzähl mir, welchen Markt du ordnen willst, und ich sage dir, wo ich anfangen würde.",
       "Conta-me que mercado queres organizar e eu digo-te por onde começaria.",
     ),
-    enlace: { href: "/#plataformas", texto: t("Ver plataformas →", "See platforms →", "Plattformen ansehen →", "Ver plataformas →") },
+    enlace: { href: "/plataformas", texto: t("Ver plataformas →", "See platforms →", "Plattformen ansehen →", "Ver plataformas →") },
   },
   tarjeta: {
     etiqueta: t(

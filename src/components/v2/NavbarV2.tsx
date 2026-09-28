@@ -15,7 +15,7 @@ const L = (es: string, en = es, de = en, pt = es): LangText => ({ es, en, de, pt
 const LINKS: { id: string; t: LangText; sub: LangText; to: string; activo: (base: string) => boolean }[] = [
   { id: "proyectos", t: L("Proyectos", "Work", "Projekte", "Projetos"), sub: L("Casos", "Cases", "Fälle", "Casos"), to: "/#proyectos", activo: (b) => b.startsWith("/work") },
   { id: "studio", t: L("Studio"), sub: L("E-commerce"), to: "/shopify", activo: (b) => b === "/shopify" },
-  { id: "plataformas", t: L("Plataformas", "Platforms", "Plattformen", "Plataformas"), sub: L("Empresas", "Companies", "Unternehmen", "Empresas"), to: "/#plataformas", activo: () => false },
+  { id: "plataformas", t: L("Plataformas", "Platforms", "Plattformen", "Plataformas"), sub: L("Empresas", "Companies", "Unternehmen", "Empresas"), to: "/plataformas", activo: (b) => b === "/plataformas" },
   { id: "sessions", t: L("Sessions"), sub: L("Aprender", "Learn", "Lernen", "Aprender"), to: "/sessions", activo: (b) => b === "/sessions" },
   { id: "edgar", t: L("Edgar"), sub: L("Quién", "Who", "Wer", "Quem"), to: "/#edgar", activo: (b) => b === "/speaker" },
 ];

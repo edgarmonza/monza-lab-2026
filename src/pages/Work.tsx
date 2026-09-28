@@ -1,238 +1,111 @@
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+/* /work en v2 (28-sep-2026): todos los casos, con las mismas tarjetas de la portada, en
+ * cuadrícula y con filtro Todos · Studio · Plataformas · Ventures. El filtro vive en ?f= y
+ * acepta los valores viejos (platform, venture, studio) porque llms.txt y Google los enlazan. */
+import { useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { PROJECTS } from "@/data/projects";
-import type { ProjectCategory } from "@/data/projects";
-import type { Lang, LangText } from "@/i18n/types";
-import PremiumBackground from "@/components/layout/PremiumBackground";
+import type { LangText } from "@/i18n/types";
+import { enlace } from "@/lib/enlace";
+import { casoPorSlug } from "@/data/casos";
+import type { Caso } from "@/data/casos/tipos";
+import { PROYECTOS } from "@/components/portada/datos";
+import { PROYECTOS as TXT } from "@/components/portada/textos";
+import IconoEntregable from "@/components/portada/IconoEntregable";
+import { useRevela } from "@/components/v2/useRevela";
 import FooterMinimal from "@/components/FooterMinimal";
 import SEO from "@/components/SEO";
+import "@/styles/v2.css";
+import "@/components/portada/portada.css";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
+type Filtro = "todos" | Caso["categoria"];
+const L = (es: string, en = es, de = en, pt = es): LangText => ({ es, en, de, pt });
 
-type Filter = "all" | ProjectCategory;
-
-const COPY: Record<string, LangText> = {
-  eyebrow: { es: "CASOS", en: "WORK", de: "CASES", pt: "CASOS" },
-  heading: { es: "Lo que construimos.", en: "What we build.", de: "Was wir bauen.", pt: "O que construímos." },
-  sub: {
-    es: "Plataformas AI-first, ventures propias y marcas operadas desde Monza Lab.",
-    en: "AI-first platforms, our own ventures and brands operated from Monza Lab.",
-    de: "AI-First-Plattformen, eigene Ventures und Marken, betrieben von Monza Lab.",
-    pt: "Plataformas AI-first, ventures próprias e marcas operadas a partir da Monza Lab.",
-  },
-  nda: { es: "En confidencialidad", en: "Under NDA", de: "Unter NDA", pt: "Em confidencialidade" },
-  view: { es: "Ver el caso", en: "View case", de: "Case ansehen", pt: "Ver o caso" },
-};
-
-const FILTERS: Array<{ key: Filter; label: LangText }> = [
-  { key: "all", label: { es: "Todos", en: "All", de: "Alle", pt: "Todos" } },
-  { key: "platform", label: { es: "Plataformas", en: "Platforms", de: "Plattformen", pt: "Plataformas" } },
-  { key: "venture", label: { es: "Ventures", en: "Ventures", de: "Ventures", pt: "Ventures" } },
-  { key: "studio", label: { es: "Studio", en: "Studio", de: "Studio", pt: "Studio" } },
+const FILTROS: { k: Filtro; t: LangText }[] = [
+  { k: "todos", t: L("Todos", "All", "Alle", "Todos") },
+  { k: "studio", t: L("Studio") },
+  { k: "plataforma", t: L("Plataformas", "Platforms", "Plattformen", "Plataformas") },
+  { k: "venture", t: L("Ventures") },
 ];
+const DESDE_URL: Record<string, Filtro> = { platform: "plataforma", plataforma: "plataforma", venture: "venture", studio: "studio" };
+const A_URL: Record<Filtro, string | null> = { todos: null, studio: "studio", plataforma: "platform", venture: "venture" };
 
-const CATEGORY_TAG: Record<ProjectCategory, string> = {
-  platform: "PLATAFORMA",
-  venture: "VENTURE",
-  studio: "STUDIO",
+const COPY = {
+  eyebrow: L("Proyectos", "Work", "Projekte", "Projetos"),
+  titulo: L("Lo que hemos construido.", "What we've built.", "Was wir gebaut haben.", "O que construímos."),
+  lede: L(
+    "Tiendas, plataformas con inteligencia artificial y productos propios. Cada caso cuenta qué producimos y qué hace Monza ahí.",
+    "Stores, artificial intelligence platforms and products of our own. Each case shows what we produced and what Monza does there.",
+    "Shops, KI-Plattformen und eigene Produkte. Jeder Fall zeigt, was wir gebaut haben und was Monza dort macht.",
+    "Lojas, plataformas com inteligência artificial e produtos próprios. Cada caso mostra o que produzimos e o que a Monza faz lá.",
+  ),
+  filtrar: L("Filtrar proyectos", "Filter projects", "Projekte filtern", "Filtrar projetos"),
+  seoTitulo: L(
+    "Proyectos y casos · tiendas, plataformas y agentes con IA | Monza Lab",
+    "Work and case studies · stores, platforms and AI agents | Monza Lab",
+    "Projekte und Fallstudien · Shops, Plattformen und KI-Agenten | Monza Lab",
+    "Projetos e casos · lojas, plataformas e agentes com IA | Monza Lab",
+  ),
+  seoDesc: L(
+    "Los casos de Monza Lab: e-commerce, plataformas con inteligencia artificial para empresas y productos propios. Qué se produjo en cada uno y qué hace Monza ahí.",
+    "Monza Lab case studies: e-commerce, artificial intelligence platforms for companies and products of our own. What was produced in each and what Monza does there.",
+    "Die Fallstudien von Monza Lab: E-Commerce, KI-Plattformen für Unternehmen und eigene Produkte. Was jeweils gebaut wurde und was Monza dort macht.",
+    "Os casos da Monza Lab: e-commerce, plataformas com inteligência artificial para empresas e produtos próprios. O que se produziu em cada um e o que a Monza faz lá.",
+  ),
 };
 
 const Work = () => {
   const { language } = useLanguage();
-  const lang = language as Lang;
-  const langPrefix = lang === "es" ? "" : `/${lang}`;
+  const raiz = useRef<HTMLDivElement>(null);
   const [params, setParams] = useSearchParams();
+  const filtro: Filtro = DESDE_URL[params.get("f") ?? ""] ?? "todos";
+  const lista = PROYECTOS.filter((p) => filtro === "todos" || casoPorSlug(p.slug)?.categoria === filtro);
+  useRevela(raiz, [filtro]);
 
-  const raw = params.get("f");
-  const initial: Filter =
-    raw === "platform" || raw === "venture" || raw === "studio" ? raw : "all";
-  const [filter, setFilter] = useState<Filter>(initial);
-
-  const pick = (f: Filter) => {
-    setFilter(f);
-    const next = new URLSearchParams(params);
-    if (f === "all") next.delete("f");
-    else next.set("f", f);
-    setParams(next, { replace: true });
+  const elegir = (k: Filtro) => {
+    const v = A_URL[k];
+    const siguiente = new URLSearchParams(params);
+    if (v) siguiente.set("f", v); else siguiente.delete("f");
+    setParams(siguiente, { replace: true });
   };
 
-  const projects = useMemo(
-    () => (filter === "all" ? PROJECTS : PROJECTS.filter((p) => p.category === filter)),
-    [filter],
-  );
-
   return (
-    <PremiumBackground>
-      <SEO
-        path="/work"
-        title={{
-          es: "Casos — Monza Lab · Plataformas, ventures y marcas",
-          en: "Work — Monza Lab · Platforms, ventures & brands",
-          de: "Cases — Monza Lab · Plattformen, Ventures & Marken",
-          pt: "Casos — Monza Lab · Plataformas, ventures e marcas",
-        }}
-        description={{
-          es: "Todo el trabajo de Monza Lab en un solo lugar: plataformas AI-first para clientes, ventures propias y marcas operadas con IA.",
-          en: "All of Monza Lab's work in one place: AI-first platforms for clients, our own ventures and brands operated with AI.",
-          de: "Die gesamte Arbeit von Monza Lab an einem Ort: AI-First-Plattformen für Kunden, eigene Ventures und mit KI betriebene Marken.",
-          pt: "Todo o trabalho da Monza Lab num só lugar: plataformas AI-first para clientes, ventures próprias e marcas operadas com IA.",
-        }}
-      />
-      <main id="main" className="pt-32 md:pt-40 pb-10">
-        <section className="mx-auto max-w-[1200px] px-6 md:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE }}
-            className="mb-10 md:mb-14"
-          >
-            <p
-              className="font-clash text-[10px] md:text-[11px] tracking-[0.4em] uppercase font-medium mb-4"
-              style={{ color: "rgba(248,180,217,0.75)" }}
-            >
-              {COPY.eyebrow[lang]}
-            </p>
-            <h1
-              className="font-clash font-bold leading-[1.05] mb-5"
-              style={{
-                fontSize: "clamp(32px, 5.5vw, 60px)",
-                letterSpacing: "-0.025em",
-                color: "rgba(var(--text-rgb), 0.92)",
-              }}
-            >
-              {COPY.heading[lang]}
-            </h1>
-            <p
-              className="font-clash text-base md:text-lg max-w-2xl leading-relaxed"
-              style={{ color: "rgba(var(--text-rgb), 0.55)" }}
-            >
-              {COPY.sub[lang]}
-            </p>
-          </motion.div>
-
-          <div className="flex flex-wrap gap-2 mb-10 md:mb-12" role="tablist" aria-label="Filtro de casos">
-            {FILTERS.map((f) => {
-              const active = filter === f.key;
-              return (
-                <button
-                  key={f.key}
-                  type="button"
-                  role="tab"
-                  aria-selected={active}
-                  onClick={() => pick(f.key)}
-                  className="font-clash text-[11px] tracking-[0.2em] uppercase font-medium rounded-full px-4 py-2 transition-all duration-300"
-                  style={{
-                    color: active ? "#0B0B10" : "rgba(var(--text-rgb), 0.6)",
-                    background: active ? "#F8B4D9" : "transparent",
-                    border: active ? "1px solid #F8B4D9" : "1px solid rgba(var(--text-rgb), 0.15)",
-                  }}
-                >
-                  {f.label[lang]}
-                </button>
-              );
-            })}
+    <div className="v2 portada work" ref={raiz}>
+      <SEO path="/work" title={COPY.seoTitulo} description={COPY.seoDesc} />
+      <main id="main" className="wrap work-in">
+        <section aria-labelledby="s-work">
+          <span className="eyebrow">{COPY.eyebrow[language]}</span>
+          <h1 id="s-work" className="work-h1">{COPY.titulo[language]}</h1>
+          <p className="lede">{COPY.lede[language]}</p>
+          <div className="work-filtros" role="group" aria-label={COPY.filtrar[language]}>
+            {FILTROS.map((f) => (
+              <button key={f.k} type="button" aria-pressed={f.k === filtro} onClick={() => elegir(f.k)}>{f.t[language]}</button>
+            ))}
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-            {projects.map((p, i) => (
-              <motion.div
-                key={p.slug}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: (i % 3) * 0.06, ease: EASE }}
-              >
-                <Link
-                  to={`${langPrefix}/work/${p.slug}`}
-                  className="group relative block aspect-[4/3] rounded-2xl overflow-hidden"
-                  style={{ border: "1px solid rgba(var(--text-rgb), 0.06)" }}
-                >
-                  {p.image || p.gallery?.[0] ? (
-                    <img
-                      src={p.image ?? p.gallery![0]}
-                      alt={p.name}
-                      loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
-                      style={{ opacity: 0.85 }}
-                    />
-                  ) : (
-                    <div className="absolute inset-0" style={{ background: p.visual.gradient }}>
-                      <span
-                        className="absolute font-clash font-bold select-none"
-                        style={{
-                          fontSize: "clamp(80px, 10vw, 150px)",
-                          color: p.visual.accent,
-                          opacity: 0.12,
-                          right: "-2%",
-                          bottom: "-10%",
-                          letterSpacing: "-0.04em",
-                        }}
-                        aria-hidden
-                      >
-                        {p.visual.letter}
-                      </span>
-                    </div>
-                  )}
-
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: "linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.9) 100%)",
-                    }}
-                  />
-
-                  <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
-                    <span className="font-mono text-[9px] tracking-[0.25em]" style={{ color: `${p.visual.accent}cc` }}>
-                      {p.visual.number} / {CATEGORY_TAG[p.category]}
-                    </span>
-                    <span
-                      className="font-clash text-[9px] tracking-[0.3em] uppercase font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ color: p.visual.accent }}
-                    >
-                      {COPY.view[lang]} →
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 z-10 p-5 md:p-6">
-                    <div className="flex items-baseline gap-2.5 mb-2">
-                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.visual.accent }} aria-hidden />
-                      <h3
-                        className="font-clash font-bold text-xl md:text-2xl"
-                        style={{ letterSpacing: "-0.02em", color: "rgba(255,252,247,0.95)" }}
-                      >
-                        {p.name}
-                      </h3>
-                    </div>
-                    <p
-                      className="font-clash text-[12px] md:text-[13px] leading-snug line-clamp-2"
-                      style={{ color: "rgba(255,252,247,0.55)" }}
-                    >
-                      {p.desc[lang]}
-                    </p>
-                    {p.confidential && (
-                      <span
-                        className="mt-2 inline-block font-clash text-[8px] tracking-[0.25em] uppercase"
-                        style={{ color: "rgba(255,252,247,0.35)" }}
-                      >
-                        {COPY.nda[lang]}
-                      </span>
-                    )}
-                  </div>
-
-                  <div
-                    className="absolute inset-0 pointer-events-none transition-opacity duration-500 opacity-0 group-hover:opacity-100"
-                    style={{ boxShadow: `inset 0 0 80px -16px ${p.visual.accent}30` }}
-                  />
-                </Link>
-              </motion.div>
+          <div className="pj-track">
+            {lista.map((p) => (
+              <Link key={p.slug} className="pj rv" to={enlace(language, `/work/${p.slug}`)}>
+                <div className="pj-media">
+                  <img className="pj-desk" src={p.escritorio} alt={p.alt[language]} loading="lazy" decoding="async" />
+                  {p.celular && <img className="pj-phone" src={p.celular} alt="" loading="lazy" decoding="async" />}
+                  {p.inserto && <img className="pj-inset" src={p.inserto} alt="" loading="lazy" decoding="async" />}
+                </div>
+                <div className="pj-info">
+                  <span className="pj-tag">{p.etiqueta[language]}</span>
+                  <b className="pj-name">{p.nombre[language]}</b>
+                  <ul className="pj-prod" aria-label={`${TXT.producimos[language]}: ${p.producido.map((x) => x.nombre[language]).join(", ")}`}>
+                    {p.producido.map((x) => (
+                      <li key={x.icono + x.nombre.es} title={x.nombre[language]}><IconoEntregable icono={x.icono} /></li>
+                    ))}
+                  </ul>
+                  <span className="pj-go">{TXT.verCaso[language]}</span>
+                </div>
+              </Link>
             ))}
           </div>
         </section>
       </main>
       <FooterMinimal />
-    </PremiumBackground>
+    </div>
   );
 };
 

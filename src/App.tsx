@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Suspense } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import RouteAnalytics from "./components/RouteAnalytics";
@@ -21,16 +21,11 @@ import {
   Speaker,
   NotFound,
   Upload,
-  MonzaStudio,
-  StudioLanding,
-  MonzaHaus,
-  MonzaIndex,
-  BavarianEcons,
   MonzaSessions,
   Work,
-  Pillar,
   ShopifyVertical,
   CasoRuta,
+  Plataformas,
 } from "./rutas";
 import MonzaAgent from "./components/MonzaAgent";
 
@@ -83,13 +78,14 @@ const AppContent = () => {
           <Route path="/work" element={<Work />} />
           <Route path="/work/:slug" element={<CasoRuta />} />
           <Route path="/shopify" element={<ShopifyVertical />} />
-          <Route path="/agentes" element={<Pillar slug="agentes" />} />
-          <Route path="/monzastudio" element={<MonzaStudio />} />
-          <Route path="/studio" element={<StudioLanding />} />
-          <Route path="/monzahaus" element={<MonzaHaus />} />
-          <Route path="/monzaindex" element={<MonzaIndex />} />
-          <Route path="/bavarianecons" element={<BavarianEcons />} />
           <Route path="/sessions" element={<MonzaSessions />} />
+          <Route path="/plataformas" element={<Plataformas />} />
+          <Route path="/agentes" element={<Navigate to="/plataformas" replace />} />
+          <Route path="/monzastudio" element={<Navigate to="/shopify" replace />} />
+          <Route path="/studio" element={<Navigate to="/shopify" replace />} />
+          <Route path="/monzahaus" element={<Navigate to="/work/monza-haus" replace />} />
+          <Route path="/monzaindex" element={<Navigate to="/work/ia-index" replace />} />
+          <Route path="/bavarianecons" element={<Navigate to="/work/bavarian-econs" replace />} />
 
           {/* English routes (with /en prefix) */}
           <Route path="/en" element={<Index />} />
@@ -97,13 +93,14 @@ const AppContent = () => {
           <Route path="/en/work" element={<Work />} />
           <Route path="/en/work/:slug" element={<CasoRuta />} />
           <Route path="/en/shopify" element={<ShopifyVertical />} />
-          <Route path="/en/agentes" element={<Pillar slug="agentes" />} />
-          <Route path="/en/monzastudio" element={<MonzaStudio />} />
-          <Route path="/en/studio" element={<StudioLanding />} />
-          <Route path="/en/monzahaus" element={<MonzaHaus />} />
-          <Route path="/en/monzaindex" element={<MonzaIndex />} />
-          <Route path="/en/bavarianecons" element={<BavarianEcons />} />
           <Route path="/en/sessions" element={<MonzaSessions />} />
+          <Route path="/en/plataformas" element={<Plataformas />} />
+          <Route path="/en/agentes" element={<Navigate to="/en/plataformas" replace />} />
+          <Route path="/en/monzastudio" element={<Navigate to="/en/shopify" replace />} />
+          <Route path="/en/studio" element={<Navigate to="/en/shopify" replace />} />
+          <Route path="/en/monzahaus" element={<Navigate to="/en/work/monza-haus" replace />} />
+          <Route path="/en/monzaindex" element={<Navigate to="/en/work/ia-index" replace />} />
+          <Route path="/en/bavarianecons" element={<Navigate to="/en/work/bavarian-econs" replace />} />
 
           {/* German routes (with /de prefix) */}
           <Route path="/de" element={<Index />} />
@@ -111,13 +108,14 @@ const AppContent = () => {
           <Route path="/de/work" element={<Work />} />
           <Route path="/de/work/:slug" element={<CasoRuta />} />
           <Route path="/de/shopify" element={<ShopifyVertical />} />
-          <Route path="/de/agentes" element={<Pillar slug="agentes" />} />
-          <Route path="/de/monzastudio" element={<MonzaStudio />} />
-          <Route path="/de/studio" element={<StudioLanding />} />
-          <Route path="/de/monzahaus" element={<MonzaHaus />} />
-          <Route path="/de/monzaindex" element={<MonzaIndex />} />
-          <Route path="/de/bavarianecons" element={<BavarianEcons />} />
           <Route path="/de/sessions" element={<MonzaSessions />} />
+          <Route path="/de/plataformas" element={<Plataformas />} />
+          <Route path="/de/agentes" element={<Navigate to="/de/plataformas" replace />} />
+          <Route path="/de/monzastudio" element={<Navigate to="/de/shopify" replace />} />
+          <Route path="/de/studio" element={<Navigate to="/de/shopify" replace />} />
+          <Route path="/de/monzahaus" element={<Navigate to="/de/work/monza-haus" replace />} />
+          <Route path="/de/monzaindex" element={<Navigate to="/de/work/ia-index" replace />} />
+          <Route path="/de/bavarianecons" element={<Navigate to="/de/work/bavarian-econs" replace />} />
 
           {/* Portuguese routes (with /pt prefix) */}
           <Route path="/pt" element={<Index />} />
@@ -125,13 +123,14 @@ const AppContent = () => {
           <Route path="/pt/work" element={<Work />} />
           <Route path="/pt/work/:slug" element={<CasoRuta />} />
           <Route path="/pt/shopify" element={<ShopifyVertical />} />
-          <Route path="/pt/agentes" element={<Pillar slug="agentes" />} />
-          <Route path="/pt/monzastudio" element={<MonzaStudio />} />
-          <Route path="/pt/studio" element={<StudioLanding />} />
-          <Route path="/pt/monzahaus" element={<MonzaHaus />} />
-          <Route path="/pt/monzaindex" element={<MonzaIndex />} />
-          <Route path="/pt/bavarianecons" element={<BavarianEcons />} />
           <Route path="/pt/sessions" element={<MonzaSessions />} />
+          <Route path="/pt/plataformas" element={<Plataformas />} />
+          <Route path="/pt/agentes" element={<Navigate to="/pt/plataformas" replace />} />
+          <Route path="/pt/monzastudio" element={<Navigate to="/pt/shopify" replace />} />
+          <Route path="/pt/studio" element={<Navigate to="/pt/shopify" replace />} />
+          <Route path="/pt/monzahaus" element={<Navigate to="/pt/work/monza-haus" replace />} />
+          <Route path="/pt/monzaindex" element={<Navigate to="/pt/work/ia-index" replace />} />
+          <Route path="/pt/bavarianecons" element={<Navigate to="/pt/work/bavarian-econs" replace />} />
 
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

@@ -125,7 +125,7 @@ const LeadForm = ({ source = "studio_landing" }: { source?: string }) => {
           {state === "sending" ? t("sending") : t("submit")}
         </button>
         <a
-          href={whatsAppUrl(`Hola Edgar, vengo de monzalab.com/studio y quiero hablar de mi marca.`)}
+          href={whatsAppUrl(`Hola Edgar, vengo de monzalab.com y quiero hablar de mi marca.`)}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackContact("whatsapp", source)}

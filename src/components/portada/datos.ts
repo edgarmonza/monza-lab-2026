@@ -195,7 +195,7 @@ export const FILAS: Fila[] = [
       { t: t("Comercio exterior", "Foreign trade", "Außenhandel", "Comércio externo"), reserva: true },
       { t: t("Turismo", "Travel", "Tourismus", "Turismo"), reserva: true },
     ],
-    href: "/work/plataforma-comercio-exterior",
+    href: "/plataformas",
     ir: t("Ver plataformas", "See platforms", "Plattformen ansehen", "Ver plataformas"),
     foto: "/v2/portafolio/comercio.jpg",
   },

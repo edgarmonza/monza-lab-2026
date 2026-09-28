@@ -29,7 +29,7 @@ export const Hero = ({ caso, lang }: P) => {
         <div className="c-copy">
           <nav className="miga" aria-label={TX.estasEn[lang]}>
             <a href={enlace(lang, "/#proyectos")}>{TX.proyectos[lang]}</a><i>/</i>
-            {caso.categoria === "plataforma" && <><a href={enlace(lang, "/#plataformas")}>{TX.plataformas[lang]}</a><i>/</i></>}
+            {caso.categoria === "plataforma" && <><a href={enlace(lang, "/plataformas")}>{TX.plataformas[lang]}</a><i>/</i></>}
             <span>{caso.confidencial ? TX.casoConfidencial[lang] : TX.caso[lang]}</span>
           </nav>
           <h1 id="cs-h1" className={largo ? "largo" : undefined}>{l1} <span className="pk">{l2}</span></h1>

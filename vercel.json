@@ -30,6 +30,126 @@
       "source": "/pt/work/spectro",
       "destination": "/pt/work",
       "permanent": true
+    },
+    {
+      "source": "/monzastudio",
+      "destination": "/shopify",
+      "permanent": true
+    },
+    {
+      "source": "/studio",
+      "destination": "/shopify",
+      "permanent": true
+    },
+    {
+      "source": "/monzahaus",
+      "destination": "/work/monza-haus",
+      "permanent": true
+    },
+    {
+      "source": "/monzaindex",
+      "destination": "/work/ia-index",
+      "permanent": true
+    },
+    {
+      "source": "/bavarianecons",
+      "destination": "/work/bavarian-econs",
+      "permanent": true
+    },
+    {
+      "source": "/agentes",
+      "destination": "/plataformas",
+      "permanent": true
+    },
+    {
+      "source": "/en/monzastudio",
+      "destination": "/en/shopify",
+      "permanent": true
+    },
+    {
+      "source": "/en/studio",
+      "destination": "/en/shopify",
+      "permanent": true
+    },
+    {
+      "source": "/en/monzahaus",
+      "destination": "/en/work/monza-haus",
+      "permanent": true
+    },
+    {
+      "source": "/en/monzaindex",
+      "destination": "/en/work/ia-index",
+      "permanent": true
+    },
+    {
+      "source": "/en/bavarianecons",
+      "destination": "/en/work/bavarian-econs",
+      "permanent": true
+    },
+    {
+      "source": "/en/agentes",
+      "destination": "/en/plataformas",
+      "permanent": true
+    },
+    {
+      "source": "/de/monzastudio",
+      "destination": "/de/shopify",
+      "permanent": true
+    },
+    {
+      "source": "/de/studio",
+      "destination": "/de/shopify",
+      "permanent": true
+    },
+    {
+      "source": "/de/monzahaus",
+      "destination": "/de/work/monza-haus",
+      "permanent": true
+    },
+    {
+      "source": "/de/monzaindex",
+      "destination": "/de/work/ia-index",
+      "permanent": true
+    },
+    {
+      "source": "/de/bavarianecons",
+      "destination": "/de/work/bavarian-econs",
+      "permanent": true
+    },
+    {
+      "source": "/de/agentes",
+      "destination": "/de/plataformas",
+      "permanent": true
+    },
+    {
+      "source": "/pt/monzastudio",
+      "destination": "/pt/shopify",
+      "permanent": true
+    },
+    {
+      "source": "/pt/studio",
+      "destination": "/pt/shopify",
+      "permanent": true
+    },
+    {
+      "source": "/pt/monzahaus",
+      "destination": "/pt/work/monza-haus",
+      "permanent": true
+    },
+    {
+      "source": "/pt/monzaindex",
+      "destination": "/pt/work/ia-index",
+      "permanent": true
+    },
+    {
+      "source": "/pt/bavarianecons",
+      "destination": "/pt/work/bavarian-econs",
+      "permanent": true
+    },
+    {
+      "source": "/pt/agentes",
+      "destination": "/pt/plataformas",
+      "permanent": true
     }
   ],
   "headers": [

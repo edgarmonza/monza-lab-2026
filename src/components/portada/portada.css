@@ -234,3 +234,21 @@
   .v2.portada .ci-marca svg { transition: transform 1.1s cubic-bezier(.34, 1.56, .64, 1); }
   .v2.portada[data-revela] .ci-marca:not(.in) svg { transform: translateX(-60vw) rotate(-30deg); }
 }
+
+/* ══════════ /work (28-sep-2026): las mismas tarjetas, en cuadrícula y con filtro ══════════ */
+.v2.portada.work .work-in { padding-top: calc(var(--nav) + 40px); gap: 0; }
+.v2.portada.work .work-h1 { font-family: var(--display); font-weight: 700; font-size: clamp(44px, 7.4vw, 104px); line-height: .94; letter-spacing: -.045em; color: var(--ink); max-width: 13ch; }
+.v2.portada.work .work-filtros { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 6px; }
+.v2.portada.work .work-filtros button { font-family: var(--display); font-weight: 600; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; padding: 10px 15px; min-height: 42px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink-2); cursor: pointer; transition: background .3s, color .3s, border-color .3s; }
+.v2.portada.work .work-filtros button:hover { border-color: rgba(248, 180, 217, .5); color: var(--ink); }
+.v2.portada.work .work-filtros button[aria-pressed="true"] { background: var(--pink); border-color: var(--pink); color: var(--dark); }
+.v2.portada.work .pj-track { grid-auto-flow: row; grid-template-columns: minmax(0, 1fr); grid-auto-columns: auto; overflow: visible; scroll-snap-type: none; margin: 14px 0 0; padding: 0; gap: 14px; }
+@media (min-width: 700px) { .v2.portada.work .pj-track { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .v2.portada.work .pj-track { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 960px) {
+  .v2.portada.work .pj:first-child { grid-column: auto; grid-row: auto; }
+  .v2.portada.work .pj:first-child .pj-media { aspect-ratio: 16 / 11; flex: none; }
+  .v2.portada.work .pj:first-child .pj-name { font-size: 25px; }
+  .v2.portada.work .pj:first-child .pj-info { flex: 1; padding: 16px 18px 18px; }
+  .v2.portada.work .pj:first-child .pj-phone { height: 84%; }
+}

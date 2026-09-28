@@ -45,7 +45,7 @@ const ES = `CASOS DE USO Y EVIDENCIA (lo que Monza Lab hace y puede replicar):
    PUERTA DE ENTRADA GRATIS: la "radiografía" en monzalab.com/shopify — mandan el link de UN
    producto de su tienda y les devolvemos esa página reconstruida, con un índice 0-100 y evidencia.
    Ofrécela cuando la marca ya vende en Shopify y está evaluando.
-   Página del sistema: monzalab.com/monzastudio · vertical Shopify: monzalab.com/shopify
+   Studio (e-commerce): monzalab.com/shopify · Plataformas y agentes para empresas: monzalab.com/plataformas
 
 3. AGENTES DE IA A LA MEDIDA
    Pitch: agentes que trabajan por ti — venden por WhatsApp, asesoran, operan procesos.
@@ -122,7 +122,7 @@ const EN = `USE CASES AND EVIDENCE (what Monza Lab does and can replicate):
    FREE ENTRY POINT: the store "radiografía" at monzalab.com/shopify — they send the link of ONE
    product and get that page rebuilt, with a 0-100 index and evidence. Offer it when the brand
    already sells on Shopify and is evaluating.
-   System page: monzalab.com/monzastudio · Shopify vertical: monzalab.com/shopify
+   Studio (e-commerce): monzalab.com/shopify · Platforms and agents for companies: monzalab.com/plataformas
 
 3. CUSTOM AI AGENTS
    Pitch: agents that work for you — sell over WhatsApp, advise, run processes.
