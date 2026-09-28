@@ -82,11 +82,12 @@ const Work = () => {
             ))}
           </div>
           <div className="pj-track">
-            {lista.map((p) => (
+            {lista.map((p, i) => (
               <Link key={p.slug} className="pj rv" to={enlace(language, `/work/${p.slug}`)}>
                 <div className="pj-media">
-                  <img className="pj-desk" src={p.escritorio} alt={p.alt[language]} loading="lazy" decoding="async" />
-                  {p.celular && <img className="pj-phone" src={p.celular} alt="" loading="lazy" decoding="async" />}
+                  {/* la primera tarjeta se ve al entrar: va sin espera y primero en la red (es el LCP) */}
+                  <img className="pj-desk" src={p.escritorio} alt={p.alt[language]} loading={i < 2 ? "eager" : "lazy"} decoding="async" {...{ fetchpriority: i === 0 ? "high" : "auto" }} />
+                  {p.celular && <img className="pj-phone" src={p.celular} alt="" loading={i < 2 ? "eager" : "lazy"} decoding="async" />}
                   {p.inserto && <img className="pj-inset" src={p.inserto} alt="" loading="lazy" decoding="async" />}
                 </div>
                 <div className="pj-info">

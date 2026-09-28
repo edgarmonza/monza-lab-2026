@@ -13,6 +13,18 @@
 .v2.portada .h-revela { opacity: 0; }
 .v2.portada .h-revela::before { content: ""; position: absolute; inset: 0; background: var(--dark); }
 .v2.portada .h-gafas { position: absolute; inset: 0; background-repeat: no-repeat; }
+/* El casco y la cara, del mismo tamaño y con los ojos en el mismo punto: 84 % del alto (125 % del
+   ancho si la pantalla es angosta) y los ojos al 50 % × 70,5 %. Va en CSS, con unidades de
+   contenedor, para que el HTML prerenderizado ya lo pinte bien en cualquier pantalla: antes lo
+   calculaba el JavaScript y el prerender guardaba la cuenta de escritorio, así que en el celular el
+   casco salía fuera de cuadro hasta que cargaba el código. HeroCasco.tsx usa la misma cuenta para
+   el círculo; si se cambia aquí, se cambia allá. */
+.v2.portada .h-fotos { container-type: size; }
+.v2.portada .h-base, .v2.portada .h-gafas { background-size: cover; background-position: 50% 30%; }
+@supports (width: 1cqw) {
+  .v2.portada .h-base { --s: min(84cqh, 125cqw); background-size: var(--s) var(--s); background-position: calc(50cqw - .5 * var(--s)) calc(70.5cqh - .525 * var(--s)); }
+  .v2.portada .h-gafas { --g: calc(.95 * min(84cqh, 125cqw)); background-size: var(--g) var(--g); background-position: calc(50cqw - .49 * var(--g)) calc(70.5cqh - .505 * var(--g)); }
+}
 .v2.portada .h-grano { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .05; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .v2.portada .h-fondo { position: absolute; left: 0; right: 0; bottom: 0; height: 44%; z-index: 3; pointer-events: none; background: linear-gradient(to top, #0B0B10 0%, rgba(11, 11, 16, .7) 34%, rgba(11, 11, 16, .12) 72%, transparent); }
 .v2.portada .h-centro { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: max(calc(var(--nav) + 24px), 23vh) var(--gut) 0; text-align: center; pointer-events: none; }

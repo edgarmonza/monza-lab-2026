@@ -9,6 +9,7 @@ import { enlace } from "@/lib/enlace";
 import { trackContact, whatsAppUrl } from "@/lib/pixel";
 import Tecnologia from "@/components/caso/Tecnologia";
 import { Chispa, FlechaAbajo, IconoEntregableSvg, IconoWhatsApp } from "@/components/caso/iconos";
+import { Helmet } from "react-helmet";
 import { CASOS_PL, CIERRE, CONSTRUIMOS, DEMO, FAQ, FASES, HERO, MAPA } from "./datos";
 
 type P = { lang: Lang };
@@ -20,6 +21,8 @@ export const Hero = ({ lang }: P) => {
   const web = ref?.hero.web;
   return (
     <header className="c-hero pl-hero" aria-labelledby="pl-h1">
+      {/* la web del hero es fondo CSS: se pide antes (es el LCP) */}
+      {web && <Helmet><link rel="preload" href={web.escritorio} as="image" {...{ fetchpriority: "high" }} /></Helmet>}
       <div className="c-ghost" aria-hidden="true">IA</div>
       <div className="c-in">
         <div className="c-copy">

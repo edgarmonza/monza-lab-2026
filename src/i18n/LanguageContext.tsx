@@ -42,6 +42,17 @@ const browserLang = (): Language | null => {
   return null;
 };
 
+/* Crawlers, link previews and headless tools must see each URL in its own language. Without this,
+   Googlebot (an English browser) rendered "/" already redirected to /en, with the /en canonical,
+   which tells Google the Spanish home is a copy of the English one (SEO audit, 28-sep-2026). */
+const isRobot = (): boolean => {
+  if (typeof navigator === 'undefined') return true;
+  if (navigator.webdriver) return true;
+  return /bot|crawl|spider|slurp|google|bing|yandex|baidu|duckduck|facebookexternalhit|linkedin|twitter|whatsapp|telegram|lighthouse|headless|gpt|claude|perplexity|anthropic/i.test(
+    navigator.userAgent || ''
+  );
+};
+
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -102,7 +113,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
     // Only auto-detect on the root home (no language prefix)
     const isRootSpanish = location.pathname === '/' || location.pathname === '';
-    if (!isRootSpanish) return;
+    if (!isRootSpanish || isRobot()) return;
 
     let saved: string | null = null;
     try {

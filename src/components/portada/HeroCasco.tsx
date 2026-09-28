@@ -15,10 +15,8 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { enPrerender, llegoPrerenderizada } from "@/lib/prerender";
 import { HERO } from "./textos";
 
-/* Dónde están los ojos en cada foto (fracción) y cuánto más chica va la de las gafas. */
-const OJOS_CASCO = { x: 0.5, y: 0.525 };
-const OJOS_GAFAS = { x: 0.49, y: 0.505 };
-const ESCALA_GAFAS = 0.95;
+/* La cara con gafas. El tamaño y la posición de las dos fotos van en portada.css. */
+const GAFAS = "/v2/edgar/gafas.webp";
 
 const prefiereQuieto = () =>
   typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -40,7 +38,6 @@ const HeroCasco = () => {
 
   const heroRef = useRef<HTMLElement>(null);
   const fotosRef = useRef<HTMLDivElement>(null);
-  const baseRef = useRef<HTMLDivElement>(null);
   const revelaRef = useRef<HTMLDivElement>(null);
   const gafasRef = useRef<HTMLDivElement>(null);
   const mRef = useRef<HTMLSpanElement>(null);
@@ -70,8 +67,8 @@ const HeroCasco = () => {
 
   /* El círculo que revela la cara, el MONZA que pasa a contorno y la intro. */
   useEffect(() => {
-    const hero = heroRef.current, fotos = fotosRef.current, base = baseRef.current, revela = revelaRef.current, gafas = gafasRef.current;
-    if (!hero || !fotos || !base || !revela || !gafas) return;
+    const hero = heroRef.current, fotos = fotosRef.current, revela = revelaRef.current, gafas = gafasRef.current;
+    if (!hero || !fotos || !revela || !gafas) return;
     const letras = [mRef.current, nzaRef.current].filter((x): x is HTMLSpanElement => !!x);
     const quieto = prefiereQuieto();
     let ojos = { x: 0, y: 0 };
@@ -83,16 +80,14 @@ const HeroCasco = () => {
     let corriendo = false;
     let raf = 0;
     let tIntro = 0;
+    let tocado = false;
+    let vivo = true;
 
+    /* Dónde quedan los ojos y qué tan grande es el círculo: la misma cuenta de portada.css. */
     const alinear = () => {
       const cw = fotos.clientWidth, ch = fotos.clientHeight;
       const S = Math.min(ch * 0.84, cw * 1.25);
       ojos = { x: cw * 0.5, y: ch * 0.705 };
-      base.style.backgroundSize = `${S}px ${S}px`;
-      base.style.backgroundPosition = `${ojos.x - OJOS_CASCO.x * S}px ${ojos.y - OJOS_CASCO.y * S}px`;
-      const G = S * ESCALA_GAFAS;
-      gafas.style.backgroundSize = `${G}px ${G}px`;
-      gafas.style.backgroundPosition = `${ojos.x - OJOS_GAFAS.x * G}px ${ojos.y - OJOS_GAFAS.y * G}px`;
       radio = Math.round(Math.max(150, Math.min(330, S * 0.36)));
     };
 
@@ -128,10 +123,10 @@ const HeroCasco = () => {
     const saltar = (p: { x: number; y: number }) => { if (op < 0.02) { pos.x = p.x; pos.y = p.y; } meta.x = p.x; meta.y = p.y; };
 
     const alMover = (e: PointerEvent) => {
-      if (e.pointerType === "mouse" || e.buttons) { window.clearTimeout(tIntro); saltar(local(e)); activo = true; mover(); }
+      if (e.pointerType === "mouse" || e.buttons) { tocado = true; window.clearTimeout(tIntro); saltar(local(e)); activo = true; mover(); }
     };
     const alTocar = (e: PointerEvent) => {
-      if (e.pointerType !== "mouse") { window.clearTimeout(tIntro); saltar(local(e)); activo = true; tocaRef.current?.classList.add("fuera"); mover(); }
+      if (e.pointerType !== "mouse") { tocado = true; window.clearTimeout(tIntro); saltar(local(e)); activo = true; tocaRef.current?.classList.add("fuera"); mover(); }
     };
     const alSoltar = (e: PointerEvent) => { if (e.pointerType !== "mouse") { activo = false; mover(); } };
     const alSalir = (e: PointerEvent) => { if (e.pointerType === "mouse") { activo = false; mover(); } };
@@ -140,6 +135,12 @@ const HeroCasco = () => {
     const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(alinear) : null;
     ro?.observe(fotos);
     if (enPrerender()) return () => ro?.disconnect();
+
+    /* La cara solo se ve con el círculo: se pide cuando ya cargó el código, para que no le quite red
+     * a la foto del casco (que es lo que mide Google al cargar). La intro espera a tenerla. */
+    const cara = new Image();
+    cara.src = GAFAS;
+    gafas.style.backgroundImage = `url(${GAFAS})`;
 
     hero.addEventListener("pointermove", alMover);
     hero.addEventListener("pointerdown", alTocar);
@@ -150,13 +151,19 @@ const HeroCasco = () => {
     /* Al cargar, una vez: la cara aparece sobre los ojos y se vuelve a ir. Si la frase se está
      * escribiendo, espera a que termine. */
     if (!quieto) {
-      tIntro = window.setTimeout(() => {
-        pos.x = meta.x = ojos.x; pos.y = meta.y = ojos.y; activo = true; mover();
-        tIntro = window.setTimeout(() => { activo = false; mover(); }, 2300);
-      }, animar ? 5200 : 1800);
+      const t0 = performance.now();
+      const intro = () => {
+        if (!vivo || tocado) return;
+        tIntro = window.setTimeout(() => {
+          pos.x = meta.x = ojos.x; pos.y = meta.y = ojos.y; activo = true; mover();
+          tIntro = window.setTimeout(() => { activo = false; mover(); }, 2300);
+        }, Math.max(0, (animar ? 5200 : 1800) - (performance.now() - t0)));
+      };
+      cara.decode().then(intro, intro);
     }
 
     return () => {
+      vivo = false;
       ro?.disconnect();
       window.clearTimeout(tIntro);
       cancelAnimationFrame(raf);
@@ -182,9 +189,9 @@ const HeroCasco = () => {
       <h1 id="h1" className="sr">{HERO.h1[language]}</h1>
       <div className="h-halo" aria-hidden="true" />
       <div className="h-fotos" ref={fotosRef} aria-hidden="true">
-        <div className="h-capa h-base" ref={baseRef} style={{ backgroundImage: "url(/v2/edgar/casco.webp)" }} />
+        <div className="h-capa h-base" style={{ backgroundImage: "url(/v2/edgar/casco.webp)" }} />
         <div className="h-capa h-revela" ref={revelaRef}>
-          <div className="h-gafas" ref={gafasRef} style={{ backgroundImage: "url(/v2/edgar/gafas.webp)" }} />
+          <div className="h-gafas" ref={gafasRef} />
         </div>
       </div>
       <div className="h-grano" aria-hidden="true" />

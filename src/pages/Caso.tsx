@@ -3,6 +3,7 @@
  * punto de partida · pieza por pieza · la tecnología · así se ve · lo que cambió · otros casos · cierre.
  * Los datos de cada caso viven en src/data/casos/<slug>.ts. Mobile first. */
 import { useRef } from "react";
+import { Helmet } from "react-helmet";
 import "@/styles/v2.css";
 import "@/components/caso/caso.css";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -53,6 +54,10 @@ const Caso = ({ caso }: { caso: CasoDatos }) => {
   return (
     <>
       <SEO title={caso.seo.titulo} description={caso.seo.descripcion} path={`/work/${caso.slug}`} image={caso.tarjeta.imagen} type="article" jsonLd={jsonLd} />
+      {/* La web del hero es fondo CSS: se pide antes para que no espere al CSS ni al JavaScript. */}
+      <Helmet>
+        <link rel="preload" href={caso.hero.web.escritorio} as="image" {...{ fetchpriority: "high" }} />
+      </Helmet>
       <div className="v2" ref={raiz}>
         <main id="main" className="caso">
           <Hero caso={caso} lang={lang} />
