@@ -54,7 +54,7 @@ const MonzaSessions = () => {
 
   return (
     <>
-      <SEO title={SEO_SESSIONS.titulo} description={SEO_SESSIONS.descripcion} path="/sessions" jsonLd={[faqJsonLd, courseJsonLd]} />
+      <SEO ogKey="sessions" title={SEO_SESSIONS.titulo} description={SEO_SESSIONS.descripcion} path="/sessions" jsonLd={[faqJsonLd, courseJsonLd]} />
       <main id="main" className="v2" ref={raiz}>
         <HeroSessions L={L} />
         <div className="wrap">

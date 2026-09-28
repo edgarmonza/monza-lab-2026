@@ -159,14 +159,16 @@ All colors MUST be HSL.
        helmet-css-height = font-size * (0.67 / 0.9504) = font-size * 0.7050 */
     --logo-cap-ratio: 0.7050;
 
-    /* === VERTICAL POSITION: helmet center == M cap-height center ===
-       align-items:center centers the helmet at em-box center (0.5em from top).
-       But cap-height center is at 0.4457em from top (with Clash Display Bold typo
-       metrics: baseline 0.7807em, cap-line-top 0.1107em).
-       Offset = 0.5 - 0.4457 = 0.0543em UP. Apply via `translate: 0 var(...)`.
-       Verified 2026-05-09 against OS/2 sTypoAscender/sTypoDescender metrics.
-       If font changes, recompute: offset = 0.5 - ((typo_asc/(typo_asc-typo_desc)) - cap_height/upm) - cap_height/upm/2 */
-    --logo-helmet-y-offset: -0.0543em;
+    /* === VERTICAL POSITION: the helmet sits on the letters' baseline ===
+       The wordmark container uses `align-items: baseline`: the SVG has no baseline, so its
+       bottom edge lands on the text baseline. The shell ends 3/121 above the SVG bottom, so it
+       is pushed down by 0.705em × 3/121 = +0.0175em → shell bottom = baseline, shell top = cap line.
+       Why not `align-items:center` + an offset: Chrome rounds ascent/descent to whole pixels and
+       floors the half-leading, so the real baseline drifts up to ~1px from the ideal one, size by
+       size; a centered helmet cannot follow it. Anchored to the baseline it stays within ~0.4px
+       at every size (measured 13–374px, 2026-09-28). The old -0.0543em (2026-05-09) was also
+       wrong in principle: it left the helmet 0.04em too high (4px at 115px, 14px at 374px). */
+    --logo-helmet-y-offset: 0.0175em;
 
     /* Theme-aware surface colors (for components) */
     --surface-bg: #0B0B10;
@@ -1204,7 +1206,7 @@ All colors MUST be HSL.
   bottom: -0.1em;
   z-index: 1;
   display: flex;
-  align-items: center;
+  align-items: baseline; /* el casco apoyado en la línea base de las letras (ver --logo-helmet-y-offset) */
   transform: translateX(-50%);
   font-family: "Clash Display", system-ui, sans-serif;
   font-size: var(--estela-marca);
@@ -1220,8 +1222,10 @@ All colors MUST be HSL.
 .estela-marca-casco {
   height: calc(1em * var(--logo-cap-ratio, 0.705));
   width: auto;
-  margin: 0 0.01em;
-  transform: translateY(var(--logo-helmet-y-offset, -0.0543em));
+  flex: none;
+  /* margin-right = el tracking de las letras (-0.03em): huecos iguales a los dos lados del casco */
+  margin: 0 -0.03em 0 0;
+  transform: translateY(var(--logo-helmet-y-offset, 0.0175em));
 }
 .estela-pista {
   position: absolute;

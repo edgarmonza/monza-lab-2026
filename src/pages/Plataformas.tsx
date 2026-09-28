@@ -50,7 +50,7 @@ const Plataformas = () => {
 
   return (
     <>
-      <SEO title={SEO_PL.titulo} description={SEO_PL.descripcion} path="/plataformas" image="/v2/portafolio/comercio.jpg" jsonLd={jsonLd} />
+      <SEO title={SEO_PL.titulo} description={SEO_PL.descripcion} path="/plataformas" ogKey="plataformas" jsonLd={jsonLd} />
       <div className="v2" ref={raiz}>
         <main id="main" className="caso plataformas">
           <Hero lang={lang} />

@@ -6,8 +6,12 @@
 
 /* ── Menú ── */
 .v2-nav { position: fixed; inset: 0 0 auto; z-index: 50; height: var(--nav); display: flex; align-items: center; gap: 18px; padding: 0 var(--gut); transition: background .4s, color .4s, border-color .4s; border-bottom: 1px solid transparent; color: var(--ink); font-family: var(--body); }
-.v2-chrome .mlogo { --logo-cap-ratio: .7050; --logo-helmet-y-offset: -0.0543em; font-family: var(--display); font-weight: 700; letter-spacing: -0.025em; text-transform: uppercase; display: inline-flex; align-items: center; line-height: 1; color: var(--ink); text-decoration: none; font-size: 19px; }
-.v2-chrome .mlogo svg { height: calc(1em * var(--logo-cap-ratio)); width: auto; aspect-ratio: 120/121; translate: 0 var(--logo-helmet-y-offset); display: block; transition: scale .5s cubic-bezier(.34, 1.56, .64, 1); }
+/* El casco mide lo que las mayúsculas y va apoyado en la línea base de las letras (ver index.css, «VERTICAL POSITION»).
+ * A tamaño de menú (19–22 px) el suavizado de macOS engorda las letras ~¼ px por lado y el casco quedaba ~½ px abajo:
+ * los −.45px lo reparten (medido en Chrome, 1× y 2×: ±¼ px arriba y abajo). Solo aquí; en los logos grandes no hace falta.
+ * margin-right = el mismo tracking que llevan las letras: sin él, el hueco casco→N era el doble que M→casco. */
+.v2-chrome .mlogo { --logo-cap-ratio: .7050; --logo-helmet-y-offset: calc(.0175em - .45px); --logo-ls: -0.025em; font-family: var(--display); font-weight: 700; letter-spacing: var(--logo-ls); text-transform: uppercase; display: inline-flex; align-items: baseline; line-height: 1; color: var(--ink); text-decoration: none; font-size: 19px; }
+.v2-chrome .mlogo svg { height: calc(1em * var(--logo-cap-ratio)); width: auto; aspect-ratio: 120/121; translate: 0 var(--logo-helmet-y-offset); margin-right: var(--logo-ls); flex: none; display: block; transition: scale .5s cubic-bezier(.34, 1.56, .64, 1); }
 .v2-chrome .mlogo:hover svg { scale: 1.12; }
 .v2-chrome .mlogo .h-shell { fill: var(--pink); transition: fill .4s; }
 .v2-chrome .mlogo .h-visor { fill: #1a1a2a; transition: fill .4s; }

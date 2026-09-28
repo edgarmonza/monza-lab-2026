@@ -70,7 +70,7 @@ const Work = () => {
 
   return (
     <div className="v2 portada work" ref={raiz}>
-      <SEO path="/work" title={COPY.seoTitulo} description={COPY.seoDesc} />
+      <SEO path="/work" ogKey="work" title={COPY.seoTitulo} description={COPY.seoDesc} />
       <main id="main" className="wrap work-in">
         <section aria-labelledby="s-work">
           <span className="eyebrow">{COPY.eyebrow[language]}</span>

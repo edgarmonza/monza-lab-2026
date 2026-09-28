@@ -14,6 +14,7 @@ import AsesorWhatsApp from "@/components/shopify/asesor/AsesorWhatsApp";
 import EstelaContenido from "@/components/shopify/estela/EstelaContenido";
 import { trackContact, trackCta, whatsAppUrl } from "@/lib/pixel";
 import { enPrerender, llegoPrerenderizada } from "@/lib/prerender";
+import { HERO_EYEBROW, HERO_H1 } from "@/components/shopify/textos";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const PINK = "#F8B4D9";
@@ -38,20 +39,6 @@ const Section = ({ children, className = "" }: { children: React.ReactNode; clas
 
 /* ─────────────────────────── copy ─────────────────────────── */
 
-// La etiqueta va dentro del H1: es lo que escribe quien busca (Edgar, 27-sep-2026: «toda la gente
-// que esté buscando agencias de marketing»). Se escribe en minúsculas y la pone en mayúsculas el CSS.
-const HERO_EYEBROW: L = {
-  es: "Agencia de marketing para Shopify",
-  en: "Shopify marketing agency",
-  de: "Shopify-Marketingagentur",
-  pt: "Agência de marketing para Shopify",
-};
-const HERO_H1: L = {
-  es: "El problema casi nunca es el producto. Es la tienda que lo frena.",
-  en: "The problem is almost never the product. It's the store slowing it down.",
-  de: "Das Problem ist fast nie das Produkt. Es ist der Store, der es bremst.",
-  pt: "O problema quase nunca é o produto. É a loja que o trava.",
-};
 const HERO_SUB: L = {
   es: "Conectamos tu tienda Shopify, tu pauta, tus clientas y tu WhatsApp en un solo sistema. Vendes más y lo operas más barato y con más eficiencia que con una agencia de marketing tradicional.",
   en: "We connect your Shopify store, your ads, your customers and your WhatsApp into one system. You sell more, and it costs less and runs more efficiently than a traditional marketing agency.",
@@ -281,7 +268,7 @@ const ShopifyVertical = () => {
 
   return (
     <PremiumBackground>
-      <SEO path="/shopify" title={p.seoTitle} description={p.seoDescription} jsonLd={[serviceLd, faqLd, migasLd]} />
+      <SEO path="/shopify" ogKey="shopify" title={p.seoTitle} description={p.seoDescription} jsonLd={[serviceLd, faqLd, migasLd]} />
       <main id="main" className="pt-32 md:pt-40">
         {/* Hero — en el celular: título, pantalla, párrafo y botón; desde xl, el texto a la
             izquierda y la pantalla a la derecha. Un solo DOM con áreas de grilla. */}

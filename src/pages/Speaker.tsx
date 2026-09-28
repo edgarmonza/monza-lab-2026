@@ -53,7 +53,7 @@ const Speaker = () => {
 
   return (
     <div className="v2 speaker" ref={raiz} data-quieto={quieto ? "" : undefined}>
-      <SEO path="/speaker" image={IMAGEN} type="profile" title={SEO_TEXTOS.titulo} description={SEO_TEXTOS.descripcion} jsonLd={JSON_LD} />
+      <SEO path="/speaker" ogKey="speaker" type="profile" title={SEO_TEXTOS.titulo} description={SEO_TEXTOS.descripcion} jsonLd={JSON_LD} />
       <main id="main">
         <Hero />
         <Numeros />

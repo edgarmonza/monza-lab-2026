@@ -53,7 +53,7 @@ const Caso = ({ caso }: { caso: CasoDatos }) => {
 
   return (
     <>
-      <SEO title={caso.seo.titulo} description={caso.seo.descripcion} path={`/work/${caso.slug}`} image={caso.tarjeta.imagen} type="article" jsonLd={jsonLd} />
+      <SEO title={caso.seo.titulo} description={caso.seo.descripcion} path={`/work/${caso.slug}`} ogKey={`work/${caso.slug}`} type="article" jsonLd={jsonLd} />
       {/* La web del hero es fondo CSS: se pide antes para que no espere al CSS ni al JavaScript. */}
       <Helmet>
         <link rel="preload" href={caso.hero.web.escritorio} as="image" {...{ fetchpriority: "high" }} />

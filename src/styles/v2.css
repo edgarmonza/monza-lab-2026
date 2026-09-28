@@ -68,5 +68,5 @@
 @keyframes v2-mq { to { transform: translateX(-50%); } }
 
 /* el logo M[casco]NZA dentro de las páginas */
-.v2 .mlogo { --logo-cap-ratio: .7050; --logo-helmet-y-offset: -0.0543em; font-family: var(--display); font-weight: 700; letter-spacing: -0.025em; text-transform: uppercase; display: inline-flex; align-items: center; line-height: 1; color: var(--ink); text-decoration: none; }
-.v2 .mlogo svg { height: calc(1em * var(--logo-cap-ratio)); width: auto; aspect-ratio: 120/121; translate: 0 var(--logo-helmet-y-offset); display: block; }
+.v2 .mlogo { --logo-cap-ratio: .7050; --logo-helmet-y-offset: .0175em; --logo-ls: -0.025em; font-family: var(--display); font-weight: 700; letter-spacing: var(--logo-ls); text-transform: uppercase; display: inline-flex; align-items: baseline; line-height: 1; color: var(--ink); text-decoration: none; }
+.v2 .mlogo svg { height: calc(1em * var(--logo-cap-ratio)); width: auto; aspect-ratio: 120/121; translate: 0 var(--logo-helmet-y-offset); margin-right: var(--logo-ls); flex: none; display: block; }

@@ -9,11 +9,11 @@ type SEOProps = {
   description: TrilingualText;
   /** Route path WITHOUT the language prefix, e.g. "/speaker", "/work/eleonora-morales". Use "" for home. */
   path?: string;
-  /** Full URL or site-relative path of a custom OG image — overrides ogPage. */
+  /** Full URL or site-relative path of a custom OG image — overrides ogKey. */
   image?: string;
-  /** Page key for the dynamic OG generator at /api/og?page=...
-   *  Recognised keys: home, monzastudio, monzahaus, monzaindex, bavarianecons. */
-  ogPage?: "home" | "monzastudio" | "monzahaus" | "monzaindex" | "bavarianecons";
+  /** La tarjeta para compartir: public/og/<idioma>/<ogKey>.jpg («home», «sessions», «work/soloio»…).
+   *  Las pinta scripts/og/generar.mjs; SEO.test.tsx verifica que existan en los cuatro idiomas. */
+  ogKey?: string;
   type?: "website" | "article" | "profile";
   /** Extra JSON-LD structured data to inject. */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
@@ -22,10 +22,11 @@ type SEOProps = {
 };
 
 const SITE_URL = "https://www.monzalab.com";
-/* Versión de las imágenes OG dinámicas. LinkedIn (y otros) cachean la imagen por URL:
- * cuando cambie el diseño o se arregle un render, subir este número para que
- * las redes vuelvan a descargarla. v2 = 2026-08-17 (fix del mosaico de la home). */
-const OG_VERSION = "2";
+/* Versión de las tarjetas para compartir. LinkedIn (y otros) cachean la imagen por URL:
+ * cuando se vuelvan a pintar (scripts/og/generar.mjs), subir este número para que
+ * las redes las vuelvan a descargar. v2 = 2026-08-17 (fix del mosaico de la home).
+ * v3 = 2026-09-28: tarjetas estáticas por página y por caso, en los cuatro idiomas. */
+const OG_VERSION = "3";
 
 const LOCALE_MAP = {
   es: "es_ES",
@@ -40,23 +41,17 @@ const buildUrl = (lang: "es" | "en" | "de" | "pt", path: string) => {
   return `${SITE_URL}${prefix}${cleanPath}`;
 };
 
-const SEO = ({ title, description, path = "", image, ogPage, type = "website", jsonLd, noindex }: SEOProps) => {
+const SEO = ({ title, description, path = "", image, ogKey = "home", type = "website", jsonLd, noindex }: SEOProps) => {
   const { language } = useLanguage();
 
   const currentTitle = title[language];
   const currentDescription = description[language];
   const canonical = buildUrl(language, path);
-  /* Image precedence:
-   *   1. Explicit `image` prop (full URL or site-relative path)
-   *   2. Dynamic OG via `ogPage` → /api/og?page=...
-   *   3. Static fallback /og-image.png
-   * The dynamic generator returns 1200x630 PNGs from /api/og.tsx.
-   */
+  /* La imagen: la de `image` si viene; si no, la tarjeta de la página en su idioma
+   * (1200×630, public/og/<idioma>/<ogKey>.jpg). Sin ogKey, la de la portada. */
   const ogImage = image
     ? (image.startsWith("http") ? image : `${SITE_URL}${image}`)
-    : ogPage
-      ? `${SITE_URL}/api/og?page=${ogPage}&v=${OG_VERSION}`
-      : `${SITE_URL}/api/og?page=home&v=${OG_VERSION}`;
+    : `${SITE_URL}/og/${language}/${ogKey}.jpg?v=${OG_VERSION}`;
 
   const hreflangs: Array<{ lang: "es" | "en" | "de" | "pt"; url: string }> = [
     { lang: "es", url: buildUrl("es", path) },
@@ -101,6 +96,7 @@ const SEO = ({ title, description, path = "", image, ogPage, type = "website", j
       <meta property="og:title" content={currentTitle} />
       <meta property="og:description" content={currentDescription} />
       <meta property="og:image" content={ogImage} />
+      {!image && <meta property="og:image:type" content="image/jpeg" />}
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={currentTitle} />

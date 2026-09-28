@@ -25,7 +25,7 @@ const Index = () => {
 
   return (
     <>
-      <SEO path="" ogPage="home" title={SEO_HOME.titulo} description={SEO_HOME.descripcion} />
+      <SEO path="" ogKey="home" title={SEO_HOME.titulo} description={SEO_HOME.descripcion} />
       {/* La foto del casco es fondo CSS: se pide antes para que el hero no espere al JavaScript. */}
       <Helmet>
         <link rel="preload" href="/v2/edgar/casco.webp" as="image" type="image/webp" {...{ fetchpriority: "high" }} />
