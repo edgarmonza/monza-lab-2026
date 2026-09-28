@@ -213,7 +213,8 @@ export const FILAS: Fila[] = [
     ejemplos: [{ t: t("La tarde", "The afternoon", "Der Nachmittag", "A tarde") }, { t: igual("Bootcamp") }, { t: igual("1:1") }, { t: igual("In-company") }],
     href: "/sessions",
     ir: t("Ver Sessions", "See Sessions", "Zu Sessions", "Ver Sessions"),
-    foto: "/v2/video/sessions-reel.jpg",
+    /* un cuadro del video de la sesión (el original de 1080 px, segundo 14,2): la sala trabajando y Edgar enseñando */
+    foto: "/v2/sessions/sesion-sala.webp",
   },
   {
     id: "ventures",
