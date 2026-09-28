@@ -7,8 +7,8 @@ import { Suspense } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import RouteAnalytics from "./components/RouteAnalytics";
 import GoogleAnalytics from "./components/GoogleAnalytics";
-import Navbar from "./components/Navbar";
-import CustomCursor from "./components/CustomCursor";
+import NavbarV2 from "./components/v2/NavbarV2";
+import CursorCasco from "./components/v2/CursorCasco";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import { ThemeProvider } from "./theme/ThemeContext";
 import { Analytics } from "@vercel/analytics/react";
@@ -19,7 +19,6 @@ import Index from "./pages/Index";
 /* Las páginas que se bajan cuando se necesitan viven en rutas.tsx, precargables (ver main.tsx). */
 import {
   Speaker,
-  ProjectPage,
   NotFound,
   Upload,
   MonzaStudio,
@@ -31,6 +30,7 @@ import {
   Work,
   Pillar,
   ShopifyVertical,
+  CasoRuta,
 } from "./rutas";
 import MonzaAgent from "./components/MonzaAgent";
 
@@ -66,9 +66,9 @@ const AppContent = () => {
           {/* ULTRA PREMIUM BACKGROUND - Fixed, theme-aware */}
           <div className="premium-black-bg" aria-hidden="true" />
 
-          <CustomCursor />
+          <CursorCasco />
           <ScrollToTop />
-          <Navbar />
+          <NavbarV2 />
           <MonzaAgent />
         </>
       )}
@@ -81,7 +81,7 @@ const AppContent = () => {
           <Route path="/" element={<Index />} />
           <Route path="/speaker" element={<Speaker />} />
           <Route path="/work" element={<Work />} />
-          <Route path="/work/:slug" element={<ProjectPage />} />
+          <Route path="/work/:slug" element={<CasoRuta />} />
           <Route path="/shopify" element={<ShopifyVertical />} />
           <Route path="/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/monzastudio" element={<MonzaStudio />} />
@@ -95,7 +95,7 @@ const AppContent = () => {
           <Route path="/en" element={<Index />} />
           <Route path="/en/speaker" element={<Speaker />} />
           <Route path="/en/work" element={<Work />} />
-          <Route path="/en/work/:slug" element={<ProjectPage />} />
+          <Route path="/en/work/:slug" element={<CasoRuta />} />
           <Route path="/en/shopify" element={<ShopifyVertical />} />
           <Route path="/en/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/en/monzastudio" element={<MonzaStudio />} />
@@ -109,7 +109,7 @@ const AppContent = () => {
           <Route path="/de" element={<Index />} />
           <Route path="/de/speaker" element={<Speaker />} />
           <Route path="/de/work" element={<Work />} />
-          <Route path="/de/work/:slug" element={<ProjectPage />} />
+          <Route path="/de/work/:slug" element={<CasoRuta />} />
           <Route path="/de/shopify" element={<ShopifyVertical />} />
           <Route path="/de/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/de/monzastudio" element={<MonzaStudio />} />
@@ -123,7 +123,7 @@ const AppContent = () => {
           <Route path="/pt" element={<Index />} />
           <Route path="/pt/speaker" element={<Speaker />} />
           <Route path="/pt/work" element={<Work />} />
-          <Route path="/pt/work/:slug" element={<ProjectPage />} />
+          <Route path="/pt/work/:slug" element={<CasoRuta />} />
           <Route path="/pt/shopify" element={<ShopifyVertical />} />
           <Route path="/pt/agentes" element={<Pillar slug="agentes" />} />
           <Route path="/pt/monzastudio" element={<MonzaStudio />} />

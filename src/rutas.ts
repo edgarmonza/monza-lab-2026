@@ -19,6 +19,8 @@ export const Pillar = perezosa(() => import("./pages/Pillar"));
 // /shopify tiene página propia (vertical e-commerce). Mantiene el mismo SEO y FAQ
 // que la pilar genérica: lee de src/data/pillars.ts para no perder lo ya indexado.
 export const ShopifyVertical = perezosa(() => import("./pages/ShopifyVertical"));
+// /work/<slug>: el caso v2 si existe en src/data/casos; si no, la ProjectPage vieja (ver CasoRuta).
+export const CasoRuta = perezosa(() => import("./pages/CasoRuta"));
 
 const POR_RUTA: Record<string, { precargar: () => Promise<void> }> = {
   "/speaker": Speaker,
@@ -38,7 +40,7 @@ const POR_RUTA: Record<string, { precargar: () => Promise<void> }> = {
 export const precargarRuta = async (pathname: string): Promise<boolean> => {
   const base = pathname.replace(/^\/(en|de|pt)(?=\/|$)/, "").replace(/\/+$/, "") || "/";
   if (base === "/") return false;
-  const pagina = POR_RUTA[base] ?? (/^\/work\/[^/]+$/.test(base) ? ProjectPage : NotFound);
+  const pagina = POR_RUTA[base] ?? (/^\/work\/[^/]+$/.test(base) ? CasoRuta : NotFound);
   await pagina.precargar();
   return true;
 };

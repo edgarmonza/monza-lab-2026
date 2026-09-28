@@ -23,13 +23,14 @@ export interface FotoEstela {
 const R = "/images/shopify/estela";
 const foto = (id: string, marca: MarcaEstela): FotoEstela => ({ id, marca, avif: `${R}/${id}.avif`, webp: `${R}/${id}.webp` });
 
-/** Alternadas: nunca dos de la misma marca seguidas. */
+/** Alternadas: nunca dos de la misma marca seguidas.
+ *  28-sep-2026: salió `eleonora-miumiu` (cárdigan abierto sobre bralette): rompe la regla de imagen de
+ *  Eleonora (Clientes/Eleonora-EM/REGLA-IMAGEN-ELEONORA.md). Quedan 5 de ella. */
 export const FOTOS: FotoEstela[] = [
   foto("soloio-boda", "soloio"),
   foto("eleonora-rojo", "eleonora"),
   foto("monza-casco", "monza"),
   foto("soloio-jardin", "soloio"),
-  foto("eleonora-miumiu", "eleonora"),
   foto("monza-flow", "monza"),
   foto("soloio-cartas", "soloio"),
   foto("eleonora-chanel", "eleonora"),

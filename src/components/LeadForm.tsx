@@ -15,7 +15,7 @@ const T: Record<string, Record<Lang, string>> = {
   needAgents: { es: "Agentes de IA (ventas / pauta)", en: "AI agents (sales / paid media)", de: "KI-Agenten (Vertrieb / Ads)", pt: "Agentes de IA (vendas / anúncios)" },
   needAll: { es: "Todo el sistema completo", en: "The full system", de: "Das komplette System", pt: "O sistema completo" },
   message: { es: "Cuéntanos de tu marca en una línea", en: "Tell us about your brand in one line", de: "Erzähl uns in einem Satz von deiner Marke", pt: "Fala-nos da tua marca numa linha" },
-  submit: { es: "Enviar — Edgar te responde", en: "Send — Edgar replies personally", de: "Senden — Edgar antwortet persönlich", pt: "Enviar — o Edgar responde" },
+  submit: { es: "Enviar · Edgar te responde", en: "Send · Edgar replies personally", de: "Senden · Edgar antwortet persönlich", pt: "Enviar · o Edgar responde" },
   sending: { es: "Enviando…", en: "Sending…", de: "Senden…", pt: "A enviar…" },
   orWhatsApp: { es: "o escríbenos directo por WhatsApp", en: "or message us directly on WhatsApp", de: "oder schreib uns direkt auf WhatsApp", pt: "ou fala connosco diretamente no WhatsApp" },
   successTitle: { es: "Recibido.", en: "Received.", de: "Erhalten.", pt: "Recebido." },
@@ -52,7 +52,7 @@ const LeadForm = ({ source = "studio_landing" }: { source?: string }) => {
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const waSummary = () =>
-    `Hola Edgar — soy ${form.name} de ${form.brand}. Necesito: ${form.need || "—"}. ${form.message}`;
+    `Hola Edgar, soy ${form.name} de ${form.brand}. Necesito: ${form.need || "(sin especificar)"}. ${form.message}`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,188 +1,94 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Link as RouterLink } from "react-router-dom";
-import HelmetIcon from "./HelmetIcon";
-import { useTheme } from "@/theme/ThemeContext";
+/* El pie de toda la web (v2, 28-sep-2026, desde el prototipo): la marca, cuatro columnas de
+ * enlaces y los idiomas. El bloque grande «Construyamos.» salió: cada página cierra con su propio
+ * llamado, y «Hablemos» y el WhatsApp flotante están siempre a mano. */
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { trackContact, whatsAppUrl } from "@/lib/pixel";
+import type { Lang, LangText } from "@/i18n/types";
+import { enlace } from "@/lib/enlace";
+import { Casco } from "@/components/v2/NavbarV2";
+import "@/styles/v2.css";
+import "@/components/v2/chrome.css";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
+const L = (es: string, en = es, de = en, pt = es): LangText => ({ es, en, de, pt });
 
-const content = {
-  headline: {
-    es: "Construyamos.",
-    en: "Let's build.",
-    de: "Lass uns bauen.", pt: "Construyamos.",
+type Item = { t: LangText; to?: string; href?: string };
+const COLUMNAS: { titulo: LangText; items: Item[] }[] = [
+  {
+    titulo: L("Monza Lab"),
+    items: [
+      { t: L("Proyectos", "Work", "Projekte", "Projetos"), to: "/#proyectos" },
+      { t: L("Edgar"), to: "/#edgar" },
+      { t: L("Speaker"), to: "/speaker" },
+    ],
   },
-  email: "edgar@monzalab.com",
-  whatsapp: {
-    es: "WhatsApp directo",
-    en: "Direct WhatsApp",
-    de: "Direkter WhatsApp",
-    pt: "WhatsApp direto",
+  {
+    titulo: L("Trabajar juntos", "Work together", "Zusammenarbeiten", "Trabalhar juntos"),
+    items: [
+      { t: L("Studio · e-commerce"), to: "/shopify" },
+      { t: L("Plataformas", "Platforms", "Plattformen", "Plataformas"), to: "/#plataformas" },
+      { t: L("Agentes de IA", "AI agents", "KI-Agenten", "Agentes de IA"), to: "/agentes" },
+      { t: L("Monza Sessions"), to: "/sessions" },
+    ],
   },
-  waMessage: {
-    es: "Hola Edgar, vengo de monzalab.com. Construyamos.",
-    en: "Hi Edgar, I came from monzalab.com. Let's build.",
-    de: "Hallo Edgar, ich komme von monzalab.com.",
-    pt: "Olá Edgar, venho de monzalab.com. Construamos.",
+  {
+    titulo: L("Lo mío", "Our own", "Eigenes", "O que é nosso"),
+    items: [
+      { t: L("MonzaHaus"), href: "https://www.monzahaus.com" },
+      { t: L("Bavarian Econs"), href: "https://bavarianecons.com" },
+      { t: L("Monza Index"), href: "https://www.monzaindex.ai" },
+    ],
   },
-};
+  {
+    titulo: L("Redes", "Social", "Social", "Redes"),
+    items: [
+      { t: L("Instagram"), href: "https://www.instagram.com/monza.lab/" },
+      { t: L("LinkedIn"), href: "https://www.linkedin.com/in/edgarnavarrosoto/" },
+      { t: L("Correo", "Email", "E-Mail", "E-mail"), href: "mailto:edgar@monzalab.com" },
+    ],
+  },
+];
+const LEMA = L(
+  "Hacemos crecer marcas con inteligencia artificial. Y con buen gusto.",
+  "We grow brands with artificial intelligence. And with good taste.",
+  "Wir lassen Marken mit künstlicher Intelligenz wachsen. Und mit gutem Geschmack.",
+  "Fazemos crescer marcas com inteligência artificial. E com bom gosto.",
+);
+const IDIOMAS: Lang[] = ["es", "en", "de", "pt"];
 
 const FooterMinimal = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const { theme } = useTheme();
-  const isModena = theme === "modena";
-  const { language } = useLanguage();
-
-  const textPrimary = isModena ? "rgba(11,11,16,0.92)" : "rgba(255,252,247,0.92)";
-  // Auditoría móvil, 27-sep-2026: a 0,20 y 0,35 los enlaces del pie no llegaban al contraste
-  // mínimo (1,9:1) y en el celular casi no se leían. Ahora pasan AA en los dos temas.
-  const textMuted = isModena ? "rgba(11,11,16,0.6)" : "rgba(255,252,247,0.58)";
-  const textSubtle = isModena ? "rgba(11,11,16,0.5)" : "rgba(255,252,247,0.48)";
-  const borderSubtle = isModena ? "rgba(11,11,16,0.08)" : "rgba(255,252,247,0.06)";
-
+  const { language, setLanguage } = useLanguage();
   return (
-    <footer
-      ref={ref}
-      className="relative py-40 md:py-56 overflow-hidden"
-      style={{ background: "transparent" }}
-    >
-      <div className="mx-auto w-full max-w-[900px] px-6 text-center relative z-10">
-        {/* Headline — premium but not shouting */}
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: EASE }}
-          className="font-clash font-bold leading-[1.0] tracking-[-0.025em]"
-          style={{
-            fontSize: "clamp(2.25rem, 6vw, 4.5rem)",
-            color: textPrimary,
-          }}
-        >
-          {content.headline[language]}
-        </motion.h2>
-
-        {/* Single email CTA — no button, no border */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
-          className="mt-12 md:mt-16"
-        >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10">
-            <a
-              href={`mailto:${content.email}`}
-              onClick={() => trackContact("email", "footer")}
-              className="group inline-flex items-center gap-3 min-h-[44px] font-clash text-[13px] md:text-[15px] tracking-[0.05em] transition-colors duration-400"
-              style={{ color: textMuted }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(248,180,217,0.95)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = textMuted; }}
-            >
-              <span
-                className="inline-block w-6 h-px transition-all duration-500 group-hover:w-10"
-                style={{ background: "currentColor" }}
-              />
-              {content.email}
-            </a>
-            <a
-              href={whatsAppUrl(content.waMessage[language])}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackContact("whatsapp", "footer")}
-              className="group inline-flex items-center gap-3 min-h-[44px] font-clash text-[13px] md:text-[15px] tracking-[0.05em] transition-colors duration-400"
-              style={{ color: textMuted }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(37,211,102,0.95)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = textMuted; }}
-            >
-              <span
-                className="inline-block w-6 h-px transition-all duration-500 group-hover:w-10"
-                style={{ background: "currentColor" }}
-              />
-              {content.whatsapp[language]}
-            </a>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Bottom strip — ultra minimal */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.6 }}
-        className="mx-auto w-full max-w-[1200px] px-6 mt-32 md:mt-40 pt-8"
-        style={{ borderTop: `1px solid ${borderSubtle}` }}
-      >
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Left — helmet + copyright */}
-          <div className="flex items-center gap-4">
-            <div className="w-3 h-3" aria-hidden="true">
-              <HelmetIcon
-                variant="ghost"
-                shellColor={textSubtle}
-                visorColor={textSubtle}
-                className="w-full h-full"
-              />
-            </div>
-            <span
-              className="font-clash text-[11px] tracking-[0.26em] uppercase"
-              style={{ color: textSubtle }}
-            >
-              © 2026 Monza Lab
-            </span>
-          </div>
-
-          {/* Middle — internal pillars, discreet (SEO + navegación) */}
-          <div className="flex flex-wrap items-center justify-center gap-x-7">
-            {([
-              // El texto del enlace también cuenta para Google: dice lo que la gente busca (27-sep-2026).
-              { to: "/shopify", label: { es: "Marketing para Shopify", en: "Shopify marketing", de: "Shopify-Marketing", pt: "Marketing para Shopify" } },
-              { to: "/agentes", label: { es: "Agentes de IA", en: "AI Agents", de: "KI-Agenten", pt: "Agentes de IA" } },
-              { to: "/work", label: { es: "Casos", en: "Work", de: "Cases", pt: "Casos" } },
-            ] as const).map((l) => (
-              <RouterLink
-                key={l.to}
-                to={`${language === "es" ? "" : `/${language}`}${l.to}`}
-                className="font-clash text-[11px] tracking-[0.26em] uppercase whitespace-nowrap inline-flex items-center min-h-[44px] transition-colors duration-300"
-                style={{ color: textSubtle }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = textMuted; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = textSubtle; }}
-              >
-                {l.label[language]}
-              </RouterLink>
-            ))}
-          </div>
-
-          {/* Right — socials, discreet */}
-          <div className="flex items-center gap-7">
-            <a
-              href="https://www.instagram.com/monza.lab/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram — @monza.lab"
-              className="font-clash text-[11px] tracking-[0.26em] uppercase whitespace-nowrap inline-flex items-center min-h-[44px] transition-colors duration-300"
-              style={{ color: textSubtle }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = textMuted; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = textSubtle; }}
-            >
-              Instagram
-            </a>
-            <a
-              href="https://www.linkedin.com/in/edgarnavarrosoto/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn — Edgar Navarro"
-              className="font-clash text-[11px] tracking-[0.26em] uppercase whitespace-nowrap inline-flex items-center min-h-[44px] transition-colors duration-300"
-              style={{ color: textSubtle }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = textMuted; }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = textSubtle; }}
-            >
-              LinkedIn
-            </a>
-          </div>
+    <footer className="v2-chrome v2-pie">
+      <div className="v2-pie-in">
+        <div className="v2-pie-marca">
+          <Link className="mlogo" to={enlace(language, "/")} aria-label="Monza Lab">M<Casco />NZA</Link>
+          <p>{LEMA[language]}</p>
         </div>
-      </motion.div>
+        {COLUMNAS.map((c) => (
+          <div key={c.titulo.es}>
+            <h4>{c.titulo[language]}</h4>
+            <ul>
+              {c.items.map((i) => (
+                <li key={i.t.es}>
+                  {i.to ? (
+                    <Link to={enlace(language, i.to)}>{i.t[language]}</Link>
+                  ) : (
+                    <a href={i.href} {...(i.href?.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{i.t[language]}</a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="v2-pie-bajo">
+        <span>© 2026 Monza Lab</span>
+        <span className="v2-pie-idiomas">
+          {IDIOMAS.map((l) => (
+            <button key={l} type="button" aria-current={l === language ? "true" : undefined} onClick={() => setLanguage(l)}>{l.toUpperCase()}</button>
+          ))}
+        </span>
+      </div>
     </footer>
   );
 };

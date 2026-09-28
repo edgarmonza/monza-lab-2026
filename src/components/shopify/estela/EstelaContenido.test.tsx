@@ -21,9 +21,13 @@ afterEach(() => {
 });
 
 describe("las fotos de la estela", () => {
-  it("son 18, seis por marca y alternadas: nunca dos de la misma marca seguidas", () => {
-    expect(FOTOS).toHaveLength(18);
-    for (const m of ["soloio", "eleonora", "monza"] as const) expect(FOTOS.filter((f) => f.marca === m)).toHaveLength(6);
+  it("son 17 (6 soloio, 5 Eleonora, 6 Monza) y alternadas: nunca dos de la misma marca seguidas", () => {
+    // 28-sep-2026: salió eleonora-miumiu por la regla de imagen de Eleonora.
+    expect(FOTOS).toHaveLength(17);
+    expect(FOTOS.filter((f) => f.marca === "soloio")).toHaveLength(6);
+    expect(FOTOS.filter((f) => f.marca === "eleonora")).toHaveLength(5);
+    expect(FOTOS.filter((f) => f.marca === "monza")).toHaveLength(6);
+    expect(FOTOS.some((f) => f.id === "eleonora-miumiu")).toBe(false);
     for (let i = 1; i < FOTOS.length; i++) expect(FOTOS[i].marca).not.toBe(FOTOS[i - 1].marca);
   });
 

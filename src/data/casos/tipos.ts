@@ -50,7 +50,9 @@ export interface Caso {
     /** «Ver la tienda ↗», «Ver la web ↗»… (opcional; los confidenciales no llevan). */
     enlace?: { href: string; texto: T };
     /** La web que se recorre sola: lo que se lee en la barra y dos capturas largas. */
-    web: { barra: string; escritorio: string; celular?: string };
+    web: { barra: string; escritorio: string; celular?: string;
+      /** Plataformas: una tarjeta que flota sobre el navegador en vez del celular (con su sello). */
+      flota?: { img: string; sello: T } };
     /** La palabra gigante de fondo. */
     fantasma: string;
     /** Confidenciales: una sola línea corta, sin lenguaje legal. */
@@ -67,9 +69,12 @@ export interface Caso {
     items: { pestana: T; clave: T; titulo: T; texto: T; resuelve: T; visual: Visual }[];
   };
   tecnologia: { titulo: T; lede: T; centro: { titulo: T; sub: T }; nodos: NodoTecnologia[] };
-  galeria: { titulo: T; items: { src: string; pie: T; alt: T; forma?: "alta" | "ancha" }[]; nota?: T };
-  cambio: { titulo: T; items: { cifra: string; negrita: T; texto: T }[] };
-  cierre: { titulo: T; resaltado: T; lede: T; enlace: { href: string; texto: T } };
+  /** forma: web (grande, 2×2) · alta (1×2) · ancha (2×2) · cel (alta, en marco de celular) · completa (todo el ancho, 2 filas) · tira (todo el ancho, 1 fila). posicion = object-position. */
+  galeria: { titulo: T; items: { src: string; pie: T; alt: T; forma?: "web" | "alta" | "ancha" | "cel" | "completa" | "tira"; posicion?: string }[]; nota?: T };
+  /** `cifra` va como texto fijo («24/7», «751») o traducida cuando es palabra («Décadas»). */
+  cambio: { titulo: T; items: { cifra: string | T; negrita: T; texto: T }[] };
+  /** eyebrow: «Tu marca», «Tu empresa»… (si falta, «Hablemos»). */
+  cierre: { eyebrow?: T; titulo: T; resaltado: T; lede: T; enlace: { href: string; texto: T } };
   /** Para la tarjeta de la portada y de «otros casos». */
   tarjeta: { etiqueta: T; imagen: string; imagenCel?: string; inserto?: string };
 }

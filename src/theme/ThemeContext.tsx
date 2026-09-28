@@ -13,20 +13,17 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 const THEME_KEY = 'monza-theme';
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<ThemeMode>(() => {
-    const saved = localStorage.getItem(THEME_KEY);
-    if (saved === 'enzo' || saved === 'modena') return saved;
+  /* v2 (28-sep-2026): un solo tema, oscuro. El claro (Modena) salió por pedido de Edgar; se borra
+   * la preferencia guardada para que nadie quede atrapado en él. setTheme y toggleTheme quedan
+   * como no-ops para las páginas viejas que todavía los importan. */
+  const [theme] = useState<ThemeMode>(() => {
+    try { localStorage.removeItem(THEME_KEY); } catch { /* sin almacenamiento */ }
     return 'enzo';
   });
 
-  const setTheme = (newTheme: ThemeMode) => {
-    setThemeState(newTheme);
-    localStorage.setItem(THEME_KEY, newTheme);
-  };
+  const setTheme = (_newTheme: ThemeMode) => {};
 
-  const toggleTheme = () => {
-    setTheme(theme === 'enzo' ? 'modena' : 'enzo');
-  };
+  const toggleTheme = () => {};
 
   useEffect(() => {
     const root = document.documentElement;

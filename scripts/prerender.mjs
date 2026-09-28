@@ -16,7 +16,7 @@ const PORT = 4917;
 const CONCURRENCY = 4;
 
 const STATICS = ["", "work", "shopify", "agentes", "studio", "monzastudio", "monzahaus", "monzaindex", "bavarianecons", "sessions", "speaker"];
-const SLUGS = ["bavarian-econs", "pacho-alvarez", "guardian-of-speed", "monza-haus", "ia-index", "eleonora-morales", "plataforma-comercio-exterior", "plataforma-turismo"];
+const SLUGS = ["soloio", "bavarian-econs", "pacho-alvarez", "guardian-of-speed", "monza-haus", "ia-index", "eleonora-morales", "plataforma-comercio-exterior", "plataforma-turismo"];
 const LANGS = ["", "/en", "/de", "/pt"];
 
 const routes = [];
