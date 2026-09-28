@@ -1,0 +1,72 @@
+/* ══════════════════════════════════════════════════════════════
+   MONZA V2 · la base de la portada, Sessions y los casos (28-sep-2026)
+   Sale del prototipo de docs/internal/portada/prototipo/comun.css.
+   Todo va encerrado en .v2 (las páginas) y en .v2-chrome (menú, pie y cursor)
+   para no tocar el resto del sitio ni las variables de shadcn (--accent, --muted…).
+   Un solo tema: negro + rosa. Mobile first: lo de base es el celular.
+   ══════════════════════════════════════════════════════════════ */
+.v2,
+.v2-chrome {
+  --display: "Clash Display", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --pink: #F8B4D9; --pink-deep: #C2417F; --dark: #0B0B10; --deep: #07070B;
+  --surface: #14131B; --surface-2: #1B1A24;
+  --ink: rgba(255, 252, 247, .92); --ink-2: rgba(255, 252, 247, .72); --muted: rgba(255, 252, 247, .54);
+  --rule: rgba(255, 255, 255, .09); --line: rgba(255, 252, 247, .5);
+  --accent: #F8B4D9; --accent-wash: rgba(248, 180, 217, .12);
+  --ease: cubic-bezier(.2, .7, .1, 1);
+  --gut: 16px; --nav: 64px;
+}
+@media (min-width: 600px) { .v2, .v2-chrome { --gut: clamp(20px, 4vw, 56px); } }
+
+.v2 { position: relative; z-index: 1; background: var(--dark); color: var(--ink); font-family: var(--body); font-size: 16.5px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+.v2 h1, .v2 h2, .v2 h3, .v2 h4 { font-family: var(--display); margin: 0; text-wrap: balance; }
+.v2 p, .v2 ul, .v2 ol, .v2 figure { margin: 0; }
+.v2 a { color: var(--accent); }
+.v2 img, .v2 video { display: block; max-width: 100%; }
+.v2 a:focus-visible, .v2 button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.v2 .rosa a:focus-visible, .v2 .rosa button:focus-visible { outline-color: var(--dark); }
+.v2 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* botones y rótulos */
+.v2 .btn { display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 22px; border-radius: 999px; background: var(--accent); color: var(--dark); font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; white-space: nowrap; border: 0; cursor: pointer; transition: transform .3s var(--ease), box-shadow .3s; }
+.v2 .btn:hover { transform: translateY(-2px); }
+.v2 .btn svg { width: 15px; height: 15px; flex: none; }
+.v2 .btn.dark { background: var(--dark); color: var(--pink); box-shadow: 0 14px 30px -12px rgba(11, 11, 16, .6); }
+.v2 .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.v2 .lnk { font-family: var(--display); font-weight: 600; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; background: none; border: 0; padding: 0; cursor: pointer; color: var(--accent); }
+.v2 .lnk:hover { text-decoration: underline; text-underline-offset: 5px; }
+.v2 .eyebrow { font-family: var(--display); font-weight: 500; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--accent); }
+.v2 .box { background: var(--dark); color: var(--pink); padding: 0 .1em .04em; -webkit-box-decoration-break: clone; box-decoration-break: clone; line-height: 1.16; }
+.v2 .box.rosa-box { background: var(--pink); color: var(--dark); }
+
+/* secciones */
+.v2 .rosa { background: var(--pink); color: var(--dark); }
+.v2 .grano { position: relative; isolation: isolate; }
+.v2 .grano::after { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .1; mix-blend-mode: multiply; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.v2 .wrap { max-width: 1140px; margin-inline: auto; display: flex; flex-direction: column; gap: 96px; padding: 88px var(--gut) 104px; }
+@media (min-width: 900px) { .v2 .wrap { gap: 128px; padding-top: 120px; padding-bottom: 136px; } }
+.v2 section { display: flex; flex-direction: column; gap: 20px; }
+.v2 h2 { font-weight: 600; font-size: clamp(28px, 3.4vw, 42px); line-height: 1.08; letter-spacing: -0.022em; word-spacing: .06em; max-width: 22ch; color: var(--ink); }
+.v2 .rosa h2 { color: var(--dark); }
+.v2 .lede { font-size: clamp(17px, 1.6vw, 19px); color: var(--ink-2); max-width: 56ch; }
+.v2 .rosa .lede { color: rgba(11, 11, 16, .78); }
+.v2 .fine { color: var(--muted); font-size: 14.5px; max-width: 66ch; }
+
+/* aparición al bajar: solo cuando useRevela prende data-revela (nunca en el prerender) */
+.v2[data-revela] .rv { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.v2[data-revela] .rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .v2[data-revela] .rv { opacity: 1; transform: none; transition: none; } }
+
+/* franja que corre */
+.v2 .band { position: relative; z-index: 3; margin: 0 calc(var(--gut) * -1); background: var(--dark); color: var(--pink); overflow: hidden; white-space: nowrap; font-family: var(--display); font-weight: 600; font-size: 12.5px; letter-spacing: .26em; text-transform: uppercase; }
+.v2 .band.rosa-band { background: var(--pink); color: var(--dark); }
+.v2 .band-in { display: inline-flex; padding: 16px 0; }
+.v2 .band-in span { padding-right: 26px; }
+.v2 .band-in i { font-style: normal; opacity: .45; padding-right: 26px; }
+@media (prefers-reduced-motion: no-preference) { .v2 .band-in { animation: v2-mq 42s linear infinite; } }
+@keyframes v2-mq { to { transform: translateX(-50%); } }
+
+/* el logo M[casco]NZA dentro de las páginas */
+.v2 .mlogo { --logo-cap-ratio: .7050; --logo-helmet-y-offset: -0.0543em; font-family: var(--display); font-weight: 700; letter-spacing: -0.025em; text-transform: uppercase; display: inline-flex; align-items: center; line-height: 1; color: var(--ink); text-decoration: none; }
+.v2 .mlogo svg { height: calc(1em * var(--logo-cap-ratio)); width: auto; aspect-ratio: 120/121; translate: 0 var(--logo-helmet-y-offset); display: block; }
