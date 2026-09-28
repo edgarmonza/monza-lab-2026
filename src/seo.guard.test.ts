@@ -78,6 +78,12 @@ describe("SEO: la entidad Monza Lab es una sola", () => {
     expect(sitio?.publisher?.["@id"]).toBe("https://www.monzalab.com/#organization");
   });
 
+  it("la fecha de fundación es la de la matrícula en Cámara de Comercio (18-feb-2026)", () => {
+    // Decía 2022. Edgar lo corrigió el 27-sep-2026 y el certificado de existencia lo confirma.
+    const org = fichas.find((f) => f["@type"] === "Organization") as { foundingDate?: string } | undefined;
+    expect(org?.foundingDate).toBe("2026-02-18");
+  });
+
   it("el LinkedIn de Edgar es el mismo en todo el sitio", () => {
     expect(html).not.toMatch(/linkedin\.com\/in\/edgarnavarro["/]/);
     expect(html).toMatch(/linkedin\.com\/in\/edgarnavarrosoto\//);
