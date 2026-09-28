@@ -57,6 +57,7 @@ const QuienEnsena = ({ L }: { L: Lang }) => {
         <div className="ss-salahead rv">
           <h3>{EDGAR.salaTitulo[L]}</h3>
           <div className="ss-gremios" aria-label={EDGAR.gremiosAria[L]}>
+            <b>{EDGAR.gremiosTitulo[L]}</b>
             {EDGAR.gremios.map((g) => <span key={g}>{g}</span>)}
           </div>
         </div>

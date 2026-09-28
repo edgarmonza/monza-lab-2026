@@ -349,14 +349,14 @@ export const caso: Caso = {
     nodos: [
       {
         id: "construccion",
-        nombre: t("Construcción con IA", "Built with AI", "Mit KI gebaut", "Construção com IA"),
-        corto: t("Hecha con IA", "Made with AI", "Mit KI gemacht", "Feita com IA"),
+        nombre: t("Hecha con Claude", "Built with Claude", "Mit Claude gebaut", "Feita com Claude"),
+        corto: t("Claude", "Claude", "Claude", "Claude"),
         tipo: "ia",
         hace: t(
-          "La web se diseñó y se programó con herramientas de inteligencia artificial, con dirección de arte de una persona en cada decisión.",
-          "The website was designed and coded with artificial intelligence tools, with a person's art direction in every decision.",
-          "Die Website wurde mit KI-Werkzeugen gestaltet und programmiert, mit menschlicher Art Direction bei jeder Entscheidung.",
-          "O site foi desenhado e programado com ferramentas de inteligência artificial, com direção de arte de uma pessoa em cada decisão.",
+          "La web se diseñó y se programó con Claude, con dirección de arte de una persona en cada decisión.",
+          "The website was designed and coded with Claude, with a person's art direction in every decision.",
+          "Die Website wurde mit Claude gestaltet und programmiert, mit menschlicher Art Direction bei jeder Entscheidung.",
+          "O site foi desenhado e programado com Claude, com direção de arte de uma pessoa em cada decisão.",
         ),
         con: ["web", "fotos", "servicios"],
       },

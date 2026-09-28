@@ -457,7 +457,8 @@ export const EDGAR = {
   escenario: { es: "En escenario →", en: "On stage →", de: "Auf der Bühne →", pt: "Em palco →" } as T,
   retratoAlt: { es: "Edgar Navarro con el casco rosa de Monza", en: "Edgar Navarro wearing the pink Monza helmet", de: "Edgar Navarro mit dem rosa Monza-Helm", pt: "Edgar Navarro com o capacete rosa da Monza" } as T,
   salaTitulo: { es: "En sala, en escenario y en la empresa de cada quien.", en: "In the room, on stage and inside each company.", de: "Im Raum, auf der Bühne und in jeder Firma.", pt: "Em sala, em palco e na empresa de cada um." } as T,
-  gremiosAria: { es: "Donde he dado talleres", en: "Where I've given workshops", de: "Wo ich Workshops gegeben habe", pt: "Onde dei workshops" } as T,
+  gremiosAria: { es: "Donde he dado conferencias", en: "Where I've given talks", de: "Wo ich Vorträge gehalten habe", pt: "Onde dei conferências" } as T,
+  gremiosTitulo: { es: "Conferencias", en: "Talks", de: "Vorträge", pt: "Conferências" } as T,
   gremios: ["ANDI", "Andigraf", "Turismo de Portugal"],
   desliza: { es: "Desliza", en: "Swipe", de: "Wischen", pt: "Desliza" } as T,
   fotos: [
