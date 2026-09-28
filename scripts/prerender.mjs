@@ -127,6 +127,10 @@ async function capture(browser, route) {
       await new Promise((r) => setTimeout(r, 900));
       let html = await page.content();
       html = html.replace("<head>", '<head><meta name="x-prerendered" content="true">');
+      // El snippet del píxel de Meta inserta fbevents.js ANTES de sí mismo; guardado así, el script
+      // puede correr antes de que exista fbq y falla («fbq is not defined»): ese día no se cuenta la
+      // visita. Se quita del HTML y el snippet lo vuelve a poner en orden al cargar (28-sep-2026).
+      html = html.replace(/<script[^>]*src="https:\/\/connect\.facebook\.net\/[^"]*fbevents\.js"[^>]*><\/script>/g, "");
       /* Cada página tiene que salir con SU canónica. Si sale con la de la portada, Google la
        * trata como copia de la home (pasó con 9 de 76 hasta el 27-sep-2026). No rompe el build:
        * lo deja escrito en el log de Vercel. */
