@@ -11,16 +11,16 @@ export const caso: Caso = {
   categoria: "venture",
   seo: {
     titulo: t(
-      "Bavarian Econs · Caso · Monza Lab",
-      "Bavarian Econs · Case study · Monza Lab",
-      "Bavarian Econs · Case Study · Monza Lab",
-      "Bavarian Econs · Caso · Monza Lab",
+      "Bavarian Econs: marca y web para BMW eléctricos | Monza Lab",
+      "Bavarian Econs: brand and web for electric BMWs | Monza Lab",
+      "Bavarian Econs: Marke und Web für Elektro-BMW | Monza Lab",
+      "Bavarian Econs: marca e site para BMW elétricos | Monza Lab",
     ),
     descripcion: t(
-      "Caso Bavarian Econs: marca, web global, leads y contenido para BMW clásicos convertidos a eléctricos en Múnich.",
-      "Bavarian Econs case study: brand, global website, leads and content for classic BMWs converted to electric in Munich.",
-      "Case Study Bavarian Econs: Marke, globale Website, Leads und Content für klassische BMW, die in München auf Elektro umgebaut werden.",
-      "Caso Bavarian Econs: marca, web global, leads e conteúdo para BMW clássicos convertidos em elétricos em Munique.",
+      "Marca, web global, leads y contenido para BMW clásicos convertidos a eléctricos en Múnich. Construido por Monza Lab.",
+      "Brand, global website, leads and content for classic BMWs converted to electric in Munich. Built by Monza Lab.",
+      "Marke, globale Website, Leads und Content für klassische BMW, in München auf Elektro umgebaut. Gebaut von Monza Lab.",
+      "Marca, site global, leads e conteúdo para BMW clássicos convertidos em elétricos em Munique. Construído pela Monza Lab.",
     ),
   },
   hero: {

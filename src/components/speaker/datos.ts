@@ -250,15 +250,15 @@ export const CIERRE = {
 
 export const SEO_TEXTOS = {
   titulo: t(
-    "Edgar Navarro · Keynote speaker de inteligencia artificial | Monza Lab",
-    "Edgar Navarro · Artificial intelligence keynote speaker | Monza Lab",
-    "Edgar Navarro · Keynote Speaker für künstliche Intelligenz | Monza Lab",
-    "Edgar Navarro · Keynote speaker de inteligência artificial | Monza Lab",
+    "Edgar Navarro · Keynote speaker de IA | Monza Lab",
+    "Edgar Navarro · AI keynote speaker | Monza Lab",
+    "Edgar Navarro · Keynote Speaker für KI | Monza Lab",
+    "Edgar Navarro · Orador keynote de IA | Monza Lab",
   ),
   descripcion: t(
-    "Keynote speaker sobre inteligencia artificial, innovación y company building. En KPMG lideró la adopción de IA en empresas grandes. Conferencias para empresas, gremios y universidades en Latinoamérica, Europa y Estados Unidos.",
-    "Keynote speaker on artificial intelligence, innovation and company building. At KPMG he led AI adoption in large companies. Talks for companies, industry associations and universities in Latin America, Europe and the US.",
-    "Keynote Speaker für künstliche Intelligenz, Innovation und Company Building. Bei KPMG leitete er die KI-Einführung in großen Unternehmen. Vorträge für Unternehmen, Verbände und Universitäten in Lateinamerika, Europa und den USA.",
-    "Keynote speaker sobre inteligência artificial, inovação e company building. Na KPMG liderou a adoção de IA em grandes empresas. Conferências para empresas, associações e universidades na América Latina, Europa e EUA.",
+    "Keynote speaker de inteligencia artificial. En KPMG lideró la adopción de IA en grandes empresas. Conferencias para empresas, gremios y universidades.",
+    "Artificial intelligence keynote speaker. At KPMG he led AI adoption in large companies. Talks for companies, industry associations and universities.",
+    "Keynote Speaker für KI. Bei KPMG leitete er die KI-Einführung in großen Unternehmen. Vorträge für Unternehmen, Verbände und Universitäten.",
+    "Keynote speaker de inteligência artificial. Na KPMG liderou a adoção de IA em grandes empresas. Conferências para empresas, associações e universidades.",
   ),
 };

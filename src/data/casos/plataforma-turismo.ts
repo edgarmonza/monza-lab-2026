@@ -14,16 +14,16 @@ export const caso: Caso = {
   confidencial: true,
   seo: {
     titulo: t(
-      "Plataforma de viajes con IA para un operador de turismo | Monza Lab",
+      "Plataforma de viajes con IA para turismo | Monza Lab",
       "AI travel platform for a tour operator | Monza Lab",
       "KI-Reiseplattform für einen Reiseveranstalter | Monza Lab",
-      "Plataforma de viagens com IA para um operador turístico | Monza Lab",
+      "Plataforma de viagens com IA para turismo | Monza Lab",
     ),
     descripcion: t(
-      "Décadas de conocimiento local de un operador de turismo europeo, convertidas en un planificador de viajes con inteligencia artificial, un catálogo de 751 experiencias y una web para el viajero.",
-      "Decades of local knowledge from a European tour operator, turned into an artificial intelligence trip planner, a catalog of 751 experiences and a website for travelers.",
-      "Jahrzehnte lokalen Wissens eines europäischen Reiseveranstalters, verwandelt in einen KI-Reiseplaner, einen Katalog mit 751 Erlebnissen und eine Website für Reisende.",
-      "Décadas de conhecimento local de um operador turístico europeu, transformadas num planeador de viagens com inteligência artificial, um catálogo de 751 experiências e um site para o viajante.",
+      "Décadas de conocimiento de un operador de turismo europeo, convertidas en un planificador de viajes con IA y un catálogo de 751 experiencias.",
+      "Decades of a European tour operator's knowledge, turned into an AI trip planner and a catalog of 751 experiences.",
+      "Jahrzehnte Wissen eines europäischen Reiseveranstalters, verwandelt in einen KI-Reiseplaner und einen Katalog mit 751 Erlebnissen.",
+      "Décadas de conhecimento de um operador turístico europeu, transformadas num planeador de viagens com IA e num catálogo de 751 experiências.",
     ),
   },
   hero: {

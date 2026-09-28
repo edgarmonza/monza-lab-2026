@@ -40,16 +40,16 @@ const COPY = {
   ),
   filtrar: L("Filtrar proyectos", "Filter projects", "Projekte filtern", "Filtrar projetos"),
   seoTitulo: L(
-    "Proyectos y casos · tiendas, plataformas y agentes con IA | Monza Lab",
-    "Work and case studies · stores, platforms and AI agents | Monza Lab",
-    "Projekte und Fallstudien · Shops, Plattformen und KI-Agenten | Monza Lab",
-    "Projetos e casos · lojas, plataformas e agentes com IA | Monza Lab",
+    "Casos: tiendas, plataformas y agentes con IA | Monza Lab",
+    "Case studies: stores, platforms and AI agents | Monza Lab",
+    "Fallstudien: Shops, Plattformen und KI-Agenten | Monza Lab",
+    "Casos: lojas, plataformas e agentes com IA | Monza Lab",
   ),
   seoDesc: L(
     "Los casos de Monza Lab: e-commerce, plataformas con inteligencia artificial para empresas y productos propios. Qué se produjo en cada uno y qué hace Monza ahí.",
-    "Monza Lab case studies: e-commerce, artificial intelligence platforms for companies and products of our own. What was produced in each and what Monza does there.",
+    "Monza Lab case studies: e-commerce, AI platforms for companies and products of our own. What we produced in each and what Monza does there.",
     "Die Fallstudien von Monza Lab: E-Commerce, KI-Plattformen für Unternehmen und eigene Produkte. Was jeweils gebaut wurde und was Monza dort macht.",
-    "Os casos da Monza Lab: e-commerce, plataformas com inteligência artificial para empresas e produtos próprios. O que se produziu em cada um e o que a Monza faz lá.",
+    "Os casos da Monza Lab: e-commerce, plataformas com IA para empresas e produtos próprios. O que produzimos em cada um e o que a Monza faz lá.",
   ),
 };
 

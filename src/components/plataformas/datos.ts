@@ -16,10 +16,10 @@ export const SEO_PL = {
     "Plataformas e agentes de IA para empresas | Monza Lab",
   ),
   descripcion: t(
-    "Construimos plataformas con inteligencia artificial y agentes de IA sobre la operación real de tu empresa: tu ERP, tu CRM y tu WhatsApp. Un piloto en uso en semanas, y todo a nombre de tu empresa.",
-    "We build artificial intelligence platforms and AI agents on your company's real operation: your ERP, your CRM and your WhatsApp. A pilot in use within weeks, and everything in your company's name.",
-    "Wir bauen Plattformen mit künstlicher Intelligenz und KI-Agenten auf dem echten Betrieb deines Unternehmens: dein ERP, dein CRM und dein WhatsApp. Ein Pilot im Einsatz in wenigen Wochen, und alles auf den Namen deines Unternehmens.",
-    "Construímos plataformas com inteligência artificial e agentes de IA sobre a operação real da tua empresa: o teu ERP, o teu CRM e o teu WhatsApp. Um piloto em uso em semanas, e tudo em nome da tua empresa.",
+    "Plataformas con inteligencia artificial y agentes de IA sobre la operación de tu empresa: tu ERP, tu CRM y tu WhatsApp. Un piloto en uso en semanas.",
+    "AI platforms and AI agents on your company's real operation: your ERP, your CRM and your WhatsApp. A pilot in use within weeks.",
+    "KI-Plattformen und KI-Agenten auf dem echten Betrieb deines Unternehmens: ERP, CRM und WhatsApp. Ein Pilot im Einsatz in wenigen Wochen.",
+    "Plataformas com inteligência artificial e agentes de IA sobre a operação da tua empresa: o teu ERP, o teu CRM e o teu WhatsApp. Um piloto em semanas.",
   ),
   servicio: t("Plataformas y agentes de IA para empresas", "AI platforms and agents for companies", "KI-Plattformen und KI-Agenten für Unternehmen", "Plataformas e agentes de IA para empresas"),
 };

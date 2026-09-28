@@ -13,16 +13,16 @@ export const caso: Caso = {
   categoria: "studio",
   seo: {
     titulo: t(
-      "Caso Eleonora Morales · Tienda en línea, asesora de IA y contenido | Monza Lab",
-      "Eleonora Morales case · Online store, AI advisor and content | Monza Lab",
-      "Fall Eleonora Morales · Onlineshop, KI-Beraterin und Content | Monza Lab",
-      "Caso Eleonora Morales · Loja online, assessora de IA e conteúdo | Monza Lab",
+      "Eleonora Morales: tienda y asesora de IA | Monza Lab",
+      "Eleonora Morales: online store and AI advisor | Monza Lab",
+      "Eleonora Morales: Onlineshop und KI-Beraterin | Monza Lab",
+      "Eleonora Morales: loja online e assessora de IA | Monza Lab",
     ),
     descripcion: t(
-      "Una casa de moda que atiende a cualquier hora y publica cada pieza sin esperar una sesión de fotos: website, agente de IA en WhatsApp, CRM y contenido, construidos y operados por Monza Lab.",
-      "A fashion house that answers at any hour and publishes every piece without waiting for a photo shoot: website, AI agent on WhatsApp, CRM and content, built and run by Monza Lab.",
-      "Ein Modehaus, das rund um die Uhr antwortet und jedes Stück ohne Fotoshooting veröffentlicht: Website, KI-Agent auf WhatsApp, CRM und Content, gebaut und betrieben von Monza Lab.",
-      "Uma casa de moda que atende a qualquer hora e publica cada peça sem esperar por uma sessão fotográfica: website, agente de IA no WhatsApp, CRM e conteúdo, construídos e operados pela Monza Lab.",
+      "Una casa de moda que atiende a cualquier hora y publica cada pieza sin sesión de fotos: website, agente de IA en WhatsApp, CRM y contenido.",
+      "A fashion house that answers at any hour and publishes every piece without a photo shoot: website, AI agent on WhatsApp, CRM and content.",
+      "Ein Modehaus, das rund um die Uhr antwortet und jedes Stück ohne Fotoshooting veröffentlicht: Website, KI-Agent auf WhatsApp, CRM und Content.",
+      "Uma casa de moda que atende a qualquer hora e publica cada peça sem sessão fotográfica: website, agente de IA no WhatsApp, CRM e conteúdo.",
     ),
   },
   hero: {

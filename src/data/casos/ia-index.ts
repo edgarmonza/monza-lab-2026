@@ -13,15 +13,15 @@ export const caso: Caso = {
   seo: {
     titulo: t(
       "Monza Index: cuánto se usa la IA en Colombia | Monza Lab",
-      "Monza Index: how much AI is really used in Colombia | Monza Lab",
-      "Monza Index: wie viel KI Kolumbien wirklich nutzt | Monza Lab",
+      "Monza Index: how much AI Colombia really uses | Monza Lab",
+      "Monza Index: wie viel KI Kolumbien nutzt | Monza Lab",
       "Monza Index: quanto se usa a IA na Colômbia | Monza Lab",
     ),
     descripcion: t(
-      "Un índice de 0 a 100 que mide la adopción de inteligencia artificial en Colombia con datos públicos, una encuesta con IA y la fórmula a la vista. Diseñado y construido por Monza Lab.",
-      "A 0 to 100 index that measures artificial intelligence adoption in Colombia with public data, an AI-led survey and the formula in plain sight. Designed and built by Monza Lab.",
-      "Ein Index von 0 bis 100, der die Nutzung künstlicher Intelligenz in Kolumbien misst: mit öffentlichen Daten, einer Umfrage mit KI und offengelegter Formel. Entworfen und gebaut von Monza Lab.",
-      "Um índice de 0 a 100 que mede a adoção de inteligência artificial na Colômbia com dados públicos, um inquérito com IA e a fórmula à vista. Desenhado e construído pela Monza Lab.",
+      "Un índice de 0 a 100 que mide la adopción de inteligencia artificial en Colombia con datos públicos y una encuesta con IA. Hecho por Monza Lab.",
+      "A 0 to 100 index measuring artificial intelligence adoption in Colombia with public data and an AI-led survey. Built by Monza Lab.",
+      "Ein Index von 0 bis 100, der die Nutzung künstlicher Intelligenz in Kolumbien misst, mit öffentlichen Daten und einer KI-Umfrage. Von Monza Lab.",
+      "Um índice de 0 a 100 que mede a adoção de inteligência artificial na Colômbia com dados públicos e um inquérito com IA. Feito pela Monza Lab.",
     ),
   },
   hero: {

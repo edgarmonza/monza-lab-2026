@@ -11,16 +11,16 @@ export const caso: Caso = {
   categoria: "venture",
   seo: {
     titulo: t(
-      "MonzaHaus · Caso · Monza Lab",
-      "MonzaHaus · Case study · Monza Lab",
-      "MonzaHaus · Case Study · Monza Lab",
-      "MonzaHaus · Caso · Monza Lab",
+      "MonzaHaus: datos del mercado Porsche con IA | Monza Lab",
+      "MonzaHaus: Porsche market data with AI | Monza Lab",
+      "MonzaHaus: Porsche-Marktdaten mit KI | Monza Lab",
+      "MonzaHaus: dados do mercado Porsche com IA | Monza Lab",
     ),
     descripcion: t(
-      "Caso MonzaHaus: la plataforma de inteligencia de mercado Porsche. Datos de cuatro mercados, reportes, asesor con IA y contenido automático.",
-      "MonzaHaus case study: the Porsche market intelligence platform. Data from four markets, reports, an AI advisor and automatic content.",
-      "Case Study MonzaHaus: die Plattform für Porsche-Marktdaten. Daten aus vier Märkten, Reports, ein KI-Berater und automatischer Content.",
-      "Caso MonzaHaus: a plataforma de inteligência de mercado Porsche. Dados de quatro mercados, relatórios, assessor com IA e conteúdo automático.",
+      "La plataforma de inteligencia de mercado Porsche: datos de cuatro mercados, reportes, asesor con IA y contenido automático. Construida por Monza Lab.",
+      "The Porsche market intelligence platform: data from four markets, reports, an AI advisor and automatic content. Built by Monza Lab.",
+      "Die Plattform für Porsche-Marktintelligenz: Daten aus vier Märkten, Reports, ein KI-Berater und automatischer Content. Gebaut von Monza Lab.",
+      "A plataforma de inteligência de mercado Porsche: dados de quatro mercados, relatórios, assessor com IA e conteúdo automático. Construída pela Monza Lab.",
     ),
   },
   hero: {

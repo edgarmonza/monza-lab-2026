@@ -11,16 +11,16 @@ export const caso: Caso = {
   categoria: "studio",
   seo: {
     titulo: t(
-      "Pacho Álvarez · Caso · Monza Lab",
-      "Pacho Álvarez · Case study · Monza Lab",
-      "Pacho Álvarez · Case Study · Monza Lab",
-      "Pacho Álvarez · Caso · Monza Lab",
+      "Pacho Álvarez: marca y web de un piloto del Dakar | Monza Lab",
+      "Pacho Álvarez: brand and web of a Dakar driver | Monza Lab",
+      "Pacho Álvarez: Marke und Web eines Dakar-Piloten | Monza Lab",
+      "Pacho Álvarez: marca e web de um piloto do Dakar | Monza Lab",
     ),
     descripcion: t(
-      "Caso Pacho Álvarez: la marca personal y la web de un piloto del Rally Dakar, con su historia, su conferencia y sus líneas de negocio.",
-      "Pacho Álvarez case study: the personal brand and website of a Rally Dakar rider, with his story, his talk and his business lines.",
-      "Case Study Pacho Álvarez: die persönliche Marke und Website eines Rally-Dakar-Fahrers, mit seiner Geschichte, seinem Vortrag und seinen Geschäftsbereichen.",
-      "Caso Pacho Álvarez: a marca pessoal e a web de um piloto do Rally Dakar, com a sua história, a sua conferência e as suas linhas de negócio.",
+      "La marca personal y la web de un piloto del Rally Dakar, con su historia, su conferencia y sus líneas de negocio. Hecha por Monza Lab.",
+      "The personal brand and website of a Rally Dakar driver, with his story, his talk and his business lines. Made by Monza Lab.",
+      "Die Personal Brand und Website eines Rallye-Dakar-Piloten, mit seiner Geschichte, seinem Vortrag und seinen Geschäftsfeldern. Von Monza Lab.",
+      "A marca pessoal e o site de um piloto do Rally Dakar, com a sua história, a sua conferência e as suas linhas de negócio. Feito pela Monza Lab.",
     ),
   },
   hero: {

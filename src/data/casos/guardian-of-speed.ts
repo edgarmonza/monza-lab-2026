@@ -13,16 +13,16 @@ export const caso: Caso = {
   categoria: "venture",
   seo: {
     titulo: t(
-      "Guardian of Speed: marca y web para coleccionistas de carros | Monza Lab",
-      "Guardian of Speed: brand and website for car collectors | Monza Lab",
-      "Guardian of Speed: Marke und Website für Autosammler | Monza Lab",
-      "Guardian of Speed: marca e site para colecionadores de carros | Monza Lab",
+      "Guardian of Speed: marca y web de lujo | Monza Lab",
+      "Guardian of Speed: luxury brand and website | Monza Lab",
+      "Guardian of Speed: Luxusmarke und Website | Monza Lab",
+      "Guardian of Speed: marca e site de luxo | Monza Lab",
     ),
     descripcion: t(
-      "Una marca de lujo silencioso y una web en alemán e inglés para cuidar colecciones de carros en Europa, con cuatro décadas de historia del fundador al frente. Hecha por Monza Lab.",
-      "A quiet luxury brand and a German and English website for looking after car collections in Europe, led by four decades of the founder's story. Made by Monza Lab.",
-      "Eine Marke des stillen Luxus und eine Website auf Deutsch und Englisch für die Pflege von Autosammlungen in Europa, mit vier Jahrzehnten Geschichte des Gründers im Mittelpunkt. Gemacht von Monza Lab.",
-      "Uma marca de luxo silencioso e um site em alemão e inglês para cuidar de coleções de carros na Europa, com quatro décadas da história do fundador à frente. Feito pela Monza Lab.",
+      "Una marca de lujo silencioso y una web en alemán e inglés para cuidar colecciones de carros en Europa. Hecha por Monza Lab.",
+      "A quiet luxury brand and a German and English website for looking after car collections in Europe. Made by Monza Lab.",
+      "Eine Marke des stillen Luxus und eine Website auf Deutsch und Englisch für die Pflege von Autosammlungen in Europa. Gemacht von Monza Lab.",
+      "Uma marca de luxo silencioso e um site em alemão e inglês para cuidar de coleções de carros na Europa. Feito pela Monza Lab.",
     ),
   },
   hero: {

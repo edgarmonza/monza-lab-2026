@@ -14,16 +14,16 @@ export const caso: Caso = {
   categoria: "studio",
   seo: {
     titulo: t(
-      "Caso soloio · Catálogo, CRM, pauta y contenido con IA | Monza Lab",
-      "soloio case · Catalog, CRM, ads and AI content | Monza Lab",
-      "Fall soloio · Katalog, CRM, Anzeigen und KI-Content | Monza Lab",
-      "Caso soloio · Catálogo, CRM, publicidade e conteúdo com IA | Monza Lab",
+      "soloio: catálogo, CRM y contenido con IA | Monza Lab",
+      "soloio: catalog, CRM and AI content | Monza Lab",
+      "soloio: Katalog, CRM und KI-Content | Monza Lab",
+      "soloio: catálogo, CRM e conteúdo com IA | Monza Lab",
     ),
     descripcion: t(
-      "Una marca de lino estampado con 4 + 1 tiendas conectadas en un solo sistema: catálogo, CRM, correo, pauta en Meta y Google, 13 modelos propios hechos con IA, web nueva y asesor en WhatsApp.",
-      "A printed linen brand with 4 + 1 stores connected in one system: catalog, CRM, email, Meta and Google ads, 13 AI-made in-house models, a new website and a WhatsApp advisor.",
-      "Eine Marke für bedrucktes Leinen mit 4 + 1 Stores in einem System: Katalog, CRM, E-Mail, Meta- und Google-Anzeigen, 13 eigene KI-Models, neue Website und WhatsApp-Berater.",
-      "Uma marca de linho estampado com 4 + 1 lojas ligadas num só sistema: catálogo, CRM, email, publicidade no Meta e no Google, 13 modelos próprios feitos com IA, site novo e assessor no WhatsApp.",
+      "Una marca de lino estampado con 4 + 1 tiendas en un solo sistema: catálogo, CRM, correo, pauta, 13 modelos propios hechos con IA y asesor en WhatsApp.",
+      "A printed linen brand with 4 + 1 stores in one system: catalog, CRM, email, ads, 13 AI-made in-house models and a WhatsApp advisor.",
+      "Eine Leinenmarke mit 4 + 1 Stores in einem System: Katalog, CRM, E-Mail, Anzeigen, 13 eigene KI-Models und ein WhatsApp-Berater.",
+      "Uma marca de linho estampado com 4 + 1 lojas num só sistema: catálogo, CRM, email, publicidade, 13 modelos próprios feitos com IA e assessor no WhatsApp.",
     ),
   },
   hero: {

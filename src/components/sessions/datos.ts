@@ -583,15 +583,15 @@ export const CIERRE = {
 /* ── SEO ── */
 export const SEO_SESSIONS = {
   titulo: {
-    es: "Monza Sessions: aprende a trabajar con inteligencia artificial | Monza Lab",
+    es: "Monza Sessions: aprende a trabajar con IA | Monza Lab",
     en: "Monza Sessions: learn to work with AI | Monza Lab",
     de: "Monza Sessions: lerne, mit KI zu arbeiten | Monza Lab",
     pt: "Monza Sessions: aprende a trabalhar com IA | Monza Lab",
   } as T,
   descripcion: {
-    es: "Talleres, un bootcamp de ocho semanas, acompañamiento uno a uno e in-company para aprender a trabajar con IA sobre tu propio trabajo. En vivo, con Edgar Navarro.",
+    es: "Talleres, bootcamp de ocho semanas, acompañamiento uno a uno e in-company para aprender a trabajar con IA sobre tu trabajo. En vivo, con Edgar Navarro.",
     en: "Workshops, an eight-week bootcamp, one-on-one coaching and in-company sessions to learn to work with AI on your own work. Live, with Edgar Navarro.",
     de: "Workshops, ein achtwöchiges Bootcamp, Einzelbegleitung und In-Company-Sessions, um mit KI an deiner eigenen Arbeit zu arbeiten. Live, mit Edgar Navarro.",
-    pt: "Workshops, um bootcamp de oito semanas, acompanhamento individual e sessões in-company para aprender a trabalhar com IA sobre o teu próprio trabalho. Ao vivo, com Edgar Navarro.",
+    pt: "Workshops, bootcamp de oito semanas, acompanhamento individual e in-company para aprender a trabalhar com IA no teu trabalho. Ao vivo, com Edgar Navarro.",
   } as T,
 };

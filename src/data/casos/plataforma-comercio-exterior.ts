@@ -15,16 +15,16 @@ export const caso: Caso = {
   confidencial: true,
   seo: {
     titulo: t(
-      "Plataforma de comercio exterior con IA · Caso confidencial | Monza Lab",
-      "AI foreign trade platform · Confidential case | Monza Lab",
-      "KI-Plattform für Außenhandel · Vertraulicher Fall | Monza Lab",
-      "Plataforma de comércio exterior com IA · Caso confidencial | Monza Lab",
+      "Plataforma de comercio exterior con IA | Monza Lab",
+      "AI foreign trade platform | Monza Lab",
+      "KI-Plattform für den Außenhandel | Monza Lab",
+      "Plataforma de comércio exterior com IA | Monza Lab",
     ),
     descripcion: t(
-      "Una importadora que pasó de operar en correos y hojas de cálculo a operar como plataforma: cinco herramientas de IA sobre su ERP, portal del equipo y una web con asesor de compras.",
-      "An importer that went from running on emails and spreadsheets to running as a platform: five AI tools on its ERP, a team portal and a website with a purchasing advisor.",
-      "Ein Importeur, der von E-Mails und Tabellen zu einer Plattform wurde: fünf KI-Werkzeuge auf seinem ERP, ein Teamportal und eine Website mit Einkaufsberater.",
-      "Uma importadora que passou de operar em emails e folhas de cálculo a operar como plataforma: cinco ferramentas de IA sobre o seu ERP, portal da equipa e um site com assessor de compras.",
+      "Una importadora que pasó de correos y hojas de cálculo a una plataforma: cinco herramientas de IA sobre su ERP, portal del equipo y web con asesor.",
+      "An importer that moved from emails and spreadsheets to a platform: five AI tools on its ERP, a team portal and a website with a purchasing advisor.",
+      "Ein Importeur, der von E-Mails und Tabellen zu einer Plattform wechselte: fünf KI-Werkzeuge auf seinem ERP, ein Teamportal und eine Website mit Berater.",
+      "Uma importadora que passou de emails e folhas de cálculo a uma plataforma: cinco ferramentas de IA sobre o ERP, portal da equipa e site com assessor.",
     ),
   },
   hero: {
