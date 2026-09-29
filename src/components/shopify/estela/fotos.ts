@@ -25,7 +25,7 @@ const foto = (id: string, marca: MarcaEstela): FotoEstela => ({ id, marca, avif:
 
 /** Alternadas: nunca dos de la misma marca seguidas.
  *  28-sep-2026: salió `eleonora-miumiu` (cárdigan abierto sobre bralette): rompe la regla de imagen de
- *  Eleonora (Clientes/Eleonora-EM/REGLA-IMAGEN-ELEONORA.md). Quedan 5 de ella. */
+ *  Eleonora (Clientes/Eleonora-EM/10_Conocimiento/criterio/REGLA-IMAGEN-ELEONORA.md). Quedan 5 de ella. */
 export const FOTOS: FotoEstela[] = [
   foto("soloio-boda", "soloio"),
   foto("eleonora-rojo", "eleonora"),

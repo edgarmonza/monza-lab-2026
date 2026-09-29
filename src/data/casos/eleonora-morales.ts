@@ -1,6 +1,6 @@
 /* Caso Eleonora Morales (/work/eleonora-morales). Sale de docs/internal/portada/prototipo/caso-eleonora.html.
  * Fotos: solo el set que ella aprobó y que ya está publicado, y solo looks cubiertos
- * (Studio Builder/Monza Studio/Clientes/Eleonora-EM/REGLA-IMAGEN-ELEONORA.md). */
+ * (Studio Builder/Monza Studio/Clientes/Eleonora-EM/10_Conocimiento/criterio/REGLA-IMAGEN-ELEONORA.md). */
 import type { Caso, T } from "./tipos";
 
 const t = (es: string, en: string, de: string, pt: string): T => ({ es, en, de, pt });
