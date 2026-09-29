@@ -26,7 +26,7 @@ const SITE_URL = "https://www.monzalab.com";
  * cuando se vuelvan a pintar (scripts/og/generar.mjs), subir este número para que
  * las redes las vuelvan a descargar. v2 = 2026-08-17 (fix del mosaico de la home).
  * v3 = 2026-09-28: tarjetas estáticas por página y por caso, en los cuatro idiomas. */
-const OG_VERSION = "3";
+const OG_VERSION = "4";
 
 const LOCALE_MAP = {
   es: "es_ES",

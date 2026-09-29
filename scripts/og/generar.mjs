@@ -124,16 +124,15 @@ const pagina = (cuerpo, { rosa = false } = {}) => `<!doctype html><html><head><m
 
 /* ── 3. Las tarjetas ── */
 
-/* Portada: el MONZA grande con el casco, la frase del hero y la foto del casco con la cara que
- * aparece en el círculo (el «efecto de gafa» del hero, congelado en su momento de la intro). */
+/* Portada: el MONZA grande con el casco, la frase del hero y Edgar con el casco puesto, limpio.
+ * 29-sep: se quitó el «efecto de gafa» del hero (la cara de las gafas revelada en un círculo dentro
+ * del visor); congelado en una imagen fija se veía raro, y a Edgar le gusta solo con el casco. */
 const tarjetaPortada = (l) => pagina(`
 <style>
 .foto{position:absolute;inset:0;z-index:1}
 .foto .capa{position:absolute;left:0;top:0;width:1200px;height:630px;background-repeat:no-repeat}
-.foto .base{--s:760px;background-image:url(/v2/edgar/casco.webp);background-size:var(--s) var(--s);background-position:calc(890px - .5 * var(--s)) calc(330px - .525 * var(--s));filter:brightness(.82)}
-.foto .revela{background:#0B0B10;-webkit-mask-image:radial-gradient(circle 215px at 890px 330px,#000 0,#000 40%,rgba(0,0,0,.55) 66%,transparent 100%)}
-.foto .gafas{--g:calc(.95 * 760px);background-image:url(/v2/edgar/gafas.webp);background-size:var(--g) var(--g);background-position:calc(890px - .49 * var(--g)) calc(330px - .505 * var(--g))}
-.velo{position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,#0B0B10 0,#0B0B10 34%,rgba(11,11,16,.55) 52%,rgba(11,11,16,0) 70%),radial-gradient(60% 70% at 74% 50%,rgba(248,180,217,.14),transparent 70%)}
+.foto .base{--s:760px;background-image:url(/v2/edgar/casco.webp);background-size:var(--s) var(--s);background-position:calc(890px - .5 * var(--s)) calc(330px - .525 * var(--s))}
+.velo{position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,#0B0B10 0,#0B0B10 34%,rgba(11,11,16,0) 54%),radial-gradient(60% 70% at 74% 50%,rgba(248,180,217,.14),transparent 70%)}
 .izq{gap:30px;width:600px;top:0;bottom:0}
 .marca{font-size:150px;--ls:-.02em;--hy:.0175em}
 .marca .l{color:rgba(255,252,247,.9)}
@@ -141,7 +140,7 @@ const tarjetaPortada = (l) => pagina(`
 .linea .a{display:block;color:#F8B4D9;text-wrap:balance}
 .linea .b{display:block;color:rgba(255,252,247,.92)}
 </style>
-<div class="foto"><div class="capa base"></div><div class="capa revela"><div class="capa gafas"></div></div></div>
+<div class="foto"><div class="capa base"></div></div>
 <div class="velo"></div>
 <div class="top"><span></span><span class="url">${dominio("")}</span></div>
 <div class="izq">
