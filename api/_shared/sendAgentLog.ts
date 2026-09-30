@@ -55,8 +55,9 @@ export async function sendAgentLog(input: AgentLogInput): Promise<{ ok: boolean 
     )
     .join("");
 
+  // El SDK de Resend NO lanza cuando la API rechaza el correo: devuelve { data: null, error }.
   try {
-    await resend.emails.send({
+    const res = await resend.emails.send({
       from,
       to: [to],
       subject: agentLogSubject(input.sessionId, input.page),
@@ -79,8 +80,13 @@ export async function sendAgentLog(input: AgentLogInput): Promise<{ ok: boolean 
           </details>
         </div>`,
     });
+    if (res?.error) {
+      console.error("[agente] Resend rechazó el registro de la conversación:", res.error);
+      return { ok: false };
+    }
     return { ok: true };
-  } catch {
+  } catch (err) {
+    console.error("[agente] Resend lanzó en el registro de la conversación:", err);
     return { ok: false };
   }
 }

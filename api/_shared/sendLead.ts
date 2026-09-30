@@ -37,8 +37,9 @@ export async function sendLeadEmail(
       ? `<tr><td style="padding:4px 16px 4px 0;color:#6b6b6b;font-size:13px;white-space:nowrap;">${label}</td><td style="font-size:14px;"><strong>${esc(value)}</strong></td></tr>`
       : "";
 
+  // El SDK de Resend NO lanza cuando la API rechaza el correo: devuelve { data: null, error }.
   try {
-    await resend.emails.send({
+    const res = await resend.emails.send({
       from: process.env.RESEND_FROM || "Monza Lab <upload@monzalab.com>",
       to: [process.env.NOTIFY_EMAIL || "edgar@monzalab.com"],
       replyTo: email,
@@ -60,8 +61,13 @@ export async function sendLeadEmail(
         </div>
       `,
     });
+    if (res?.error) {
+      console.error("[lead] Resend rechazó el aviso:", res.error);
+      return { ok: false, fallback: "whatsapp" };
+    }
     return { ok: true };
-  } catch {
+  } catch (err) {
+    console.error("[lead] Resend lanzó:", err);
     return { ok: false, fallback: "whatsapp" };
   }
 }

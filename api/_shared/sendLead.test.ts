@@ -41,6 +41,15 @@ describe("sendLeadEmail", () => {
     expect(arg.subject).toMatch(/agente/);
   });
 
+  it("hace fallback si Resend DEVUELVE error sin lanzar (el SDK v6 no lanza)", async () => {
+    process.env.RESEND_API_KEY = "test";
+    sendMock.mockResolvedValue({ data: null, error: { name: "validation_error", message: "Invalid `reply_to` field" } });
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const r = await sendLeadEmail({ name: "Ana", email: "a@b.com", brand: "X" });
+    spy.mockRestore();
+    expect(r).toEqual({ ok: false, fallback: "whatsapp" });
+  });
+
   it("hace fallback si Resend lanza", async () => {
     process.env.RESEND_API_KEY = "test";
     sendMock.mockRejectedValue(new Error("boom"));

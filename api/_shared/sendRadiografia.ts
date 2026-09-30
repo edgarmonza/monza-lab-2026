@@ -106,8 +106,10 @@ export async function sendRadiografia(
       : "";
 
   // 1) Aviso interno a Edgar. Si esto falla, el lead se pierde → se reporta.
+  // El SDK de Resend NO lanza cuando la API rechaza el correo: devuelve { data: null, error }.
+  // Hasta el 30-sep-2026 solo se miraba la excepción, y un rechazo pasaba como enviado.
   try {
-    await resend.emails.send({
+    const res = await resend.emails.send({
       from,
       to: [process.env.NOTIFY_EMAIL || "edgar@monzalab.com"],
       replyTo: email,
@@ -131,14 +133,19 @@ export async function sendRadiografia(
           <p style="margin-top:24px;font-size:12px;color:#9b8b80;">Responde directo — el reply-to es el prospecto.</p>
         </div>`,
     });
-  } catch {
+    if (res?.error) {
+      console.error("[radiografia] Resend rechazó el aviso interno:", res.error);
+      return { ok: false, fallback: "whatsapp" };
+    }
+  } catch (err) {
+    console.error("[radiografia] Resend lanzó en el aviso interno:", err);
     return { ok: false, fallback: "whatsapp" };
   }
 
   // 2) Confirmación al prospecto. Si falla, el lead YA está a salvo: no se reporta error.
   const c = confirmBody(lang, domain);
   try {
-    await resend.emails.send({
+    const res = await resend.emails.send({
       from,
       to: [email],
       replyTo: process.env.NOTIFY_EMAIL || "edgar@monzalab.com",
@@ -160,8 +167,10 @@ export async function sendRadiografia(
             <a href="https://www.monzalab.com" style="color:#9b8b80;">monzalab.com</a></p>
         </div>`,
     });
-  } catch {
+    if (res?.error) console.error("[radiografia] Resend rechazó la confirmación al prospecto:", res.error);
+  } catch (err) {
     /* El aviso interno ya salió: el lead no se pierde. */
+    console.error("[radiografia] Resend lanzó en la confirmación al prospecto:", err);
   }
 
   return { ok: true };
