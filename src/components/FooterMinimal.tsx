@@ -47,10 +47,10 @@ const COLUMNAS: { titulo: LangText; items: Item[] }[] = [
   },
 ];
 const LEMA = L(
-  "Hacemos crecer marcas con inteligencia artificial. Y con buen gusto.",
-  "We grow brands with artificial intelligence. And with good taste.",
-  "Wir lassen Marken mit künstlicher Intelligenz wachsen. Und mit gutem Geschmack.",
-  "Fazemos crescer marcas com inteligência artificial. E com bom gosto.",
+  "Sistemas con IA para que tu negocio crezca. Con criterio.",
+  "AI systems that help your business grow. With judgment.",
+  "KI-Systeme, damit dein Unternehmen wächst. Mit Verstand.",
+  "Sistemas com IA para o teu negócio crescer. Com critério.",
 );
 const IDIOMAS: Lang[] = ["es", "en", "de", "pt"];
 

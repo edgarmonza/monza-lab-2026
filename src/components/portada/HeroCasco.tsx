@@ -2,7 +2,7 @@
  *
  * La foto del casco llena la pantalla; donde pasa el cursor (o el dedo) se abre un círculo suave
  * y aparece la cara con gafas, y el MONZA de encima pasa de lleno a contorno. La frase se escribe
- * una vez en dos tiempos («Hacemos crecer marcas con IA.» · «Y con buen gusto.») y al terminar la
+ * una vez en dos tiempos («Sistemas con IA para que tu negocio crezca.» · «Con criterio.», 30-sep-2026) y al terminar la
  * cara aparece sola una vez.
  *
  * Prerender (lib/prerender.ts): dentro del prerender no hay animaciones y la frase va completa;

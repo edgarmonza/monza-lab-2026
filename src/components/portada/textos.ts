@@ -8,33 +8,33 @@ const t = (es: string, en: string, de: string, pt: string): T => ({ es, en, de, 
 
 export const SEO_HOME = {
   titulo: t(
-    "Monza Lab · Hacemos crecer marcas con inteligencia artificial",
-    "Monza Lab · We grow brands with artificial intelligence",
-    "Monza Lab · Wir lassen Marken mit künstlicher Intelligenz wachsen",
-    "Monza Lab · Fazemos crescer marcas com inteligência artificial",
+    "Monza Lab · Sistemas con IA para que tu negocio crezca",
+    "Monza Lab · AI systems that help your business grow",
+    "Monza Lab · KI-Systeme, damit dein Unternehmen wächst",
+    "Monza Lab · Sistemas com IA para o teu negócio crescer",
   ),
   descripcion: t(
-    "Hacemos crecer marcas con inteligencia artificial y con buen gusto: tiendas, plataformas, agentes de WhatsApp y contenido, conectados en un solo sistema.",
-    "We grow brands with artificial intelligence and good taste: stores, platforms, WhatsApp agents and content, connected in one system.",
-    "Wir lassen Marken mit künstlicher Intelligenz und gutem Geschmack wachsen: Shops, Plattformen, WhatsApp-Agenten und Content, verbunden in einem System.",
-    "Fazemos crescer marcas com inteligência artificial e bom gosto: lojas, plataformas, agentes de WhatsApp e conteúdo, ligados num só sistema.",
+    "Sistemas con IA para que tu negocio crezca. Con criterio: agentes de WhatsApp, plataformas, tiendas, pauta y contenido, conectados entre sí.",
+    "AI systems that help your business grow. With judgment: WhatsApp agents, platforms, stores, ads and content, all connected.",
+    "KI-Systeme, damit dein Unternehmen wächst. Mit Verstand: WhatsApp-Agenten, Plattformen, Shops, Werbung und Content, miteinander verbunden.",
+    "Sistemas com IA para o teu negócio crescer. Com critério: agentes de WhatsApp, plataformas, lojas, publicidade e conteúdo, ligados entre si.",
   ),
 };
 
 export const HERO = {
   h1: t(
-    "Monza Lab. Hacemos crecer marcas con inteligencia artificial. Y con buen gusto.",
-    "Monza Lab. We grow brands with artificial intelligence. And with good taste.",
-    "Monza Lab. Wir lassen Marken mit künstlicher Intelligenz wachsen. Und mit gutem Geschmack.",
-    "Monza Lab. Fazemos crescer marcas com inteligência artificial. E com bom gosto.",
+    "Monza Lab. Sistemas con IA para que tu negocio crezca. Con criterio.",
+    "Monza Lab. AI systems that help your business grow. With judgment.",
+    "Monza Lab. KI-Systeme, damit dein Unternehmen wächst. Mit Verstand.",
+    "Monza Lab. Sistemas com IA para o teu negócio crescer. Com critério.",
   ),
   lineaA: t(
-    "Hacemos crecer marcas con inteligencia artificial.",
-    "We grow brands with artificial intelligence.",
-    "Wir lassen Marken mit künstlicher Intelligenz wachsen.",
-    "Fazemos crescer marcas com inteligência artificial.",
+    "Sistemas con IA para que tu negocio crezca.",
+    "AI systems that help your business grow.",
+    "KI-Systeme, damit dein Unternehmen wächst.",
+    "Sistemas com IA para o teu negócio crescer.",
   ),
-  lineaB: t("Y con buen gusto.", "And with good taste.", "Und mit gutem Geschmack.", "E com bom gosto."),
+  lineaB: t("Con criterio.", "With judgment.", "Mit Verstand.", "Com critério."),
   toca: t("Toca la pantalla", "Tap the screen", "Tippe auf den Bildschirm", "Toca no ecrã"),
   cta: t("Ver proyectos", "See projects", "Projekte ansehen", "Ver projetos"),
 };

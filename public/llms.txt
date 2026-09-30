@@ -1,6 +1,6 @@
 # Monza Lab
 
-> Monza Lab grows brands with artificial intelligence, and with good taste. It is an AI-native company builder founded by Edgar Navarro (Colombia, operating globally). It builds and operates its own AI platform companies, builds AI-first platforms for client companies (foreign trade, travel), and through Monza Studio installs and operates the system a brand sells with on top of Shopify: a fast page, a WhatsApp agent that answers in the brand's voice, a customer base that remembers, AI product imagery, paid media decided on margin, and a dashboard — one circuit, operated month to month with the client.
+> Monza Lab builds AI systems that help businesses grow, with judgment. It is an AI-native company builder founded by Edgar Navarro (Colombia, operating globally). It builds and operates its own AI platform companies, builds AI-first platforms for client companies (foreign trade, travel), and through Monza Studio installs and operates the system a brand sells with on top of Shopify: a fast page, a WhatsApp agent that answers in the brand's voice, a customer base that remembers, AI product imagery, paid media decided on margin, and a dashboard — one circuit, operated month to month with the client.
 
 Languages: Spanish (default), English (/en), German (/de), Portuguese (/pt).
 Contact: edgar@monzalab.com · WhatsApp +57 320 849 2641 · Instagram @monza.lab
