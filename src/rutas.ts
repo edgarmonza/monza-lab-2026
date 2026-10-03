@@ -12,6 +12,7 @@ export const Work = perezosa(() => import("./pages/Work"));
 // /shopify tiene página propia (vertical e-commerce). Mantiene el mismo SEO y FAQ
 // que la pilar genérica: lee de src/data/pillars.ts para no perder lo ya indexado.
 export const ShopifyVertical = perezosa(() => import("./pages/ShopifyVertical"));
+export const ShopifyRadiografia = perezosa(() => import("./pages/ShopifyRadiografia"));
 // /work/<slug>: el caso v2 si existe en src/data/casos; si no, «no encontrada» (ver CasoRuta).
 export const CasoRuta = perezosa(() => import("./pages/CasoRuta"));
 export const Plataformas = perezosa(() => import("./pages/Plataformas"));
@@ -20,6 +21,7 @@ const POR_RUTA: Record<string, { precargar: () => Promise<void> }> = {
   "/speaker": Speaker,
   "/work": Work,
   "/shopify": ShopifyVertical,
+  "/shopify/radiografia": ShopifyRadiografia,
   "/sessions": MonzaSessions,
   "/plataformas": Plataformas,
   "/upload": Upload,

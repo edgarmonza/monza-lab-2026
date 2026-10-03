@@ -11,6 +11,7 @@
  * Todo es no-op seguro si un destino no cargó (adblock, SSR, dev). */
 
 import { track as vercelTrack } from "@vercel/analytics";
+import { isQaVisit } from "./lead-attribution";
 
 type FbqFn = (...args: unknown[]) => void;
 type GtagFn = (...args: unknown[]) => void;
@@ -63,12 +64,14 @@ export const trackViewContent = (contentName: string) => {
  * (empezó el formulario, evento propio: sirve para el público de «empezó y no
  * envió») → Lead (envió). Hasta el 21-sep-2026 solo existía el último. */
 export const trackRadiografiaView = () => {
+  if (isQaVisit()) return;
   fbq()?.("track", "ViewContent", { content_name: "Radiografía Shopify" });
   gtag()?.("event", "view_item", { item_name: "Radiografía Shopify" });
   toVercel("radiografia_view");
 };
 
 export const trackRadiografia = (step: "start" | "submit") => {
+  if (isQaVisit()) return;
   if (step === "submit") {
     fbq()?.("track", "Lead", { content_name: "Radiografía Shopify" });
     gtag()?.("event", "generate_lead", { content_name: "Radiografía Shopify" });
@@ -83,6 +86,7 @@ export const trackRadiografia = (step: "start" | "submit") => {
 
 /** Click en un CTA. Mide el embudo antes del formulario. */
 export const trackCta = (label: string, location: string) => {
+  if (isQaVisit()) return;
   gtag()?.("event", "select_content", { content_type: "cta", item_id: label, location });
   toVercel("cta_click", { label, location });
 };

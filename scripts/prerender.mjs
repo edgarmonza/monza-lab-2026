@@ -15,7 +15,7 @@ const DIST = fileURLToPath(new URL("../dist", import.meta.url));
 const PORT = 4917;
 const CONCURRENCY = 4;
 
-const STATICS = ["", "work", "shopify", "plataformas", "sessions", "speaker"];
+const STATICS = ["", "work", "shopify", "shopify/radiografia", "plataformas", "sessions", "speaker"];
 const SLUGS = ["soloio", "bavarian-econs", "pacho-alvarez", "guardian-of-speed", "monza-haus", "ia-index", "eleonora-morales", "plataforma-comercio-exterior", "plataforma-turismo"];
 const LANGS = ["", "/en", "/de", "/pt"];
 

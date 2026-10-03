@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { trackContact, trackRadiografia, trackRadiografiaView, whatsAppUrl } from "@/lib/pixel";
+import { leadContext } from "@/lib/lead-attribution";
+import { RX } from "./radiografia-copy";
 
 type Lang = "es" | "en" | "de" | "pt";
 
@@ -122,15 +124,18 @@ const inputBase =
   // 16 px siempre: con menos, el iPhone hace zoom al tocar el campo (también acostado, a 844 px).
   "w-full rounded-xl px-4 sm:px-5 py-4 text-base font-clash outline-none transition-colors duration-300";
 
-const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
+const RadiografiaForm = ({ id = "radiografia", compact = false }: { id?: string; compact?: boolean }) => {
   const { language } = useLanguage();
   const lang = (language as Lang) || "es";
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ productUrl: "", email: "", whatsapp: "", revenue: "" });
+  const requestId = useRef<string | null>(null);
 
-  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    requestId.current = null;
     setForm((f) => ({ ...f, [k]: e.target.value }));
+  };
 
   // El embudo completo: vio la oferta → empezó el formulario → envió.
   // Cada paso se cuenta una sola vez por carga de página.
@@ -142,14 +147,13 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
     if (!el || typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries.some((en) => en.isIntersecting)) {
+        if (entries.some((en) => en.isIntersecting && en.intersectionRatio >= 0.1)) {
           trackRadiografiaView();
           io.disconnect();
         }
       },
-      // 0.3 y no 0.5: en un celular chico la caja mide más que la pantalla y
-      // la mitad de su área puede no caber nunca; con 0.5 el evento no saldría.
-      { threshold: 0.3 },
+      // Se exige un 10% visible: cabe incluso en el formulario largo en móvil.
+      { threshold: 0.1 },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -163,13 +167,15 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (state === "sending") return;
     setError(null);
     setState("sending");
+    requestId.current ??= crypto.randomUUID();
     try {
       const res = await fetch("/api/radiografia", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, lang }),
+        body: JSON.stringify({ ...form, lang, requestId: requestId.current, attribution: leadContext(), offer: compact ? "radiografia-v2" : "radiografia" }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
@@ -182,12 +188,12 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
         setState("idle");
         return;
       }
-      if (data?.ok === false) {
+      if (data?.ok !== true) {
         setError(T.errGeneric[lang]);
         setState("idle");
         return;
       }
-      trackRadiografia("submit");
+      if (!data.isTest) trackRadiografia("submit");
       setState("done");
     } catch {
       setError(T.errGeneric[lang]);
@@ -212,7 +218,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
           className="font-clash text-[15px] md:text-base max-w-lg mx-auto leading-relaxed"
           style={{ color: "rgba(var(--text-rgb), 0.6)" }}
         >
-          {T.doneBody[lang]}
+          {compact ? RX.done[lang] : T.doneBody[lang]}
         </p>
       </div>
     );
@@ -222,33 +228,31 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
     <div
       id={id}
       ref={boxRef}
-      className="rounded-3xl px-6 py-10 sm:px-9 sm:py-12 md:px-14 md:py-16 scroll-mt-28"
+      className={`rounded-3xl px-6 py-10 sm:px-9 sm:py-12 md:px-14 md:py-16 scroll-mt-28 ${compact ? "rx-compact" : ""}`}
       style={{ border: `1px solid ${PINK}33`, background: `${PINK}08` }}
     >
-      <p
+      {!compact && <p
         className="font-clash text-[11px] tracking-[0.32em] uppercase font-semibold mb-5"
         style={{ color: `${PINK}dd` }}
       >
         {T.eyebrow[lang]}
-      </p>
+      </p>}
       <h2
         className="font-clash font-bold leading-[1.08] mb-5"
         style={{ fontSize: "clamp(26px, 4.4vw, 46px)", letterSpacing: "-0.02em", color: "rgba(var(--text-rgb), 0.94)" }}
       >
-        {T.heading[lang]}
-        <br />
-        <span style={{ color: PINK }}>{T.headingAccent[lang]}</span>
+        {compact ? RX.formTitle[lang] : <>{T.heading[lang]}<br /><span style={{ color: PINK }}>{T.headingAccent[lang]}</span></>}
       </h2>
       <p
-        className="font-clash text-[15px] md:text-lg max-w-2xl leading-relaxed mb-9 md:mb-11"
+        className={`font-clash text-[15px] max-w-2xl leading-relaxed ${compact ? "mb-5" : "md:text-lg mb-9 md:mb-11"}`}
         style={{ color: "rgba(var(--text-rgb), 0.6)" }}
       >
-        {T.sub[lang]}
+        {compact ? RX.formSub[lang] : T.sub[lang]}
       </p>
 
       <form onSubmit={submit} onFocusCapture={onFirstFocus} noValidate className="max-w-2xl">
-        <label htmlFor="rx-url" className="sr-only">
-          {T.url[lang]}
+        <label htmlFor="rx-url" className={compact ? "" : "sr-only"}>
+          {compact ? RX.url[lang] : T.url[lang]}
         </label>
         <input
           id="rx-url"
@@ -256,7 +260,9 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
           inputMode="url"
           autoComplete="url"
           required
-          placeholder={T.urlCorto[lang]}
+          placeholder={compact ? "tutienda.com" : T.urlCorto[lang]}
+          autoCapitalize="none"
+          spellCheck={false}
           value={form.productUrl}
           onChange={set("productUrl")}
           className={`${inputBase} mb-3`}
@@ -269,13 +275,14 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
           <div>
-            <label htmlFor="rx-email" className="sr-only">
+            <label htmlFor="rx-email" className={compact ? "" : "sr-only"}>
               {T.email[lang]}
             </label>
             <input
               id="rx-email"
               type="email"
               autoComplete="email"
+              autoCapitalize="none"
               required
               placeholder={T.email[lang]}
               value={form.email}
@@ -289,8 +296,8 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
             />
           </div>
           <div>
-            <label htmlFor="rx-wa" className="sr-only">
-              {T.whatsapp[lang]}
+            <label htmlFor="rx-wa" className={compact ? "" : "sr-only"}>
+              {compact ? RX.phone[lang] : T.whatsapp[lang]}
             </label>
             <input
               id="rx-wa"
@@ -298,7 +305,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
               inputMode="tel"
               autoComplete="tel"
               required
-              placeholder={T.whatsapp[lang]}
+              placeholder={compact ? "+1 305 …" : T.whatsapp[lang]}
               value={form.whatsapp}
               onChange={set("whatsapp")}
               className={inputBase}
@@ -311,7 +318,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
           </div>
         </div>
 
-        <label htmlFor="rx-rev" className="sr-only">
+        {!compact && <><label htmlFor="rx-rev" className="sr-only">
           {T.revenue[lang]}
         </label>
         <div className="relative">
@@ -344,7 +351,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
         </div>
         <p className="font-clash text-[12px] leading-relaxed mt-2.5 mb-7" style={{ color: "rgba(var(--text-rgb), 0.42)" }}>
           {T.revenueHelp[lang]}
-        </p>
+        </p></>}
 
         {error && (
           <p role="alert" className="font-clash text-[13px] mb-5" style={{ color: "#ff8fab" }}>
@@ -352,14 +359,14 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
           </p>
         )}
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+        <div className={`flex flex-col gap-4 ${compact ? "mt-5" : "sm:flex-row sm:items-center sm:gap-6"}`}>
           <button
             type="submit"
             disabled={state === "sending"}
             className="font-clash text-[12px] tracking-[0.14em] min-[380px]:tracking-[0.2em] uppercase font-semibold whitespace-nowrap rounded-full px-6 sm:px-8 py-4 transition-all duration-300 hover:scale-[1.03] disabled:opacity-60 disabled:hover:scale-100 w-full sm:w-auto"
             style={{ background: PINK, color: "#0B0B10", boxShadow: `0 0 40px ${PINK}30` }}
           >
-            {state === "sending" ? T.sending[lang] : `${T.submit[lang]} →`}
+            {state === "sending" ? T.sending[lang] : `${compact ? RX.cta[lang] : T.submit[lang]} →`}
           </button>
           <a
             href={whatsAppUrl(WA_MSG[lang])}
@@ -374,7 +381,7 @@ const RadiografiaForm = ({ id = "radiografia" }: { id?: string }) => {
         </div>
 
         <p className="font-clash text-[12px] leading-relaxed mt-7 max-w-xl" style={{ color: "rgba(var(--text-rgb), 0.38)" }}>
-          {T.privacy[lang]}
+          {compact ? RX.privacy[lang] : T.privacy[lang]} {compact && <a href="/privacy.html" className="underline">{RX.privacyLink[lang]}</a>}
         </p>
       </form>
     </div>

@@ -9,6 +9,10 @@ export interface RadiografiaInput {
   revenue?: string;
   brand?: string;
   lang?: string;
+  requestId?: string;
+  offer?: string;
+  isTest?: boolean;
+  attribution?: Record<string, string>;
 }
 
 const esc = (s: string) =>
@@ -93,6 +97,10 @@ export async function sendRadiografia(
   const revenue = (body.revenue || "").trim().slice(0, 80);
   const brand = (body.brand || "").trim().slice(0, 160);
   const lang = ["es", "en", "de", "pt"].includes(body.lang || "") ? body.lang! : "es";
+  const context = body.attribution || {};
+  const requestId = body.requestId;
+  const internalKey = requestId ? { idempotencyKey: `rx-internal-${requestId}` } : undefined;
+  const confirmationKey = requestId ? { idempotencyKey: `rx-confirm-${requestId}` } : undefined;
 
   if (!process.env.RESEND_API_KEY) return { ok: false, fallback: "whatsapp" };
 
@@ -113,7 +121,7 @@ export async function sendRadiografia(
       from,
       to: [process.env.NOTIFY_EMAIL || "edgar@monzalab.com"],
       replyTo: email,
-      subject: `🔍 Radiografía solicitada — ${domain}`,
+      subject: `${body.isTest ? "[PRUEBA · NO LEAD] " : ""}🔍 Radiografía solicitada — ${domain}`,
       html: `
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Public Sans',sans-serif;color:${INK};max-width:560px;">
           <h2 style="margin:0 0 4px 0;font-weight:600;font-size:20px;">Nueva radiografía — ${esc(domain)}</h2>
@@ -124,15 +132,18 @@ export async function sendRadiografia(
             ${row("Email", email)}
             ${row("WhatsApp", whatsapp)}
             ${row("Facturación", revenue || "no la dijo — usar benchmarks y decirlo")}
+            ${row("Solicitud", requestId || "sin id")}
+            ${row("Oferta", body.offer || "radiografia")}
+            ${Object.entries(context).map(([key,value]) => row(key, value)).join("")}
           </table>
           <p style="font-size:13px;line-height:1.7;border-left:3px solid ${PINK};padding-left:12px;margin:0 0 18px 0;">
             <strong>Antes de empezar:</strong> crear la fila en Notion (base "monza lab. Clientes", Vertical = e-commerce).<br>
             Rúbrica: <code>Commerce/00-Playbook/FRICCIONES.md</code> · Regla dura: fricción sin evidencia no entra al índice.<br>
-            SLA prometido: 72 h. Cupos: 3 al mes.
+            ${body.isTest ? "PRUEBA INTERNA: no crear oportunidad ni contar como lead." : "Responder a la solicitud y confirmar cupo y fecha. Entrega: 72 h desde confirmación. Cupos: 3 al mes."}
           </p>
           <p style="margin-top:24px;font-size:12px;color:#9b8b80;">Responde directo — el reply-to es el prospecto.</p>
         </div>`,
-    });
+    }, internalKey);
     if (res?.error) {
       console.error("[radiografia] Resend rechazó el aviso interno:", res.error);
       return { ok: false, fallback: "whatsapp" };
@@ -144,12 +155,21 @@ export async function sendRadiografia(
 
   // 2) Confirmación al prospecto. Si falla, el lead YA está a salvo: no se reporta error.
   const c = confirmBody(lang, domain);
+  if (body.offer === "radiografia-v2") {
+    const promise: Record<string, string> = {
+      es: "Te contactaremos para <strong>confirmar el cupo y la fecha</strong>. Recibirás el link privado en <strong>72 horas desde la confirmación</strong>. La propuesta no modifica tu Shopify y no necesitamos tu contraseña.",
+      en: "We'll contact you to <strong>confirm your slot and date</strong>. Your private link arrives within <strong>72 hours of confirmation</strong>. The proposal does not modify your Shopify store and we don't need your password.",
+      de: "Wir melden uns zur <strong>Bestätigung deines Termins</strong>. Dein privater Link kommt innerhalb von <strong>72 Stunden nach Bestätigung</strong>. Wir ändern deinen Store nicht und brauchen kein Passwort.",
+      pt: "Vamos contactar-te para <strong>confirmar a vaga e a data</strong>. O link privado chega em <strong>72 horas após confirmação</strong>. A proposta não altera a tua Shopify e não precisamos da tua palavra-passe.",
+    };
+    c.p2 = promise[lang];
+  }
   try {
     const res = await resend.emails.send({
       from,
       to: [email],
       replyTo: process.env.NOTIFY_EMAIL || "edgar@monzalab.com",
-      subject: CONFIRM_SUBJECT[lang] || CONFIRM_SUBJECT.es,
+      subject: `${body.isTest ? "[PRUEBA · NO LEAD] " : ""}${CONFIRM_SUBJECT[lang] || CONFIRM_SUBJECT.es}`,
       html: `
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Public Sans',sans-serif;color:${INK};max-width:520px;line-height:1.65;">
           <div style="border-bottom:2px solid ${PINK};padding-bottom:14px;margin-bottom:26px;">
@@ -166,7 +186,7 @@ export async function sendRadiografia(
           <p style="font-size:13px;color:#9b8b80;margin:0;">Founder &amp; Creative Director · Monza Lab<br>
             <a href="https://www.monzalab.com" style="color:#9b8b80;">monzalab.com</a></p>
         </div>`,
-    });
+    }, confirmationKey);
     if (res?.error) console.error("[radiografia] Resend rechazó la confirmación al prospecto:", res.error);
   } catch (err) {
     /* El aviso interno ya salió: el lead no se pierde. */

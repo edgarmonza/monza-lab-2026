@@ -97,7 +97,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       /* ignore storage errors (private mode) */
     }
 
-    navigate(newPath, { replace: true });
+    navigate(`${newPath}${location.search}${location.hash}`, { replace: true });
   };
 
   /* First-visit auto-detection

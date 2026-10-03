@@ -9,6 +9,9 @@ interface Body {
   revenue?: string;
   brand?: string;
   lang?: string;
+  requestId?: string;
+  offer?: string;
+  attribution?: Record<string, unknown>;
 }
 
 /** Acepta "tienda.com/p/x" o "https://tienda.com/p/x". Rechaza lo que no sea una URL http(s). */
@@ -40,9 +43,12 @@ export default async function handler(request: Request): Promise<Response> {
     return Response.json({ error: "Bad JSON" }, { status: 400 });
   }
 
-  const productUrl = normalizeUrl(body.productUrl || "");
-  const email = (body.email || "").trim();
-  const whatsapp = (body.whatsapp || "").trim();
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return Response.json({ error: "Bad JSON" }, { status: 400 });
+  }
+  const productUrl = normalizeUrl(typeof body.productUrl === "string" ? body.productUrl : "");
+  const email = (typeof body.email === "string" ? body.email : "").trim();
+  const whatsapp = (typeof body.whatsapp === "string" ? body.whatsapp : "").trim();
 
   if (!productUrl) {
     return Response.json({ error: "invalid_url" }, { status: 400 });
@@ -54,6 +60,15 @@ export default async function handler(request: Request): Promise<Response> {
     return Response.json({ error: "invalid_whatsapp" }, { status: 400 });
   }
 
+  const rawContext = body.attribution && typeof body.attribution === "object" ? body.attribution : {};
+  const attribution: Record<string, string> = {};
+  for (const key of ["landing", "source", "medium", "campaign", "content", "campaignId", "adId"]) {
+    const value = rawContext[key];
+    if (typeof value === "string") attribution[key] = value.replace(/[\r\n]/g, " ").slice(0, 160);
+  }
+  const isTest = rawContext.qa === true && /@monzalab\.com$/i.test(email);
+  const requestId = typeof body.requestId === "string" && /^[a-f0-9-]{36}$/i.test(body.requestId)
+    ? body.requestId : crypto.randomUUID();
   const result = await sendRadiografia({
     productUrl,
     email,
@@ -61,7 +76,11 @@ export default async function handler(request: Request): Promise<Response> {
     revenue: body.revenue,
     brand: body.brand,
     lang: body.lang,
+    requestId,
+    offer: body.offer === "radiografia-v2" ? "radiografia-v2" : "radiografia",
+    attribution,
+    isTest,
   });
 
-  return Response.json(result);
+  return Response.json({ ...result, requestId, isTest }, { status: result.ok ? 200 : 502 });
 }

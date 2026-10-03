@@ -77,4 +77,14 @@ describe("sendRadiografia", () => {
     const r = await sendRadiografia(prospecto);
     expect(r).toEqual({ ok: false, fallback: "whatsapp" });
   });
+
+  it("separa prueba, atribución y claves de reintento sin prometer un cupo no confirmado", async () => {
+    sendMock.mockResolvedValue({ data: { id: "e1" }, error: null });
+    await sendRadiografia({ ...prospecto, requestId: "request-1", isTest: true, offer: "radiografia-v2", attribution: {campaign: "florida-leads-v2"} });
+    expect(sendMock.mock.calls[0][0].subject).toContain("PRUEBA · NO LEAD");
+    expect(sendMock.mock.calls[0][0].html).toContain("florida-leads-v2");
+    expect(sendMock.mock.calls[0][1]).toEqual({idempotencyKey:"rx-internal-request-1"});
+    expect(sendMock.mock.calls[1][1]).toEqual({idempotencyKey:"rx-confirm-request-1"});
+    expect(sendMock.mock.calls[1][0].html).toContain("72 horas desde la confirmación");
+  });
 });

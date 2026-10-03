@@ -24,6 +24,7 @@ import {
   MonzaSessions,
   Work,
   ShopifyVertical,
+  ShopifyRadiografia,
   CasoRuta,
   Plataformas,
 } from "./rutas";
@@ -48,7 +49,7 @@ const RouteFallback = () => (
 // Wrapper component to provide language context inside router
 const AppContent = () => {
   const location = useLocation();
-  const standalone = location.pathname === "/upload";
+  const standalone = location.pathname === "/upload" || /^(\/(en|de|pt))?\/shopify\/radiografia\/?$/.test(location.pathname);
 
   return (
     <LanguageProvider>
@@ -78,6 +79,7 @@ const AppContent = () => {
           <Route path="/work" element={<Work />} />
           <Route path="/work/:slug" element={<CasoRuta />} />
           <Route path="/shopify" element={<ShopifyVertical />} />
+          <Route path="/shopify/radiografia" element={<ShopifyRadiografia />} />
           <Route path="/sessions" element={<MonzaSessions />} />
           <Route path="/plataformas" element={<Plataformas />} />
           <Route path="/agentes" element={<Navigate to="/plataformas" replace />} />
@@ -93,6 +95,7 @@ const AppContent = () => {
           <Route path="/en/work" element={<Work />} />
           <Route path="/en/work/:slug" element={<CasoRuta />} />
           <Route path="/en/shopify" element={<ShopifyVertical />} />
+          <Route path="/en/shopify/radiografia" element={<ShopifyRadiografia />} />
           <Route path="/en/sessions" element={<MonzaSessions />} />
           <Route path="/en/plataformas" element={<Plataformas />} />
           <Route path="/en/agentes" element={<Navigate to="/en/plataformas" replace />} />
@@ -108,6 +111,7 @@ const AppContent = () => {
           <Route path="/de/work" element={<Work />} />
           <Route path="/de/work/:slug" element={<CasoRuta />} />
           <Route path="/de/shopify" element={<ShopifyVertical />} />
+          <Route path="/de/shopify/radiografia" element={<ShopifyRadiografia />} />
           <Route path="/de/sessions" element={<MonzaSessions />} />
           <Route path="/de/plataformas" element={<Plataformas />} />
           <Route path="/de/agentes" element={<Navigate to="/de/plataformas" replace />} />
@@ -123,6 +127,7 @@ const AppContent = () => {
           <Route path="/pt/work" element={<Work />} />
           <Route path="/pt/work/:slug" element={<CasoRuta />} />
           <Route path="/pt/shopify" element={<ShopifyVertical />} />
+          <Route path="/pt/shopify/radiografia" element={<ShopifyRadiografia />} />
           <Route path="/pt/sessions" element={<MonzaSessions />} />
           <Route path="/pt/plataformas" element={<Plataformas />} />
           <Route path="/pt/agentes" element={<Navigate to="/pt/plataformas" replace />} />
